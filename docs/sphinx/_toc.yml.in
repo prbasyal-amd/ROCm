@@ -23,6 +23,8 @@ subtrees:
 
 - caption: How to
   entries:
+  - file: how-to/programming_guide.rst
+    title: Programming guide
   - file: how-to/rocm-for-ai/index.rst
     title: Using ROCm for AI
     subtrees:
@@ -70,9 +72,11 @@ subtrees:
       - file: how-to/system-optimization/w6000-v620.md
         title: AMD RDNA 2
   - file: how-to/tuning-guides/mi300x/index.rst
-    title: AMD MI300X tuning guides
+    title: AMD MI300X performance validation and tuning
     subtrees:
     - entries:
+      - file: how-to/performance-validation/mi300x/vllm-benchmark.rst
+        title: Performance validation
       - file: how-to/tuning-guides/mi300x/system.rst
         title: System tuning
       - file: how-to/tuning-guides/mi300x/workload.rst

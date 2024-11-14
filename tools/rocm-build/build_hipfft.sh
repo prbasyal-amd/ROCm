@@ -16,6 +16,7 @@ build_hipfft() {
 
     cd $COMPONENT_SRC
     mkdir -p "$BUILD_DIR" && cd "$BUILD_DIR"
+    init_rocm_common_cmake_params
 
     if [ -n "$GPU_ARCHS" ]; then
         GPU_TARGETS="$GPU_ARCHS"
@@ -26,7 +27,7 @@ build_hipfft() {
     cmake \
         -DCMAKE_CXX_COMPILER=$(set_build_variables CXX) \
         ${LAUNCHER_FLAGS} \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         -DCMAKE_MODULE_PATH="${ROCM_PATH}/lib/cmake/hip" \
         -DCMAKE_SKIP_BUILD_RPATH=TRUE \

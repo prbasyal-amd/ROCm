@@ -13,7 +13,7 @@ build_miopen_hip() {
     echo "Start build"
 
     cd $COMPONENT_SRC
-
+    git config --global --add safe.directory "$COMPONENT_SRC"
     checkout_lfs
 
     if [ "${ENABLE_ADDRESS_SANITIZER}" == "true" ]; then
@@ -22,8 +22,9 @@ build_miopen_hip() {
    fi
 
     mkdir "$BUILD_DIR" && cd "$BUILD_DIR"
+    init_rocm_common_cmake_params
     cmake \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DMIOPEN_BACKEND=HIP \
         -DCMAKE_CXX_COMPILER="${ROCM_PATH}/llvm/bin/clang++" \
         -DCMAKE_C_COMPILER="${ROCM_PATH}/llvm/bin/clang" \

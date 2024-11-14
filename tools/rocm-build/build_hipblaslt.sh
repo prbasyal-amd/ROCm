@@ -27,11 +27,12 @@ build_hipblaslt() {
         GPU_TARGETS=all
     fi
 
+    init_rocm_common_cmake_params
     CXX=$(set_build_variables CXX)\
     cmake \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         ${LAUNCHER_FLAGS} \
-         $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DTensile_LOGIC= \
         -DTensile_CODE_OBJECT_VERSION=default \
         -DTensile_CPU_THREADS= \

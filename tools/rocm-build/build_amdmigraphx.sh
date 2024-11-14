@@ -22,12 +22,13 @@ build_amdmigraphx() {
     else
         GPU_TARGETS="gfx908;gfx90a;gfx940;gfx941;gfx942;gfx1030;gfx1100;gfx1101"
     fi
+    init_rocm_common_cmake_params
 
     mkdir -p ${BUILD_DIR} && rm -rf ${BUILD_DIR}/* && mkdir -p ${HOME}/amdmigraphx && rm -rf ${HOME}/amdmigraphx/*
     rbuild package -d "${HOME}/amdmigraphx" -B "${BUILD_DIR}" \
         --cxx="${ROCM_PATH}/llvm/bin/clang++" \
         --cc="${ROCM_PATH}/llvm/bin/clang" \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DCMAKE_MODULE_LINKER_FLAGS="-Wl,--enable-new-dtags -Wl,--rpath,$ROCM_LIB_RPATH" \
 	    -DGPU_TARGETS="${GPU_TARGETS}" \
         -DCMAKE_INSTALL_RPATH=""

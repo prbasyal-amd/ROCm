@@ -9,16 +9,14 @@
 
 ROCm is an open-source software platform optimized to extract HPC and AI workload
 performance from AMD Instinct accelerators and AMD Radeon GPUs while maintaining
-compatibility with industry software frameworks. For more information, see [What is ROCm?](./what-is-rocm.rst)
+compatibility with industry software frameworks. For more information, see
+[What is ROCm?](./what-is-rocm.rst)
 
-If you're using Radeon GPUs, consider reviewing {doc}`Radeon-specific ROCm documentation<radeon:index>`.
+ROCm supports multiple programming languages and programming interfaces such as
+{doc}`HIP (Heterogeneous-Compute Interface for Portability)<hip:index>`, OpenCL,
+and OpenMP, as explained in the [Programming guide](./how-to/programming_guide.rst).
 
-Installation instructions are available from:
-
-* {doc}`ROCm installation for Linux<rocm-install-on-linux:index>`
-* {doc}`HIP SDK installation for Windows<rocm-install-on-windows:index>`
-* [Deep learning frameworks installation](./how-to/deep-learning-rocm.rst)
-* [Build ROCm from source](./how-to/build-rocm.rst)
+If you're using AMD Radeon™ PRO or Radeon GPUs in a workstation setting with a display connected, review {doc}`Radeon-specific ROCm documentation<radeon:index>`.
 
 ROCm documentation is organized into the following categories:
 
@@ -41,11 +39,12 @@ ROCm documentation is organized into the following categories:
 :::{grid-item-card} How to
 :class-body: rocm-card-banner rocm-hue-12
 
+* [Programming guide](./how-to/hip_programming_guide.rst)
 * [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
 * [System optimization](./how-to/system-optimization/index.rst)
-* [AMD Instinct MI300X tuning guides](./how-to/tuning-guides/mi300x/index.rst)
+* [AMD Instinct MI300X performance validation and tuning](./how-to/tuning-guides/mi300x/index.rst)
 * [GPU cluster networking](https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/latest/index.html)
 * [System debugging](./how-to/system-debugging.md)
 * [Using MPI](./how-to/gpu-enabled-mpi.rst)

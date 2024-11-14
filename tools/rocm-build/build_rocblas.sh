@@ -28,11 +28,12 @@ build_rocblas() {
     else
         GPU_TARGETS="gfx908:xnack-;gfx90a:xnack+;gfx90a:xnack-;gfx940;gfx941;gfx942;gfx1030;gfx1100;gfx1101"
     fi
+    init_rocm_common_cmake_params
 
     cmake \
         -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake \
         -DBUILD_DIR="${BUILD_DIR}" \
-        $(rocm_common_cmake_params) \
+	"${rocm_math_common_cmake_params[@]}" \
         -DROCM_DIR="${ROCM_PATH}" \
         ${LAUNCHER_FLAGS} \
         -DCMAKE_PREFIX_PATH="${DEPS_DIR};${ROCM_PATH}" \

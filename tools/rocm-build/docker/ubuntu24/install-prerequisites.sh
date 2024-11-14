@@ -1,9 +1,16 @@
+
 #! /usr/bin/bash
+set -ex
 
-set -x
+# The following assumes that you have a cache, e.g.
+# https://docs.docker.com/engine/examples/apt-cacher-ng/
+# Comment out if it breaks things
+echo 'Acquire::http { Proxy "http://rocm-ci-services.amd.com:3142";  };' > /etc/apt/apt.conf.d/01proxy
 
-apt-get -y update 
+apt-get update 
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(sed 's/#.*//' /tmp/packages)
+update-ccache-symlinks
+apt-get upgrade
 apt-get clean 
 rm -rf /var/cache/apt/ /var/lib/apt/lists/* /etc/apt/apt.conf.d/01proxy
 
@@ -15,13 +22,11 @@ make prefix=/usr/local all
 make prefix=/usr/local install
 git --version
 
-#install argparse and CppHeaderParser python modules for roctracer and rocprofiler
-#install rocm-docs-core for the docs-as-code project. Only needed on one OS
-# CppHeader needs setuptools. setuptools needs wheel.
-# Looks like I need them as seperate commands
-# Sigh, install both python2 and python 3 version
+# venv for python to be able to run pip3 without --break-system-packages
+python3 -m venv /opt/venv
+
 pip3 install --no-cache-dir setuptools wheel tox
-pip3 install --no-cache-dir CppHeaderParser argparse requests lxml barectf recommonmark jinja2==3.0.0 websockets matplotlib numpy scipy minimal msgpack pytest sphinx joblib PyYAML rocm-docs-core cmake==3.25.2 pandas myst-parser
+pip3 install --no-cache-dir --pre CppHeaderParser argparse requests lxml barectf recommonmark jinja2==3.0.0 websockets matplotlib numpy scipy minimal msgpack pytest sphinx joblib PyYAML==5.3.1 rocm-docs-core cmake==3.25.2 pandas myst-parser
 
 # Allow sudo for everyone user
 echo 'ALL ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/everyone
@@ -47,42 +52,6 @@ make
 make install 
 cd /tmp 
 rm -rf ccache
-
-# Install sharp from MLNX_OFED_LINUX as dependency for rccl-rdma-sharp-plugins
-cd /var/tmp
-mkdir mlnx 
-wget -O mlnx/tar.tgz https://content.mellanox.com/ofed/MLNX_OFED-24.01-0.3.3.1/MLNX_OFED_LINUX-24.01-0.3.3.1-ubuntu22.04-x86_64.tgz 
-tar -xz -C mlnx -f mlnx/tar.tgz 
-apt-key add mlnx/*/RPM-GPG-KEY-Mellanox
-echo "deb [arch=amd64] file:$(echo $PWD/mlnx/*/DEBS) ./" > /etc/apt/sources.list.d/sharp.list
-apt update
-apt install -y sharp 
-apt clean
-rm -rf /var/cache/apt/ /var/lib/apt/lists/* mlnx /etc/apt/sources.list.d/sharp.list
-
-apt update
-apt -y install libunwind-dev
-apt -y install libgoogle-glog-dev
-
-# Install python3.8 from source
-curl -LO https://www.python.org/ftp/python/3.8.13/Python-3.8.13.tar.xz
-tar -xvf Python-3.8.13.tar.xz
-pwd
-ls /var/tmp/
-ls Python-3.8.13
-mv Python-3.8.13 /opt/
-apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev pkg-config make -y 
-cd /opt/Python-3.8.13/ 
-./configure --enable-optimizations --enable-shared
-make 
-make -j 6 
-make altinstall 
-ldconfig /opt/Python3.8.13
-python3.8 --version
-
-# roctracer and rocprofiler needs this python3.8
-python3.8 -m pip install setuptools wheel
-python3.8 -m pip install CppHeaderParser argparse requests lxml PyYAML joblib
 
 #Install older version of hwloc-devel package for rocrtst
 curl -lO https://download.open-mpi.org/release/hwloc/v1.11/hwloc-1.11.13.tar.bz2
@@ -121,7 +90,7 @@ cmake  -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_I
 make -j $(nproc) install 
 rm -rf /tmp/grpc
 
-## rocBLAS Pre-requisites
+## rocBLAS Pre-requisites(ROCMOPS-3856)
 ## Download prebuilt AMD multithreaded blis (2.0)
 ## Reference : https://github.com/ROCmSoftwarePlatform/rocBLAS/blob/develop/install.sh#L403
 mkdir -p /tmp/blis 
@@ -232,6 +201,7 @@ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="/usr/local" -DENABLE_SHARED:bo
 make -j$(nproc) install
 rm -rf /tmp/x265_2.7
 
+
 # Build fdk-aac
 mkdir -p /tmp/fdk-aac-2.0.2
 cd /tmp
@@ -244,6 +214,7 @@ rm -rf /tmp/fdk-aac-2.0.2
 
 # Build FFmpeg
 cd /tmp
+rm -rf ffmpeg
 git clone -b release/4.4 https://git.ffmpeg.org/ffmpeg.git ffmpeg
 cd ffmpeg
 PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
@@ -256,7 +227,7 @@ cp /tmp/local-pin-600 /etc/apt/preferences.d
 command -v lbzip2 
 ln -sf $(command -v lbzip2) /usr/local/bin/compressor || ln -sf $(command -v bzip2) /usr/local/bin/compressor
 
-# Install Google Benchmark
+# Install Google Benchmark (ROCMOPS-5283)
 mkdir -p /tmp/Gbenchmark 
 cd /tmp/Gbenchmark 
 wget -qO- https://github.com/google/benchmark/archive/refs/tags/v1.6.1.tar.gz | tar xz 
@@ -264,22 +235,3 @@ cmake -Sbenchmark-1.6.1 -Bbuild -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=O
 make -j -C build 
 cd /tmp/Gbenchmark/build
 make install
-
-# Build boost-1.85.0 from source for RPP
-# Installing in a non-standard location since the test packages of hipFFT and rocFFT pick up the version of
-# the installed Boost library and declare a package dependency on that specific version of Boost.
-# For example, if this was installed in the standard location it would declare a dependency on libboost-dev(el)1.85.0
-# which is not available as a package in any distro.
-# Once this is fixed, we can remove the Boost package from the requirements list and install this
-# in the standard location
-mkdir -p /tmp/boost-1.85.0 
-cd /tmp/boost-1.85.0 
-wget -nv https://sourceforge.net/projects/boost/files/boost/1.85.0/boost_1_85_0.tar.bz2 -O ./boost_1_85_0.tar.bz2 
-tar -xf boost_1_85_0.tar.bz2 --use-compress-program="/usr/local/bin/compressor" 
-cd boost_1_85_0 
-./bootstrap.sh --prefix=${RPP_DEPS_LOCATION} --with-python=python3 
-./b2 stage -j$(nproc) threading=multi link=shared cxxflags="-std=c++11" 
-./b2 install threading=multi link=shared --with-system --with-filesystem 
-./b2 stage -j$(nproc) threading=multi link=static cxxflags="-std=c++11 -fpic" cflags="-fpic"
-./b2 install threading=multi link=static --with-system --with-filesystem 
-rm -rf /tmp/boost-1.85.0

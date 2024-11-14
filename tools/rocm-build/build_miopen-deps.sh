@@ -44,7 +44,7 @@ build_miopen_deps() {
     cd "$COMPONENT_SRC"
 
     # Commenting the rocMLIR & composable_kernel from requirements.txt
-    sed -i '/ROCmSoftwarePlatform\/rocMLIR@\|ROCmSoftwarePlatform\/composable_kernel@/s/^/#/' requirements.txt
+    sed -i '/ROCm\/rocMLIR@\|ROCm\/composable_kernel@/s/^/#/' requirements.txt
     # Extract MLIR commit from requirements.txt
     MLIR_COMMIT="$(awk '/rocMLIR/ {split($1, s, "@"); print s[2]}' requirements.txt)"
 

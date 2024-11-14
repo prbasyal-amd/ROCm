@@ -28,6 +28,7 @@ build_hipsparselt() {
 
     cd $COMPONENT_SRC
     mkdir -p "$BUILD_DIR" && cd "$BUILD_DIR"
+    init_rocm_common_cmake_params
 
     if [ -n "$GPU_ARCHS" ]; then
         GPU_TARGETS="$GPU_ARCHS"
@@ -41,7 +42,7 @@ build_hipsparselt() {
     cmake \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         ${LAUNCHER_FLAGS} \
-         $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DTensile_LOGIC= \
         -DTensile_CODE_OBJECT_VERSION=default \
         -DTensile_CPU_THREADS= \

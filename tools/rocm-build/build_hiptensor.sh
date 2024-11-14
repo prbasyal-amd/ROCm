@@ -16,6 +16,8 @@ build_hiptensor() {
 
     cd "$COMPONENT_SRC"
     mkdir -p "$BUILD_DIR" && cd "$BUILD_DIR"
+    init_rocm_common_cmake_params
+
 
     if [ -n "$GPU_ARCHS" ]; then
         GPU_TARGETS="$GPU_ARCHS"
@@ -25,7 +27,7 @@ build_hiptensor() {
 
     cmake \
         -B "${BUILD_DIR}" \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         $(set_build_variables CMAKE_C_CXX) \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         ${LAUNCHER_FLAGS} \

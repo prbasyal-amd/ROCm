@@ -81,6 +81,7 @@ article_pages = [
         "file": "how-to/llm-fine-tuning-optimization/profiling-and-debugging",
         "os": ["linux"],
     },
+    {"file": "how-to/performance-validation/mi300x/vllm-benchmark", "os": ["linux"]},
     {"file": "how-to/system-optimization/index", "os": ["linux"]},
     {"file": "how-to/system-optimization/mi300x", "os": ["linux"]},
     {"file": "how-to/system-optimization/mi200", "os": ["linux"]},

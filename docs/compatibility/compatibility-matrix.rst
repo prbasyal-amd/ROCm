@@ -112,9 +112,7 @@ Accelerators and GPUs listed in the following table support compute workloads (n
       ,,,
       PERFORMANCE TOOLS,,,
       :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,1.4.0,1.4.0,1.4.0
-      :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`,2.0.1,2.0.1,N/A
-      :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`,1.11.2,1.11.2,N/A
-      :doc:`ROCProfiler <rocprofiler:index>`,2.0.60202,2.0.60201,2.0.60100
+      :doc:`ROCProfiler <rocprofiler:index>`,2.0.60204,2.0.60202,2.0.60100
       :doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`,0.4.0,0.4.0,N/A
       :doc:`ROCTracer <roctracer:index>`,4.1.60204,4.1.60202,4.1.60100
       ,,,

@@ -28,9 +28,10 @@ build_hipblas() {
        rebuild_lapack
     fi
 
+    init_rocm_common_cmake_params
     cmake \
         ${LAUNCHER_FLAGS} \
-	$(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DUSE_CUDA=OFF \
         -DBUILD_CLIENTS_TESTS=ON \
         -DBUILD_CLIENTS_BENCHMARKS=ON \

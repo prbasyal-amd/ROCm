@@ -32,18 +32,18 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
 a wider variety of user needs and use cases.
 
 * Added a new GPU cluster networking guide. See
-  [Cluster network performance validation for AMD Instinct accelerators](https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/latest/index.html).
+  [Cluster network performance validation for AMD Instinct accelerators](https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/docs-6.2.4/index.html).
   This documentation provides guidelines on validating network configurations
   in single-node and multi-node environments to attain optimal speed and bandwidth
   in AMD Instinct-powered clusters.
 
 * Updated the HIP runtime documentation.
 
-  * Added a new section on how to use [HIP graphs](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hipgraph.html).
+  * Added a new section on how to use [HIP graphs](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.4/how-to/hipgraph.html).
 
-  * Added a new section about the [Stream ordered memory allocator (SOMA)](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/stream_ordered_allocator.html).
+  * Added a new section about the [Stream ordered memory allocator (SOMA)](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.4/how-to/stream_ordered_allocator.html).
 
-  * Updated the [Porting CUDA driver API](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_porting_driver_api.html) section.
+  * Updated the [Porting CUDA driver API](https://rocm.docs.amd.com/projects/HIP/en/docs-6.2.4/how-to/hip_porting_driver_api.html) section.
 
 * Updated the [Post-installation instructions](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.4/install/post-install.html)
   with guidance on using the `update-alternatives` utility and environment modules to help you manage multiple ROCm
@@ -56,7 +56,7 @@ a wider variety of user needs and use cases.
 ## Operating system and hardware support changes
 
 ROCm 6.2.4 adds support for the [AMD Radeon PRO V710](https://www.amd.com/en/products/accelerators/radeon-pro/amd-radeon-pro-v710.html) GPU for compute workloads. See 
-[Supported GPUs](https://advanced-micro-devices-demo--287.com.readthedocs.build/projects/install-on-linux-internal/en/287/reference/system-requirements.html)
+[Supported GPUs](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.2.4/reference/system-requirements.html#supported-gpus)
 for more information.
 
 This release maintains the same operating system support as 6.2.2.

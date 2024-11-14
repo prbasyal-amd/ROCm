@@ -2,7 +2,6 @@
 
 set -ex
 
-
 apt-get update 
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(grep -v '^#' /tmp/packages)
 apt-get clean 
@@ -105,7 +104,7 @@ git clone --recurse-submodules -b v1.61.0 https://github.com/grpc/grpc
 cd grpc
 mkdir -p cmake/build
 cd cmake/build
-cmake -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF  -DCMAKE_INSTALL_PREFIX=/usr/grpc   -DCMAKE_CXX_STANDARD=14  ../.. 
+cmake -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF  -DCMAKE_INSTALL_PREFIX=/usr/grpc   -DCMAKE_CXX_STANDARD=14  -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,'$ORIGIN' ../.. 
 make -j$(nproc)
 make install 
 cd  / 
@@ -120,11 +119,11 @@ mv amd-blis-mt /usr/blis
 cd / 
 rm -rf /tmp/blis
 
-## Download aocl-linux-aocc-4.0_1_amd64.deb
+## Download aocl-linux-gcc-4.2.0_1_amd64.deb
 mkdir -p /tmp/aocl 
 cd /tmp/aocl 
-wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-0/aocl-linux-aocc-4.0_1_amd64.deb 
-apt install ./aocl-linux-aocc-4.0_1_amd64.deb
+wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb 
+apt install ./aocl-linux-gcc-4.2.0_1_amd64.deb
 rm -rf /tmp/aocl
 
 ## lapack(3.9.1v)
@@ -180,8 +179,7 @@ cd ninja-1.11.1.g95dee.kitware.jobserver-1
 cp ninja /usr/local/bin/ 
 rm -rf /tmp/ninja
 
-# Install pre-built FFmpeg and dependencies
-# See docker/build-deps for instructions on how to build these packages
+# Install FFmpeg from source
 wget -qO- https://www.ffmpeg.org/releases/ffmpeg-4.4.2.tar.gz | tar -xzv -C /usr/local
 
 command -v lbzip2 

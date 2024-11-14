@@ -36,6 +36,7 @@ Bluefield
 Bootloader
 CCD
 CDNA
+CHTML
 CIFAR
 CLI
 CLion
@@ -70,6 +71,7 @@ Concretized
 Conda
 ConnectX
 CuPy
+Dashboarding
 DDR
 DF
 DGEMM
@@ -227,6 +229,7 @@ Mellanox's
 Meta's
 Miniconda
 MirroredStrategy
+Mixtral
 Multicore
 Multithreaded
 MyEnvironment
@@ -273,6 +276,7 @@ OpenSSL
 OpenVX
 OpenXLA
 Oversubscription
+PagedAttention
 PCC
 PCI
 PCIe
@@ -294,6 +298,7 @@ PowerShell
 PyPi
 PyTorch
 Qcycles
+Qwen
 RAII
 RAS
 RCCL
@@ -563,6 +568,7 @@ hipfort
 hipify
 hipsolver
 hipsparse
+hlist
 hotspotting
 hpc
 hpp
@@ -586,6 +592,7 @@ intra
 invariants
 invocating
 ipo
+jax
 kdb
 kfd
 latencies
@@ -606,6 +613,7 @@ migraphx
 miopen
 miopengemm
 mivisionx
+mjx
 mkdir
 mlirmiopen
 mtypes

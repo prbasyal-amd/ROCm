@@ -27,9 +27,11 @@ build_rocwmma() {
         GPU_TARGETS="gfx908:xnack-;gfx90a:xnack-;gfx90a:xnack+;gfx940;gfx941;gfx942;gfx1100;gfx1101"
     fi
 
+    init_rocm_common_cmake_params
+
     CXX=$(set_build_variables CXX)\
     cmake \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         ${LAUNCHER_FLAGS} \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         -DROCWMMA_BUILD_VALIDATION_TESTS=ON \

@@ -189,6 +189,65 @@ echo " PKGTYPE= $6 "
 echo " MAKETARGET = $7 "
 }
 
+rocm_math_common_cmake_params=()
+init_rocm_common_cmake_params(){
+  local retCmakeParams=${1:-rocm_math_common_cmake_params}
+  local SET_BUILD_TYPE=${BUILD_TYPE:-'RelWithDebInfo'}
+  local ASAN_LIBDIR="lib/asan"
+  local CMAKE_PATH=$(getCmakePath)
+# Common cmake parameters can be set
+# component build scripts can use this function
+  local cmake_params
+  if [ "${ASAN_CMAKE_PARAMS}" == "true" ] ; then
+    cmake_params=(
+        "-DCMAKE_PREFIX_PATH=$CMAKE_PATH;${ROCM_PATH}/$ASAN_LIBDIR;$ROCM_PATH/llvm;$ROCM_PATH"
+        "-DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ROCM_ASAN_LIB_RPATH"
+        "-DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ROCM_ASAN_EXE_RPATH"
+        "-DENABLE_ASAN_PACKAGING=true"
+    )
+  else
+    cmake_params=(
+        "-DCMAKE_PREFIX_PATH=${ROCM_PATH}/llvm;${ROCM_PATH}"
+        "-DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ROCM_LIB_RPATH"
+        "-DCMAKE_EXE_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ROCM_EXE_RPATH"
+    )
+  fi
+
+  cmake_params+=(
+      "-DCMAKE_VERBOSE_MAKEFILE=1"
+      "-DCMAKE_BUILD_TYPE=${SET_BUILD_TYPE}"
+      "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=FALSE"
+      "-DCMAKE_INSTALL_PREFIX=${ROCM_PATH}"
+      "-DCMAKE_PACKAGING_INSTALL_PREFIX=${ROCM_PATH}"
+      "-DBUILD_FILE_REORG_BACKWARD_COMPATIBILITY=OFF"
+      "-DROCM_SYMLINK_LIBS=OFF"
+      "-DCPACK_PACKAGING_INSTALL_PREFIX=${ROCM_PATH}"
+      "-DROCM_DISABLE_LDCONFIG=ON"
+      "-DROCM_PATH=${ROCM_PATH}"
+  )
+
+  #TODO :remove if clause once debug related issues are fixed
+  if [ "${DISABLE_DEBUG_PACKAGE}" == "true" ] ; then
+    SET_BUILD_TYPE=${BUILD_TYPE:-'Release'}
+    cmake_params+=(
+        "-DCPACK_DEBIAN_DEBUGINFO_PACKAGE=FALSE"
+        "-DCPACK_RPM_DEBUGINFO_PACKAGE=FALSE"
+        "-DCPACK_RPM_INSTALL_WITH_EXEC=FALSE"
+        "-DCMAKE_BUILD_TYPE=${SET_BUILD_TYPE}"
+    )
+  elif [ "$SET_BUILD_TYPE" == "RelWithDebInfo" ] || [ "$SET_BUILD_TYPE" == "Debug" ]; then
+    # RelWithDebinfo optimization level -O2 is having performance impact
+    # So overriding the same to -O3
+    cmake_params+=(
+        "-DCPACK_DEBIAN_DEBUGINFO_PACKAGE=TRUE"
+        "-DCPACK_RPM_DEBUGINFO_PACKAGE=TRUE"
+        "-DCPACK_RPM_INSTALL_WITH_EXEC=TRUE"
+        "-DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O3 -g -DNDEBUG"
+    )
+  fi
+    eval "${retCmakeParams}=( \"\${cmake_params[@]}\" ) "
+}
+
 # Common cmake parameters can be set
 # component build scripts can use this function
 rocm_common_cmake_params() {
