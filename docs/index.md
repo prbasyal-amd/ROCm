@@ -40,16 +40,16 @@ ROCm documentation is organized into the following categories:
 :class-body: rocm-card-banner rocm-hue-12
 
 * [Programming guide](./how-to/hip_programming_guide.rst)
-* [Using ROCm for AI](./how-to/rocm-for-ai/index.rst)
-* [Using ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
-* [Fine-tuning LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
+* [Use ROCm for AI](./how-to/rocm-for-ai/index.rst)
+* [Use ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
+* [Fine-tune LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
 * [System optimization](./how-to/system-optimization/index.rst)
 * [AMD Instinct MI300X performance validation and tuning](./how-to/tuning-guides/mi300x/index.rst)
 * [GPU cluster networking](https://rocm.docs.amd.com/projects/gpu-cluster-networking/en/latest/index.html)
 * [System debugging](./how-to/system-debugging.md)
-* [Using MPI](./how-to/gpu-enabled-mpi.rst)
-* [Using advanced compiler features](./conceptual/compiler-topics.md)
-* [Setting the number of CUs](./how-to/setting-cus)  
+* [Use MPI](./how-to/gpu-enabled-mpi.rst)
+* [Use advanced compiler features](./conceptual/compiler-topics.md)
+* [Set the number of CUs](./how-to/setting-cus)  
 * [ROCm examples](https://github.com/amd/rocm-examples)
 :::
 
