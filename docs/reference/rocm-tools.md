@@ -65,7 +65,7 @@
 :::{grid-item-card} Runtimes
 :class-body: rocm-card-banner rocm-hue-12
 
-* {doc}`AMD Common Language Runtime (CLR) <hip:understand/amd_clr>`
+* {doc}`AMD Compute Language Runtime (CLR) <hip:understand/amd_clr>`
 * {doc}`HIP <hip:index>`
 * {doc}`ROCR-Runtime <rocr-runtime:index>`
 :::
