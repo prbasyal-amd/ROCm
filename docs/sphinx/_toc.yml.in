@@ -9,6 +9,13 @@ subtrees:
   - file: what-is-rocm.rst
   - file: about/release-notes.md
     title: Release notes
+  - file: compatibility/compatibility-matrix.rst
+    title: Compatibility matrix
+    entries:
+    - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
+      title: Linux system requirements
+    - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
+      title: Windows system requirements
 
 - caption: Install
   entries:
@@ -16,6 +23,8 @@ subtrees:
     title: ROCm on Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/
     title: HIP SDK on Windows
+  - url: https://rocm.docs.amd.com/projects/radeon/en/latest/index.html
+    title: ROCm on Radeon GPUs
   - file: how-to/deep-learning-rocm.md
     title: Deep learning frameworks
   - file: how-to/build-rocm.rst
@@ -104,23 +113,6 @@ subtrees:
     title: Set the number of CUs  
   - url: https://github.com/amd/rocm-examples
     title: ROCm examples
-
-- caption: Compatibility
-  entries:
-  - file: compatibility/compatibility-matrix.rst
-    title: Compatibility matrix
-  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
-    title: Linux system requirements
-  - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
-    title: Windows system requirements
-  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/3rd-party-support-matrix.html
-    title: Third-party support
-  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html
-    title: User and kernel-space support matrix
-  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/docker-image-support-matrix.html
-    title: Docker image support matrix
-  - url: https://rocm.docs.amd.com/projects/radeon/en/latest/index.html
-    title: Use ROCm on Radeon GPUs
 
 - caption: Conceptual
   entries:
