@@ -158,6 +158,8 @@ subtrees:
     title: Using CMake
   - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
     title: ROCm & PCIe atomics
+  - file: conceptual/Bar-Memory.rst
+    title: BAR memory overview
   - file: conceptual/ai-pytorch-inception.md
     title: Inception v3 with PyTorch
   - file: conceptual/oversubscription.rst
