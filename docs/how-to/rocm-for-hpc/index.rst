@@ -115,6 +115,13 @@ Ubuntu versions.
           for non-destructive testing or for ocean acoustics.
 
       * - Molecular dynamics
+        - `Amber <https://github.com/amd/InfinityHub-CI/tree/main/amber>`_
+        - Amber is a suite of biomolecular simulation programs, the term "Amber" refers 
+          to two things. First, it is a set of molecular mechanical force fields for the 
+          simulation of biomolecules. Second, it is a package of molecular simulation 
+          programs which includes source code and demos.
+
+      * - 
         - `GROMACS with HIP (AMD implementation) <https://github.com/amd/InfinityHub-CI/tree/main/gromacs>`_
         - GROMACS is a versatile package to perform molecular dynamics, i.e.
           simulate the Newtonian equations of motion for systems with hundreds
@@ -129,6 +136,13 @@ Ubuntu versions.
           Parallel Simulator.
 
       * - Computational fluid dynamics
+        - `Ansys Fluent <https://github.com/amd/InfinityHub-CI/tree/main/ansys-fluent>`_
+        - Ansys Fluent is an advanced computational fluid dynamics (CFD) software used for 
+          simulating and analyzing fluid flow, heat transfer, and related phenomena in complex systems. 
+          It offers a range of powerful features for detailed and accurate modeling of various physical 
+          processes, including turbulence, chemical reactions, and multiphase flows.
+
+      * -
         - `NEKO <https://github.com/amd/InfinityHub-CI/tree/main/neko>`_
         - Neko is a portable framework for high-order spectral element flow simulations.
           Written in modern Fortran, Neko adopts an object-oriented approach, allowing
@@ -140,6 +154,26 @@ Ubuntu versions.
         - `nekRS <https://github.com/amd/InfinityHub-CI/tree/main/nekrs>`_
         - nekRS is an open-source Navier Stokes solver based on the spectral element
           method targeting classical processors and accelerators like GPUs. 
+
+      * -
+        - `OpenFOAM <https://github.com/amd/InfinityHub-CI/tree/main/openfoam>`_
+        - OpenFOAM is a free, open-source computational fluid dynamics (CFD) 
+          software developed primarily by OpenCFD Ltd since 2004. It has a large user 
+          base across most areas of engineering and science, from both commercial and 
+          academic organizations. OpenFOAM has an extensive range of features to solve 
+          anything from complex fluid flows involving chemical reactions, turbulence, and 
+          heat transfer, to acoustics, solid mechanics, and electromagnetics.
+
+      * -
+        - `PeleC <https://github.com/amd/InfinityHub-CI/tree/main/pelec>`_
+        - PeleC is an adaptive mesh refinement(AMR) solver for compressible reacting flows.
+
+      * -
+        - `Simcenter Star-CCM+ <https://github.com/amd/InfinityHub-CI/tree/main/siemens-star-ccm>`_
+        - Simcenter Star-CCM+ is a comprehensive computational fluid dynamics (CFD) and multiphysics 
+          simulation software developed by Siemens Digital Industries Software. It is designed to 
+          help engineers and researchers analyze and optimize the performance of products and 
+          systems across various industries.
 
       * - Computational chemistry
         - `QUDA <https://github.com/amd/InfinityHub-CI/tree/main/quda>`_
@@ -169,6 +203,26 @@ Ubuntu versions.
         - The Model for Prediction Across Scales (MPAS) is a collaborative project for
           developing atmosphere, ocean, and other earth-system simulation components
           for use in climate, regional climate, and weather studies.
+
+      * - Energy, Oil, and Gas
+        - `DevitoPRO <https://github.com/amd/InfinityHub-CI/tree/main/devitopro>`_
+        - DevitoPRO is an advanced extension of the open-source Devito platform with added 
+          features tailored for high-demand production workflows. It is designed to cater to
+          high-performance computing (HPC) needs, especially in seismic imaging and inversion. 
+          It is used for performing optimized Finite Difference (FD) computation 
+          from high-level symbolic problem definitions. DevitoPro performs automated 
+          code generation and Just-In-time (JIT) compilation based on symbolic equations 
+          defined in SymPy to create and execute highly optimized Finite Difference stencil 
+          kernels on multiple computer platforms.
+
+      * - 
+        - `ECHELON <https://github.com/amd/InfinityHub-CI/tree/main/srt-echelon>`_
+        - ECHELON by Stone Ridge Technology is a reservoir simulation tool. Along With 
+          fast processing, it retains precise accuracy and preserves legacy simulator results. 
+          Faster reservoir simulation enables reservoir engineers to produce many realizations, 
+          address larger models, and use advanced physics. It opens new workflows based on 
+          ensemble methodologies for history matching and forecasting that yield 
+          increased accuracy and more predictive results.
 
       * - Benchmark
         - `rocHPL <https://github.com/amd/InfinityHub-CI/tree/main/rochpl>`_
@@ -218,12 +272,11 @@ Ubuntu versions.
 
       * -
         - `PETSc <https://github.com/amd/InfinityHub-CI/tree/main/petsc>`_
-        - PETSc, the Portable, Extensible Toolkit for Scientific Computation, pronounced 
-          PET-see (the S is silent), is a suite of data  structures and routines for the
-          scalable (parallel) solution of scientific applications modeled by partial 
-          differential equations. It supports MPI, and GPUs through CUDA, HIP or OpenCL, 
-          as well as hybrid MPI-GPU parallelism; it also supports the NEC-SX Tsubasa Vector Engine. 
-          PETSc (sometimes called PETSc/TAO) also contains the TAO, the Toolkit for Advanced Optimization, software library.
+        - Portable, Extensible Toolkit for Scientific Computation (PETSc), is a suite of data structures 
+          and routines for the scalable (parallel) solution of scientific applications modeled by partial 
+          differential equations. It supports MPI, and GPUs through CUDA, HIP, or OpenCL, 
+          as well as hybrid MPI-GPU parallelism. It also supports the NEC-SX Tsubasa Vector Engine. 
+          PETSc also contains the Toolkit for Advanced Optimization (TAO), software library.
 
       * -
         - `RAJA <https://github.com/amd/InfinityHub-CI/tree/main/raja>`_
@@ -236,5 +289,9 @@ Ubuntu versions.
         - The Trilinos Project is an effort to develop algorithms and enabling technologies
           within an object-oriented software framework for the solution of large-scale,
           complex multi-physics engineering and scientific problems.
+
+      * -
+        - `vLLM <https://github.com/amd/InfinityHub-CI/tree/main/vllm>`_
+        - vLLM is a toolkit and library for large language model (LLM) inference and serving.
 
 To learn about ROCm for AI applications, see :doc:`../rocm-for-ai/index`.
