@@ -3,7 +3,7 @@ ROCm Version,6.3.0,6.2.4,6.2.2,6.2.1,6.2.0, 6.1.2, 6.1.1, 6.1.0, 6.0.2, 6.0.0
       ,Ubuntu 22.04.5,"Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.4, 22.04.3","Ubuntu 22.04.4, 22.04.3","Ubuntu 22.04.4, 22.04.3","Ubuntu 22.04.4, 22.04.3, 22.04.2","Ubuntu 22.04.4, 22.04.3, 22.04.2"
       ,,,,,,"Ubuntu 20.04.6, 20.04.5","Ubuntu 20.04.6, 20.04.5","Ubuntu 20.04.6, 20.04.5","Ubuntu 20.04.6, 20.04.5","Ubuntu 20.04.6, 20.04.5"
       ,"RHEL 9.5, 9.4","RHEL 9.4, 9.3","RHEL 9.4, 9.3","RHEL 9.4, 9.3","RHEL 9.4, 9.3","RHEL 9.4 [#red-hat94-past-60]_, 9.3, 9.2","RHEL 9.4 [#red-hat94-past-60]_, 9.3, 9.2","RHEL 9.4 [#red-hat94-past-60]_, 9.3, 9.2","RHEL 9.3, 9.2","RHEL 9.3, 9.2"
-      ,"RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.9, 8.8","RHEL 8.9, 8.8","RHEL 8.9, 8.8","RHEL 8.9, 8.8","RHEL 8.9, 8.8"
+      ,"RHEL 8.10","RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.9, 8.8","RHEL 8.9, 8.8","RHEL 8.9, 8.8","RHEL 8.9, 8.8","RHEL 8.9, 8.8"
       ,"SLES 15 SP6, SP5","SLES 15 SP6, SP5","SLES 15 SP6, SP5","SLES 15 SP6, SP5","SLES 15 SP6, SP5","SLES 15 SP5, SP4","SLES 15 SP5, SP4","SLES 15 SP5, SP4","SLES 15 SP5, SP4","SLES 15 SP5, SP4"
       ,,,,,,CentOS 7.9,CentOS 7.9,CentOS 7.9,CentOS 7.9,CentOS 7.9
       ,Oracle Linux 8.10 [#oracle89-past-60]_,Oracle Linux 8.9 [#oracle89-past-60]_,Oracle Linux 8.9 [#oracle89-past-60]_,Oracle Linux 8.9 [#oracle89-past-60]_,Oracle Linux 8.9 [#oracle89-past-60]_,Oracle Linux 8.9 [#oracle89-past-60]_,Oracle Linux 8.9 [#oracle89-past-60]_,,,
@@ -95,7 +95,7 @@ ROCm Version,6.3.0,6.2.4,6.2.2,6.2.1,6.2.0, 6.1.2, 6.1.1, 6.1.0, 6.0.2, 6.0.0
       :doc:`ROCProfiler <rocprofiler:index>`,2.0.60300,2.0.60204,2.0.60202,2.0.60201,2.0.60200,2.0.60102,2.0.60101,2.0.60100,2.0.60002,2.0.60000
       :doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`,0.5.0,0.4.0,0.4.0,0.4.0,0.4.0,N/A,N/A,N/A,N/A,N/A
       :doc:`ROCTracer <roctracer:index>`,4.1.60300,4.1.60204,4.1.60202,4.1.60201,4.1.60200,4.1.60102,4.1.60101,4.1.60100,4.1.60002,4.1.60000
-,,,,,,,,,,
+      ,,,,,,,,,,
       DEVELOPMENT TOOLS,,,,,,,,,,
       :doc:`HIPIFY <hipify:index>`,18.0.0.24455,18.0.0.24392,18.0.0.24355,18.0.0.24355,18.0.0.24232,17.0.0.24193,17.0.0.24154,17.0.0.24103,17.0.0.24012,17.0.0.23483
       :doc:`ROCm CMake <rocmcmakebuildtools:index>`,0.14.0,0.13.0,0.13.0,0.13.0,0.13.0,0.12.0,0.12.0,0.12.0,0.11.0,0.11.0

@@ -30,7 +30,7 @@ compatibility and system requirements.
       ,Ubuntu 22.04.5,"Ubuntu 22.04.5, 22.04.4","Ubuntu 22.04.4, 22.04.3"
       ,,,"Ubuntu 20.04.6, 20.04.5"
       ,"RHEL 9.5, 9.4","RHEL 9.4, 9.3","RHEL 9.4 [#red-hat94]_, 9.3, 9.2"
-      ,"RHEL 8.10, 8.9","RHEL 8.10, 8.9","RHEL 8.9, 8.8"
+      ,"RHEL 8.10","RHEL 8.10, 8.9","RHEL 8.9, 8.8"
       ,"SLES 15 SP6, SP5","SLES 15 SP6, SP5","SLES 15 SP5, SP4"
       ,,,CentOS 7.9
       ,Oracle Linux 8.10 [#oracle89]_,Oracle Linux 8.9 [#oracle89]_,
