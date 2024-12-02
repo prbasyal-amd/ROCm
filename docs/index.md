@@ -24,16 +24,14 @@ ROCm documentation is organized into the following categories:
 :gutter: 3
 :class-container: rocm-doc-grid
 
-:::{grid-item-card} Compatibility
+:::{grid-item-card} Install
 :class-body: rocm-card-banner rocm-hue-2
 
-* [Compatibility matrix](./compatibility/compatibility-matrix.rst)
-* {doc}`Linux system requirements<rocm-install-on-linux:reference/system-requirements>`
-* {doc}`Windows system requirements<rocm-install-on-windows:reference/system-requirements>`
-* {doc}`Third-party support<rocm-install-on-linux:reference/3rd-party-support-matrix>`
-* {doc}`User and kernel-space support matrix<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
-* {doc}`Docker image support matrix<rocm-install-on-linux:reference/docker-image-support-matrix>`
-* {doc}`Use ROCm on Radeon GPUs<radeon:index>`
+* {doc}`ROCm on Linux <rocm-install-on-linux:reference/system-requirements>`
+* {doc}`HIP SDK on Windows <rocm-install-on-windows:reference/system-requirements>`
+* [ROCm on Radeon GPUs](https://rocm.docs.amd.com/projects/radeon/en/latest/index.html)
+* {doc}`Deep learning frameworks </how-to/deep-learning-rocm>`
+* {doc}`Build from source </how-to/build-rocm>`
 :::
 
 :::{grid-item-card} How to
