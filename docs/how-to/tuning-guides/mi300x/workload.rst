@@ -272,7 +272,7 @@ ability to collect timeline traces of the accelerator software stack as well as 
 .. _mi300x-rocprof-compute:
 
 ROCm Compute Profiler
-^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 :doc:`ROCm Compute Profiler <rocprofiler-compute:index>` is a system performance profiler for high-performance computing (HPC) and
 machine learning (ML) workloads using Instinct accelerators. Under the hood, ROCm Compute Profiler uses
@@ -301,7 +301,7 @@ a web-based GUI or command-line analyzer, depending on your preference.
 .. _mi300x-rocprof-systems:
 
 ROCm Systems Profiler
-^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 :doc:`ROCm Systems Profiler <rocprofiler-systems:index>` is a comprehensive profiling and tracing tool for parallel applications,
 including HPC and ML packages, written in C, C++, Fortran, HIP, OpenCL, and Python which execute on the CPU or CPU and

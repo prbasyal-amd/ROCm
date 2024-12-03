@@ -59,6 +59,7 @@ additional licenses. Please review individual repositories for more information.
 | [rocDecode](https://github.com/ROCm/rocDecode) | [MIT](https://github.com/ROCm/rocDecode/blob/develop/LICENSE) |
 | [rocFFT](https://github.com/ROCm/rocFFT/) | [MIT](https://github.com/ROCm/rocFFT/blob/develop/LICENSE.md) |
 | [ROCgdb](https://github.com/ROCm/ROCgdb/) | [GNU General Public License v2.0](https://github.com/ROCm/ROCgdb/blob/amd-master/COPYING) |
+| [rocJPEG](https://github.com/ROCm/rocJPEG/) | [MIT](https://github.com/ROCm/rocJPEG/blob/develop/LICENSE) |
 | [ROCK-Kernel-Driver](https://github.com/ROCm/ROCK-Kernel-Driver/) | [GPL 2.0 WITH Linux-syscall-note](https://github.com/ROCm/ROCK-Kernel-Driver/blob/master/COPYING) |
 | [rocminfo](https://github.com/ROCm/rocminfo/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocminfo/blob/amd-staging/License.txt) |
 | [ROCm Bandwidth Test](https://github.com/ROCm/rocm_bandwidth_test/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocm_bandwidth_test/blob/master/LICENSE.txt) |
@@ -84,7 +85,6 @@ additional licenses. Please review individual repositories for more information.
 | [rocSPARSE](https://github.com/ROCm/rocSPARSE/) | [MIT](https://github.com/ROCm/rocSPARSE/blob/develop/LICENSE.md) |
 | [rocThrust](https://github.com/ROCm/rocThrust/) | [Apache 2.0](https://github.com/ROCm/rocThrust/blob/develop/LICENSE) |
 | [ROCTracer](https://github.com/ROCm/roctracer/) | [MIT](https://github.com/ROCm/roctracer/blob/amd-master/LICENSE) |
-| [ROCT-Thunk-Interface](https://github.com/ROCm/ROCT-Thunk-Interface/) | [MIT](https://github.com/ROCm/ROCT-Thunk-Interface/blob/master/LICENSE.md) |
 | [rocWMMA](https://github.com/ROCm/rocWMMA/) | [MIT](https://github.com/ROCm/rocWMMA/blob/develop/LICENSE.md) |
 | [Tensile](https://github.com/ROCm/Tensile/) | [MIT](https://github.com/ROCm/Tensile/blob/develop/LICENSE.md) |
 | [TransferBench](https://github.com/ROCm/TransferBench) | [MIT](https://github.com/ROCm/TransferBench/blob/develop/LICENSE.md) |

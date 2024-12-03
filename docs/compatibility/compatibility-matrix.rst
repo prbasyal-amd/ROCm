@@ -49,7 +49,7 @@ compatibility and system requirements.
       ,,,
       FRAMEWORK SUPPORT,.. _framework-support-compatibility-matrix:,,
       :doc:`PyTorch <rocm-install-on-linux:install/3rd-party/pytorch-install>`,"2.4, 2.3, 2.2, 2.1, 2.0, 1.13","2.3, 2.2, 2.1, 2.0, 1.13","2.1, 2.0, 1.13"
-      :doc:`TensorFlow <rocm-install-on-linux:install/3rd-party/tensorflow-install>`,"2.16.1, 2.15.1, 2.14.1","2.16.1, 2.15.1, 2.14.1","2.15.0, 2.14.0, 2.13.1"
+      :doc:`TensorFlow <rocm-install-on-linux:install/3rd-party/tensorflow-install>`,"2.17.0, 2.16.2, 2.15.1","2.16.1, 2.15.1, 2.14.1","2.15.0, 2.14.0, 2.13.1"
       :doc:`JAX <rocm-install-on-linux:install/3rd-party/jax-install>`,0.4.26,0.4.26,0.4.26
       `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.17.3,1.17.3
       ,,,
@@ -113,7 +113,7 @@ compatibility and system requirements.
       :doc:`ROCm Data Center Tool <rdc:index>`,0.3.0,0.3.0,0.3.0
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0,1.0.0
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.4.0,7.3.0,7.0.0
-      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,rocm-6.3.0,rocm-6.2.4,rocm-6.1.0
+      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,1.1.0,1.0.60204,1.0.60100
       ,,,
       PERFORMANCE TOOLS,,,
       :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,1.4.0,1.4.0,1.4.0

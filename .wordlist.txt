@@ -13,6 +13,7 @@ AMDMIGraphX
 AMI
 AOCC
 AOMP
+AOTriton
 APBDIS
 APIC
 APIs
@@ -158,6 +159,7 @@ HWS
 Haswell
 Higgs
 Hyperparameters
+ICD
 ICV
 IDE
 IDEs
@@ -208,6 +210,7 @@ MiB
 MIGraphX
 MIOpen
 MIOpenGEMM
+MIOpen's
 MIVisionX
 MLM
 MMA
@@ -295,7 +298,9 @@ PipelineParallel
 PnP
 PowerEdge
 PowerShell
+Profiler's
 PyPi
+Pytest
 PyTorch
 Qcycles
 Qwen
@@ -303,6 +308,7 @@ RAII
 RAS
 RCCL
 RDC
+RDC's
 RDMA
 RDNA
 README
@@ -342,6 +348,7 @@ SENDMSG
 SGPR
 SGPRs
 SHA
+SHARK's
 SIGQUIT
 SIMD
 SIMDs
@@ -521,6 +528,7 @@ devsel
 dimensionality
 disambiguates
 distro
+dkms
 el
 embeddings
 enablement
@@ -686,6 +694,7 @@ rocALUTION
 rocBLAS
 rocDecode
 rocFFT
+rocJPEG
 rocLIB
 rocMLIR
 rocPRIM
@@ -778,6 +787,7 @@ vectorize
 vectorized
 vectorizer
 vectorizes
+virtualized
 vjxb
 voxel
 walkthrough
