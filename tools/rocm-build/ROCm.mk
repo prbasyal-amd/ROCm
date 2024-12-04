@@ -67,16 +67,18 @@ endef
 
 $(call adddep,amd_smi_lib,${ASAN_DEP})
 $(call adddep,aqlprofile,${ASAN_DEP} hsa)
-$(call adddep,clang-ocl,lightning rocm-cmake)
 $(call adddep,comgr,lightning devicelibs)
 $(call adddep,dbgapi,hsa comgr)
 $(call adddep,devicelibs,lightning)
-$(call adddep,hip_on_rocclr,${ASAN_DEP} rocclr rocprofiler-register)
+$(call adddep,hip_on_rocclr,${ASAN_DEP} hsa comgr hipcc rocprofiler-register)
 $(call adddep,hipcc,)
 $(call adddep,hipify_clang,hip_on_rocclr lightning)
 $(call adddep,hsa,${ASAN_DEP} thunk lightning devicelibs rocprofiler-register)
 $(call adddep,lightning,)
-$(call adddep,opencl_on_rocclr,${ASAN_DEP} rocclr)
+$(call adddep,omniperf,${ASAN_DEP})
+$(call adddep,omnitrace,hipcc hsa hip_on_rocclr rocm_smi_lib rocprofiler roctracer)
+$(call adddep,opencl_icd_loader,)
+$(call adddep,opencl_on_rocclr,${ASAN_DEP} hsa comgr opencl_icd_loader)
 $(call adddep,openmp_extras,thunk lightning devicelibs hsa)
 $(call adddep,rdc,${ASAN_DEP} rocm_smi_lib hsa rocprofiler)
 $(call adddep,rocclr,${ASAN_DEP} hsa comgr hipcc rocprofiler-register)
@@ -87,14 +89,15 @@ $(call adddep,rocm-core,${ASAN_DEP})
 $(call adddep,rocm-gdb,dbgapi)
 $(call adddep,rocminfo,${ASAN_DEP} hsa)
 $(call adddep,rocprofiler-register,${ASAN_DEP})
-$(call adddep,rocprofiler,${ASAN_DEP} hsa roctracer aqlprofile opencl_on_rocclr hip_on_rocclr comgr dbgapi rocm_smi_lib)
+$(call adddep,rocprofiler-sdk,${ASAN_DEP} hsa aqlprofile opencl_on_rocclr hip_on_rocclr comgr)
+$(call adddep,rocprofiler,${ASAN_DEP} hsa roctracer aqlprofile opencl_on_rocclr hip_on_rocclr comgr)
 $(call adddep,rocr_debug_agent,${ASAN_DEP} hip_on_rocclr hsa dbgapi)
 $(call adddep,roctracer,${ASAN_DEP} hsa hip_on_rocclr)
 $(call adddep,thunk,${ASAN_DEP})
 
 # rocm-dev points to all possible last finish components of Stage1 build.
 rocm-dev-components :=rdc hipify_clang openmp_extras \
-	rocm-core amd_smi_lib hipcc clang-ocl \
+	omniperf omnitrace rocm-core amd_smi_lib hipcc \
 	rocm_bandwidth_test rocr_debug_agent rocm-gdb
 $(call adddep,rocm-dev,$(filter-out ${NOBUILD},${rocm-dev-components}))
 
@@ -117,6 +120,7 @@ $(call adddep,mivisionx,amdmigraphx miopen-hip rpp lightning hipcc)
 $(call adddep,rccl,hip_on_rocclr hsa lightning hipcc rocm_smi_lib hipify_clang)
 $(call adddep,rocalution,rocblas rocsparse rocrand lightning hipcc)
 $(call adddep,rocblas,hip_on_rocclr openmp_extras lightning hipcc)
+$(call adddep,rocal,mivisionx)
 $(call adddep,rocdecode,hip_on_rocclr lightning hipcc)
 $(call adddep,rocfft,hip_on_rocclr rocrand hiprand lightning hipcc openmp_extras)
 $(call adddep,rocmvalidationsuite,hip_on_rocclr hsa rocblas rocm-core lightning hipcc rocm_smi_lib)
@@ -221,7 +225,7 @@ rocm-dev: T_rocm-dev
 
 ${OUT_DIR}/logs:
 	sudo mkdir -p -m 775 "${ROCM_INSTALL_PATH}" && \
-	sudo chown -R "$(shell id -u):$(shell id -g)" "${ROCM_INSTALL_PATH}"
+	sudo chown -R "$(shell id -u):$(shell id -g)" "/opt"
 	sudo chown -R "$(shell id -u):$(shell id -g)" "/home/$(shell id -un)"
 	mkdir -p "${@}"
 	mkdir -p ${HOME}/.ccache

@@ -9,6 +9,7 @@ parameters:
   type: object
   default:
     - cmake
+    - locales
     - python3-pip
 - name: pipModules
   type: object
@@ -40,6 +41,7 @@ parameters:
     - rocm-cmake
     - rocm-core
     - rocminfo
+    - rocm_smi_lib
     - ROCR-Runtime
     - rocprofiler
     - rocprofiler-register
@@ -84,11 +86,13 @@ jobs:
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
 
 - job: rocprofiler_compute_testing
+  timeoutInMinutes: 120
   dependsOn: rocprofiler_compute
   condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:
@@ -110,6 +114,14 @@ jobs:
       aptPackages: ${{ parameters.aptPackages }}
       pipModules: ${{ parameters.pipModules }}
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
+  - task: Bash@3
+    displayName: Add en_US.UTF-8 locale
+    inputs:
+      targetType: inline
+      script: |
+        sudo locale-gen en_US.UTF-8
+        sudo update-locale
+        locale -a
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
@@ -145,6 +157,7 @@ jobs:
         -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
         -DCMAKE_MODULE_PATH=$(Agent.BuildDirectory)/rocm/lib/cmake/hip
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
         -DENABLE_TESTS=ON
         -DINSTALL_TESTS=ON
@@ -153,14 +166,16 @@ jobs:
     parameters:
       componentName: rocprofiler-compute
       testDir: $(Build.BinariesDirectory)/libexec/rocprofiler-compute
-      testExecutable: export ROCPROFCOMPUTE_ARCH_OVERRIDE="MI300X"; ctest
+      testExecutable: ROCPROFCOMPUTE_ARCH_OVERRIDE="MI300X" ROCM_PATH=$(Agent.BuildDirectory)/rocm ctest
   - task: Bash@3
     displayName: Remove ROCm binaries from PATH
+    condition: always()
     inputs:
       targetType: inline
       script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/bin;;' -e 's;^/;;' -e 's;/$;;')"
   - task: Bash@3
     displayName: Remove ROCm compilers from PATH
+    condition: always()
     inputs:
       targetType: inline
       script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/llvm/bin;;' -e 's;^/;;' -e 's;/$;;')"

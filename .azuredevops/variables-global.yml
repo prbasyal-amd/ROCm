@@ -1,6 +1,8 @@
 # specify non-secret global variables reused across pipelines here
 
 variables:
+- name: RESOURCES_REPOSITORIES
+  value: $[ convertToJson(resources.repositories) ]
 - name: CI_ROOT_PATH
   value: /.azuredevops
 - name: CI_COMPONENT_PATH
@@ -259,6 +261,10 @@ variables:
   value: 20
 - name: ROCPROFILER_GFX942_TEST_PIPELINE_ID
   value: 190
+- name: ROCPROFILER_COMPUTE_PIPELINE_ID
+  value: 257
+- name: ROCPROFILER_COMPUTE_TAGGED_PIPELINE_ID
+  value: 258
 - name: ROCPROFILER_REGISTER_PIPELINE_ID
   value: 1
 - name: ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID

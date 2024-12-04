@@ -40,6 +40,7 @@ parameters:
 - name: rocmDependencies
   type: object
   default:
+    - aomp
     - clr
     - llvm-project
     - rccl
@@ -104,6 +105,7 @@ jobs:
 # build flags reference: https://rocm.docs.amd.com/projects/omnitrace/en/latest/install/install.html
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+        -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DROCPROFSYS_BUILD_TESTING=ON
         -DROCPROFSYS_BUILD_DYNINST=ON
         -DROCPROFSYS_BUILD_LIBUNWIND=ON
@@ -126,14 +128,17 @@ jobs:
       componentName: rocprofiler-systems
   - task: Bash@3
     displayName: Remove ROCm binaries from PATH
+    condition: always()
     inputs:
       targetType: inline
       script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/bin;;' -e 's;^/;;' -e 's;/$;;')"
   - task: Bash@3
     displayName: Remove ROCm compilers from PATH
+    condition: always()
     inputs:
       targetType: inline
       script: echo "##vso[task.setvariable variable=PATH]$(echo $PATH | sed -e 's;:$(Agent.BuildDirectory)/rocm/llvm/bin;;' -e 's;^/;;' -e 's;/$;;')"
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)

@@ -35,7 +35,7 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
         *
           - MI300X
           - CDNA3
-          - gfx941 or gfx942
+          - gfx942
           - 192
           - 304 (38 per XCD)
           - 64
@@ -50,7 +50,7 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
         *
           - MI300A
           - CDNA3
-          - gfx940 or gfx942
+          - gfx942
           - 128
           - 228 (38 per XCD)
           - 64
@@ -236,6 +236,22 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - VGPR File (KiB)
           - SGPR File (KiB)
         *
+          - Radeon PRO V710
+          - RDNA3
+          - gfx1101
+          - 28
+          - 54
+          - 32
+          - 128
+          - 56
+          - 4
+          - 256
+          - 32
+          - 16
+          - 32
+          - 768
+          - 16
+        *
           - Radeon PRO W7900 Dual Slot
           - RDNA3
           - gfx1100
@@ -249,8 +265,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon PRO W7900
           - RDNA3
@@ -265,8 +281,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon PRO W7800
           - RDNA3
@@ -281,8 +297,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon PRO W7700
           - RDNA3
@@ -297,8 +313,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon PRO W6800
           - RDNA2
@@ -313,8 +329,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon PRO W6600
           - RDNA2
@@ -329,8 +345,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon PRO V620
           - RDNA2
@@ -345,8 +361,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon Pro W5500
           - RDNA
@@ -361,7 +377,7 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
+          - 512
           - 20
         *
           - Radeon Pro VII
@@ -416,8 +432,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon RX 7900 XT
           - RDNA3
@@ -432,8 +448,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon RX 7900 GRE
           - RDNA3
@@ -448,8 +464,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon RX 7800 XT
           - RDNA3
@@ -464,8 +480,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon RX 7700 XT
           - RDNA3
@@ -480,8 +496,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 384
-          - 20
+          - 768
+          - 16
         *
           - Radeon RX 7600
           - RDNA3
@@ -496,8 +512,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6950 XT
           - RDNA2
@@ -512,8 +528,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6900 XT
           - RDNA2
@@ -528,8 +544,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6800 XT
           - RDNA2
@@ -544,8 +560,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6800
           - RDNA2
@@ -560,8 +576,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6750 XT
           - RDNA2
@@ -576,8 +592,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6700 XT
           - RDNA2
@@ -592,8 +608,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6700
           - RDNA2
@@ -608,8 +624,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6650 XT
           - RDNA2
@@ -624,8 +640,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6600 XT
           - RDNA2
@@ -640,8 +656,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon RX 6600
           - RDNA2
@@ -656,8 +672,8 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 16
           - 16
           - 32
-          - 256
-          - 20
+          - 512
+          - 16
         *
           - Radeon VII
           - GCN5.1
@@ -684,7 +700,7 @@ For more information about the terms used, see the
 
 **LLVM target name**
 
-Argument to pass to clang in `--offload-arch` to compile code for the given
+Argument to pass to clang in ``--offload-arch`` to compile code for the given
 architecture.
 
 **VRAM**
@@ -719,13 +735,13 @@ data and instructions. Similar to the L3 Cache on CDNA/GCN architectures.
 
 **L2 Cache**
 
-Size of the level 3 cache. Shared by all compute units on the same GCD. Caches
+Size of the level 2 cache. Shared by all compute units on the same GCD. Caches
 data and instructions.
 
 **Graphics L1 Cache (RDNA only)**
 
 An additional cache level that only exists in RDNA architectures. Local to a
-work group processor.
+shader array.
 
 **L1 Vector Cache (CDNA/GCN only)**
 

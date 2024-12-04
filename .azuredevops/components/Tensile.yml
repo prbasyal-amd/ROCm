@@ -57,6 +57,7 @@ jobs:
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - task: Bash@3
     displayName: Create wheel file
     inputs:
@@ -78,6 +79,7 @@ jobs:
       targetPath: $(Build.ArtifactStagingDirectory)
 
 - job: Tensile_testing
+  timeoutInMinutes: 90
   dependsOn: Tensile
   condition: and(succeeded(), eq(variables.ENABLE_GFX942_TESTS, 'true'), not(containsValue(split(variables.DISABLED_GFX942_TESTS, ','), variables['Build.DefinitionName'])))
   variables:

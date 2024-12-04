@@ -17,6 +17,7 @@ build_hipcub() {
     fi
 
     mkdir -p "$BUILD_DIR" && cd "$BUILD_DIR"
+    init_rocm_common_cmake_params
 
     if [ -n "$GPU_ARCHS" ]; then
         GPU_TARGETS="$GPU_ARCHS"
@@ -27,7 +28,7 @@ build_hipcub() {
     CXX=$(set_build_variables CXX)\
     cmake \
         ${LAUNCHER_FLAGS} \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DCMAKE_MODULE_PATH="${ROCM_PATH}/lib/cmake/hip;${ROCM_PATH}/hip/cmake" \
         -Drocprim_DIR="${ROCM_PATH}/rocprim"  \
         -DBUILD_TEST=ON \

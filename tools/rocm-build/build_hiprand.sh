@@ -61,7 +61,6 @@ build_hiprand() {
     rm -rf _CPack_Packages/  && find -name '*.o' -delete
     mkdir -p $PACKAGE_DIR && cp ${BUILD_DIR}/*.${PKGTYPE} $PACKAGE_DIR
 
-    $SCCACHE_BIN -s || echo "Unable to display sccache stats"
 }
 
 clean_hiprand() {

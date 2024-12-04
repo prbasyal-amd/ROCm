@@ -10,39 +10,30 @@ parameters:
   default:
     - cmake
     - ninja-build
-    - git
     - wget
     - unzip
+    - libstdc++-12-dev
     - pkg-config
-    - protobuf-compiler
-    - libprotoc-dev
     - ffmpeg
     - libavcodec-dev
     - libavformat-dev
     - libavutil-dev
     - libswscale-dev
-    - build-essential
-    - libgtk2.0-dev
-    - libavcodec-dev
-    - libavformat-dev
-    - libswscale-dev
-    - libtbb2
-    - libtbb-dev
-    - libjpeg-dev
-    - libpng-dev
-    - libtiff-dev
-    - libdc1394-dev
     - libgmp-dev
+    - libomp-dev
     - libopencv-dev
+    - protobuf-compiler
+    - libprotoc-dev
 - name: pipModules
   type: object
   default:
-    - future==0.18.2
+    - future==1.0.0
     - pytz==2022.1
-    - numpy==1.21
+    - numpy==1.23
     - google==3.0.0
     - protobuf==3.12.4
     - onnx==1.12.0
+    - nnef==1.0.7
 - name: rocmDependencies
   type: object
   default:
@@ -112,6 +103,7 @@ jobs:
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -DROCM_DEP_ROCMCORE=ON
         -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)

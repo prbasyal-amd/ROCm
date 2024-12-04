@@ -17,7 +17,8 @@ printUsage() {
     echo "  -r,  --release               Build a release version of the package"
     echo "  -a,  --address_sanitizer     Enable address sanitizer (enabled by default)"
     echo "  -A   --no_address_sanitizer  Disable address sanitizer"
-    echo "  -s,  --static                Supports static CI by accepting this param & not bailing out. No effect of the param though"
+    echo "  -s,  --static                Build static lib (.a).  build instead of dynamic/shared(.so) "
+    echo "  -w,  --wheel                 Creates python wheel package of rocm-llvm. It needs to be used along with -r option"
     echo "  -l,  --build_llvm_static     Build LLVM libraries statically linked.  Default is to build dynamic linked libs"
     echo "  -o,  --outdir <pkg_type>     Print path of output directory containing packages of
                             type referred to by pkg_type"
@@ -42,6 +43,7 @@ DEB_PATH="$(getDebPath lightning)"
 RPM_PATH="$(getRpmPath lightning)"
 INSTALL_PATH="${ROCM_INSTALL_PATH}/lib/llvm"
 LLVM_ROOT_LCL="${LLVM_ROOT}"
+ROCM_WHEEL_DIR="${BUILD_PATH}/_wheel"
 
 TARGET="all"
 MAKEOPTS="$DASH_JAY"
@@ -69,13 +71,28 @@ ASSERT_LLVM_VERSION_MINOR=""
 
 SKIP_LIT_TESTS=0
 BUILD_MANPAGES="ON"
+STATIC_FLAG=
 
 SANITIZER_AMDGPU=1
 HSA_INC_PATH="$WORK_ROOT/ROCR-Runtime/src/inc"
 COMGR_INC_PATH="$WORK_ROOT/llvm-project/amd/comgr/include"
 
-VALID_STR=`getopt -o htcV:v:draAslo:BPNM --long help,alt,clean,assert_llvm_ver_major:,assert_llvm_ver_minor:,debug,release,address_sanitizer,no_address_sanitizer,static,build_llvm_static,build,package,skip_lit_tests,skip_man_pages,outdir: -- "$@"`
+VALID_STR=`getopt -o htcV:v:draAswlo:BPNM --long help,alt,clean,assert_llvm_ver_major:,assert_llvm_ver_minor:,debug,release,address_sanitizer,no_address_sanitizer,static,build_llvm_static,wheel,build,package,skip_lit_tests,skip_man_pages,outdir: -- "$@"`
 eval set -- "$VALID_STR"
+
+set_dwarf_version(){
+  case "$DISTRO_ID" in
+    (sles*|rhel*)
+       SET_DWARF_VERSION_4="-gdwarf-4"
+       ;;
+    (*)
+       SET_DWARF_VERSION_4=""
+       ;;
+  esac
+  export CFLAGS="$CFLAGS $SET_DWARF_VERSION_4  "
+  export CXXFLAGS="$CXXFLAGS $SET_DWARF_VERSION_4 "
+  export ASMFLAGS="$ASMFLAGS $SET_DWARF_VERSION_4 "
+}
 
 while true ;
 do
@@ -95,6 +112,7 @@ do
         (-r | --release)
                 BUILD_TYPE="Release" ; shift ;;
         (-a | --address_sanitizer)
+                set_dwarf_version
                 SANITIZER_AMDGPU=1 ;
                 HSA_INC_PATH="$WORK_ROOT/hsa/runtime/opensrc/hsa-runtime/inc" ;
                 COMGR_INC_PATH="$WORK_ROOT/external/llvm-project/amd/comgr/include" ; shift ;;
@@ -103,9 +121,12 @@ do
                 unset HSA_INC_PATH ;
                 unset COMGR_INC_PATH ; shift ;;
         (-s | --static)
-                SHARED_LIBS="OFF" ; shift ;;
+                SHARED_LIBS="OFF" ;
+                STATIC_FLAG="-DBUILD_SHARED_LIBS=$SHARED_LIBS" ; shift ;;
         (-l | --build_llvm_static)
                 BUILD_LLVM_DYLIB="OFF"; shift ;;
+        (-w | --wheel)
+                WHEEL_PACKAGE=true ; shift ;;
         (-o | --outdir)
                 TARGET="outdir"; PKGTYPE=$2 ; OUT_DIR_SPECIFIED=1 ; ((CLEAN_OR_OUT|=2)) ; shift 2 ;;
         (-B | --build)
@@ -151,6 +172,7 @@ else
 fi
 
 clean_lightning() {
+    rm -rf "$ROCM_WHEEL_DIR"
     rm -rf "$BUILD_PATH"
     rm -rf "$DEB_PATH"
     rm -rf "$RPM_PATH"
@@ -196,7 +218,10 @@ LLVM_VERSION_MINOR=""
 LLVM_VERSION_PATCH=""
 LLVM_VERSION_SUFFIX=""
 get_llvm_version() {
-    local LLVM_VERSIONS=($(awk '/set\(LLVM_VERSION/ {print substr($2,1,length($2)-1)}' ${LLVM_ROOT_LCL}/CMakeLists.txt))
+    local LLVM_VERSIONS=($(awk '/set\(LLVM_VERSION/ {print substr($2,1,length($2)-1)}' ${LLVM_ROOT_LCL}/../cmake/Modules/LLVMVersion.cmake))
+    if [ ${#LLVM_VERSIONS[@]} -eq 0 ]; then
+        LLVM_VERSIONS=($(awk '/set\(LLVM_VERSION/ {print substr($2,1,length($2)-1)}' ${LLVM_ROOT_LCL}/CMakeLists.txt))
+    fi
     LLVM_VERSION_MAJOR=${LLVM_VERSIONS[0]}
     LLVM_VERSION_MINOR=${LLVM_VERSIONS[1]}
     LLVM_VERSION_PATCH=${LLVM_VERSIONS[2]}
@@ -260,15 +285,22 @@ build_lightning() {
 
     if [ ! -e Makefile ]; then
         echo "Building LLVM CMake environment"
-	if [ -e "$LLVM_ROOT_LCL/../flang/docs/AssumedRank.md" ]; then
-          FLANG_NEW=1
-	  LLVM_PROJECTS="$LLVM_PROJECTS;flang;mlir"
-	else
-	  echo "NOT building project flang"
-	fi
+        if [ -e "$LLVM_ROOT_LCL/../flang/AFARrelease" ]; then
+            FLANG_NEW=1
+            LLVM_PROJECTS="$LLVM_PROJECTS;flang;mlir"
+            ENABLE_RUNTIMES="$ENABLE_RUNTIMES;openmp";
+        else
 
+          if [[ "${JOB_NAME}" != *afar* ]] && [ -e "$LLVM_ROOT_LCL/../flang/DoROCmRelease" ]; then
+            FLANG_NEW=1
+            LLVM_PROJECTS="$LLVM_PROJECTS;flang;mlir"
+          else
+            echo "NOT building project flang"
+          fi
+        fi
         set -x
         cmake $(rocm_cmake_params) ${GEN_NINJA} \
+              ${STATIC_FLAG} \
               -DCMAKE_INSTALL_PREFIX="$INSTALL_PATH" \
               -DLLVM_TARGETS_TO_BUILD="AMDGPU;X86" \
               -DLLVM_ENABLE_PROJECTS="$LLVM_PROJECTS" \
@@ -307,9 +339,9 @@ build_lightning() {
               -DCMAKE_SHARED_LINKER_FLAGS=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,$ROCM_LLVM_LIB_RPATH \
               -DROCM_LLVM_BACKWARD_COMPAT_LINK="$ROCM_INSTALL_PATH/llvm" \
               -DROCM_LLVM_BACKWARD_COMPAT_LINK_TARGET="./lib/llvm" \
-	      -DCLANG_LINK_FLANG_LEGACY=ON \
-	      -DCMAKE_CXX_STANDARD=17 \
-	      -DFLANG_INCLUDE_DOCS=OFF \
+              -DCLANG_LINK_FLANG_LEGACY=ON \
+              -DCMAKE_CXX_STANDARD=17 \
+              -DFLANG_INCLUDE_DOCS=OFF \
               "$LLVM_ROOT_LCL"
         set +x
         echo "CMake complete"
@@ -326,8 +358,23 @@ build_lightning() {
     echo "End Workaround for race condition"
     cmake --build . -- $MAKEOPTS
 
+    case "$DISTRO_ID" in
+    (rhel*|centos*)
+       RHEL_BUILD=1
+       ;;
+    (*)
+       RHEL_BUILD=0
+       ;;
+     esac
+
     if [ $SKIP_LIT_TESTS -eq 0 ]; then
-        if [ "$DISTRO_NAME" != "sles" ] && [ $BUILD_ALT != 1 ]; then
+        if [ $RHEL_BUILD -eq 1 ] && [ $BUILD_ALT != 1 ]; then
+            if [ $FLANG_NEW -eq 1 ]; then
+                cmake --build . -- $MAKEOPTS check-lld check-mlir
+            else
+                cmake --build . -- $MAKEOPTS check-lld
+            fi
+        elif [ "$DISTRO_NAME" != "sles" ] && [ $BUILD_ALT != 1 ]; then
             if [ $FLANG_NEW -eq 1 ]; then
                 cmake --build . -- $MAKEOPTS check-llvm check-clang check-lld check-mlir
             else
@@ -733,7 +780,7 @@ package_lightning_static() {
     local amd_compiler_commands=("amdclang" "amdclang++" "amdclang-cl" "amdclang-cpp" "amdflang" "amdlld" "offload-arch")
     local amd_man_pages=("amdclang.1.gz" "flang.1.gz" "amdflang.1.gz")
     local core_bin=("amdgpu-arch" "amdgpu-offload-arch" "amdlld" "amdllvm" "clang" "clang++" "clang-${LLVM_VERSION_MAJOR}" "clang-cl"
-                    "clang-cpp" "clang-build-select-link" "clang-offload-bundler" "clang-offload-packager" "clang-offload-wrapper" "flang" "flang-new"
+                    "clang-cpp" "clang-build-select-link" "clang-offload-bundler" "clang-offload-packager" "clang-offload-wrapper" "clang-linker-wrapper" "clang-nvlink-wrapper" "flang" "flang-new"
                     "ld64.lld" "ld.lld" "llc" "lld" "lld-link" "llvm-ar" "llvm-bitcode-strip" "llvm-dwarfdump" "llvm-install-name-tool"
                     "llvm-link" "llvm-mc" "llvm-objcopy" "llvm-objdump" "llvm-otool" "llvm-ranlib" "llvm-readelf" "llvm-readobj" "llvm-strip"
                     "nvidia-arch" "nvptx-arch" "offload-arch" "opt" "wasm-ld" "amdclang" "amdclang++" "amdclang-${LLVM_VERSION_MAJOR}" "amdclang-cl"
@@ -934,7 +981,7 @@ package_lightning_static() {
 
         if [ $BUILD_ALT -eq 0 ]; then
             echo "cp -R $LLVM_ROOT_LCL/LICENSE.TXT \$RPM_BUILD_ROOT/$licenseDir" >> $specFile
-			echo "cp -P $backwardsCompatibleSymlink \$RPM_BUILD_ROOT/$ROCM_INSTALL_PATH" >> $specFile
+            echo "cp -P $backwardsCompatibleSymlink \$RPM_BUILD_ROOT/$ROCM_INSTALL_PATH" >> $specFile
         else
             echo "cp -R $LLVM_PROJECT_ALT_ROOT/EULA \$RPM_BUILD_ROOT/$licenseDir" >> $specFile
             echo "cp -R $LLVM_PROJECT_ALT_ROOT/DISCLAIMER.txt \$RPM_BUILD_ROOT/$licenseDir" >> $specFile
@@ -948,7 +995,6 @@ package_lightning_static() {
 
         echo "cp -d \"$distBin/flang\" \$RPM_BUILD_ROOT/$installPath/bin/" >> $specFile
 
-        # Copy the config files
         if [ $BUILD_ALT -eq 0 ]; then
             echo "cp -d \"$distBin\"/*.cfg \$RPM_BUILD_ROOT/$installPath/bin/" >> $specFile
         fi
@@ -970,14 +1016,12 @@ package_lightning_static() {
         if [ "$BUILD_MANPAGES" == "ON" ]; then
             if [ $BUILD_ALT -eq 0 ]; then
                 echo "mkdir -p  \$RPM_BUILD_ROOT/$installPath/share/man/man1" >> $specFile
-
                 for i in "${core_man_pages[@]}"; do
                     if [ -f "$distMan/man1/$i" ]; then
                         echo "gzip -f $distMan/man1/$i" >> $specFile
                         echo "cp -d $distMan/man1/${i}.gz \$RPM_BUILD_ROOT/$installPath/share/man/man1/" >> $specFile
                     fi
                 done
-
                 if [ -f "$distMan/man1/clang.1.gz" ]; then
                     for i in "${amd_man_pages[@]}"; do
                         echo "ln -sf clang.1.gz \"$distMan/man1/$i\"" >> $specFile
@@ -1064,7 +1108,6 @@ package_lightning_static() {
             contains "$bin" "${core_bin[@]}" "${amd_compiler_commands[@]}" && continue
             echo "cp -d \"$i\" \$RPM_BUILD_ROOT/$installPath/bin/" >> $specFileExtra
         done
-
         for i in "$distLib"/*; do
             lib=$(basename "$i")
             contains "$lib" "${core_lib[@]}" && continue
@@ -1072,18 +1115,15 @@ package_lightning_static() {
         done
 
         echo "cp -R $distInc \$RPM_BUILD_ROOT/$installPath" >> $specFileExtra
-
         echo "rm -rf \$RPM_BUILD_ROOT/$installPath/lib/clang" >> $specFileExtra
 
         if [ $FLANG_NEW -eq 1 ]; then
-
           echo "rm -rf \$RPM_BUILD_ROOT/$installPath/include/flang" >> $specFileExtra
         fi
 
         if [ "$BUILD_MANPAGES" == "ON" ]; then
             if [ $BUILD_ALT -eq 0 ]; then
                 echo "mkdir -p  \$RPM_BUILD_ROOT/$installPath/share/man/man1" >> $specFileExtra
-
                 for i in "${extra_man_pages[@]}"; do
                     if [ -f "$distMan/man1/$i" ]; then
                         echo "gzip -f $distMan/man1/$i" >> $specFileExtra
@@ -1125,34 +1165,34 @@ package_docs() {
     local packageName="rocm-llvm-docs"
     local packageSummary="ROCm LLVM compiler documentation"
     local packageSummaryLong="Documenation for LLVM $llvmParsedVersion"
-    local installPath="$ROCM_INSTALL_PATH/lib/llvm/share"
 
     local packageArch="amd64"
     local packageVersion="${llvmParsedVersion}.${LLVM_COMMIT_GITDATE}"
     local packageMaintainer="ROCm Compiler Support <rocm.compiler.support@amd.com>"
-    local distDoc="$INSTALL_PATH/share/doc"
+    local distDoc="$INSTALL_PATH/share/doc/LLVM"
 
     local licenseDir="$ROCM_INSTALL_PATH/share/doc/$packageName"
     local packageDir="$BUILD_PATH/package"
 
     local packageDeb="$packageDir/deb"
     local controlFile="$packageDeb/DEBIAN/control"
+    local debDependencies="rocm-core"
 
     local packageRpm="$packageDir/rpm"
     local specFile="$packageDir/$packageName.spec"
+    local rpmRequires="rocm-core"
 
     rm -rf "$packageDir"
     echo "rm -rf $packageDir"
 
     if [ "$PACKAGEEXT" = "deb" ]; then
 
-        mkdir -p "$packageDeb/$installPath"
-        mkdir "${controlFile%/*}"
         mkdir -p "$packageDeb/$licenseDir"
+        mkdir "${controlFile%/*}"
 
         cp -r "$LLVM_ROOT_LCL/LICENSE.TXT" "$packageDeb/$licenseDir"
 
-        cp -r "$distDoc" "$packageDeb/$installPath/doc"
+        cp -r "$distDoc" "$packageDeb/$licenseDir"
 
         {
             echo "Package: $packageName"
@@ -1162,6 +1202,7 @@ package_docs() {
             echo "Maintainer: $packageMaintainer"
             echo "Version: ${packageVersion}.${ROCM_LIBPATCH_VERSION}-${JOB_DESIGNATOR}${BUILD_ID}~${DISTRO_RELEASE}"
             echo "Release:    ${JOB_DESIGNATOR}${BUILD_ID}~${DISTRO_RELEASE}"
+            echo "Depends: $debDependencies"
             echo "Recommends: $debRecommends"
             echo "Description: $packageSummary"
             echo "  $packageSummaryLong"
@@ -1182,6 +1223,7 @@ package_docs() {
         echo "Summary:    $packageSummary" >> $specFile
         echo "Group:      System Environment/Libraries" >> $specFile
         echo "License:    ASL 2.0 with exceptions" >> $specFile
+        echo "Requires:   $rpmRequires" >> $specFile
 
         echo "%description" >> $specFile
         echo "$packageSummaryLong" >> $specFile
@@ -1190,16 +1232,13 @@ package_docs() {
         echo "%setup -T -D -c -n $packageName" >> $specFile
 
         echo "%install" >> $specFile
-        echo "rm -rf \$RPM_BUILD_ROOT/$installPath" >> $specFile
-        echo "mkdir -p  \$RPM_BUILD_ROOT/$installPath/doc" >> $specFile
         echo "mkdir -p  \$RPM_BUILD_ROOT/$licenseDir" >> $specFile
 
         echo "cp -R $LLVM_ROOT_LCL/LICENSE.TXT \$RPM_BUILD_ROOT/$licenseDir" >> $specFile
 
-        echo "cp -R \"$distDoc\" \$RPM_BUILD_ROOT/$installPath" >> $specFile
+        echo "cp -R \"$distDoc\" \$RPM_BUILD_ROOT/$licenseDir" >> $specFile
 
         echo "%clean" >> $specFile
-        echo "rm -rf \$RPM_BUILD_ROOT/$installPath" >> $specFile
         echo "%files " >> $specFile
         echo "%defattr(-,root,root,-)" >> $specFile
 
@@ -1232,6 +1271,18 @@ build() {
     fi
 }
 
+create_wheel_package() {
+    echo "Creating rocm-llvm wheel package"
+    mkdir -p "$ROCM_WHEEL_DIR"
+    cp -f $SCRIPT_ROOT/generate_setup_py.py $ROCM_WHEEL_DIR
+    cp -f $SCRIPT_ROOT/repackage_wheel.sh $ROCM_WHEEL_DIR
+    cd $ROCM_WHEEL_DIR
+    # Currently only supports python3.6
+    ./repackage_wheel.sh $RPM_PATH/rocm-llvm*.rpm python3.6
+    # Copy the wheel created to RPM folder which will be uploaded to artifactory
+    mv "$ROCM_WHEEL_DIR"/dist/*.whl "$RPM_PATH"
+}
+
 case $TARGET in
     (clean) clean_lightning ;;
     (all)
@@ -1249,5 +1300,10 @@ case $TARGET in
     (outdir) print_output_directory ;;
     (*) die "Invalid target $TARGET" ;;
 esac
+
+if [[ $WHEEL_PACKAGE == true ]]; then
+    echo "Wheel Package build started !!!!"
+    create_wheel_package
+fi
 
 echo "Operation complete"

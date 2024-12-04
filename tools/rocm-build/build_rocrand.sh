@@ -25,10 +25,12 @@ build_rocrand() {
         GPU_TARGETS="gfx908:xnack-;gfx90a:xnack-;gfx90a:xnack+;gfx940;gfx941;gfx942;gfx1030;gfx1100;gfx1101"
     fi
 
+    init_rocm_common_cmake_params
+
     CXX=$(set_build_variables CXX)\
     cmake \
         ${LAUNCHER_FLAGS} \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         -DBUILD_TEST=ON \
         -DBUILD_BENCHMARK=ON \

@@ -22,11 +22,12 @@ build_hipsparse() {
     echo "CXX compiler: $CXX"
 
     mkdir -p "$BUILD_DIR" && cd "$BUILD_DIR"
+    init_rocm_common_cmake_params
 
     cmake \
         -DCPACK_SET_DESTDIR=OFF \
         ${LAUNCHER_FLAGS} \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DUSE_CUDA=OFF  \
         -DBUILD_CLIENTS_SAMPLES=ON \
         -DBUILD_CLIENTS_TESTS=ON \

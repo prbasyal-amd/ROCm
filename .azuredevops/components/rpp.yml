@@ -85,6 +85,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
         -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
@@ -178,3 +179,4 @@ jobs:
       testExecutable: 'export PATH=$(Agent.BuildDirectory)/rocm/llvm/bin:$PATH; CC=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang CMAKE_VERBOSE_MAKEFILE=ON VERBOSE=1 ctest'
       testDir: 'rpp-tests'
   - script: sudo rm /opt/rocm
+    condition: always()

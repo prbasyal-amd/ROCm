@@ -28,11 +28,13 @@ build_rocsolver() {
         GPU_TARGETS="gfx908:xnack-;gfx90a:xnack-;gfx90a:xnack+;gfx940;gfx941;gfx942;gfx1030;gfx1100;gfx1101"
     fi
 
+    init_rocm_common_cmake_params
+
     CXX="${ROCM_PATH}/bin/hipcc" \
     cmake \
         -DCPACK_SET_DESTDIR=OFF \
         ${LAUNCHER_FLAGS} \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -Drocblas_DIR="${ROCM_PATH}/rocblas/lib/cmake/rocblas" \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         -DBUILD_CLIENTS_TESTS=ON \

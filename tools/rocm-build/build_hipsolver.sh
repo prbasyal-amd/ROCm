@@ -27,10 +27,11 @@ build_hipsolver() {
        rebuild_lapack
     fi
 
+    init_rocm_common_cmake_params
     cmake \
         -DUSE_CUDA=OFF \
         ${LAUNCHER_FLAGS} \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DBUILD_CLIENTS_TESTS=ON \
         -DBUILD_CLIENTS_BENCHMARKS=ON \
         -DBUILD_CLIENTS_SAMPLES=ON \

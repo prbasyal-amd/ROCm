@@ -17,9 +17,7 @@ build_miopen_ck() {
     mkdir "$BUILD_DIR" && cd "$BUILD_DIR"
 
     if [ -n "$GPU_ARCHS" ]; then
-        GPU_TARGETS="$GPU_ARCHS"
-    else
-        GPU_TARGETS="gfx908;gfx90a;gfx940;gfx941;gfx942;gfx1030;gfx1100;gfx1101"
+        GPU_TARGETS="-DAMDGPU_TARGETS=${GPU_ARCHS}"
     fi
 
     if [ "${ASAN_CMAKE_PARAMS}" == "true" ] ; then
@@ -43,7 +41,7 @@ build_miopen_ck() {
             ${LAUNCHER_FLAGS} \
             -DINSTANCES_ONLY=ON \
             -DENABLE_ASAN_PACKAGING=true \
-            -DAMDGPU_TARGETS=${GPU_TARGETS} \
+            "${GPU_TARGETS}" \
             "$COMPONENT_SRC"
     else
         cmake -DBUILD_DEV=OFF \
@@ -63,9 +61,11 @@ build_miopen_ck() {
             -DROCM_DISABLE_LDCONFIG=ON \
             -DROCM_PATH=${ROCM_PATH} \
             -DCPACK_GENERATOR="${PKGTYPE^^}" \
+            -DCMAKE_CXX_COMPILER="${ROCM_PATH}/llvm/bin/clang++" \
+            -DCMAKE_C_COMPILER="${ROCM_PATH}/llvm/bin/clang" \
             ${LAUNCHER_FLAGS} \
             -DINSTANCES_ONLY=ON \
-            -DAMDGPU_TARGETS=${GPU_TARGETS} \
+            "${GPU_TARGETS}" \
             "$COMPONENT_SRC"
     fi
 
@@ -106,8 +106,6 @@ build_miopen_ckProf() {
     architectures='gfx10 gfx11 gfx90 gfx94'
     if [ -n "$GPU_ARCHS" ]; then
         architectures=$(echo ${GPU_ARCHS} | awk -F';' '{for(i=1;i<=NF;i++) a[substr($i,1,5)]} END{for(i in a) printf i" "}')
-    else
-        architectures='gfx10 gfx11 gfx90 gfx94'
     fi
 
     for arch in ${architectures}

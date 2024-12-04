@@ -8,6 +8,7 @@ bison
 bridge-utils
 build-essential
 bzip2
+ccache
 check
 chrpath
 cifs-utils
@@ -99,6 +100,7 @@ libva-dev
 libvirt-clients
 libvirt-daemon-system
 libyaml-cpp-dev
+libzstd-dev
 llvm
 llvm-dev
 llvm-runtime
@@ -137,3 +139,4 @@ unzip
 vim
 wget
 xsltproc
+zlib1g-dev

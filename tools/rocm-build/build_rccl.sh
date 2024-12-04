@@ -26,14 +26,16 @@ build_rccl() {
         GPU_TARGETS="gfx908:xnack-;gfx90a:xnack-;gfx90a:xnack+;gfx940;gfx941;gfx942;gfx1030;gfx1100;gfx1101"
     fi
 
+    init_rocm_common_cmake_params
 
     CC=${ROCM_PATH}/bin/amdclang \
     CXX=$(set_build_variables CXX) \
     cmake \
-        $(rocm_common_cmake_params) \
+        "${rocm_math_common_cmake_params[@]}" \
         -DAMDGPU_TARGETS=${GPU_TARGETS} \
         -DHIP_COMPILER=clang \
         -DCMAKE_PREFIX_PATH="${ROCM_PATH};${ROCM_PATH}/share/rocm/cmake/" \
+        ${LAUNCHER_FLAGS} \
         -DCPACK_GENERATOR="${PKGTYPE^^}" \
         -DROCM_PATCH_VERSION=$ROCM_LIBPATCH_VERSION \
         -DBUILD_ADDRESS_SANITIZER="${ADDRESS_SANITIZER}" \

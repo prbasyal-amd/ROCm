@@ -27,6 +27,8 @@ jobs:
   - template: /.azuredevops/variables-global.yml
   - name: HIP_DEVICE_LIB_PATH
     value: '$(Build.BinariesDirectory)/amdgcn/bitcode'
+  - name: HIP_PATH
+    value: '$(Agent.BuildDirectory)/rocm'
   pool: ${{ variables.MEDIUM_BUILD_POOL }}
   workspace:
     clean: all
@@ -139,4 +141,5 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DHIPCC_BACKWARD_COMPATIBILITY=OFF
       cmakeBuildDir: 'amd/hipcc/build'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
