@@ -63,7 +63,7 @@
 * {doc}`hipSPARSELt <hipsparselt:index>`
 * {doc}`rocALUTION <rocalution:index>`
 * {doc}`rocWMMA <rocwmma:index>`
-* {doc}`Tensile <tensile:index>`
+* {doc}`Tensile <tensile:src/index>`
 :::
 
 ::::
