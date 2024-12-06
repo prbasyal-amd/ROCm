@@ -5,9 +5,9 @@
 **************************************
 Troubleshoot BAR access limitation
 **************************************
-A system can consist of multiple PCIe devices and data access between the devices is needed for proper functioning and optimum processing and system performance. Peer-to-peer (P2P) Direct Memory Access (DMA) is used to access the resources such as registers and device memory between the devices. These PCIe devices need memory-mapped input/output (MMIO) space for DMA and are defined in the PCIe BARs (Base Address Registers). These BARs are also used by the CPU and other devices in the system to access the resources of the PCIe devices. However, direct access to the device resources from the BAR can be restricted due to the physical address limit. This restriction can result in data access failure between the system components. P2P DMA only works when one device can directly access the local BAR memory of another. If the BAR memory is above the physical addressing limit of the device, the device will not be able to access the remote BAR. 
+A system can consist of multiple PCIe devices and data access between the devices is needed for proper functioning and optimum system performance. Direct Memory Access (DMA) to the device resources using the BARs (Base Address Registers) can be restricted due to the physical address limit. This restriction can result in data access failure between the system components. Peer-to-peer (P2P) DMA is used to access the resources such as registers and device memory between the devices. These PCIe devices need memory-mapped input/output (MMIO) space for DMA and are defined in the PCIe BARs. These BARs are also used by the CPU and other devices in the system to access the resources of the PCIe devices. P2P DMA only works when one device can directly access the local BAR memory of another. If the BAR memory is above the physical addressing limit of the device, the device will not be able to access the remote BAR. 
 
-To handle the issue with BAR access, you need to be aware of the physical address limitations of the devices and understand the BAR configuration of AMD GPUs. This information is important when you need to set up additional MMIO apertures in the physical address of the system.
+To handle the issue with BAR access, you need to be aware of the physical address limitations of the devices and understand the :ref:`BAR configuration of AMD GPUs <bar-configuration>`. This information is important when you need to set up additional MMIO apertures for PCIe devices in the physical address space of the system.
 
 Handling physical address limitation
 =============================================
@@ -21,6 +21,7 @@ There are two ways to handle this:
 
 * Enable the Input-Output Memory Management Unit (IOMMU). When the IOMMU is enabled in the non-passthrough mode, it will create a virtual IO address space for each device on the system. It also ensures that all virtual addresses created in that space are within the physical addressing limits of the device. For more information on IOMMU, see :doc:`../conceptual/iommu`. 
 
+.. _bar-configuration:
 
 BAR configuration for AMD GPUs
 ================================================
