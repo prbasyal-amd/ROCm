@@ -49,6 +49,7 @@ ROCm documentation is organized into the following categories:
 * [Use advanced compiler features](./conceptual/compiler-topics.md)
 * [Set the number of CUs](./how-to/setting-cus)  
 * [ROCm examples](https://github.com/amd/rocm-examples)
+* [BAR memory overview](./how-to/Bar-Memory.rst)
 :::
 
 :::{grid-item-card} Conceptual
@@ -61,7 +62,6 @@ ROCm documentation is organized into the following categories:
 * [GPU isolation techniques](./conceptual/gpu-isolation.md)
 * [Using CMake](./conceptual/cmake-packages.rst)
 * [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
-* [BAR memory overview](./conceptual/Bar-Memory.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Oversubscription of hardware resources](./conceptual/oversubscription.rst)
 :::

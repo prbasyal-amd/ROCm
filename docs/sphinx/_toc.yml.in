@@ -111,6 +111,8 @@ subtrees:
     title: Set the number of CUs  
   - url: https://github.com/amd/rocm-examples
     title: ROCm examples
+  - file: how-to/Bar-Memory.rst
+    title: BAR memory overview
 
 - caption: Conceptual
   entries:
@@ -156,8 +158,6 @@ subtrees:
     title: Using CMake
   - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
     title: ROCm & PCIe atomics
-  - file: conceptual/Bar-Memory.rst
-    title: BAR memory overview
   - file: conceptual/ai-pytorch-inception.md
     title: Inception v3 with PyTorch
   - file: conceptual/oversubscription.rst
