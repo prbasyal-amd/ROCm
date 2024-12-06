@@ -49,7 +49,7 @@ ROCm documentation is organized into the following categories:
 * [Use advanced compiler features](./conceptual/compiler-topics.md)
 * [Set the number of CUs](./how-to/setting-cus)  
 * [ROCm examples](https://github.com/amd/rocm-examples)
-* [BAR memory overview](./how-to/Bar-Memory.rst)
+* [Troubleshoot BAR access limitation](./how-to/Bar-Memory.rst)
 :::
 
 :::{grid-item-card} Conceptual

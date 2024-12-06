@@ -112,7 +112,7 @@ subtrees:
   - url: https://github.com/amd/rocm-examples
     title: ROCm examples
   - file: how-to/Bar-Memory.rst
-    title: BAR memory overview
+    title: Troubleshoot BAR access limitation
 
 - caption: Conceptual
   entries:
