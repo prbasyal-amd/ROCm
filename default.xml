@@ -10,8 +10,8 @@
     <project name="ROCR-Runtime" />
     <project name="ROCT-Thunk-Interface" />
     <project name="amdsmi" />
-    <project name="omniperf" />
-    <project name="omnitrace" />
+    <project name="rocprofiler-compute" />
+    <project name="rocprofiler-systems" />
     <project name="rdc" />
     <project name="rocm_bandwidth_test" />
     <project name="rocm_smi_lib" />
