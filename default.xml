@@ -9,8 +9,6 @@
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCR-Runtime" />
     <project name="amdsmi" />
-    <project name="rocprofiler-compute" />
-    <project name="rocprofiler-systems" />
     <project name="rdc" />
     <project name="rocm_bandwidth_test" />
     <project name="rocm_smi_lib" />
