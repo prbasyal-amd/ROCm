@@ -8,7 +8,6 @@
 <!--list of projects for ROCm-->
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCR-Runtime" />
-    <project name="ROCT-Thunk-Interface" />
     <project name="amdsmi" />
     <project name="rdc" />
     <project name="rocm_bandwidth_test" />
@@ -42,6 +41,7 @@
     <project groups="mathlibs" name="ROCmValidationSuite" />
     <project groups="mathlibs" name="Tensile" />
     <project groups="mathlibs" name="composable_kernel" />
+    <project groups="mathlibs" name="hipBLAS-common" />
     <project groups="mathlibs" name="hipBLAS" />
     <project groups="mathlibs" name="hipBLASLt" />
     <project groups="mathlibs" name="hipCUB" />
@@ -68,6 +68,7 @@
     <project groups="mathlibs" name="rocWMMA" />
     <project groups="mathlibs" name="rocm-cmake" />
     <project groups="mathlibs" name="rpp" />
+    <project groups="mathlibs" name="TransferBench" />
 <!-- Projects for OpenMP-Extras -->
     <project name="aomp" path="openmp-extras/aomp" />
     <project name="aomp-extras" path="openmp-extras/aomp-extras" />
