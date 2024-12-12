@@ -5,28 +5,30 @@
 **************************************
 Troubleshoot BAR access limitation
 **************************************
-A system can consist of multiple PCIe devices and data access between the devices is needed for proper functioning and optimum system performance. Direct Memory Access (DMA) to the device resources using the BARs (Base Address Registers) can be restricted due to the physical address limit. This restriction can result in data access failure between the system components. Peer-to-peer (P2P) DMA is used to access the resources such as registers and device memory between the devices. These PCIe devices need memory-mapped input/output (MMIO) space for DMA and are defined in the PCIe BARs. These BARs are also used by the CPU and other devices in the system to access the resources of the PCIe devices. P2P DMA only works when one device can directly access the local BAR memory of another. If the BAR memory is above the physical addressing limit of the device, the device will not be able to access the remote BAR. 
+Direct Memory Access (DMA) to PCIe devices using Base Address Registers (BARs) can be restricted due to physical addressing limits. These restrictions can result in data access failures between the system components. Peer-to-peer (P2P) DMA is used to access resources such as registers and memory between devices. PCIe devices need memory-mapped input/output (MMIO) space for DMA and these MMIO space are defined in the PCIe BARs. 
 
-To handle the issue with BAR access, you need to be aware of the physical address limitations of the devices and understand the :ref:`BAR configuration of AMD GPUs <bar-configuration>`. This information is important when you need to set up additional MMIO apertures for PCIe devices in the physical address space of the system.
+These BARs are a set of 32-bit or 64-bit registers that are used to define the memory space that a PCIe devices can access. These are also used by the CPU and other system devices to access the resources of the PCIe devices. P2P DMA only works when one device can directly access the local BAR memory of another. If the BAR memory is above the physical addressing limit of the device, the device will not be able to access the remote BAR. 
+
+To handle any BAR access issues that might occur, you need to be aware of the physical address limitations of the devices and understand the :ref:`BAR configuration of AMD GPUs <bar-configuration>`. This information is important when you need to set up additional MMIO apertures for PCIe devices in the physical address space of the system.
 
 Handling physical address limitation
 =============================================
-When the system boots, the system BIOS allocates the physical address space for different components in the system. This also includes system memory and one or more MMIO apertures. In general, there are two MMIO apertures: one allocated with below 4 GB of physical address space for 32-bit compatibility, and one with above 4 GB for devices that need more space. 
+When a system boots, the system BIOS allocates the physical address space for the components in the system, including system memory and MMIO apertures. In general, there are two MMIO apertures: one allocated below 4 GB of physical address space for 32-bit compatibility, and one above 4 GB for devices that need more space.
 
-You can control the memory address of the high MMIO aperture from the configuration options in the system BIOS. This enables you to configure the additional MMIO space to align with the physical addressing limit and allow P2P DMA between the devices. For example, if a PCIe device is limited to 44-bit of physical addressing, you should ensure that the MMIO aperture is set below 44-bit in the system physical address space.
+You can control the memory address of the high MMIO aperture from the configuration options in the system BIOS. This lets you configure the additional MMIO space to align with the physical addressing limit and allows P2P DMA between the devices. For example, if a PCIe device is limited to 44-bit of physical addressing, you should ensure that the MMIO aperture is set below 44-bit in the system physical address space.
 
 There are two ways to handle this:
 
-* Ensure that the high MMIO aperture is within the physical addressing limits of the devices in the system. For example, if the devices have a 44-bit physical addressing limit, set the ``MMIOH Base`` and ``MMIO High size`` options in the BIOS such that the aperture is within the 44-bit address range. Also, ensure that the ``Above 4G Decoding`` option is Enabled. 
+* Ensure that the high MMIO aperture is within the physical addressing limits of the devices in the system. For example, if the devices have a 44-bit physical addressing limit, set the ``MMIO High Base`` and ``MMIO High size`` options in the BIOS such that the aperture is within the 44-bit address range, and ensure that the ``Above 4G Decoding`` option is Enabled.  
 
-* Enable the Input-Output Memory Management Unit (IOMMU). When the IOMMU is enabled in the non-passthrough mode, it will create a virtual IO address space for each device on the system. It also ensures that all virtual addresses created in that space are within the physical addressing limits of the device. For more information on IOMMU, see :doc:`../conceptual/iommu`. 
+* Enable the Input-Output Memory Management Unit (IOMMU). When the IOMMU is enabled in the non-passthrough mode, it will create a virtual I/O address space for each device on the system. It also ensures that all virtual addresses created in that space are within the physical addressing limits of the device. For more information on IOMMU, see :doc:`../conceptual/iommu`. 
 
 .. _bar-configuration:
 
 BAR configuration for AMD GPUs
 ================================================
 
-For AMD GPUs that have the 44-bit physical address and 48-bit GPU virtual address, the BARs are configured as:
+For AMD GPUs that have the 44-bit physical address and 48-bit GPU virtual address limit, the BARs are configured as:
 
 .. list-table:: 
   :widths: 25 25 50
@@ -37,10 +39,10 @@ For AMD GPUs that have the 44-bit physical address and 48-bit GPU virtual addres
     - Description
   * - BAR0-1 registers
     - 64-bit, Prefetchable, GPU memory
-    - 8 GB or 16 GB depending on GPU SKU. Set to less than 2^44 to support P2P access from other GPUs like Vega10. Prefetching enables faster read operation for high-performance computing (HPC) by fetching the contiguous data from the same data source even before requested as an anticipation of a future request.
+    - 8 GB or 16 GB depending on GPU SKU. Set to less than 2^44 to support P2P access from other GPUs with 44-bit physical address limit. Prefetching enables faster read operation for high-performance computing (HPC) by fetching the contiguous data from the same data source even before requested as an anticipation of a future request.
   * - BAR2-3 registers
     - 64-bit, Prefetchable, Doorbell
-    - Set to less than 2^44 to support P2P access from other GPUs like Vega10. As a Doorbell BAR, it indicates to the GPU that a new operation is in its queue to be processed. 
+    - Set to less than 2^44 to support P2P access from other GPUs with 44-bit physical address limit. As a Doorbell BAR, it indicates to the GPU that a new operation is in its queue to be processed. 
   * - BAR4 register
     - Optional
     - Not a boot device
@@ -75,16 +77,14 @@ Details of the BARs configured in the example are:
 
 1. GPU Frame Buffer BAR: ``Memory at bf40000000 (64-bit, prefetchable) [size=256M]``
 
-The size is 256 MB, but in general, it will be the size of the
-GPU memory (typically 4 GB+). This BAR is set below 2^40 to allow P2P access from
-other AMD GFX8 GPUs. For AMD GFX9 and Vega GPUs the BAR has to be set below 2^44 to allow P2P
-access from other AMD GFX9 GPUs.
+The size of the BAR in the example is 256 MB. In general, it will be the size of the
+GPU memory (typically 4 GB+). Depending upon the physical address limit and generation of AMD GPUs, the BAR can be set below 2^40, 2^44, or 2^48. 
 
 2. Doorbell BAR: ``Memory at bf50000000 (64-bit, prefetchable) [size=2M]``
 
 The size of the BAR should typically be less than 10 MB for this generation of GPUs and has been set to 2 MB in the example. This BAR is placed less than 2^40 to allow peer-to-peer access from other generations of AMD GPUs.
 
-3. IO BAR: ``I/O ports at 3000 [size=256]``
+3. I/O BAR: ``I/O ports at 3000 [size=256]``
 
 This is for legacy VGA and boot device support. Since the GPUs used are not connected to a display (VGA devices), this is not a concern even if it is not set up in the SBIOS.
 
