@@ -40,7 +40,7 @@ The following are notable new features and improvements in ROCm 6.3.1. For chang
 
 ### Per queue resiliency for Instinct MI300 accelerators
 
-The AMDGPU driver now features enhanced resiliency for misbehaving applications on AMD Instinct MI300 accelerators. This helps isolate the impact of misbehaving applications, ensuring other workloads running on the same accelerator are unaffected.
+The AMDGPU driver now includes enhanced resiliency for misbehaving applications on AMD Instinct MI300 accelerators. This helps isolate the impact of misbehaving applications, ensuring other workloads running on the same accelerator are unaffected.
 
 ### ROCm Runfile Installer
 
@@ -50,16 +50,21 @@ ROCm 6.3.1 introduces the ROCm Runfile Installer, with initial support for Ubunt
 
 ROCm documentation continues to be updated to provide clearer and more comprehensive guidance for a wider variety of user needs and use cases.
 
-* Added documentation on how to train a model using ROCm Megatron-LM. AMD provides a ready-to-use Docker image for MI300X
-  accelerators containing essential components to get started, including ROCm libraries, PyTorch, and Megatron-LM
-  utilities. See [Training a model with ROCm Megatron-LM](https://rocm.docs.amd.com/en/latest/how-to/rocm-for-ai/train-a-model.html)
-  for more information.
+* Added documentation on training a model with ROCm Megatron-LM. AMD offers a Docker image for MI300X accelerators
+  containing essential components to get started, including ROCm libraries, PyTorch, and Megatron-LM utilities. See
+  [Training a model using ROCm Megatron-LM](https://rocm.docs.amd.com/en/latest/how-to/rocm-for-ai/train-a-model.html)
+  to get started.
 
-* Revised the [Instinct MI300X workload tuning
-  guide](https://rocm.docs.amd.com/en/latest/how-to/tuning-guides/mi300x/workload.html) to include more up-to-date
-  information. Updated sections include guidance for vLLM optimization, PyTorch TunableOp, and hipBLASLt tuning.
+  The new ROCm Megatron-LM training Docker accompanies the [ROCm vLLM inference
+  Docker](https://rocm.docs.amd.com/en/latest/how-to/performance-validation/mi300x/vllm-benchmark.html)
+  as a set of ready-to-use containerized solutions to get started with using ROCm
+  for AI.
 
-* The HIP documentation has been updated and includes the following new topics:
+* Updated the [Instinct MI300X workload tuning
+  guide](https://rocm.docs.amd.com/en/latest/how-to/tuning-guides/mi300x/workload.html) with more current optimization
+  strategies. The updated sections include guidance on vLLM optimization, PyTorch TunableOp, and hipBLASLt tuning.
+
+* Expanded the HIP documentation with two new resources for developers:
   * [Multi device management](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/multi_device.html)
   * [OpenGL interoperability](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/opengl_interop.html)
 
