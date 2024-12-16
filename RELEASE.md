@@ -68,7 +68,7 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
 Operating system and hardware support remain unchanged in this release.
 
 See the [Compatibility
-matrix](https://rocm.docs.amd.com/en/docs-6.3.1/compatibility/compatibility-matrix.html)
+matrix](https://rocm-stg.amd.com/en/latest/compatibility/compatibility-matrix.html)
 for more information about operating system and hardware compatibility.
 
 ## ROCm components
