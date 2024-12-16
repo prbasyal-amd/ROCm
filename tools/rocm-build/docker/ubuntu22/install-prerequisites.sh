@@ -2,8 +2,8 @@
 
 set -ex
 
-apt-get update
-DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(grep -v '^#' /tmp/packages)
+apt-get -y update
+DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(sed 's/#.*//' /tmp/packages)
 apt-get clean
 rm -rf /var/cache/apt/ /var/lib/apt/lists/* /etc/apt/apt.conf.d/01proxy
 
@@ -16,13 +16,13 @@ make prefix=/usr/local install
 git --version
 
 pip3 install --no-cache-dir setuptools wheel tox
-pip3 install --no-cache-dir CppHeaderParser argparse requests lxml barectf recommonmark jinja2==3.0.0\
-    websockets matplotlib numpy scipy minimal msgpack pytest sphinx joblib cmake==3.25.2 pandas myst-parser lit
+pip3 install --no-cache-dir CppHeaderParser argparse requests lxml barectf recommonmark jinja2==3.0.0 \
+    websockets matplotlib numpy==1.26.4 scipy minimal msgpack pytest sphinx joblib PyYAML rocm-docs-core cmake==3.25.2 pandas myst-parser lit
 
 # Allow sudo for everyone user
 echo 'ALL ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/everyone
 
-wget https://repo.radeon.com/amdgpu-install/6.3/ubuntu/focal/amdgpu-install_6.3.60300-1_all.deb
+wget https://repo.radeon.com/amdgpu-install/6.3/ubuntu/jammy/amdgpu-install_6.3.60300-1_all.deb
 apt install -y ./amdgpu-install_6.3.60300-1_all.deb
 apt update
 apt install -y libva-amdgpu-dev libdrm-amdgpu-dev
@@ -61,22 +61,9 @@ opam install ctypes --yes
 curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
 chmod a+x /usr/bin/repo
 
-#Install doxygen 1.8.11
-mkdir /tmp/doxygen
-cd /tmp/doxygen
-curl -LO https://sourceforge.net/projects/doxygen/files/rel-1.8.18/doxygen-1.8.18.src.tar.gz
-tar xzf doxygen-1.8.18.src.tar.gz
-cd doxygen-1.8.18
-mkdir -p build
-cd build
-cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -Wno-dev ..
-make -j install
-cd ../..
-rm -rf /tmp/doxygen
-
 cd /var/tmp
 mkdir mlnx
-wget -O mlnx/tar.tgz https://content.mellanox.com/ofed/MLNX_OFED-5.2-1.0.4.0/MLNX_OFED_LINUX-5.2-1.0.4.0-ubuntu20.04-x86_64.tgz
+wget -O mlnx/tar.tgz https://content.mellanox.com/ofed/MLNX_OFED-24.01-0.3.3.1/MLNX_OFED_LINUX-24.01-0.3.3.1-ubuntu22.04-x86_64.tgz
 tar -xz -C mlnx -f mlnx/tar.tgz
 apt-key add mlnx/*/RPM-GPG-KEY-Mellanox
 echo "deb [arch=amd64] file:$(echo $PWD/mlnx/*/DEBS) ./" > /etc/apt/sources.list.d/sharp.list
@@ -84,6 +71,29 @@ apt update
 apt install -y sharp
 apt clean
 rm -rf /var/cache/apt/ /var/lib/apt/lists/* mlnx /etc/apt/sources.list.d/sharp.list
+
+apt update
+apt -y install libunwind-dev
+apt -y install libgoogle-glog-dev
+
+# Install python3.8 from source
+curl -LO https://www.python.org/ftp/python/3.8.13/Python-3.8.13.tar.xz
+tar -xvf Python-3.8.13.tar.xz
+pwd
+ls /var/tmp/
+ls Python-3.8.13
+mv Python-3.8.13 /opt/
+apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev pkg-config make -y
+cd /opt/Python-3.8.13/
+./configure --enable-optimizations --enable-shared
+make
+make -j 6
+make altinstall
+ldconfig /opt/Python3.8.13
+python3.8 --version
+
+python3.8 -m pip install setuptools wheel
+python3.8 -m pip install CppHeaderParser argparse requests lxml PyYAML joblib
 
 curl -lO https://download.open-mpi.org/release/hwloc/v1.11/hwloc-1.11.13.tar.bz2
 tar -xvf hwloc-1.11.13.tar.bz2
@@ -114,12 +124,10 @@ mkdir /usr/grpc
 cd /tmp
 git clone --recurse-submodules -b v1.61.0 https://github.com/grpc/grpc
 cd grpc
-mkdir -p cmake/build
-cd cmake/build
-cmake -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF  -DCMAKE_INSTALL_PREFIX=/usr/grpc   -DCMAKE_CXX_STANDARD=14  -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,'$ORIGIN' ../..
-make -j$(nproc)
-make install
-cd  /
+mkdir -p build
+cd build
+cmake -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/usr/grpc -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=14 -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,'$ORIGIN' ..
+make -j $(nproc) install
 rm -rf /tmp/grpc
 
 # Download prebuilt AMD multithreaded blis (2.0)
@@ -143,11 +151,9 @@ lapack_srcdir=lapack-$lapack_version
 lapack_blddir=lapack-$lapack_version-bld
 mkdir -p /tmp/lapack
 cd /tmp/lapack
-mkdir -p /tmp/lapack
-cd /tmp/lapack
 rm -rf "$lapack_srcdir" "$lapack_blddir"
 wget -O - https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.9.1.tar.gz | tar xzf -
-cmake -H$lapack_srcdir -B$lapack_blddir -DCMAKE_BUILD_TYPE=Release  -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls  -DBUILD_TESTING=OFF  -DCBLAS=ON  -DLAPACKE=OFF
+cmake -H$lapack_srcdir -B$lapack_blddir -DCMAKE_BUILD_TYPE=Release -DCMAKE_Fortran_FLAGS=-fno-optimize-sibling-calls -DBUILD_TESTING=OFF -DCBLAS=ON -DLAPACKE=OFF
 make -j$(nproc) -C "$lapack_blddir"
 make -C "$lapack_blddir" install
 cd $lapack_blddir
@@ -160,8 +166,10 @@ rm -rf /tmp/lapack
 fmt_version=7.1.3
 fmt_srcdir=fmt-$fmt_version
 fmt_blddir=fmt-$fmt_version-bld
+mkdir -p /tmp/fmt
+cd /tmp/fmt
 rm -rf "$fmt_srcdir" "$fmt_blddir"
-wget -O - https://github.com/fmtlib/fmt/archive/refs/tags/$fmt_version.tar.gz  | tar xzf -
+wget -O - https://github.com/fmtlib/fmt/archive/refs/tags/7.1.3.tar.gz | tar xzf -
 cmake -H$fmt_srcdir -B$fmt_blddir -DCMAKE_BUILD_TYPE=Release -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_EXTENSIONS=OFF -DCMAKE_CXX_STANDARD_REQUIRED=ON -DFMT_DOC=OFF -DFMT_TEST=OFF
 make -j$(nproc) -C "$fmt_blddir"
 make -C "$fmt_blddir" install
@@ -174,7 +182,7 @@ unzip libjpeg-turbo-2.0.6.2.zip
 cd libjpeg-turbo-2.0.6.2
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr  -DCMAKE_BUILD_TYPE=RELEASE  -DENABLE_STATIC=FALSE  -DCMAKE_INSTALL_DEFAULT_LIBDIR=lib ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RELEASE -DENABLE_STATIC=FALSE -DCMAKE_INSTALL_DEFAULT_LIBDIR=lib ..
 make -j$(nproc) install
 rm -rf /tmp/libjpeg-turbo
 
@@ -244,6 +252,8 @@ PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 make -j$(nproc) install
 rm -rf /tmp/ffmpeg
 
+cp /tmp/local-pin-600 /etc/apt/preferences.d
+
 command -v lbzip2
 ln -sf $(command -v lbzip2) /usr/local/bin/compressor || ln -sf $(command -v bzip2) /usr/local/bin/compressor
 
@@ -256,14 +266,14 @@ make -j -C build
 cd /tmp/Gbenchmark/build
 make install
 
-mkdir -p /tmp/boost-1.82.0
-cd /tmp/boost-1.82.0
-wget -nv https://sourceforge.net/projects/boost/files/boost/1.82.0/boost_1_82_0.tar.bz2 -O ./boost_1_82_0.tar.bz2
-tar -xf boost_1_82_0.tar.bz2 --use-compress-program="/usr/local/bin/compressor"
-cd boost_1_82_0
+mkdir -p /tmp/boost-1.85.0
+cd /tmp/boost-1.85.0
+wget -nv https://sourceforge.net/projects/boost/files/boost/1.85.0/boost_1_85_0.tar.bz2 -O ./boost_1_85_0.tar.bz2
+tar -xf boost_1_85_0.tar.bz2 --use-compress-program="/usr/local/bin/compressor"
+cd boost_1_85_0
 ./bootstrap.sh --prefix=${RPP_DEPS_LOCATION} --with-python=python3
 ./b2 stage -j$(nproc) threading=multi link=shared cxxflags="-std=c++11"
 ./b2 install threading=multi link=shared --with-system --with-filesystem
 ./b2 stage -j$(nproc) threading=multi link=static cxxflags="-std=c++11 -fpic" cflags="-fpic"
 ./b2 install threading=multi link=static --with-system --with-filesystem
-rm -rf /tmp/boost-1.82.0
+rm -rf /tmp/boost-1.85.0
