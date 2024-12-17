@@ -38,6 +38,10 @@ documentation to verify compatibility and system requirements.
 The following are notable new features and improvements in ROCm 6.3.1. For changes to individual components, see
 [Detailed component changes](#detailed-component-changes).
 
+###  TransferBench added
+
+TransferBench is introduced to the ROCm software stack as a new component. It is a utility for benchmarking simultaneous transfers between user-specified devices (CPUs or GPUs). For more information, see the [TransferBench documentation](https://rocm.docs.amd.com/projects/TransferBench/en/latest/index.html).
+
 ### Per queue resiliency for Instinct MI300 accelerators
 
 The AMDGPU driver now includes enhanced resiliency for misbehaving applications on AMD Instinct MI300 accelerators. This helps isolate the impact of misbehaving applications, ensuring other workloads running on the same accelerator are unaffected.
@@ -294,8 +298,8 @@ Click {fab}`github` to go to the component's source code on GitHub.
         </tbody>
         <tbody class="rocm-components-tools rocm-components-perf tbody-reverse-zebra">
             <tr>
-                <th rowspan="6"></th>
-                <th rowspan="6">Performance</th>
+                <th rowspan="7"></th>
+                <th rowspan="7">Performance</th>
                 <td><a href="https://rocm.docs.amd.com/projects/rocm_bandwidth_test/en/docs-6.3.0/index.html">ROCm Bandwidth
                         Test</a></td>
                 <td>1.4.0</td>
@@ -332,6 +336,12 @@ Click {fab}`github` to go to the component's source code on GitHub.
                 <td><a href="https://github.com/ROCm/ROCTracer/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
+            <tr >
+                <td><a href="https://rocm.docs.amd.com/projects/TransferBench/en/docs-6.3.0/index.html">TransferBench</a></td>
+                <td>1.52.0</td>
+                <td><a href="https://github.com/ROCm/TransferBench"><i
+                            class="fab fa-github fa-lg"></i></a></td>
+            </tr> 
         </tbody>
         <tbody class="rocm-components-tools rocm-components-dev tbody-reverse-zebra">
             <tr>
