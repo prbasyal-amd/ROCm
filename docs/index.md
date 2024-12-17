@@ -46,7 +46,8 @@ ROCm documentation is organized into the following categories:
 * [System debugging](./how-to/system-debugging.md)
 * [Use MPI](./how-to/gpu-enabled-mpi.rst)
 * [Use advanced compiler features](./conceptual/compiler-topics.md)
-* [Set the number of CUs](./how-to/setting-cus)  
+* [Set the number of CUs](./how-to/setting-cus)
+* [Troubleshoot BAR access limitation](./how-to/Bar-Memory.rst)  
 * [ROCm examples](https://github.com/amd/rocm-examples)
 :::
 

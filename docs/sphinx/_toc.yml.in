@@ -110,7 +110,9 @@ subtrees:
       - url: https://rocm.docs.amd.com/projects/llvm-project/en/latest/conceptual/openmp.html
         title: OpenMP support
   - file: how-to/setting-cus
-    title: Set the number of CUs  
+    title: Set the number of CUs
+  - file: how-to/Bar-Memory.rst
+    title: Troubleshoot BAR access limitation  
   - url: https://github.com/amd/rocm-examples
     title: ROCm examples
 
