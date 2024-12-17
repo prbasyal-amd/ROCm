@@ -40,7 +40,7 @@ The following table shows how the BARs are configured for AMD GPUs that have a 4
     - Description
   * - BAR0-1 registers
     - 64-bit, Prefetchable, GPU memory
-    - 8 GB or 16 GB depending on GPU. Set to less than 2^44 to support P2P access from other GPUs with a 44-bit physical address limit. Prefetching enables faster read operation for high-performance computing (HPC) by fetching the contiguous data from the same data source even before requested as an anticipation of a future request.
+    - 8 GB or 16 GB depending on GPU. Set to less than 2^44 to support P2P access from other GPUs with a 44-bit physical address limit. Prefetchable memory enables faster read operation for high-performance computing (HPC) by fetching the contiguous data from the same data source even before requested as an anticipation of a future request.
   * - BAR2-3 registers
     - 64-bit, Prefetchable, Doorbell
     - Set to less than 2^44 to support P2P access from other GPUs with a 44-bit physical address limit. As a Doorbell BAR, it indicates to the GPU that a new operation is in its queue to be processed. 
