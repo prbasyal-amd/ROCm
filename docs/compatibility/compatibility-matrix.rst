@@ -172,9 +172,8 @@ Use this lookup table to confirm which operating system and kernel versions are 
    `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 22.04.5, "5.15 GA, 6.8 HWE"
    , 22.04.4, "5.15 GA, 6.5 HWE"
    , 22.04.3, "5.15 GA, 6.2 HWE"
-   , 22.04.2, "5.15 GA, 5.19 HWE"
    ,,
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 20.04.06, "5.15 HWE"
+   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 20.04.6, "5.15 HWE"
    , 20.04.5, "5.15 HWE"
    ,,
    `Red Hat Enterprise Linux (RHEL) <https://access.redhat.com/articles/3078#RHEL9>`_, 9.5, 5.14.0
@@ -194,7 +193,6 @@ Use this lookup table to confirm which operating system and kernel versions are 
    ,,
    `Oracle Linux <https://blogs.oracle.com/scoter/post/oracle-linux-and-unbreakable-enterprise-kernel-uek-releases>`_, 8.10, 5.15.0
    ,8.9, 5.15.0
-   `Azure Linux <https://github.com/microsoft/azurelinux/releases>`_, 3.0, 6.6.60
 
 ..
    Footnotes and ref anchors in below historical tables should be appended with "-past-60", to differentiate from the 
