@@ -38,10 +38,6 @@ documentation to verify compatibility and system requirements.
 The following are notable new features and improvements in ROCm 6.3.1. For changes to individual components, see
 [Detailed component changes](#detailed-component-changes).
 
-###  TransferBench added
-
-TransferBench is a new utility for benchmarking simultaneous transfers between user-specified devices (CPUs or GPUs). For more information, see the [TransferBench documentation](https://rocm.docs.amd.com/projects/TransferBench/en/latest/index.html).
-
 ### Per queue resiliency for Instinct MI300 accelerators
 
 The AMDGPU driver now includes enhanced resiliency for misbehaving applications on AMD Instinct MI300 accelerators. This helps isolate the impact of misbehaving applications, ensuring other workloads running on the same accelerator are unaffected.
@@ -74,7 +70,12 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
 
 ## Operating system and hardware support changes
 
-Operating system and hardware support remain unchanged in this release.
+ROCm 6.3.1 adds support for Debian 12 (kernel: 6.1).
+
+See installation instructions at [ROCm installation for
+Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.1/).
+
+Hardware support remain unchanged in this release.
 
 See the [Compatibility
 matrix](https://rocm-stg.amd.com/en/latest/compatibility/compatibility-matrix.html)
@@ -298,8 +299,8 @@ Click {fab}`github` to go to the component's source code on GitHub.
         </tbody>
         <tbody class="rocm-components-tools rocm-components-perf tbody-reverse-zebra">
             <tr>
-                <th rowspan="7"></th>
-                <th rowspan="7">Performance</th>
+                <th rowspan="6"></th>
+                <th rowspan="6">Performance</th>
                 <td><a href="https://rocm.docs.amd.com/projects/rocm_bandwidth_test/en/docs-6.3.0/index.html">ROCm Bandwidth
                         Test</a></td>
                 <td>1.4.0</td>
@@ -336,12 +337,6 @@ Click {fab}`github` to go to the component's source code on GitHub.
                 <td><a href="https://github.com/ROCm/ROCTracer/"><i
                             class="fab fa-github fa-lg"></i></a></td>
             </tr>
-            <tr >
-                <td><a href="https://rocm.docs.amd.com/projects/TransferBench/en/docs-6.3.0/index.html">TransferBench</a></td>
-                <td>1.52.0</td>
-                <td><a href="https://github.com/ROCm/TransferBench"><i
-                            class="fab fa-github fa-lg"></i></a></td>
-            </tr> 
         </tbody>
         <tbody class="rocm-components-tools rocm-components-dev tbody-reverse-zebra">
             <tr>
@@ -544,6 +539,10 @@ Packaging metadata for ROCm Compute Profiler (`rocprofiler-compute`) and ROCm Sy
 respectively. This fixes minor issues when upgrading from ROCm 6.2 to 6.3. For more information, see the GitHub issues
 [#4082](https://github.com/ROCm/ROCm/issues/4082) and
 [#4083](https://github.com/ROCm/ROCm/issues/4082).
+
+### Stale file due to OpenCL ICD loader deprecation
+
+When upgrading from ROCm 6.2.x to ROCm 6.3.0, the issue of [removal of the `rocm-icd-loader` package](#opencl-icd-loader-separated-from-rocm) leaving a stale file in the old `rocm-6.2.x`directory has been resolved. The stale files left during the upgrade from ROCm 6.2.x to ROCm 6.3.0 will be removed when upgrading to ROCm 6.3.1. For more information, see [GitHub issue #4084](https://github.com/ROCm/ROCm/issues/4084).
 
 ## ROCm upcoming changes
 

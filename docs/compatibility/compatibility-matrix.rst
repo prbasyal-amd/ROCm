@@ -32,6 +32,7 @@ compatibility and system requirements.
       ,RHEL 8.10,RHEL 8.10,"RHEL 8.10, 8.9"
       ,"SLES 15 SP6, SP5","SLES 15 SP6, SP5","SLES 15 SP6, SP5"
       ,Oracle Linux 8.10 [#oracle89]_,Oracle Linux 8.10 [#oracle89]_,Oracle Linux 8.9 [#oracle89]_
+      ,Debian 12 [#debian12]_,,
       ,.. _architecture-support-compatibility-matrix:,,
       :doc:`Architecture <rocm-install-on-linux:reference/system-requirements>`,CDNA3,CDNA3,CDNA3
       ,CDNA2,CDNA2,CDNA2
@@ -48,7 +49,7 @@ compatibility and system requirements.
       FRAMEWORK SUPPORT,.. _framework-support-compatibility-matrix:,,
       :doc:`PyTorch <rocm-install-on-linux:install/3rd-party/pytorch-install>`,"2.4, 2.3, 2.2, 1.13","2.4, 2.3, 2.2, 2.1, 2.0, 1.13","2.3, 2.2, 2.1, 2.0, 1.13"
       :doc:`TensorFlow <rocm-install-on-linux:install/3rd-party/tensorflow-install>`,"2.17.0, 2.16.2, 2.15.1","2.17.0, 2.16.2, 2.15.1","2.16.1, 2.15.1, 2.14.1"
-      :doc:`JAX <rocm-install-on-linux:install/3rd-party/jax-install>`,0.4.26,0.4.26,0.4.26
+      :doc:`JAX <rocm-install-on-linux:install/3rd-party/jax-install>`,0.4.35,0.4.35,0.4.26
       `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.17.3,1.17.3,1.17.3
       ,,,
       THIRD PARTY COMMS,.. _thirdpartycomms-support-compatibility-matrix:,,
@@ -146,6 +147,7 @@ compatibility and system requirements.
 .. rubric:: Footnotes
 
 .. [#oracle89] Oracle Linux is supported only on AMD Instinct MI300X.
+.. [#debian12] Supported only on AMD Instinct accelerators.
 .. [#mi300_620] **For ROCm 6.2.0** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
 .. [#kfd_support] ROCm provides forward and backward compatibility between the Kernel Fusion Driver (KFD) and its user space software for +/- 2 releases. These are the compatibility combinations that are currently supported.
 .. [#ROCT-rocr] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
@@ -163,35 +165,25 @@ Use this lookup table to confirm which operating system and kernel versions are 
    :stub-columns: 1
 
    `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04.2, "6.8 GA, 6.11 HWE"
-   , 24.04.1, "6.8 GA"
    , 24.04, "6.8 GA"
    ,,
    `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 22.04.5, "5.15 GA, 6.8 HWE"
    , 22.04.4, "5.15 GA, 6.5 HWE"
-   , 22.04.3, "5.15 GA, 6.2 HWE"
-   , 22.04.2, "5.15 GA, 5.19 HWE"
-   ,,
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 20.04.06, "5.15 HWE"
-   , 20.04.5, "5.15 HWE"
    ,,
    `Red Hat Enterprise Linux (RHEL) <https://access.redhat.com/articles/3078#RHEL9>`_, 9.5, 5.14.0
    ,9.4, 5.14.0
    ,9.3, 5.14.0
-   ,9.2, 5.14.0
    ,,
    `Red Hat Enterprise Linux (RHEL) <https://access.redhat.com/articles/3078#RHEL8>`_, 8.10, 4.18.0
    ,8.9, 4.18.0
-   ,8.8, 4.18.0
-   ,,
-   `CentOS <https://access.redhat.com/articles/3078#RHEL7>`_, 7.9, 3.10
    ,,
    `SUSE Linux Enterprise Server (SLES) <https://www.suse.com/support/kb/doc/?id=000019587#SLE15SP4>`_, 15 SP6, 6.4.0
    ,15 SP5, 5.14.21
-   ,15 SP4, 5.14.21
    ,,
    `Oracle Linux <https://blogs.oracle.com/scoter/post/oracle-linux-and-unbreakable-enterprise-kernel-uek-releases>`_, 8.10, 5.15.0
    ,8.9, 5.15.0
-   `Azure Linux <https://github.com/microsoft/azurelinux/releases>`_, 3.0, 6.6.60
+   ,,
+   `Debian <https://www.debian.org/download>`_,12, 6.1
 
 ..
    Footnotes and ref anchors in below historical tables should be appended with "-past-60", to differentiate from the 
@@ -220,6 +212,7 @@ Expand for full historical view of:
    .. rubric:: Footnotes
 
    .. [#oracle89-past-60] Oracle Linux is supported only on AMD Instinct MI300X.
+   .. [#debian12-past-60] Supported only on AMD Instinct accelerators.
    .. [#mi300_624-past-60] **For ROCm 6.2.4** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_622-past-60] **For ROCm 6.2.2** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_621-past-60] **For ROCm 6.2.1** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].

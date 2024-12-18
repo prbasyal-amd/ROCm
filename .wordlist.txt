@@ -90,6 +90,7 @@ Dask
 DataFrame
 DataLoader
 DataParallel
+Debian
 DeepSpeed
 Dependabot
 Deprecations
@@ -522,6 +523,7 @@ dbgapi
 de
 deallocation
 debuggability
+debian
 denoise
 denoised
 denoises
