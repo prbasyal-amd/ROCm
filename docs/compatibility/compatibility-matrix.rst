@@ -147,7 +147,7 @@ compatibility and system requirements.
 .. rubric:: Footnotes
 
 .. [#oracle89] Oracle Linux is supported only on AMD Instinct MI300X.
-.. [#debian12] Supported only on AMD Instinct accelerators.
+.. [#debian12] Debian is supported only on AMD Instinct accelerators.
 .. [#mi300_620] **For ROCm 6.2.0** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
 .. [#kfd_support] ROCm provides forward and backward compatibility between the Kernel Fusion Driver (KFD) and its user space software for +/- 2 releases. These are the compatibility combinations that are currently supported.
 .. [#ROCT-rocr] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
@@ -212,7 +212,7 @@ Expand for full historical view of:
    .. rubric:: Footnotes
 
    .. [#oracle89-past-60] Oracle Linux is supported only on AMD Instinct MI300X.
-   .. [#debian12-past-60] Supported only on AMD Instinct accelerators.
+   .. [#debian12-past-60] Debian is supported only on AMD Instinct accelerators.
    .. [#mi300_624-past-60] **For ROCm 6.2.4** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_622-past-60] **For ROCm 6.2.2** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_621-past-60] **For ROCm 6.2.1** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
