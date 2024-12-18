@@ -40,7 +40,7 @@ The following are notable new features and improvements in ROCm 6.3.1. For chang
 
 ###  TransferBench added
 
-TransferBench is introduced to the ROCm software stack as a new component. It is a utility for benchmarking simultaneous transfers between user-specified devices (CPUs or GPUs). For more information, see the [TransferBench documentation](https://rocm.docs.amd.com/projects/TransferBench/en/latest/index.html).
+TransferBench is a new utility for benchmarking simultaneous transfers between user-specified devices (CPUs or GPUs). For more information, see the [TransferBench documentation](https://rocm.docs.amd.com/projects/TransferBench/en/latest/index.html).
 
 ### Per queue resiliency for Instinct MI300 accelerators
 
