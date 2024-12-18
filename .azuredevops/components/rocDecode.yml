@@ -85,6 +85,7 @@ jobs:
         -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
 
 - job: rocDecode_testing
@@ -93,7 +94,9 @@ jobs:
   variables:
   - group: common
   - template: /.azuredevops/variables-global.yml
-  pool: $(JOB_TEST_POOL)
+  pool:
+    name: $(JOB_TEST_POOL)
+    demands: firstRenderDeviceAccess
   workspace:
     clean: all
   strategy:
@@ -102,6 +105,18 @@ jobs:
         JOB_GPU_TARGET: gfx942
         JOB_TEST_POOL: ${{ variables.GFX942_TEST_POOL }}
   steps:
+  # Since mesa-amdgpu-multimedia-devel is not directly available from apt, register it
+  - task: Bash@3
+    displayName: 'Register ROCm packages'
+    inputs:
+      targetType: inline
+      script: |
+        sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+        wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
+        echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/${{ variables.KEYRING_VERSION }}/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/amdgpu.list
+        echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/${{ variables.KEYRING_VERSION }} jammy main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
+        echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+        sudo apt update
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
     parameters:
       aptPackages: ${{ parameters.aptPackages }}
@@ -135,3 +150,4 @@ jobs:
       componentName: rocDecode
       testDir: 'rocDecode-tests'
   - script: sudo rm /opt/rocm
+    condition: always()

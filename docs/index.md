@@ -37,7 +37,6 @@ ROCm documentation is organized into the following categories:
 :::{grid-item-card} How to
 :class-body: rocm-card-banner rocm-hue-12
 
-* [Programming guide](./how-to/hip_programming_guide.rst)
 * [Use ROCm for AI](./how-to/rocm-for-ai/index.rst)
 * [Use ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
 * [Fine-tune LLMs and inference optimization](./how-to/llm-fine-tuning-optimization/index.rst)
@@ -55,11 +54,11 @@ ROCm documentation is organized into the following categories:
 :class-body: rocm-card-banner rocm-hue-8
 
 * [GPU architecture overview](./conceptual/gpu-arch.md)
-* [GPU memory](./conceptual/gpu-memory.md)
+* [Input-Output Memory Management Unit (IOMMU)](./conceptual/iommu.rst)
 * [File structure (Linux FHS)](./conceptual/file-reorg.md)
 * [GPU isolation techniques](./conceptual/gpu-isolation.md)
 * [Using CMake](./conceptual/cmake-packages.rst)
-* [ROCm & PCIe atomics](./conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst)
+* [PCIe atomics in ROCm](./conceptual/pcie-atomics.rst)
 * [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
 * [Oversubscription of hardware resources](./conceptual/oversubscription.rst)
 :::

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # List of packages needed for stage1 build
+=======
+>>>>>>> external/develop
 apt-utils
 aria2
 autoconf
@@ -8,7 +11,10 @@ bison
 bridge-utils
 build-essential
 bzip2
+<<<<<<< HEAD
 ccache
+=======
+>>>>>>> external/develop
 check
 chrpath
 cifs-utils
@@ -23,7 +29,10 @@ flex
 freeglut3-dev
 g++
 g++-multilib
+<<<<<<< HEAD
 # gawk is needed for aomp
+=======
+>>>>>>> external/develop
 gawk
 gcc
 gcc-multilib
@@ -33,10 +42,15 @@ gnupg
 googletest
 graphviz
 kernel-wedge
+<<<<<<< HEAD
 # kmod for kernel build
 kmod
 lbzip2
 # less is needed by repo
+=======
+kmod
+lbzip2
+>>>>>>> external/develop
 less
 libass-dev
 libatlas-base-dev
@@ -80,6 +94,10 @@ libncurses-dev
 libnuma-dev
 libomp-dev
 libopenblas-dev
+<<<<<<< HEAD
+=======
+libopencv-dev
+>>>>>>> external/develop
 libpci-dev
 libpci3
 libpciaccess-dev
@@ -104,6 +122,11 @@ mesa-common-dev
 mpich
 ocaml
 ocaml-findlib
+<<<<<<< HEAD
+=======
+ocl-icd-libopencl1
+ocl-icd-opencl-dev
+>>>>>>> external/develop
 patchelf
 pigz
 pkg-config
@@ -116,6 +139,7 @@ python3-pip-whl
 python3-requests
 python3-venv
 python3-yaml
+<<<<<<< HEAD
 python3-yaml
 re2c
 redis-tools
@@ -124,6 +148,13 @@ rpm
 rsync
 ssh
 # This makes life more pleasent inside the container
+=======
+re2c
+redis-tools
+rpm
+rsync
+ssh
+>>>>>>> external/develop
 strace
 sudo
 systemtap-sdt-dev
