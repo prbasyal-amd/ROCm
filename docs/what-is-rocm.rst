@@ -10,7 +10,7 @@ ROCm is a software stack, composed primarily of open-source software, that
 provides the tools for programming AMD Graphics Processing Units (GPUs), from
 low-level kernels to high-level end-user applications.
 
-.. image:: data/rocm-software-stack-6_3_0.jpg
+.. image:: data/rocm-software-stack-6_3_1.jpg
   :width: 800
   :alt: AMD's ROCm software stack and enabling technologies.
   :align: center
@@ -115,8 +115,6 @@ Performance
   ":doc:`ROCProfiler <rocprofiler:index>`", "Profiling tool for HIP applications"
   ":doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`", "Toolkit for developing analysis tools for profiling and tracing GPU compute applications. This toolkit is in beta and subject to change"
   ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
-  ":doc:`TransferBench <transferbench:index>`", "Benchmark simultaneous transfers between user-specified devices (CPUs or GPUs)."
-
 
 Development
 ^^^^^^^^^^^
