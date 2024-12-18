@@ -684,12 +684,6 @@ See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/6.3.x/CHANG
   preprocessor macro `HIP_ENABLE_WARP_SYNC_BUILTINS`, and will be enabled
   unconditionally in the next ROCm release.
 
-#### Upcoming changes
-
-* Deprecated HIP APIs:
-    - `hipHostMalloc` to be replaced by `hipExtHostAlloc`.
-    - `hipHostFree` to be replaced by `hipFreeHost`.
-
 ### **hipBLAS** (2.3.0)
 
 #### Added
