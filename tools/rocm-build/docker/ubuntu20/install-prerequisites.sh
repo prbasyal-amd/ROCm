@@ -2,11 +2,7 @@
 
 set -ex
 
-<<<<<<< HEAD
-apt-get update 
-=======
 apt-get update
->>>>>>> external/develop
 DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install --no-install-recommends -y $(grep -v '^#' /tmp/packages)
 apt-get clean
 rm -rf /var/cache/apt/ /var/lib/apt/lists/* /etc/apt/apt.conf.d/01proxy
@@ -120,11 +116,7 @@ git clone --recurse-submodules -b v1.61.0 https://github.com/grpc/grpc
 cd grpc
 mkdir -p cmake/build
 cd cmake/build
-<<<<<<< HEAD
-cmake -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF  -DCMAKE_INSTALL_PREFIX=/usr/grpc   -DCMAKE_CXX_STANDARD=14  -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,'$ORIGIN' ../.. 
-=======
 cmake -DgRPC_INSTALL=ON -DBUILD_SHARED_LIBS=ON -DgRPC_BUILD_TESTS=OFF  -DCMAKE_INSTALL_PREFIX=/usr/grpc   -DCMAKE_CXX_STANDARD=14  -DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,--enable-new-dtags,--build-id=sha1,--rpath,'$ORIGIN' ../..
->>>>>>> external/develop
 make -j$(nproc)
 make install
 cd  /
@@ -138,17 +130,10 @@ mv amd-blis-mt /usr/blis
 cd /
 rm -rf /tmp/blis
 
-<<<<<<< HEAD
-## Download aocl-linux-gcc-4.2.0_1_amd64.deb
-mkdir -p /tmp/aocl 
-cd /tmp/aocl 
-wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb 
-=======
 # Download aocl-linux-gcc-4.2.0_1_amd64.deb
 mkdir -p /tmp/aocl
 cd /tmp/aocl
 wget -nv https://download.amd.com/developer/eula/aocl/aocl-4-2/aocl-linux-gcc-4.2.0_1_amd64.deb
->>>>>>> external/develop
 apt install ./aocl-linux-gcc-4.2.0_1_amd64.deb
 rm -rf /tmp/aocl
 
@@ -203,10 +188,6 @@ cd ninja-1.11.1.g95dee.kitware.jobserver-1
 cp ninja /usr/local/bin/
 rm -rf /tmp/ninja
 
-<<<<<<< HEAD
-# Install FFmpeg from source
-wget -qO- https://www.ffmpeg.org/releases/ffmpeg-4.4.2.tar.gz | tar -xzv -C /usr/local
-=======
 # Build NASM
 mkdir -p /tmp/nasm-2.15.05
 cd /tmp
@@ -216,7 +197,6 @@ cd nasm-2.15.05
 ./configure --prefix="/usr/local"
 make -j$(nproc) install
 rm -rf /tmp/nasm-2.15.05
->>>>>>> external/develop
 
 # Build YASM
 mkdir -p /tmp/yasm-1.3.0

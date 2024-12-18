@@ -3,11 +3,7 @@
 1. Clone this repositry
 
    ```bash
-<<<<<<< HEAD
-   git clone https://github.com/ROCm/rocm-build.git
-=======
    git clone -b <release_branch> https://github.com/ROCm/ROCm.git
->>>>>>> external/develop
    ```
 
 2. Go into the OS specific docker directory in build-infra
