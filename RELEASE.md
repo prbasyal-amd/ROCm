@@ -64,7 +64,11 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
   guide](https://rocm.docs.amd.com/en/latest/how-to/tuning-guides/mi300x/workload.html) with more current optimization
   strategies. The updated sections include guidance on vLLM optimization, PyTorch TunableOp, and hipBLASLt tuning.
 
-* Expanded the HIP documentation with two new resources for developers:
+* HIP graph-safe libraries operate safely in HIP execution graphs. [HIP graphs](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/hipgraph.html#how-to-hip-graph) are an alternative way of executing tasks on a GPU that can provide performance benefits over launching kernels using the standard method via streams. A topic that shows whether a [ROCm library is graph-safe](https://advanced-micro-devices-demo--3953.com.readthedocs.build/en/3953/reference/graph-safe-support.html) has been added.
+
+* The [Device memory](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/memory_management/device_memory.html) topic in the HIP memory management section has been updated.
+
+* The HIP documentation has expanded with new resources for developers:
   * [Multi device management](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/multi_device.html)
   * [OpenGL interoperability](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/opengl_interop.html)
 
