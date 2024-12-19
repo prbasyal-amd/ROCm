@@ -1,6 +1,8 @@
 # specify non-secret global variables reused across pipelines here
 
 variables:
+- name: RESOURCES_REPOSITORIES
+  value: $[ convertToJson(resources.repositories) ]
 - name: CI_ROOT_PATH
   value: /.azuredevops
 - name: CI_COMPONENT_PATH
@@ -32,7 +34,7 @@ variables:
 - name: LATEST_DOCKER_VERSION
   value: 6.1
 - name: KEYRING_VERSION
-  value: 6.1
+  value: 6.3
 - name: AMDMIGRAPHX_GFX942_TEST_PIPELINE_ID
   value: 197
 - name: AMDMIGRAPHX_PIPELINE_ID
@@ -217,6 +219,10 @@ variables:
   value: 134
 - name: ROCGDB_TAGGED_PIPELINE_ID
   value: 50
+- name: ROCJPEG_PIPELINE_ID
+  value: 262
+- name: ROCJPEG_TAGGED_PIPELINE_ID
+  value: 263
 - name: ROCM_BANDWIDTH_TEST_PIPELINE_ID
   value: 88
 - name: ROCM_BANDWIDTH_TEST_TAGGED_PIPELINE_ID
@@ -259,6 +265,10 @@ variables:
   value: 20
 - name: ROCPROFILER_GFX942_TEST_PIPELINE_ID
   value: 190
+- name: ROCPROFILER_COMPUTE_PIPELINE_ID
+  value: 257
+- name: ROCPROFILER_COMPUTE_TAGGED_PIPELINE_ID
+  value: 258
 - name: ROCPROFILER_REGISTER_PIPELINE_ID
   value: 1
 - name: ROCPROFILER_REGISTER_TAGGED_PIPELINE_ID

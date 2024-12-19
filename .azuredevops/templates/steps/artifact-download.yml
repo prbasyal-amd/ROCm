@@ -60,6 +60,7 @@ parameters:
     rocDecode: develop
     rocFFT: develop
     ROCgdb: amd-staging
+    rocJPEG: develop
     rocm-cmake: develop
     rocm-core: amd-staging
     rocm-examples: develop
@@ -70,6 +71,7 @@ parameters:
     rocm_smi_lib: amd-staging
     rocPRIM: develop
     rocprofiler: amd-staging
+    rocprofiler-compute: amd-staging
     rocprofiler-register: amd-staging
     rocprofiler-sdk: amd-staging
     rocprofiler-systems: amd-staging
@@ -120,7 +122,8 @@ parameters:
     ROCdbgapi : amd-mainline
     rocDecode: mainline
     rocFFT: mainline
-    ROCgdb: amd-mainline-rocgdb-15 #
+    ROCgdb: amd-mainline-rocgdb-15
+    rocJPEG: mainline
     rocm-cmake: mainline
     rocm-core: amd-master
     rocm-examples: develop # no mainline
@@ -131,6 +134,7 @@ parameters:
     rocm_smi_lib: amd-mainline
     rocPRIM: mainline
     rocprofiler: amd-master
+    rocprofiler-compute: amd-mainline
     rocprofiler-register: amd-mainline
     rocprofiler-sdk: amd-mainline
     rocprofiler-systems: amd-mainline
@@ -144,26 +148,22 @@ parameters:
     roctracer: amd-master
     rocWMMA: mainline
     rpp: mainline
-- name: allowPartiallySucceededBuilds
-  type: object
-  default:
-    - amdsmi
-    - aomp
-    - HIPIFY
-    - MIVisionX
-    - omniperf
-    - rccl
-    - rdc
-    - rocm-cmake
-    - rocm_smi_lib
-    - rocFFT
-    - rpp
 # BELOW REQUIRED IF useDefaultBranch false
 - name: branchName
   type: string
   default: '$(Build.SourceBranchName)' # for tagged builds
 
 steps:
+- task: Bash@3
+  displayName: Set allowPartiallySucceededBuilds
+  inputs:
+    targetType: inline
+    script: |
+      if [[ ",$ALLOWED_PARTIAL_SUCCEED_BUILDS," == *",${{ parameters.componentName }},"* ]]; then
+        echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]true"
+      else
+        echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]false"
+      fi
 - task: DownloadPipelineArtifact@2
   displayName: Download ${{ parameters.componentName }}
   inputs:
@@ -181,8 +181,7 @@ steps:
       branchName: refs/heads/${{ parameters.mainlineBranchList[parameters.componentName] }}
     ${{ else }}:
       branchName: ${{ parameters.branchName }}
-    ${{ if containsValue(parameters.allowPartiallySucceededBuilds, parameters.componentName) }}:
-      allowPartiallySucceededBuilds: true
+    allowPartiallySucceededBuilds: $(allowPartiallySucceededBuilds)
     targetPath: '$(Pipeline.Workspace)/d'
 - task: ExtractFiles@1
   displayName: Extract ${{ parameters.componentName }}

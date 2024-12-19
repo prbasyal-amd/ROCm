@@ -50,7 +50,7 @@ The following example shows how to use the repo tool to download the ROCm source
 ```bash
 mkdir -p ~/ROCm/
 cd ~/ROCm/
-~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.2.x
+~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x
 ~/bin/repo sync
 ```
 
@@ -76,8 +76,8 @@ The Build time will reduce significantly if we limit the GPU Architecture/s agai
 
 mkdir -p ~/WORKSPACE/      # Or any folder name other than WORKSPACE
 cd ~/WORKSPACE/
-export ROCM_VERSION=6.2.4 # Or 6.2.0, 6.2.1, 6.2.2
-~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.2.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
+export ROCM_VERSION=6.3.0
+~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
 ~/bin/repo sync
 
 # --------------------------------------
@@ -178,23 +178,7 @@ Source code for our documentation is located in the `/docs` folder of most ROCm 
 
 The ROCm documentation homepage is [rocm.docs.amd.com](https://rocm.docs.amd.com).
 
-### Building the documentation
-
-For a quick-start build, use the following code. For more options and detail, refer to
-[Building documentation](./docs/contribute/building.md).
-
-```bash
-cd docs
-pip3 install -r sphinx/requirements.txt
-python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
-```
-
-Alternatively, CMake build is supported.
-
-```bash
-cmake -B build
-cmake --build build --target=doc
-```
+For information on how to contribute to the ROCm documentation, see [Contributing to the ROCm documentation](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
 
 ## Older ROCm releases
 

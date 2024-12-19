@@ -8,6 +8,12 @@ parameters:
   default: []
 
 steps:
+# firefox takes time to upgrade and is not needed for CI workloads, hold version
+- task: Bash@3
+  displayName: 'sudo apt-mark hold firefox'
+  inputs:
+    targetType: inline
+    script: sudo apt-mark hold firefox
 - task: Bash@3
   displayName: 'sudo apt-get update'
   inputs:

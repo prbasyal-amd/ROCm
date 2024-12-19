@@ -40,6 +40,7 @@ parameters:
     - aomp-extras
     - hipBLAS-common
     - hipBLASLt
+    - roctracer
 - name: rocmTestDependencies
   type: object
   default:
@@ -113,6 +114,9 @@ jobs:
         -DBUILD_CLIENTS_SAMPLES=OFF
         -DROCM_PATH=$(Agent.BuildDirectory)/rocm
         -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
