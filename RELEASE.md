@@ -432,25 +432,11 @@ See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/6.3.x/CHANG
 
 #### Added
 
-* New environment variables:
-    * `DEBUG_CLR_SYSMEM_POOL`: Used to control system pool implementation in runtime commands handling. By default, it is disabled and set to `0`.
-    * `DEBUG_CLR_MAX_BATCH_SIZE`: Used to limit the software batch size. By default, it is set to `1000`.
-* Tracking of HSA handlers:
-    * Added an atomic counter to track the outstanding HSA handlers.
-    * Used the environment variable `DEBUG_HIP_BLOCK_SYNC` to wait on CPU for the callbacks if the number exceeds the defined value.
-* Codes to capture AQL packets for HIP graph memory copy node between host and device. HIP enqueues AQL packets during graph launch.
 * An activeQueues set that tracks only the queues that have a command submitted to them, which allows fast iteration in ``waitActiveStreams``.
-
-#### Optimized
-
-* Multi-threaded dispatches for performance improvement.
-* Command submissions and processing between CPU and GPU by introducing a way to limit the software batch size.
-* HSA callback performance. The HIP runtime creates and submits commands in the queue and interacts with HSA through a callback function. HIP waits for the CPU status from HSA to optimize handling of events, profiling, commands, and HSA signals for higher performance.
 
 #### Resolved issues
 
 * A deadlock in a specific customer application by preventing hipLaunchKernel latency degradation with number of idle streams.
-* Segmentation fault caused by a race condition in multi-threaded producer/consumer scenario with ``hipMallocFromPoolAsync``.
 
 ### **HIPIFY** (18.0.0)
 
