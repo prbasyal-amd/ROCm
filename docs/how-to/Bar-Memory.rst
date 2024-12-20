@@ -7,11 +7,11 @@ Troubleshoot BAR access limitation
 **************************************
 Direct Memory Access (DMA) to PCIe devices using Base Address Registers (BARs) can be restricted due to physical addressing limits. These restrictions can result in data access failures between the system components. Peer-to-peer (P2P) DMA is used to access resources such as registers and memory between devices. PCIe devices need memory-mapped input/output (MMIO) space for DMA, and these MMIO spaces are defined in the PCIe BARs.
 
-These BARs are a set of 32-bit or 64-bit registers that are used to define the resources that PCIe devices provide. The CPU and other system devices also use these to access the resources of the PCIe devices. P2P DMA only works when one device can directly access the local BAR memory of another. If the memory address of a BAR memory is more than the physical addressing limit of a device, the device will not be able to access that BAR. This could be the device's own BAR or the BAR of another device in the system.
+These BARs are a set of 32-bit or 64-bit registers that are used to define the resources that PCIe devices provide. The CPU and other system devices also use these to access the resources of the PCIe devices. P2P DMA only works when one device can directly access the local BAR memory of another. If the memory address of a BAR memory exceeds the physical addressing limit of a device, the device will not be able to access that BAR. This could be the device's own BAR or the BAR of another device in the system.
 
-If the BAR memory is more than the physical addressing limit of the device, the device will not be able to access the remote BAR. 
+If the BAR memory exceeds than the physical addressing limit of the device, the device will not be able to access the remote BAR. 
 
-To handle any BAR access issues that might occur, you need to be aware of the physical address limitations of the devices and understand the :ref:`BAR configuration of AMD GPUs <bar-configuration>`. This information is important when you need to set up additional MMIO apertures for PCIe devices in the system's physical address space.
+To handle any BAR access issues that might occur, you need to be aware of the physical address limitations of the devices and understand the :ref:`BAR configuration of AMD GPUs <bar-configuration>`. This information is important when setting up additional MMIO apertures for PCIe devices in the system's physical address space.
 
 Handling physical address limitation
 =============================================
@@ -78,22 +78,22 @@ Following is an example configuration of BARs set by the system BIOS on GFX8 GPU
 
 Details of the BARs configured in the example are: 
 
-1. GPU Frame Buffer BAR: ``Memory at bf40000000 (64-bit, prefetchable) [size=256M]``
+**GPU Frame Buffer BAR:** ``Memory at bf40000000 (64-bit, prefetchable) [size=256M]``
 
 The size of the BAR in the example is 256 MB. Generally, it will be the size of the GPU memory (typically 4 GB+). Depending upon the physical address limit and generation of AMD GPUs, the BAR can be set below 2^40, 2^44, or 2^48. 
 
-2. Doorbell BAR: ``Memory at bf50000000 (64-bit, prefetchable) [size=2M]``
+**Doorbell BAR:** ``Memory at bf50000000 (64-bit, prefetchable) [size=2M]``
 
 The size of the BAR should typically be less than 10 MB for this generation of GPUs and has been set to 2 MB in the example. This BAR is placed less than 2^40 to allow peer-to-peer access from other generations of AMD GPUs.
 
-3. I/O BAR: ``I/O ports at 3000 [size=256]``
+**I/O BAR:** ``I/O ports at 3000 [size=256]``
 
 This is for legacy VGA and boot device support. Because the GPUs used are not connected to a display (VGA devices), this is not a concern, even if it isn't set up in the system BIOS.
 
-4. MMIO BAR: ``Memory at c7400000 (32-bit, non-prefetchable) [size=256K]``
+**MMIO BAR:** ``Memory at c7400000 (32-bit, non-prefetchable) [size=256K]``
 
 The AMD Driver requires this to access the configuration registers. Since the reminder of the BAR available is only 1 DWORD (32-bit), this is set less than 4 GB. In the example, it is fixed at 256 KB.
 
-5. Expansion ROM: ``Expansion ROM at c7440000 [disabled] [size=128K]``
+**Expansion ROM:** ``Expansion ROM at c7440000 [disabled] [size=128K]``
 
 This is required by the AMD Driver to access the GPU video-BIOS. In the example, it is fixed at 128 KB.
