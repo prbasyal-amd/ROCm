@@ -89,12 +89,9 @@ jobs:
         -DROCPROFILER_BUILD_SAMPLES=OFF
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
       multithreadFlag: -- -j2
-<<<<<<< HEAD
-=======
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
->>>>>>> external/develop
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)

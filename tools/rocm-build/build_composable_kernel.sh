@@ -68,7 +68,6 @@ set_address_sanitizer_off() {
     export LDFLAGS=""
 }
 
-<<<<<<< HEAD
 build_miopen_ckProf() {
     ENABLE_ADDRESS_SANITIZER=false
     echo "Start Building Composable Kernel Profiler"
@@ -148,8 +147,6 @@ build_miopen_ckProf() {
     show_build_cache_stats
 }
 
-=======
->>>>>>> external/develop
 clean_miopen_ck() {
     echo "Cleaning MIOpen-CK build directory: ${BUILD_DIR} ${PACKAGE_DIR}"
     rm -rf "$BUILD_DIR" "$PACKAGE_DIR"
