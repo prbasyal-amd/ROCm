@@ -90,6 +90,7 @@ Dask
 DataFrame
 DataLoader
 DataParallel
+Debian
 DeepSpeed
 Dependabot
 Deprecations
@@ -212,6 +213,7 @@ MiB
 MIGraphX
 MIOpen
 MIOpenGEMM
+MIOpen's
 MIVisionX
 MLM
 MMA
@@ -286,6 +288,7 @@ PCC
 PCI
 PCIe
 PEFT
+PEQT
 PIL
 PILImage
 POR
@@ -340,6 +343,7 @@ RelWithDebInfo
 Req
 Rickle
 RoCE
+Runfile
 Ryzen
 SALU
 SBIOS
@@ -352,6 +356,7 @@ SENDMSG
 SGPR
 SGPRs
 SHA
+SHARK's
 SIGQUIT
 SIMD
 SIMDs
@@ -521,6 +526,7 @@ dbgapi
 de
 deallocation
 debuggability
+debian
 denoise
 denoised
 denoises
