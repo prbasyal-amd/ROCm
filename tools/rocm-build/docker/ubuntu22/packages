@@ -7,6 +7,7 @@ bison
 bridge-utils
 build-essential
 bzip2
+ccache
 check
 chrpath
 cifs-utils
