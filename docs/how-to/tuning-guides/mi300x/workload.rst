@@ -283,13 +283,8 @@ accelerator architectures. It provides high level performance analysis features 
 block Speed-of-Light, Memory Chart Analysis, Roofline Analysis, Baseline Comparisons, and more.
 
 ROCm Compute Profiler takes the guesswork out of profiling by removing the need to provide text input files with lists of counters
-<<<<<<< HEAD
-to collect and analyze raw CSV output files as is the case with ROC-profiler. Instead, ROCm Compute Profiler automates the collection
-of all available hardware counters in one command and provides a graphical interface to help users understand and
-=======
 to collect and analyze raw CSV output files as is the case with ROCProfiler. Instead, ROCm Compute Profiler automates the collection
 of all available hardware counters in one command and provides graphical interfaces to help users understand and
->>>>>>> external/develop
 analyze bottlenecks and stressors for their computational workloads on AMD Instinct accelerators.
 
 .. note::
@@ -298,14 +293,9 @@ analyze bottlenecks and stressors for their computational workloads on AMD Insti
    to collect different sets of metrics.
 
 .. figure:: ../../../data/how-to/tuning-guides/rocprof-compute-analysis.png
-<<<<<<< HEAD
-
-   ROCm Compute Profiler memory chat analysis panel.
-=======
    :width: 800
 
    ROCm Compute Profiler memory chart analysis panel.
->>>>>>> external/develop
 
 In brief, ROCm Compute Profiler provides details about hardware activity for a particular GPU kernel. It also supports both
 a web-based GUI or command-line analyzer, depending on your preference.
