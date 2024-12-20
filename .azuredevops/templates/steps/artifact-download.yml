@@ -60,8 +60,9 @@ parameters:
     rocDecode: develop
     rocFFT: develop
     ROCgdb: amd-staging
+    rocJPEG: develop
     rocm-cmake: develop
-    rocm-core: amd-staging
+    rocm-core: master
     rocm-examples: develop
     rocminfo: amd-staging
     rocMLIR: develop
@@ -121,7 +122,8 @@ parameters:
     ROCdbgapi : amd-mainline
     rocDecode: mainline
     rocFFT: mainline
-    ROCgdb: amd-mainline-rocgdb-15 #
+    ROCgdb: amd-mainline-rocgdb-15
+    rocJPEG: mainline
     rocm-cmake: mainline
     rocm-core: amd-master
     rocm-examples: develop # no mainline

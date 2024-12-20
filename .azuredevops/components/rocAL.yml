@@ -150,6 +150,9 @@ jobs:
         -DCMAKE_INSTALL_PREFIX_PYTHON=$Python3_STDARCH
         -DCMAKE_BUILD_TYPE=Release
         -GNinja
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)

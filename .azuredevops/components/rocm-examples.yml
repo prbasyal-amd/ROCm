@@ -10,6 +10,7 @@ parameters:
   default:
     - cmake
     - libglfw3-dev
+    - libtbb-dev
     - python3-pip
 - name: rocmDependencies
   type: object
@@ -109,6 +110,9 @@ jobs:
       script: |
         mkdir -p $(Build.BinariesDirectory)/examples
         mv $(Build.BinariesDirectory)/bin/* $(Build.BinariesDirectory)/examples
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)

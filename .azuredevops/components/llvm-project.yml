@@ -126,6 +126,7 @@ jobs:
       componentName: comgr
       extraBuildFlags: >-
         -DCMAKE_PREFIX_PATH="$(Build.SourcesDirectory)/llvm/build;$(Build.SourcesDirectory)/amd/device-libs/build"
+        -DCOMGR_DISABLE_SPIRV=1
         -DCMAKE_BUILD_TYPE=Release
       cmakeBuildDir: 'amd/comgr/build'
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
@@ -141,4 +142,5 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DHIPCC_BACKWARD_COMPATIBILITY=OFF
       cmakeBuildDir: 'amd/hipcc/build'
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml

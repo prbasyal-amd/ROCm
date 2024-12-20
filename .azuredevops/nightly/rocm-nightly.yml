@@ -35,6 +35,7 @@ parameters:
     - rocDecode
     - rocFFT
     - ROCgdb
+    - rocJPEG
     - rocm-cmake
     - rocm-core
     - rocm-examples
@@ -107,6 +108,7 @@ jobs:
     displayName: System disk space after ROCm
   - script: du -sh $(Agent.BuildDirectory)/rocm
     displayName: Uncompressed ROCm size
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
   - task: ArchiveFiles@2
     displayName: Compress rocm-nightly
     inputs:

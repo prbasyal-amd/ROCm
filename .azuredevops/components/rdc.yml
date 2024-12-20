@@ -110,6 +110,9 @@ jobs:
         -DBUILD_PROFILER=ON
         -DBUILD_TESTS=ON
         -DAMDGPU_TARGETS=$(JOB_GPU_TARGET)
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
+    parameters:
+      gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
     parameters:
       gpuTarget: $(JOB_GPU_TARGET)
