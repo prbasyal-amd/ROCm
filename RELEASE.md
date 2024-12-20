@@ -44,7 +44,7 @@ The AMDGPU driver now includes enhanced resiliency for misbehaving applications 
 
 ### ROCm Runfile Installer
 
-ROCm 6.3.1 introduces the ROCm Runfile Installer, with initial support for Ubuntu 22.04. The ROCm Runfile Installer facilitates ROCm installation without using a native Linux package management system, with or without network or internet access. For more information, see the [ROCm Runfile Installer documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.1/install/rocm-runfile-installer.html).
+ROCm 6.3.1 introduces the ROCm Runfile Installer, with initial support for Ubuntu 22.04. The ROCm Runfile Installer facilitates ROCm installation without using a native Linux package management system, with or without network or internet access. For more information, see the [ROCm Runfile Installer documentation](https://rocm.docs.amd.com/projects/install-on-linux-internal/en/latest/install/rocm-runfile-installer.html).
 
 ### ROCm documentation updates
 
