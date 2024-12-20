@@ -529,11 +529,14 @@ Packaging metadata for ROCm Compute Profiler (`rocprofiler-compute`) and ROCm Sy
 (`rocprofiler-systems`) has been updated to handle the renaming from Omniperf and Omnitrace,
 respectively. This fixes minor issues when upgrading from ROCm 6.2 to 6.3. For more information, see the GitHub issues
 [#4082](https://github.com/ROCm/ROCm/issues/4082) and
-[#4083](https://github.com/ROCm/ROCm/issues/4082).
+[#4083](https://github.com/ROCm/ROCm/issues/4083).
 
 ### Stale file due to OpenCL ICD loader deprecation
 
-When upgrading from ROCm 6.2.x to ROCm 6.3.0, the issue of [removal of the `rocm-icd-loader` package](#opencl-icd-loader-separated-from-rocm) leaving a stale file in the old `rocm-6.2.x`directory has been resolved. The stale files left during the upgrade from ROCm 6.2.x to ROCm 6.3.0 will be removed when upgrading to ROCm 6.3.1. For more information, see [GitHub issue #4084](https://github.com/ROCm/ROCm/issues/4084).
+When upgrading from ROCm 6.2.x to ROCm 6.3.0, the issue of removal of the `rocm-icd-loader` package
+leaving a stale file in the old `rocm-6.2.x` directory has been resolved. The stale files left during
+the upgrade from ROCm 6.2.x to ROCm 6.3.0 will be removed when upgrading to ROCm 6.3.1. For more
+information, see [GitHub issue #4084](https://github.com/ROCm/ROCm/issues/4084).
 
 ## ROCm upcoming changes
 
