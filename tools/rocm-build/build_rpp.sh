@@ -42,6 +42,8 @@ build_rpp() {
 
    init_rocm_common_cmake_params
 
+    init_rocm_common_cmake_params
+
     cmake \
         "${rocm_math_common_cmake_params[@]}" \
         ${LAUNCHER_FLAGS} \

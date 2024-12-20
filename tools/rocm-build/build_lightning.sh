@@ -42,6 +42,7 @@ DEB_PATH="$(getDebPath $PROJ_NAME)"
 RPM_PATH="$(getRpmPath $PROJ_NAME)"
 INSTALL_PATH="${ROCM_INSTALL_PATH}/lib/llvm"
 LLVM_ROOT_LCL="${LLVM_ROOT}"
+ROCM_WHEEL_DIR="${BUILD_PATH}/_wheel"
 
 TARGET="all"
 MAKEOPTS="$DASH_JAY"
@@ -149,6 +150,7 @@ ENABLE_RUNTIMES="$ENABLE_RUNTIMES;libcxx;libcxxabi"
 BOOTSTRAPPING_BUILD_LIBCXX=1
 
 clean_lightning() {
+    rm -rf "$ROCM_WHEEL_DIR"
     rm -rf "$BUILD_PATH"
     rm -rf "$DEB_PATH"
     rm -rf "$RPM_PATH"
@@ -329,6 +331,15 @@ build_lightning() {
     echo "Workaround for race condition"
     echo "End Workaround for race condition"
     cmake --build . -- $MAKEOPTS
+
+    case "$DISTRO_ID" in
+    (rhel*|centos*)
+       RHEL_BUILD=1
+       ;;
+    (*)
+       RHEL_BUILD=0
+       ;;
+     esac
 
     if [ $SKIP_LIT_TESTS -eq 0 ]; then
         if [ $RHEL_BUILD -eq 1 ]; then
@@ -1117,6 +1128,18 @@ build() {
     create_compiler_config_files
 }
 
+create_wheel_package() {
+    echo "Creating rocm-llvm wheel package"
+    mkdir -p "$ROCM_WHEEL_DIR"
+    cp -f $SCRIPT_ROOT/generate_setup_py.py $ROCM_WHEEL_DIR
+    cp -f $SCRIPT_ROOT/repackage_wheel.sh $ROCM_WHEEL_DIR
+    cd $ROCM_WHEEL_DIR
+    # Currently only supports python3.6
+    ./repackage_wheel.sh $RPM_PATH/rocm-llvm*.rpm python3.6
+    # Copy the wheel created to RPM folder which will be uploaded to artifactory
+    mv "$ROCM_WHEEL_DIR"/dist/*.whl "$RPM_PATH"
+}
+
 case $TARGET in
     (clean) clean_lightning ;;
     (all)
@@ -1134,5 +1157,10 @@ case $TARGET in
     (outdir) print_output_directory ;;
     (*) die "Invalid target $TARGET" ;;
 esac
+
+if [[ $WHEEL_PACKAGE == true ]]; then
+    echo "Wheel Package build started !!!!"
+    create_wheel_package
+fi
 
 echo "Operation complete"
