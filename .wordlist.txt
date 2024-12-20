@@ -288,6 +288,7 @@ PCC
 PCI
 PCIe
 PEFT
+PEQT
 PIL
 PILImage
 POR
@@ -341,6 +342,7 @@ RelWithDebInfo
 Req
 Rickle
 RoCE
+Runfile
 Ryzen
 SALU
 SBIOS
