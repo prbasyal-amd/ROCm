@@ -7,7 +7,9 @@ Troubleshoot BAR access limitation
 **************************************
 Direct Memory Access (DMA) to PCIe devices using Base Address Registers (BARs) can be restricted due to physical addressing limits. These restrictions can result in data access failures between the system components. Peer-to-peer (P2P) DMA is used to access resources such as registers and memory between devices. PCIe devices need memory-mapped input/output (MMIO) space for DMA, and these MMIO spaces are defined in the PCIe BARs.
 
-These BARs are a set of 32-bit or 64-bit registers that are used to define the memory space that PCIe devices can access. The CPU and other system devices also use these to access the resources of the PCIe devices. P2P DMA only works when one device can directly access the local BAR memory of another. If the BAR memory is more than the physical addressing limit of the device, the device will not be able to access the remote BAR. 
+These BARs are a set of 32-bit or 64-bit registers that are used to define the resources that PCIe devices provide. The CPU and other system devices also use these to access the resources of the PCIe devices. P2P DMA only works when one device can directly access the local BAR memory of another. If the memory address of a BAR memory is more than the physical addressing limit of a device, the device will not be able to access that BAR. This could be the device's own BAR or the BAR of another device in the system.
+
+If the BAR memory is more than the physical addressing limit of the device, the device will not be able to access the remote BAR. 
 
 To handle any BAR access issues that might occur, you need to be aware of the physical address limitations of the devices and understand the :ref:`BAR configuration of AMD GPUs <bar-configuration>`. This information is important when you need to set up additional MMIO apertures for PCIe devices in the system's physical address space.
 
@@ -28,7 +30,7 @@ There are two ways to handle this:
 BAR configuration for AMD GPUs
 ================================================
 
-The following table shows how the BARs are configured for AMD GPUs that have a 44-bit physical address and 48-bit GPU virtual address limit. 
+The following table shows how the BARs are configured for AMD GPUs.
 
 
 .. list-table:: 
