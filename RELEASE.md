@@ -74,10 +74,7 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
 
 ## Operating system and hardware support changes
 
-ROCm 6.3.1 adds support for Debian 12 (kernel: 6.1).
-
-See installation instructions at [ROCm installation for
-Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.1/).
+ROCm 6.3.1 adds support for Debian 12 (kernel: 6.1). Debian is supported only on AMD Instinct accelerators. See the installation instructions at [Debian native installation](https://rocm.docs.amd.com/projects/install-on-linux-internal/en/latest/install/native-install/debian.html).
 
 ROCm 6.3.1 enables support for AMD Instinct MI325X accelerator. For more information, see [AMD Instinct™ MI325X Accelerators](https://www.amd.com/en/products/accelerators/instinct/mi300/mi325x.html).
 
