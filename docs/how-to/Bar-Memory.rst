@@ -15,7 +15,7 @@ To handle any BAR access issues that might occur, you need to be aware of the ph
 
 Handling physical address limitation
 =============================================
-When a system boots, the system BIOS allocates the physical address space for the components in the system, including system memory and MMIO apertures. There are two MMIO apertures: one allocated less than 4 GB of physical address space for 32-bit compatibility, and one more than 4 GB for devices needing more space.
+When a system boots, the system BIOS allocates the physical address space for the components in the system, including system memory and MMIO apertures. On modern 64-bit platforms, there are generally two or more MMIO apertures: one located below 4 GB of physical address space for 32-bit compatibility, and one or more above 4 GB for devices needing more space.
 
 You can control the memory address of the high MMIO aperture from the system BIOS configuration options. This lets you configure the additional MMIO space to align with the physical addressing limit and allows P2P DMA between the devices. For example, if a PCIe device is limited to 44-bit of physical addressing, you should ensure that the MMIO aperture is set below 44-bit in the system physical address space.
 
