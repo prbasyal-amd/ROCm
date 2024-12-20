@@ -116,9 +116,8 @@ Ubuntu versions.
 
       * - Molecular dynamics
         - `Amber <https://github.com/amd/InfinityHub-CI/tree/main/amber>`_
-        - Amber is a suite of biomolecular simulation programs, the term "Amber" refers 
-          to two things. First, it is a set of molecular mechanical force fields for the 
-          simulation of biomolecules. Second, it is a package of molecular simulation 
+        - Amber is a suite of biomolecular simulation programs. It is a set of molecular mechanical force fields for 
+          simulating biomolecules. Amber is also a package of molecular simulation 
           programs which includes source code and demos.
 
       * - 
@@ -137,7 +136,7 @@ Ubuntu versions.
 
       * - Computational fluid dynamics
         - `Ansys Fluent <https://github.com/amd/InfinityHub-CI/tree/main/ansys-fluent>`_
-        - Ansys Fluent is an advanced computational fluid dynamics (CFD) software used for 
+        - Ansys Fluent is an advanced computational fluid dynamics (CFD) tool for 
           simulating and analyzing fluid flow, heat transfer, and related phenomena in complex systems. 
           It offers a range of powerful features for detailed and accurate modeling of various physical 
           processes, including turbulence, chemical reactions, and multiphase flows.
@@ -158,9 +157,9 @@ Ubuntu versions.
       * -
         - `OpenFOAM <https://github.com/amd/InfinityHub-CI/tree/main/openfoam>`_
         - OpenFOAM is a free, open-source computational fluid dynamics (CFD) 
-          software developed primarily by OpenCFD Ltd since 2004. It has a large user 
+          tool developed primarily by OpenCFD Ltd. It has a large user 
           base across most areas of engineering and science, from both commercial and 
-          academic organizations. OpenFOAM has an extensive range of features to solve 
+          academic organizations. OpenFOAM has extensive features to solve 
           anything from complex fluid flows involving chemical reactions, turbulence, and 
           heat transfer, to acoustics, solid mechanics, and electromagnetics.
 
@@ -171,7 +170,7 @@ Ubuntu versions.
       * -
         - `Simcenter Star-CCM+ <https://github.com/amd/InfinityHub-CI/tree/main/siemens-star-ccm>`_
         - Simcenter Star-CCM+ is a comprehensive computational fluid dynamics (CFD) and multiphysics 
-          simulation software developed by Siemens Digital Industries Software. It is designed to 
+          simulation tool developed by Siemens Digital Industries Software. It is designed to 
           help engineers and researchers analyze and optimize the performance of products and 
           systems across various industries.
 
@@ -207,9 +206,9 @@ Ubuntu versions.
       * - Energy, Oil, and Gas
         - `DevitoPRO <https://github.com/amd/InfinityHub-CI/tree/main/devitopro>`_
         - DevitoPRO is an advanced extension of the open-source Devito platform with added 
-          features tailored for high-demand production workflows. It is designed to cater to
+          features tailored for high-demand production workflows. It supports
           high-performance computing (HPC) needs, especially in seismic imaging and inversion. 
-          It is used for performing optimized Finite Difference (FD) computation 
+          It is used to perform optimized finite difference (FD) computations 
           from high-level symbolic problem definitions. DevitoPro performs automated 
           code generation and Just-In-time (JIT) compilation based on symbolic equations 
           defined in SymPy to create and execute highly optimized Finite Difference stencil 
@@ -217,7 +216,7 @@ Ubuntu versions.
 
       * - 
         - `ECHELON <https://github.com/amd/InfinityHub-CI/tree/main/srt-echelon>`_
-        - ECHELON by Stone Ridge Technology is a reservoir simulation tool. Along With 
+        - ECHELON by Stone Ridge Technology is a reservoir simulation tool. With 
           fast processing, it retains precise accuracy and preserves legacy simulator results. 
           Faster reservoir simulation enables reservoir engineers to produce many realizations, 
           address larger models, and use advanced physics. It opens new workflows based on 
@@ -272,11 +271,11 @@ Ubuntu versions.
 
       * -
         - `PETSc <https://github.com/amd/InfinityHub-CI/tree/main/petsc>`_
-        - Portable, Extensible Toolkit for Scientific Computation (PETSc), is a suite of data structures 
+        - Portable, Extensible Toolkit for Scientific Computation (PETSc) is a suite of data structures 
           and routines for the scalable (parallel) solution of scientific applications modeled by partial 
-          differential equations. It supports MPI, and GPUs through CUDA, HIP, or OpenCL, 
+          differential equations. It supports MPI, GPUs through CUDA, HIP, and OpenCL, 
           as well as hybrid MPI-GPU parallelism. It also supports the NEC-SX Tsubasa Vector Engine. 
-          PETSc also contains the Toolkit for Advanced Optimization (TAO), software library.
+          PETSc also includes the Toolkit for Advanced Optimization (TAO) library.
 
       * -
         - `RAJA <https://github.com/amd/InfinityHub-CI/tree/main/raja>`_
