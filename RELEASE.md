@@ -52,25 +52,25 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
 
 * Added documentation on training a model with ROCm Megatron-LM. AMD offers a Docker image for MI300X accelerators
   containing essential components to get started, including ROCm libraries, PyTorch, and Megatron-LM utilities. See
-  [Training a model using ROCm Megatron-LM](https://rocm.docs.amd.com/en/latest/how-to/rocm-for-ai/train-a-model.html)
+  [Training a model using ROCm Megatron-LM](https://rocm.docs.amd.com/en/docs-6.3.1/how-to/rocm-for-ai/train-a-model.html)
   to get started.
 
   The new ROCm Megatron-LM training Docker accompanies the [ROCm vLLM inference
-  Docker](https://rocm.docs.amd.com/en/latest/how-to/performance-validation/mi300x/vllm-benchmark.html)
+  Docker](https://rocm.docs.amd.com/en/docs-6.3.1/how-to/performance-validation/mi300x/vllm-benchmark.html)
   as a set of ready-to-use containerized solutions to get started with using ROCm
   for AI.
 
 * Updated the [Instinct MI300X workload tuning
-  guide](https://rocm.docs.amd.com/en/latest/how-to/tuning-guides/mi300x/workload.html) with more current optimization
+  guide](https://rocm.docs.amd.com/en/docs-6.3.1/how-to/tuning-guides/mi300x/workload.html) with more current optimization
   strategies. The updated sections include guidance on vLLM optimization, PyTorch TunableOp, and hipBLASLt tuning.
 
-* HIP graph-safe libraries operate safely in HIP execution graphs. [HIP graphs](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/hipgraph.html#how-to-hip-graph) are an alternative way of executing tasks on a GPU that can provide performance benefits over launching kernels using the standard method via streams. A topic that shows whether a [ROCm library is graph-safe](https://advanced-micro-devices-demo--3953.com.readthedocs.build/en/3953/reference/graph-safe-support.html) has been added.
+* HIP graph-safe libraries operate safely in HIP execution graphs. [HIP graphs](https://rocm.docs.amd.com/projects/HIP/en/docs-6.3.1/how-to/hip_runtime_api/hipgraph.html#how-to-hip-graph) are an alternative way of executing tasks on a GPU that can provide performance benefits over launching kernels using the standard method via streams. A topic that shows whether a [ROCm library is graph-safe](https://rocm.docs.amd.com/en/docs-6.3.1/reference/graph-safe-support.html) has been added.
 
-* The [Device memory](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/memory_management/device_memory.html) topic in the HIP memory management section has been updated.
+* The [Device memory](https://rocm.docs.amd.com/projects/HIP/en/docs-6.3.1/how-to/hip_runtime_api/memory_management/device_memory.html) topic in the HIP memory management section has been updated.
 
 * The HIP documentation has expanded with new resources for developers:
-  * [Multi device management](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/multi_device.html)
-  * [OpenGL interoperability](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/opengl_interop.html)
+  * [Multi device management](https://rocm.docs.amd.com/projects/HIP/en/docs-6.3.1/how-to/hip_runtime_api/multi_device.html)
+  * [OpenGL interoperability](https://rocm.docs.amd.com/projects/HIP/en/docs-6.3.1/how-to/hip_runtime_api/opengl_interop.html)
 
 ## Operating system and hardware support changes
 
