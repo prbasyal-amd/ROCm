@@ -44,7 +44,7 @@ The AMDGPU driver now includes enhanced resiliency for misbehaving applications 
 
 ### ROCm Runfile Installer
 
-ROCm 6.3.1 introduces the ROCm Runfile Installer, with initial support for Ubuntu 22.04. The ROCm Runfile Installer facilitates ROCm installation without using a native Linux package management system, with or without network or internet access. For more information, see the [ROCm Runfile Installer documentation](https://rocm.docs.amd.com/projects/install-on-linux-internal/en/latest/install/rocm-runfile-installer.html).
+ROCm 6.3.1 introduces the ROCm Runfile Installer, with initial support for Ubuntu 22.04. The ROCm Runfile Installer facilitates ROCm installation without using a native Linux package management system, with or without network or internet access. For more information, see the [ROCm Runfile Installer documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.1/install/rocm-runfile-installer.html).
 
 ### ROCm documentation updates
 
@@ -510,7 +510,7 @@ See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/6.3.x/CHANG
 ROCm known issues are noted on {fab}`github` [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue). For known
 issues related to individual components, review the [Detailed component changes](#detailed-component-changes).
 
-### PCI Express Qualification Tool failure
+### PCI Express Qualification Tool failure on Debian 12
 
 The PCI Express Qualification Tool (PEQT) module present in the ROCm Validation Suite (RVS) might fail due to the segmentation issue in Debian 12 (bookworm). This will result in failure to determine the characteristics of the PCIe interconnect between the host platform and the GPU like support for Gen 3 atomic completers, DMA transfer statistics, link speed, and link width. The standard PCIe command `lspci` can be used as an alternative to view the characteristics of the PCIe bus interconnect with the GPU. This issue is under investigation and will be addressed in a future release.
 
