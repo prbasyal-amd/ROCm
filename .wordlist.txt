@@ -107,6 +107,7 @@ FFT
 FFTs
 FFmpeg
 FHS
+FIXME
 FMA
 FP
 FX
@@ -131,6 +132,7 @@ GiB
 GIM
 GL
 GLXT
+Gloo
 GMI
 GPG
 GPR
@@ -148,6 +150,7 @@ HCA
 HGX
 HIPCC
 HIPExtension
+HIPification
 HIPIFY
 HPC
 HPCG
@@ -243,6 +246,7 @@ MyEnvironment
 MyST
 NBIO
 NBIOs
+NCCL
 NIC
 NICs
 NLI
@@ -401,9 +405,14 @@ TensorFlow
 TensorParallel
 ToC
 TorchAudio
+torchaudio
+TorchElastic
 TorchMIGraphX
+torchrec
 TorchScript
 TorchServe
+torchserve
+torchtext
 TorchVision
 TransferBench
 TrapStatus
@@ -510,6 +519,9 @@ copyable
 cpp
 csn
 cuBLAS
+cuda
+cuDNN
+cudnn
 cuFFT
 cuLIB
 cuRAND
@@ -674,6 +686,7 @@ prebuilt
 precompiled
 preconditioner
 preconfigured
+preemptible
 prefetch
 prefetchable
 prefill
@@ -690,6 +703,7 @@ profilers
 protobuf
 pseudorandom
 py
+recommender
 quantile
 quantizer
 quasirandom
