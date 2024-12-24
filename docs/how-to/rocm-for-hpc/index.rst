@@ -226,9 +226,7 @@ Ubuntu versions.
       * - Benchmark
         - `rocHPL <https://github.com/amd/InfinityHub-CI/tree/main/rochpl>`_
         - HPL, or High-Performance Linpack, is a benchmark which solves a uniformly 
-          random system of linear equations and reports floating-point execution rate. 
-          This documentation supports the implementation of the HPL benchmark on 
-          top of AMD's ROCm platform.
+          random system of linear equations and reports floating-point execution rate.
 
       * -
         - `rocHPL-MxP <https://github.com/amd/InfinityHub-CI/tree/main/hpl-mxp>`_
