@@ -50,11 +50,13 @@ The following example shows how to use the repo tool to download the ROCm source
 ```bash
 mkdir -p ~/ROCm/
 cd ~/ROCm/
-~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x
+export ROCM_VERSION=6.3.0
+~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
 ~/bin/repo sync
 ```
 
 **Note:** Using this sample code will cause the repo tool to download the open source code associated with the specified ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download as explained at [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
+
 
 ## Building the ROCm source code
 
@@ -76,7 +78,7 @@ The Build time will reduce significantly if we limit the GPU Architecture/s agai
 
 mkdir -p ~/WORKSPACE/      # Or any folder name other than WORKSPACE
 cd ~/WORKSPACE/
-export ROCM_VERSION=6.3.1
+export ROCM_VERSION=6.3.0
 ~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
 ~/bin/repo sync
 
