@@ -57,7 +57,6 @@ export ROCM_VERSION=6.3.1
 
 **Note:** Using this sample code will cause the repo tool to download the open source code associated with the specified ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download as explained at [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
-
 ## Building the ROCm source code
 
 Each ROCm component repository contains directions for building that component, such as the rocSPARSE documentation [Installation and Building for Linux](https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/install/Linux_Install_Guide.html). Refer to the specific component documentation for instructions on building the repository.
@@ -89,11 +88,11 @@ export ROCM_VERSION=6.3.1
 # Option 1: Start a docker container
 # Pulling required base docker images:
 # Ubuntu20.04 built from ROCm/tools/rocm-build/docker/ubuntu20/Dockerfile
-docker pull rocm/rocm-build-ubuntu-20.04:6.2
+docker pull rocm/rocm-build-ubuntu-20.04:6.3
 # Ubuntu22.04 built from ROCm/tools/rocm-build/docker/ubuntu22/Dockerfile
-docker pull rocm/rocm-build-ubuntu-22.04:6.2
+docker pull rocm/rocm-build-ubuntu-22.04:6.3
 # Ubuntu24.04 built from ROCm/tools/rocm-build/docker/ubuntu24/Dockerfile
-docker pull rocm/rocm-build-ubuntu-24.04:6.2
+docker pull rocm/rocm-build-ubuntu-24.04:6.3
 
 # Start docker container and mount the source code folder:
 docker run -ti \
