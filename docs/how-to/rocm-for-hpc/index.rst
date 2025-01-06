@@ -287,8 +287,4 @@ Ubuntu versions.
           within an object-oriented software framework for the solution of large-scale,
           complex multi-physics engineering and scientific problems.
 
-      * -
-        - `vLLM <https://github.com/amd/InfinityHub-CI/tree/main/vllm>`_
-        - vLLM is a toolkit and library for large language model (LLM) inference and serving.
-
 To learn about ROCm for AI applications, see :doc:`../rocm-for-ai/index`.
