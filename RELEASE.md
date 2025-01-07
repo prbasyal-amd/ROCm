@@ -393,8 +393,8 @@ Click {fab}`github` to go to the component's source code on GitHub.
             <tr>
                 <th rowspan="7">Tools</th>
                 <th rowspan="7">System management</th>
-                <td><a href="https://rocm.docs.amd.com/projects/amdsmi/en/docs-6.3.1/index.html">AMD SMI</a></td>
-                <td>24.7.1&nbsp;&Rightarrow;&nbsp;<a href="#amd-smi-24-7-1">24.7.1</a></td>
+                <td><a href="https://rocm.docs.amd.com/projects/amdsmi/en/docs-6.3.0/index.html">AMD SMI</a></td>
+                <td>24.6.3&nbsp;&Rightarrow;&nbsp;<a href="#amd-smi-24-7-1">24.7.1</a></td>
                 <td><a href="https://github.com/ROCm/amdsmi"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
