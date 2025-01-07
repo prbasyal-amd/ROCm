@@ -50,7 +50,8 @@ The following example shows how to use the repo tool to download the ROCm source
 ```bash
 mkdir -p ~/ROCm/
 cd ~/ROCm/
-~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x
+export ROCM_VERSION=6.3.1
+~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
 ~/bin/repo sync
 ```
 
