@@ -26,6 +26,7 @@ ASm
 ATI
 AddressSanitizer
 AlexNet
+Andrej
 Arb
 Autocast
 BARs
@@ -187,15 +188,17 @@ Interop
 Intersphinx
 Intra
 Ioffe
+JAX's
 Jinja
 JSON
 Jupyter
 KFD
 KFDTest
-KiB
 KMD
 KV
 KVM
+Karpathy's
+KiB
 Keras
 Khronos
 LAPACK
@@ -288,6 +291,7 @@ OpenVX
 OpenXLA
 Oversubscription
 PagedAttention
+Pallas
 PCC
 PCI
 PCIe
@@ -662,6 +666,7 @@ mutex
 mvffr
 namespace
 namespaces
+nanoGPT
 num
 numref
 ocl
@@ -673,7 +678,9 @@ optimizers
 os
 oversubscription
 pageable
+pallas
 parallelization
+parallelizing
 parameterization
 passthrough
 perfcounter
@@ -761,6 +768,7 @@ runtimes
 sL
 scalability
 scalable
+scipy
 seealso
 sendmsg
 seqs
