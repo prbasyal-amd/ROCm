@@ -22,7 +22,8 @@ parameters:
   type: object
   default:
     - joblib
-    - packaging
+    - packaging>=22.0
+    - --upgrade
 - name: rocmDependencies
   type: object
   default:
