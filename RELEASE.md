@@ -1664,7 +1664,7 @@ ROCm 6.4.0 might encounter an installation issue on some Linux distribution kern
 
 As a result, the AMD kernel driver Dynamic Kernel Mode Support (DKMS) package might fail to install when the symbols required to use the PeerDirect API with Mellanox NICs are not found. In the event of such failure, the AMD DKMS package attempts to locate these symbols directly from the Mellanox installation. However, for non-standard Mellanox NIC installations, the AMD DKMS package might not be able to locate these symbols.
 
-This issue will be fixed in a future ROCm release. As a workaround, you can run the script that allows the DKMS package to locate Mellanox symbols from the Mellanox installation without you requiring to update the new DKMS package. For downloading the script and getting more details on the issue and workaround, see [GitHub issue #377](https://github.com/ROCm/ROCm-internal/issues/377).
+This issue will be fixed in a future ROCm release. As a workaround, you can run the script that allows the DKMS package to locate Mellanox symbols from the Mellanox installation without you requiring to update the new DKMS package. For downloading the script and getting more details on the issue and workaround, see [GitHub issue #4671](https://github.com/ROCm/ROCm/issues/4671).
 
 ## ROCm resolved issues
 
