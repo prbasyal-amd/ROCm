@@ -745,7 +745,6 @@ See the full [ROCm SMI changelog](https://github.com/ROCm/rocm_smi_lib/blob/rele
 - Support for VA-API and rocDecode tracing.
 - Aggregation of MPI data collected across distributed nodes and ranks. The data is concatenated into a single proto file.
 
-
 #### Changed
 - Backend refactored to use [ROCprofiler-SDK](https://github.com/ROCm/rocprofiler-sdk) rather than [ROCProfiler](https://github.com/ROCm/rocprofiler) and [ROCTracer](https://github.com/ROCm/ROCTracer).
 
