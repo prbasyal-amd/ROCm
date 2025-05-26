@@ -282,7 +282,7 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - GFXIP Major version
           - GFXIP Minor version
         *
-          - Radeon AI PRO R7900
+          - Radeon AI PRO R9700
           - RDNA4
           - gfx1201
           - 16
