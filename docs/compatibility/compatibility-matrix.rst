@@ -42,7 +42,7 @@ compatibility and system requirements.
       ,RDNA3,RDNA3,RDNA3
       ,RDNA2,RDNA2,RDNA2
       ,.. _gpu-support-compatibility-matrix:,,
-      :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx1201 [#RDNA4-OS]_,,
+      :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx1201 [#RDNA-OS]_,,
       ,gfx1200 [#RDNA-OS]_,,
       ,gfx1101 [#RDNA-OS]_,,
       ,gfx1100,gfx1100,gfx1100
