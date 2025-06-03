@@ -44,6 +44,7 @@ compatibility and system requirements.
       ,.. _gpu-support-compatibility-matrix:,,
       :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx1201 [#RDNA4-OS]_,,
       ,gfx1200 [#RDNA4-OS]_,,
+      ,gfx1101,,
       ,gfx1100,gfx1100,gfx1100
       ,gfx1030,gfx1030,gfx1030
       ,gfx942,gfx942,gfx942
