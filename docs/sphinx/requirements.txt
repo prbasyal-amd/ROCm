@@ -64,7 +64,7 @@ gitdb==4.0.12
     # via gitpython
 gitpython==3.1.44
     # via rocm-docs-core
-greenlet==3.2.2
+greenlet==3.2.3
     # via sqlalchemy
 idna==3.10
     # via requests
@@ -76,7 +76,7 @@ importlib-metadata==8.7.0
     #   myst-nb
 ipykernel==6.29.5
     # via myst-nb
-ipython==8.36.0
+ipython==8.37.0
     # via
     #   ipykernel
     #   myst-nb
@@ -186,11 +186,11 @@ referencing==0.36.2
     # via
     #   jsonschema
     #   jsonschema-specifications
-requests==2.32.3
+requests==2.32.4
     # via
     #   pygithub
     #   sphinx
-rocm-docs-core==1.20.0
+rocm-docs-core==1.20.1
     # via -r requirements.in
 rpds-py==0.25.1
     # via
@@ -272,7 +272,7 @@ traitlets==5.14.3
     #   matplotlib-inline
     #   nbclient
     #   nbformat
-typing-extensions==4.13.2
+typing-extensions==4.14.0
     # via
     #   beautifulsoup4
     #   exceptiongroup
@@ -290,5 +290,5 @@ wcwidth==0.2.13
     # via prompt-toolkit
 wrapt==1.17.2
     # via deprecated
-zipp==3.22.0
+zipp==3.23.0
     # via importlib-metadata
