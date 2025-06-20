@@ -1,3 +1,5 @@
+:orphan:
+
 .. meta::
    :description: Learn how to validate LLM inference performance on MI300X accelerators using AMD MAD and the
                  ROCm vLLM Docker image.
@@ -7,9 +9,14 @@
 vLLM inference performance testing
 **********************************
 
+.. caution::
+
+   This documentation does not reflect the latest version of ROCm vLLM
+   inference performance documentation. See :doc:`../vllm` for the latest version.
+
 .. _vllm-benchmark-unified-docker:
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/inference/vllm-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/inference/previous-versions/vllm_0.8.5_20250521-benchmark-models.yaml
 
    {% set unified_docker = data.vllm_benchmark.unified_docker.latest %}
    {% set model_groups = data.vllm_benchmark.model_groups %}
@@ -339,3 +346,9 @@ Further reading
 
 - To learn how to fine-tune LLMs, see
   :doc:`Fine-tuning LLMs <../../fine-tuning/index>`.
+
+Previous versions
+=================
+
+See :doc:`vllm-history` to find documentation for previous releases
+of the ``ROCm/vllm`` Docker image.
