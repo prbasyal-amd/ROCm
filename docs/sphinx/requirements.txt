@@ -201,7 +201,7 @@ requests==2.32.4
     #   pygithub
     #   sphinx
     #   sphinx-sitemap
-rocm-docs-core @ git+https://github.com/ROCm/rocm-docs-core.git@alexxu12/header-cap-space
+rocm-docs-core==1.21.1
     # via -r requirements.in
 rpds-py==0.25.1
     # via
