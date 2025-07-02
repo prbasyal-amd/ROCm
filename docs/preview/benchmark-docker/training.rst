@@ -20,5 +20,3 @@ machine learning applications.
       * :doc:`pre-training-megatron-lm-llama-3-8b`
 
       * :doc:`pre-training-torchtitan-llama-3-70b`
-
-      * :doc:`fine-tuning-lora-llama-2-70b`
