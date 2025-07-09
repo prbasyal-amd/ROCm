@@ -229,7 +229,7 @@ Ubuntu versions.
           of these applications.
 
       * - Tools and libraries
-        - `ROCm with OpenMPI container <https://github.com/amd/InfinityHub-CI/blob/main/base-gpu-mpi-rocm-docker>`_
+        - `AMD ROCm with OpenMPI container <https://github.com/amd/InfinityHub-CI/blob/main/base-gpu-mpi-rocm-docker>`_
         - Base container for GPU-aware MPI with ROCm for HPC applications. This
           project provides a boilerplate for building and running a Docker
           container with ROCm supporting GPU-aware MPI implementations using
