@@ -77,28 +77,28 @@ parameters:
   type: object
   default:
     buildJobs:
-      - { os: ubuntu2204, packageManager: apt, target: gfx942 }
-      - { os: ubuntu2204, packageManager: apt, target: gfx90a }
-      - { os: ubuntu2204, packageManager: apt, target: gfx1201 }
-      # - { os: ubuntu2204, packageManager: apt, target: gfx1100 }
-      - { os: ubuntu2204, packageManager: apt, target: gfx1030 }
-      # - { os: almalinux8, packageManager: dnf, target: gfx942 }
-      # - { os: almalinux8, packageManager: dnf, target: gfx90a }
-      # - { os: almalinux8, packageManager: dnf, target: gfx1201 }
-      # - { os: almalinux8, packageManager: dnf, target: gfx1100 }
-      # - { os: almalinux8, packageManager: dnf, target: gfx1030 }
+      - { pool: rocm-ci_ultra_build_pool, os: ubuntu2204, packageManager: apt, target: gfx942 }
+      - { pool: rocm-ci_medium_build_pool, os: ubuntu2204, packageManager: apt, target: gfx90a }
+      - { pool: rocm-ci_medium_build_pool, os: ubuntu2204, packageManager: apt, target: gfx1201 }
+      - { pool: rocm-ci_medium_build_pool, os: ubuntu2204, packageManager: apt, target: gfx1100 }
+      - { pool: rocm-ci_medium_build_pool, os: ubuntu2204, packageManager: apt, target: gfx1030 }
+      - { pool: rocm-ci_ultra_build_pool, os: almalinux8, packageManager: dnf, target: gfx942 }
+      - { pool: rocm-ci_medium_build_pool, os: almalinux8, packageManager: dnf, target: gfx90a }
+      - { pool: rocm-ci_medium_build_pool, os: almalinux8, packageManager: dnf, target: gfx1201 }
+      - { pool: rocm-ci_medium_build_pool, os: almalinux8, packageManager: dnf, target: gfx1100 }
+      - { pool: rocm-ci_medium_build_pool, os: almalinux8, packageManager: dnf, target: gfx1030 }
     testJobs:
       - { os: ubuntu2204, packageManager: apt, target: gfx942 }
       - { os: ubuntu2204, packageManager: apt, target: gfx90a }
-# - name: downstreamComponentMatrix
-#   type: object
-#   default:
-#     - rocBLAS:
-#       name: rocBLAS
-#       sparseCheckoutDir: projects/rocblas
-#       skipUnifiedBuild: 'false'
-#       buildDependsOn:
-#         - hipBLASLt_build
+- name: downstreamComponentMatrix
+  type: object
+  default:
+    - rocBLAS:
+      name: rocBLAS
+      sparseCheckoutDir: projects/rocblas
+      skipUnifiedBuild: 'false'
+      buildDependsOn:
+        - hipBLASLt_build
 
 jobs:
 - ${{ each job in parameters.jobMatrix.buildJobs }}:
@@ -121,7 +121,7 @@ jobs:
       value: $(Agent.BuildDirectory)/rocm
     - name: DAY_STRING
       value: $[format('{0:ddMMyyyy}', pipeline.startTime)]
-    pool: ${{ variables.ULTRA_BUILD_POOL }}
+    pool: ${{ job.pool }}
     ${{ if eq(job.os, 'almalinux8') }}:
       container:
         image: rocmexternalcicd.azurecr.io/manylinux228:latest
@@ -140,6 +140,10 @@ jobs:
       parameters:
         checkoutRepo: ${{ parameters.checkoutRepo }}
         sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-vendor.yml
+      parameters:
+        dependencyList:
+          - gtest
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         checkoutRef: ${{ parameters.checkoutRef }}
@@ -156,18 +160,15 @@ jobs:
         script: |
           echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/bin"
           echo "##vso[task.prependpath]$(Agent.BuildDirectory)/rocm/llvm/bin"
-    # hipBLASLt has a script for gtest and lapack
-    # https://github.com/ROCm/hipBLASLt/blob/develop/deps/CMakeLists.txt
-    # $(Agent.BuildDirectory)/deps is a temporary folder for the build process
-    # $(Agent.BuildDirectory)/s/deps is part of the hipBLASLt repo
     - task: Bash@3
-      displayName: Build and install external dependencies
+      displayName: Build and install LAPACK
       inputs:
         targetType: inline
         script: |
-          mkdir -p $(Agent.BuildDirectory)/deps
-          cd $(Agent.BuildDirectory)/deps
-          cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON $(Agent.BuildDirectory)/s/deps
+          mkdir -p $(Agent.BuildDirectory)/temp-deps
+          cd $(Agent.BuildDirectory)/temp-deps
+          # position-independent LAPACK is required for almalinux8 builds
+          cmake -DBUILD_GTEST=OFF -DBUILD_LAPACK=ON -DCMAKE_POSITION_INDEPENDENT_CODE=ON $(Agent.BuildDirectory)/s/deps
           make
           sudo make install
     - script: |
@@ -187,7 +188,7 @@ jobs:
       parameters:
         os: ${{ job.os }}
         extraBuildFlags: >-
-          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/vendor
           -DCMAKE_INCLUDE_PATH=$(Agent.BuildDirectory)/rocm/llvm/include
           -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
           -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
@@ -244,6 +245,7 @@ jobs:
       workspace:
         clean: all
       steps:
+      - checkout: none
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
         parameters:
           aptPackages: ${{ parameters.aptPackages }}
@@ -280,14 +282,14 @@ jobs:
           environment: test
           gpuTarget: ${{ job.target }}
 
-# - ${{ if parameters.triggerDownstreamJobs }}:
-#   - ${{ each component in parameters.downstreamComponentMatrix }}:
-#     - ${{ if not(and(parameters.unifiedBuild, eq(component.skipUnifiedBuild, 'true'))) }}:
-#       - template: /.azuredevops/components/${{ component.name }}.yml@pipelines_repo
-#         parameters:
-#           checkoutRepo: ${{ parameters.checkoutRepo }}
-#           sparseCheckoutDir: ${{ component.sparseCheckoutDir }}
-#           buildDependsOn: ${{ component.buildDependsOn }}
-#           downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}+${{ parameters.componentName }}
-#           triggerDownstreamJobs: true
-#           unifiedBuild: ${{ parameters.unifiedBuild }}
+- ${{ if parameters.triggerDownstreamJobs }}:
+  - ${{ each component in parameters.downstreamComponentMatrix }}:
+    - ${{ if not(and(parameters.unifiedBuild, eq(component.skipUnifiedBuild, 'true'))) }}:
+      - template: /.azuredevops/components/${{ component.name }}.yml@pipelines_repo
+        parameters:
+          checkoutRepo: ${{ parameters.checkoutRepo }}
+          sparseCheckoutDir: ${{ component.sparseCheckoutDir }}
+          buildDependsOn: ${{ component.buildDependsOn }}
+          downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}+${{ parameters.componentName }}
+          triggerDownstreamJobs: true
+          unifiedBuild: ${{ parameters.unifiedBuild }}

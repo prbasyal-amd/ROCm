@@ -77,14 +77,6 @@ Ubuntu versions.
           QMP, and classic vector computers.
 
       * -
-        - `Grid <https://github.com/amd/InfinityHub-CI/tree/main/grid/>`_
-        - Grid is a library for lattice QCD calculations that employs a high-level data parallel
-          approach while using a number of techniques to target multiple types of parallelism.
-          The library currently supports MPI, OpenMP and short vector parallelism. The SIMD
-          instructions sets covered include SSE, AVX, AVX2, FMA4, IMCI and AVX512. Recent
-          releases expanded this support to include GPU offloading.
-
-      * -
         - `MILC <https://github.com/amd/InfinityHub-CI/tree/main/milc/>`_
         - The MILC Code is a set of research codes developed by MIMD Lattice Computation
           (MILC) collaboration for doing simulations of four dimensional SU(3) lattice gauge
@@ -237,12 +229,18 @@ Ubuntu versions.
           of these applications.
 
       * - Tools and libraries
-        - `ROCm with GPU-aware MPI container <https://github.com/amd/InfinityHub-CI/tree/main/base-gpu-mpi-rocm-docker>`_
+        - `AMD ROCm with OpenMPI container <https://github.com/amd/InfinityHub-CI/tree/main/base-gpu-mpi-rocm-docker>`_
         - Base container for GPU-aware MPI with ROCm for HPC applications. This
           project provides a boilerplate for building and running a Docker
           container with ROCm supporting GPU-aware MPI implementations using
           OpenMPI or UCX.
-
+      
+      * - 
+        - `AMD ROCm with MPICH container <https://github.com/amd/InfinityHub-CI/tree/main/base-mpich-rocm-docker>`_
+        - Base container for GPU-aware MPI with ROCm for HPC applications. This
+          project provides a boilerplate for building and running a Docker
+          container with ROCm supporting GPU-aware MPI implementations using MPICH.
+      
       * -
         - `Kokkos <https://github.com/amd/InfinityHub-CI/tree/main/kokkos>`_
         - Kokkos is a programming model in C++ for writing performance portable

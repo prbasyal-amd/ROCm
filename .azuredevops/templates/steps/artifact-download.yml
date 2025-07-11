@@ -12,6 +12,9 @@ parameters:
 - name: fileFilter
   type: string
   default: ''
+- name: extractAndDeleteFiles
+  type: boolean
+  default: true
 # set to true if doing full build of ROCm stack
 # and dependencies are pulled from same pipeline
 - name: aggregatePipeline
@@ -22,34 +25,32 @@ steps:
 - task: DownloadPipelineArtifact@2
   displayName: Download ${{ parameters.componentName }}
   inputs:
+    itemPattern: '**/*${{ parameters.componentName }}*${{ parameters.fileFilter }}*'
+    targetPath: '$(Pipeline.Workspace)/d'
+    allowPartiallySucceededBuilds: true
     ${{ if parameters.aggregatePipeline }}:
       buildType: 'current'
-      itemPattern: '**/${{ parameters.componentName }}*${{ parameters.fileFilter }}*'
-      allowPartiallySucceededBuilds: true
-      targetPath: '$(Pipeline.Workspace)/d'
     ${{ else }}:
       buildType: 'specific'
       project: ROCm-CI
       specificBuildWithTriggering: true
-      allowPartiallySucceededBuilds: true
       definition: ${{ parameters.pipelineId }}
-      itemPattern: '**/*${{ parameters.fileFilter }}*'
-      targetPath: '$(Pipeline.Workspace)/d'
       branchName: refs/heads/${{ parameters.branchName }}
       ${{ if eq(parameters.componentName, 'aomp') }}:
         buildVersionToDownload: latest # aomp trigger lives in ROCm/ROCm, so cannot use ROCm/aomp branch names
       ${{ else }}:
         buildVersionToDownload: latestFromBranch
-- task: ExtractFiles@1
-  displayName: Extract ${{ parameters.componentName }}
-  inputs:
-    archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
-    destinationFolder: '$(Agent.BuildDirectory)/rocm'
-    cleanDestinationFolder: false
-    overwriteExistingFiles: true
-- task: DeleteFiles@1
-  displayName: Cleanup Compressed ${{ parameters.componentName }}
-  inputs:
-    SourceFolder: '$(Pipeline.Workspace)/d'
-    Contents: '**/*.tar.gz'
-    RemoveDotFiles: true
+- ${{ if eq(parameters.extractAndDeleteFiles, true) }}:
+  - task: ExtractFiles@1
+    displayName: Extract ${{ parameters.componentName }}
+    inputs:
+      archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    displayName: Clean up Compressed ${{ parameters.componentName }}
+    inputs:
+      SourceFolder: '$(Pipeline.Workspace)/d'
+      Contents: '**/*.tar.gz'
+      RemoveDotFiles: true
