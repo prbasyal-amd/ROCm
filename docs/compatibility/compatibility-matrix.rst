@@ -23,14 +23,14 @@ compatibility and system requirements.
 .. container:: format-big-table
 
   .. csv-table::
-      :header: "ROCm Version", "6.4.1", "6.4.0", "6.3.0"
+      :header: "ROCm Version", "6.4.2", "6.4.1", "6.3.0"
       :stub-columns: 1
 
       :ref:`Operating systems & kernels <OS-kernel-versions>`,Ubuntu 24.04.2,Ubuntu 24.04.2,Ubuntu 24.04.2
       ,Ubuntu 22.04.5,Ubuntu 22.04.5,Ubuntu 22.04.5
-      ,"RHEL 9.6, 9.5, 9.4","RHEL 9.5, 9.4","RHEL 9.5, 9.4"
+      ,"RHEL 9.6, 9.4","RHEL 9.6, 9.5, 9.4","RHEL 9.5, 9.4"
       ,RHEL 8.10,RHEL 8.10,RHEL 8.10
-      ,SLES 15 SP6,SLES 15 SP6,"SLES 15 SP6, SP5"
+      ,"SLES 15 SP7, SP6",SLES 15 SP6,"SLES 15 SP6, SP5"
       ,"Oracle Linux 9, 8 [#mi300x]_","Oracle Linux 9, 8 [#mi300x]_",Oracle Linux 8.10 [#mi300x]_
       ,Debian 12 [#single-node]_,Debian 12 [#single-node]_,
       ,Azure Linux 3.0 [#mi300x]_,Azure Linux 3.0 [#mi300x]_,
@@ -38,13 +38,13 @@ compatibility and system requirements.
       :doc:`Architecture <rocm-install-on-linux:reference/system-requirements>`,CDNA3,CDNA3,CDNA3
       ,CDNA2,CDNA2,CDNA2
       ,CDNA,CDNA,CDNA
-      ,RDNA4,,
+      ,RDNA4,RDNA4,
       ,RDNA3,RDNA3,RDNA3
       ,RDNA2,RDNA2,RDNA2
       ,.. _gpu-support-compatibility-matrix:,,
-      :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx1201 [#RDNA-OS]_,,
-      ,gfx1200 [#RDNA-OS]_,,
-      ,gfx1101 [#RDNA-OS]_,,
+      :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx1201 [#RDNA-OS]_,gfx1201 [#RDNA-OS]_,
+      ,gfx1200 [#RDNA-OS]_,gfx1200 [#RDNA-OS]_,
+      ,gfx1101 [#RDNA-OS]_ [#7700XT-OS]_,gfx1101 [#RDNA-OS]_,
       ,gfx1100,gfx1100,gfx1100
       ,gfx1030,gfx1030,gfx1030
       ,gfx942,gfx942,gfx942
@@ -83,23 +83,23 @@ compatibility and system requirements.
       ,,,
       COMMUNICATION,.. _commlibs-support-compatibility-matrix:,,
       :doc:`RCCL <rccl:index>`,2.22.3,2.22.3,2.21.5
-      :doc:`rocSHMEM <rocshmem:index>`,2.0.0,2.0.0,N/A
+      :doc:`rocSHMEM <rocshmem:index>`,2.0.1,2.0.0,N/A
       ,,,
       MATH LIBS,.. _mathlibs-support-compatibility-matrix:,,
       `half <https://github.com/ROCm/half>`_ ,1.12.0,1.12.0,1.12.0
       :doc:`hipBLAS <hipblas:index>`,2.4.0,2.4.0,2.3.0
-      :doc:`hipBLASLt <hipblaslt:index>`,0.12.1,0.12.0,0.10.0
+      :doc:`hipBLASLt <hipblaslt:index>`,0.12.1,0.12.1,0.10.0
       :doc:`hipFFT <hipfft:index>`,1.0.18,1.0.18,1.0.17
       :doc:`hipfort <hipfort:index>`,0.6.0,0.6.0,0.5.0
       :doc:`hipRAND <hiprand:index>`,2.12.0,2.12.0,2.11.0
       :doc:`hipSOLVER <hipsolver:index>`,2.4.0,2.4.0,2.3.0
       :doc:`hipSPARSE <hipsparse:index>`,3.2.0,3.2.0,3.1.2
       :doc:`hipSPARSELt <hipsparselt:index>`,0.2.3,0.2.3,0.2.2
-      :doc:`rocALUTION <rocalution:index>`,3.2.3,3.2.2,3.2.1
-      :doc:`rocBLAS <rocblas:index>`,4.4.0,4.4.0,4.3.0
+      :doc:`rocALUTION <rocalution:index>`,3.2.3,3.2.3,3.2.1
+      :doc:`rocBLAS <rocblas:index>`,4.4.1,4.4.0,4.3.0
       :doc:`rocFFT <rocfft:index>`,1.0.32,1.0.32,1.0.31
       :doc:`rocRAND <rocrand:index>`,3.3.0,3.3.0,3.2.0
-      :doc:`rocSOLVER <rocsolver:index>`,3.28.0,3.28.0,3.27.0
+      :doc:`rocSOLVER <rocsolver:index>`,3.28.2,3.28.0,3.27.0
       :doc:`rocSPARSE <rocsparse:index>`,3.4.0,3.4.0,3.3.0
       :doc:`rocWMMA <rocwmma:index>`,1.7.0,1.7.0,1.6.0
       :doc:`Tensile <tensile:src/index>`,4.43.0,4.43.0,4.42.0
@@ -107,16 +107,16 @@ compatibility and system requirements.
       PRIMITIVES,.. _primitivelibs-support-compatibility-matrix:,,
       :doc:`hipCUB <hipcub:index>`,3.4.0,3.4.0,3.3.0
       :doc:`hipTensor <hiptensor:index>`,1.5.0,1.5.0,1.4.0
-      :doc:`rocPRIM <rocprim:index>`,3.4.0,3.4.0,3.3.0
+      :doc:`rocPRIM <rocprim:index>`,3.4.1,3.4.0,3.3.0
       :doc:`rocThrust <rocthrust:index>`,3.3.0,3.3.0,3.3.0
       ,,,
       SUPPORT LIBS,,,
-      `hipother <https://github.com/ROCm/hipother>`_,6.4.43483,6.4.43482,6.3.42131
-      `rocm-core <https://github.com/ROCm/rocm-core>`_,6.4.1,6.4.0,6.3.0
+      `hipother <https://github.com/ROCm/hipother>`_,6.4.43483,6.4.43483,6.3.42131
+      `rocm-core <https://github.com/ROCm/rocm-core>`_,6.4.2,6.4.1,6.3.0
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_
       ,,,
       SYSTEM MGMT TOOLS,.. _tools-support-compatibility-matrix:,,
-      :doc:`AMD SMI <amdsmi:index>`,25.4.2,25.3.0,24.7.1
+      :doc:`AMD SMI <amdsmi:index>`,25.5.1,25.4.2,24.7.1
       :doc:`ROCm Data Center Tool <rdc:index>`,0.3.0,0.3.0,0.3.0
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0,1.0.0
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.5.0,7.5.0,7.4.0
@@ -124,11 +124,11 @@ compatibility and system requirements.
       ,,,
       PERFORMANCE TOOLS,,,
       :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,1.4.0,1.4.0,1.4.0
-      :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`,3.1.0,3.1.0,3.0.0
-      :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`,1.0.1,1.0.0,0.1.0
-      :doc:`ROCProfiler <rocprofiler:index>`,2.0.60401,2.0.60400,2.0.60300
+      :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`,3.1.1,3.1.0,3.0.0
+      :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`,1.0.2,1.0.1,0.1.0
+      :doc:`ROCProfiler <rocprofiler:index>`,2.0.60402,2.0.60401,2.0.60300
       :doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`,0.6.0,0.6.0,0.5.0
-      :doc:`ROCTracer <roctracer:index>`,4.1.60401,4.1.60400,4.1.60300
+      :doc:`ROCTracer <roctracer:index>`,4.1.60402,4.1.60401,4.1.60300
       ,,,
       DEVELOPMENT TOOLS,,,
       :doc:`HIPIFY <hipify:index>`,19.0.0,19.0.0,18.0.0.24455
@@ -141,24 +141,25 @@ compatibility and system requirements.
       COMPILERS,.. _compilers-support-compatibility-matrix:,,
       `clang-ocl <https://github.com/ROCm/clang-ocl>`_,N/A,N/A,N/A
       :doc:`hipCC <hipcc:index>`,1.1.1,1.1.1,1.1.1
-      `Flang <https://github.com/ROCm/flang>`_,19.0.0.25184,19.0.0.25133,18.0.0.24455
-      :doc:`llvm-project <llvm-project:index>`,19.0.0.25184,19.0.0.25133,18.0.0.24491
-      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,19.0.0.25184,19.0.0.25133,18.0.0.24491
+      `Flang <https://github.com/ROCm/flang>`_,19.0.0.25224,19.0.0.25184,18.0.0.24455
+      :doc:`llvm-project <llvm-project:index>`,19.0.0.25224,19.0.0.25184,18.0.0.24491
+      `OpenMP <https://github.com/ROCm/llvm-project/tree/amd-staging/openmp>`_,19.0.0.25224,19.0.0.25184,18.0.0.24491
       ,,,
       RUNTIMES,.. _runtime-support-compatibility-matrix:,,
-      :doc:`AMD CLR <hip:understand/amd_clr>`,6.4.43483,6.4.43482,6.3.42131
-      :doc:`HIP <hip:index>`,6.4.43483,6.4.43482,6.3.42131
+      :doc:`AMD CLR <hip:understand/amd_clr>`,6.4.43484,6.4.43483,6.3.42131
+      :doc:`HIP <hip:index>`,6.4.43484,6.4.43483,6.3.42131
       `OpenCL Runtime <https://github.com/ROCm/clr/tree/develop/opencl>`_,2.0.0,2.0.0,2.0.0
       :doc:`ROCr Runtime <rocr-runtime:index>`,1.15.0,1.15.0,1.14.0
-
 
 .. rubric:: Footnotes
 
 .. [#mi300x] Oracle Linux and Azure Linux are supported only on AMD Instinct MI300X.
-.. [#single-node] Debian 12 is supported only on AMD Instinct MI300X for single-node functionality. 
+.. [#single-node] Debian 12 is supported only on AMD Instinct MI300X for single-node functionality.
+.. [#RDNA-OS] Radeon AI PRO R9700, Radeon RX 9070 XT (gfx1201), Radeon RX 9060 XT (gfx1200), Radeon PRO W7700 (gfx1101), and Radeon RX 7800 XT (gfx1101) are supported only on Ubuntu 24.04.2, Ubuntu 22.04.5, RHEL 9.6, and RHEL 9.4.
+.. [#7700XT-OS] Radeon RX 7700 XT (gfx1101) is supported only on Ubuntu 24.04.2 and RHEL 9.6.
 .. [#kfd_support] As of ROCm 6.4.0, forward and backward compatibility between the AMD Kernel-mode GPU Driver (KMD) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The tested user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and kernel-space support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
 .. [#ROCT-rocr] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
-.. [#RDNA-OS] Radeon AI PRO R9700, Radeon RX 9070 XT (gfx1201), Radeon RX 9060 XT (gfx1200), Radeon PRO W7700 (gfx1101), and Radeon RX 7800 XT (gfx1101) are supported only on Ubuntu 24.04.2, Ubuntu 22.04.5, RHEL 9.6, RHEL 9.5, and RHEL 9.4.
+
 
 .. _OS-kernel-versions:
 
@@ -177,14 +178,15 @@ Use this lookup table to confirm which operating system and kernel versions are 
    `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 22.04.5, "5.15 GA, 6.8 HWE", 2.35
    ,,
    `Red Hat Enterprise Linux (RHEL 9) <https://access.redhat.com/articles/3078#RHEL9>`_, 9.6, 5.14+, 2.34
-   , 9.5, 5.14+, 2.34
+   ,9.5, 5.14+, 2.34
    ,9.4, 5.14+, 2.34
    ,9.3, 5.14+, 2.34
    ,,
    `Red Hat Enterprise Linux (RHEL 8) <https://access.redhat.com/articles/3078#RHEL8>`_, 8.10, 4.18.0+, 2.28
    ,8.9, 4.18.0, 2.28
    ,,
-   `SUSE Linux Enterprise Server (SLES) <https://www.suse.com/support/kb/doc/?id=000019587#SLE15SP4>`_, 15 SP6, "6.5.0+, 6.4.0", 2.38
+   `SUSE Linux Enterprise Server (SLES) <https://www.suse.com/support/kb/doc/?id=000019587#SLE15SP4>`_, 15 SP7, 6.11.0+, 2.38
+   ,15 SP6, "6.5.0+, 6.4.0", 2.38
    ,15 SP5, 5.14.21, 2.31
    ,,
    `Oracle Linux <https://blogs.oracle.com/scoter/post/oracle-linux-and-unbreakable-enterprise-kernel-uek-releases>`_, 9, 5.15.0 (UEK), 2.35
@@ -226,7 +228,9 @@ Expand for full historical view of:
    .. rubric:: Footnotes
 
    .. [#mi300x-past-60] Oracle Linux and Azure Linux are supported only on AMD Instinct MI300X.
-   .. [#single-node-past-60] Debian 12 is supported only on AMD Instinct MI300X for single-node functionality. 
+   .. [#single-node-past-60] Debian 12 is supported only on AMD Instinct MI300X for single-node functionality.
+   .. [#RDNA-OS-past-60] Radeon AI PRO R9700, Radeon RX 9070 XT (gfx1201), Radeon RX 9060 XT (gfx1200), Radeon PRO W7700 (gfx1101), and Radeon RX 7800 XT (gfx1101) are supported only on Ubuntu 24.04.2, Ubuntu 22.04.5, RHEL 9.6, and RHEL 9.4.
+   .. [#7700XT-OS-past-60] Radeon RX 7700 XT (gfx1101) is supported only on Ubuntu 24.04.2 and RHEL 9.6.
    .. [#mi300_624-past-60] **For ROCm 6.2.4** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_622-past-60] **For ROCm 6.2.2** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
    .. [#mi300_621-past-60] **For ROCm 6.2.1** - MI300X (gfx942) is supported on listed operating systems *except* Ubuntu 22.04.5 [6.8 HWE] and Ubuntu 22.04.4 [6.5 HWE].
@@ -239,4 +243,4 @@ Expand for full historical view of:
    .. [#verl_compat] verl is only supported on ROCm 6.2.0.
    .. [#kfd_support-past-60] As of ROCm 6.4.0, forward and backward compatibility between the AMD Kernel-mode GPU Driver (KMD) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The tested user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and kernel-space support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
    .. [#ROCT-rocr-past-60] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
-   .. [#RDNA-OS-past-60] Radeon AI PRO R9700, Radeon RX 9070 XT (gfx1201), Radeon RX 9060 XT (gfx1200), Radeon PRO W7700 (gfx1101), and Radeon RX 7800 XT (gfx1101) are supported only on Ubuntu 24.04.2, Ubuntu 22.04.5, RHEL 9.6, RHEL 9.5, and RHEL 9.4.
+   
