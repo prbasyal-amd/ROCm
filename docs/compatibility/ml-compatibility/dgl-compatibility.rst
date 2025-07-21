@@ -42,7 +42,7 @@ GAT, GCN and GraphSage. Using these we can support a variety of use-cases such a
 - 1D (Temporal) and 2D (Image) Classification
 - Drug Discovery
 
-Refer to :doc:`ROCm DGL blog posts <https://rocm.blogs.amd.com/blog/tag/dgl.html>` 
+Refer to `ROCm DGL blog posts <https://rocm.blogs.amd.com/blog/tag/dgl.html>`_
 for examples and best practices to optimize your training workflows on AMD GPUs. 
 
 Coverage includes:
