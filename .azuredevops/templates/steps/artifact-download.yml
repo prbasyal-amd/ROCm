@@ -12,6 +12,9 @@ parameters:
 - name: fileFilter
   type: string
   default: ''
+- name: extractAndDeleteFiles
+  type: boolean
+  default: true
 # set to true if doing full build of ROCm stack
 # and dependencies are pulled from same pipeline
 - name: aggregatePipeline
@@ -19,46 +22,35 @@ parameters:
   default: false
 
 steps:
-- task: Bash@3
-  displayName: Set allowPartiallySucceededBuilds
-  inputs:
-    targetType: inline
-    script: |
-      if [[ ",$ALLOWED_PARTIAL_SUCCEED_BUILDS," == *",${{ parameters.componentName }},"* ]]; then
-        echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]true"
-      else
-        echo "##vso[task.setvariable variable=allowPartiallySucceededBuilds;]false"
-      fi
 - task: DownloadPipelineArtifact@2
   displayName: Download ${{ parameters.componentName }}
   inputs:
-    ${{ if eq(parameters.aggregatePipeline, false) }}:
+    itemPattern: '**/*${{ parameters.componentName }}*${{ parameters.fileFilter }}*'
+    targetPath: '$(Pipeline.Workspace)/d'
+    allowPartiallySucceededBuilds: true
+    ${{ if parameters.aggregatePipeline }}:
+      buildType: 'current'
+    ${{ else }}:
       buildType: 'specific'
       project: ROCm-CI
-      definition: ${{ parameters.pipelineId }}
       specificBuildWithTriggering: true
-      itemPattern: '**/*${{ parameters.fileFilter }}*'
-      # aomp is a special case, since the trigger file is under ROCm/ROCm instead of the component repo
-      ${{ if notIn(parameters.componentName, 'aomp') }}:
-        buildVersionToDownload: latestFromBranch # default is 'latest'
+      definition: ${{ parameters.pipelineId }}
       branchName: refs/heads/${{ parameters.branchName }}
-      allowPartiallySucceededBuilds: $(allowPartiallySucceededBuilds)
-      targetPath: '$(Pipeline.Workspace)/d'
-    ${{ else }}:
-      buildType: 'current'
-      itemPattern: '**/${{ parameters.componentName }}*${{ parameters.fileFilter }}*'
-      allowPartiallySucceededBuilds: $(allowPartiallySucceededBuilds)
-      targetPath: '$(Pipeline.Workspace)/d'
-- task: ExtractFiles@1
-  displayName: Extract ${{ parameters.componentName }}
-  inputs:
-    archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
-    destinationFolder: '$(Agent.BuildDirectory)/rocm'
-    cleanDestinationFolder: false
-    overwriteExistingFiles: true
-- task: DeleteFiles@1
-  displayName: Cleanup Compressed ${{ parameters.componentName }}
-  inputs:
-    SourceFolder: '$(Pipeline.Workspace)/d'
-    Contents: '**/*.tar.gz'
-    RemoveDotFiles: true
+      ${{ if eq(parameters.componentName, 'aomp') }}:
+        buildVersionToDownload: latest # aomp trigger lives in ROCm/ROCm, so cannot use ROCm/aomp branch names
+      ${{ else }}:
+        buildVersionToDownload: latestFromBranch
+- ${{ if eq(parameters.extractAndDeleteFiles, true) }}:
+  - task: ExtractFiles@1
+    displayName: Extract ${{ parameters.componentName }}
+    inputs:
+      archiveFilePatterns: '$(Pipeline.Workspace)/d/**/*.tar.gz'
+      destinationFolder: '$(Agent.BuildDirectory)/rocm'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true
+  - task: DeleteFiles@1
+    displayName: Clean up Compressed ${{ parameters.componentName }}
+    inputs:
+      SourceFolder: '$(Pipeline.Workspace)/d'
+      Contents: '**/*.tar.gz'
+      RemoveDotFiles: true

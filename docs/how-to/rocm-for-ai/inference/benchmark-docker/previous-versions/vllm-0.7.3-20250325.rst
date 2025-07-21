@@ -1,3 +1,5 @@
+:orphan:
+
 .. meta::
    :description: Learn how to validate LLM inference performance on MI300X accelerators using AMD MAD and the
                  ROCm vLLM Docker image.
@@ -7,16 +9,21 @@
 vLLM inference performance testing
 **********************************
 
+.. caution::
+
+   This documentation does not reflect the latest version of ROCm vLLM
+   inference performance documentation. See :doc:`../vllm` for the latest version.
+
 .. _vllm-benchmark-unified-docker:
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/inference/vllm-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/inference/previous-versions/vllm_0.7.3_20250325-benchmark-models.yaml
 
    {% set unified_docker = data.vllm_benchmark.unified_docker.latest %}
    {% set model_groups = data.vllm_benchmark.model_groups %}
 
    The `ROCm vLLM Docker <{{ unified_docker.docker_hub_url }}>`_ image offers
    a prebuilt, optimized environment for validating large language model (LLM)
-   inference performance on AMD Instinct™ MI300X series accelerators. This ROCm vLLM
+   inference performance on AMD Instinct™ MI300X series accelerator. This ROCm vLLM
    Docker image integrates vLLM and PyTorch tailored specifically for MI300X series
    accelerators and includes the following components:
 
@@ -29,12 +36,12 @@ vLLM inference performance testing
    * `hipBLASLt {{ unified_docker.hipblaslt_version }} <https://github.com/ROCm/hipBLASLt>`_
 
    With this Docker image, you can quickly test the :ref:`expected
-   inference performance numbers <vllm-benchmark-performance-measurements>` for
+   inference performance numbers <vllm-benchmark-performance-measurements-v073>` for
    MI300X series accelerators.
 
-   .. _vllm-benchmark-available-models:
+   .. _vllm-benchmark-available-models-v073:
 
-   Supported models
+   Available models
    ================
 
    .. raw:: html
@@ -88,7 +95,7 @@ vLLM inference performance testing
       See :ref:`fine-tuning-llms-vllm` and :ref:`mi300x-vllm-optimization` for
       more information.
 
-   .. _vllm-benchmark-performance-measurements:
+   .. _vllm-benchmark-performance-measurements-v073:
 
    Performance measurements
    ========================
@@ -98,50 +105,48 @@ vLLM inference performance testing
    page provides reference throughput and latency measurements for inferencing
    popular AI models.
 
-   .. note::
+   .. important::
 
       The performance data presented in
       `Performance results with AMD ROCm software <https://www.amd.com/en/developer/resources/rocm-hub/dev-ai/performance-results.html>`_
-      should not be interpreted as the peak performance achievable by AMD
-      Instinct MI325X and MI300X accelerators or ROCm software.
+      only reflects the :doc:`latest version of this inference benchmarking environment <../vllm>`.
+      The listed measurements should not be interpreted as the peak performance achievable by AMD Instinct MI325X and MI300X accelerators or ROCm software.
 
    Advanced features and known issues
    ==================================
 
    For information on experimental features and known issues related to ROCm optimization efforts on vLLM,
-   see the developer's guide at `<https://github.com/ROCm/vllm/blob/main/docs/dev-docker/README.md>`__.
+   see the developer's guide at `<https://github.com/ROCm/vllm/tree/25070a1841df0dca585b7ddcb967c42aaec4b7c5/docs/dev-docker>`__.
 
-   System validation
-   =================
+   Getting started
+   ===============
 
-   Before running AI workloads, it's important to validate that your AMD hardware is configured
-   correctly and performing optimally.
+   Use the following procedures to reproduce the benchmark results on an
+   MI300X accelerator with the prebuilt vLLM Docker image.
 
-   To optimize performance, disable automatic NUMA balancing. Otherwise, the GPU
-   might hang until the periodic balancing is finalized. For more information,
-   see the :ref:`system validation steps <rocm-for-ai-system-optimization>`.
+   .. _vllm-benchmark-get-started:
 
-   .. code-block:: shell
+   1. Disable NUMA auto-balancing.
 
-      # disable automatic NUMA balancing
-      sh -c 'echo 0 > /proc/sys/kernel/numa_balancing'
-      # check if NUMA balancing is disabled (returns 0 if disabled)
-      cat /proc/sys/kernel/numa_balancing
-      0
+      To optimize performance, disable automatic NUMA balancing. Otherwise, the GPU
+      might hang until the periodic balancing is finalized. For more information,
+      see the :ref:`system validation steps <rocm-for-ai-system-optimization>`.
 
-   To test for optimal performance, consult the recommended :ref:`System health benchmarks
-   <rocm-for-ai-system-health-bench>`. This suite of tests will help you verify and fine-tune your
-   system's configuration.
+      .. code-block:: shell
 
-   Pull the Docker image
-   =====================
+         # disable automatic NUMA balancing
+         sh -c 'echo 0 > /proc/sys/kernel/numa_balancing'
+         # check if NUMA balancing is disabled (returns 0 if disabled)
+         cat /proc/sys/kernel/numa_balancing
+         0
 
-   Download the `ROCm vLLM Docker image <{{ unified_docker.docker_hub_url }}>`_.
-   Use the following command to pull the Docker image from Docker Hub.
+   2. Download the `ROCm vLLM Docker image <{{ unified_docker.docker_hub_url }}>`_.
 
-   .. code-block:: shell
+      Use the following command to pull the Docker image from Docker Hub.
 
-      docker pull {{ unified_docker.pull_tag }}
+      .. code-block:: shell
+
+         docker pull {{ unified_docker.pull_tag }}
 
    Benchmarking
    ============
@@ -149,7 +154,7 @@ vLLM inference performance testing
    Once the setup is complete, choose between two options to reproduce the
    benchmark results:
 
-   .. _vllm-benchmark-mad:
+   .. _vllm-benchmark-mad-v073:
 
    {% for model_group in model_groups %}
       {% for model in model_group.models %}
@@ -170,7 +175,7 @@ vLLM inference performance testing
                pip install -r requirements.txt
 
             Use this command to run the performance benchmark test on the `{{model.model}} <{{ model.url }}>`_ model
-            using one GPU with the ``{{model.precision}}`` data type on the host machine.
+            using one GPU with the :literal:`{{model.precision}}` data type on the host machine.
 
             .. code-block:: shell
 
@@ -181,28 +186,9 @@ vLLM inference performance testing
             ``container_ci-{{model.mad_tag}}``. The latency and throughput reports of the
             model are collected in the following path: ``~/MAD/reports_{{model.precision}}/``.
 
-            Although the :ref:`available models <vllm-benchmark-available-models>` are preconfigured
+            Although the :ref:`available models <vllm-benchmark-available-models-v073>` are preconfigured
             to collect latency and throughput performance data, you can also change the benchmarking
             parameters. See the standalone benchmarking tab for more information.
-
-            {% if model.tunableop %}
-
-            .. note::
-
-               For improved performance, consider enabling :ref:`PyTorch TunableOp <mi300x-tunableop>`.
-               TunableOp automatically explores different implementations and configurations of certain PyTorch
-               operators to find the fastest one for your hardware.
-
-               By default, ``{{model.mad_tag}}`` runs with TunableOp disabled
-               (see
-               `<https://github.com/ROCm/MAD/blob/develop/models.json>`__). To
-               enable it, edit the default run behavior in the ``models.json``
-               configuration before running inference -- update the model's run
-               ``args`` by changing ``--tunableop off`` to ``--tunableop on``.
-
-               Enabling TunableOp triggers a two-pass run -- a warm-up followed by the performance-collection run.
-
-            {% endif %}
 
          .. tab-item:: Standalone benchmarking
 
@@ -278,7 +264,7 @@ vLLM inference performance testing
 
             * Latency benchmark
 
-              Use this command to benchmark the latency of the {{model.model}} model on eight GPUs with ``{{model.precision}}`` precision.
+              Use this command to benchmark the latency of the {{model.model}} model on eight GPUs with the :literal:`{{model.precision}}` data type.
 
               .. code-block::
 
@@ -288,11 +274,11 @@ vLLM inference performance testing
 
             * Throughput benchmark
 
-              Use this command to benchmark the throughput of the {{model.model}} model on eight GPUs with ``{{model.precision}}`` precision.
+              Use this command to throughput the latency of the {{model.model}} model on eight GPUs with the :literal:`{{model.precision}}` data type.
 
               .. code-block:: shell
 
-                 ./vllm_benchmark_report.sh -s throughput -m {{model.model_repo}} -g 8 -d {{model.precision}}
+                 ./vllm_benchmark_report.sh -s latency -m {{model.model_repo}} -g 8 -d {{model.precision}}
 
               Find the throughput report at ``./reports_{{model.precision}}_vllm_rocm{{unified_docker.rocm_version}}/summary/{{model.model_repo.split('/', 1)[1] if '/' in model.model_repo else model.model_repo}}_throughput_report.csv``.
 
@@ -319,63 +305,25 @@ Further reading
 ===============
 
 - For application performance optimization strategies for HPC and AI workloads,
-  including inference with vLLM, see :doc:`../inference-optimization/workload`.
+  including inference with vLLM, see :doc:`/how-to/rocm-for-ai/inference-optimization/workload`.
 
 - To learn more about the options for latency and throughput benchmark scripts,
   see `<https://github.com/ROCm/vllm/tree/main/benchmarks>`_.
 
 - To learn more about system settings and management practices to configure your system for
-  MI300X accelerators, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`_
+  MI300X series accelerators, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`_
 
-- To learn how to run LLM models from Hugging Face or your own model, see
-  :doc:`Running models from Hugging Face <hugging-face-models>`.
+- To learn how to run community models from Hugging Face on AMD GPUs, see
+  :doc:`Running models from Hugging Face </how-to/rocm-for-ai/inference/hugging-face-models>`.
 
-- To learn how to optimize inference on LLMs, see
-  :doc:`Inference optimization <../inference-optimization/index>`.
+- To learn how to fine-tune LLMs and optimize inference, see
+  :doc:`Fine-tuning LLMs and inference optimization </how-to/rocm-for-ai/fine-tuning/fine-tuning-and-inference>`.
 
-- To learn how to fine-tune LLMs, see
-  :doc:`Fine-tuning LLMs <../fine-tuning/index>`.
+- For a list of other ready-made Docker images for AI with ROCm, see
+  `AMD Infinity Hub <https://www.amd.com/en/developer/resources/infinity-hub.html#f-amd_hub_category=AI%20%26%20ML%20Models>`_.
 
 Previous versions
 =================
 
-This table lists previous versions of the ROCm vLLM inference Docker image for
-inference performance testing. For detailed information about available models
-for benchmarking, see the version-specific documentation.
-
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
-
-   * - ROCm version
-     - vLLM version
-     - PyTorch version
-     - Resources
-
-   * - 6.3.1
-     - 0.7.3
-     - 2.7.0
-     - 
-       * `Documentation <https://rocm.docs.amd.com/en/docs-6.3.3/how-to/rocm-for-ai/inference/vllm-benchmark.html>`_
-       * `Docker Hub <https://hub.docker.com/layers/rocm/vllm/rocm6.3.1_instinct_vllm0.7.3_20250325/images/sha256-25245924f61750b19be6dcd8e787e46088a496c1fe17ee9b9e397f3d84d35640>`_
-
-   * - 6.3.1
-     - 0.6.6
-     - 2.7.0
-     - 
-       * `Documentation <https://rocm.docs.amd.com/en/docs-6.3.2/how-to/rocm-for-ai/inference/vllm-benchmark.html>`_
-       * `Docker Hub <https://hub.docker.com/layers/rocm/vllm/rocm6.3.1_mi300_ubuntu22.04_py3.12_vllm_0.6.6/images/sha256-9a12ef62bbbeb5a4c30a01f702c8e025061f575aa129f291a49fbd02d6b4d6c9>`_
-
-   * - 6.2.1
-     - 0.6.4
-     - 2.5.0
-     - 
-       * `Documentation <https://rocm.docs.amd.com/en/docs-6.3.0/how-to/performance-validation/mi300x/vllm-benchmark.html>`_
-       * `Docker Hub <https://hub.docker.com/layers/rocm/vllm/rocm6.2_mi300_ubuntu20.04_py3.9_vllm_0.6.4/images/sha256-ccbb74cc9e7adecb8f7bdab9555f7ac6fc73adb580836c2a35ca96ff471890d8>`_
-
-   * - 6.2.0
-     - 0.4.3
-     - 2.4.0
-     - 
-       * `Documentation <https://rocm.docs.amd.com/en/docs-6.2.0/how-to/performance-validation/mi300x/vllm-benchmark.html>`_
-       * `Docker Hub <https://hub.docker.com/layers/rocm/vllm/rocm6.2_mi300_ubuntu22.04_py3.9_vllm_7c5fd50/images/sha256-9e4dd4788a794c3d346d7d0ba452ae5e92d39b8dfac438b2af8efdc7f15d22c0>`_
+See :doc:`vllm-history` to find documentation for previous releases
+of the ``ROCm/vllm`` Docker image.

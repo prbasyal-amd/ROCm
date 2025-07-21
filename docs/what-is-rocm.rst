@@ -52,7 +52,7 @@ Communication
   :header: "Component", "Description"
 
   ":doc:`RCCL <rccl:index>`", "Standalone library that provides multi-GPU and multi-node collective communication primitives"
-  "`rocSHMEM <https://github.com/ROCm/rocSHMEM>`_", "Runtime that provides GPU-centric networking through an OpenSHMEM-like interface. This intra-kernel networking library simplifies application code complexity and enables more fine-grained communication/computation overlap than traditional host-driven networking."
+  ":doc:`rocSHMEM <rocshmem:index>`", "An intra-kernel networking library that provides GPU-centric networking through an OpenSHMEM-like interface"
 
 Math
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -98,7 +98,7 @@ System Management
 .. csv-table::
   :header: "Component", "Description"
 
-  ":doc:`AMD SMI <amdsmi:index>`", "C library for Linux that provides a user space interface for applications to monitor and control AMD devices"
+  ":doc:`AMD SMI <amdsmi:index>`", "System management interface to control AMD GPU settings, monitor performance, and retrieve device and process information"
   ":doc:`ROCm Data Center Tool <rdc:index>`", "Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments"
   ":doc:`rocminfo <rocminfo:index>`", "Reports system information"
   ":doc:`ROCm SMI <rocm_smi_lib:index>`", "C library for Linux that provides a user space interface for applications to monitor and control GPU applications"
@@ -116,6 +116,11 @@ Performance
   ":doc:`ROCProfiler <rocprofiler:index>`", "Profiling tool for HIP applications"
   ":doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`", "Toolkit for developing analysis tools for profiling and tracing GPU compute applications. This toolkit is in beta and subject to change"
   ":doc:`ROCTracer <roctracer:index>`", "Intercepts runtime API calls and traces asynchronous activity"
+
+.. note::
+
+  `ROCprof Compute Viewer <https://rocm.docs.amd.com/projects/rocprof-compute-viewer/en/amd-mainline/>`_ is a tool for visualizing and analyzing GPU thread trace data collected using :doc:`rocprofv3 <rocprofiler-sdk:index>`.
+  Note that `ROCprof Compute Viewer <https://rocm.docs.amd.com/projects/rocprof-compute-viewer/en/amd-mainline/>`_ is in an early access state. Running production workloads is not recommended.
 
 Development
 ^^^^^^^^^^^

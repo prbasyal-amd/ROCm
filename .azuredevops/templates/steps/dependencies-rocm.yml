@@ -13,19 +13,12 @@ parameters:
 - name: dependencyList
   type: object
   default: []
+- name: os
+  type: string
+  default: 'ubuntu2204'
 - name: gpuTarget
   type: string
   default: ''
-# set to true if you're calling this template file multiple files in same pipeline
-# only leave last call false to optimize sequence
-- name: skipLibraryLinking
-  type: boolean
-  default: false
-# set to true if llvm-project is not downloaded in a particular call
-# or if you just don't want the symlink
-- name: skipLlvmSymlink
-  type: boolean
-  default: false
 # set to true if dlopen calls for HIP libraries are causing failures
 # because they do not follow shared library symlink convention
 - name: setupHIPLibrarySymlinks
@@ -36,6 +29,10 @@ parameters:
 - name: aggregatePipeline
   type: boolean
   default: false
+# monorepo related parameters
+- name: downstreamAggregateNames
+  type: string
+  default: ''
 
 - name: componentVarList
   type: object
@@ -103,7 +100,7 @@ parameters:
     hipCUB:
       pipelineId: $(HIPCUB_PIPELINE_ID)
       stagingBranch: develop
-      mainlineBranch: mainline
+      mainlineBranch: develop
       hasGpuTarget: true
     hipFFT:
       pipelineId: $(HIPFFT_PIPELINE_ID)
@@ -123,7 +120,7 @@ parameters:
     hipRAND:
       pipelineId: $(HIPRAND_PIPELINE_ID)
       stagingBranch: develop
-      mainlineBranch: mainline
+      mainlineBranch: develop
       hasGpuTarget: true
     hipSOLVER:
       pipelineId: $(HIPSOLVER_PIPELINE_ID)
@@ -258,7 +255,7 @@ parameters:
     rocPRIM:
       pipelineId: $(ROCPRIM_PIPELINE_ID)
       stagingBranch: develop
-      mainlineBranch: mainline
+      mainlineBranch: develop
       hasGpuTarget: true
     rocprofiler:
       pipelineId: $(ROCPROFILER_PIPELINE_ID)
@@ -298,7 +295,7 @@ parameters:
     rocRAND:
       pipelineId: $(ROCRAND_PIPELINE_ID)
       stagingBranch: develop
-      mainlineBranch: mainline
+      mainlineBranch: develop
       hasGpuTarget: true
     rocr_debug_agent:
       pipelineId: $(ROCR_DEBUG_AGENT_PIPELINE_ID)
@@ -323,7 +320,7 @@ parameters:
     rocThrust:
       pipelineId: $(ROCTHRUST_PIPELINE_ID)
       stagingBranch: develop
-      mainlineBranch: mainline
+      mainlineBranch: develop
       hasGpuTarget: true
     roctracer:
       pipelineId: $(ROCTRACER_PIPELINE_ID)
@@ -360,8 +357,9 @@ steps:
         componentName: ${{ split(dependency, ':')[0] }}
         pipelineId: ${{ parameters.componentVarList[split(dependency, ':')[0]].pipelineId }}
         aggregatePipeline: ${{ parameters.aggregatePipeline }}
+        extractAndDeleteFiles: false
         ${{ if parameters.componentVarList[split(dependency, ':')[0]].hasGpuTarget }}:
-          fileFilter: "${{ split(dependency, ':')[1] }}*${{ parameters.gpuTarget }}"
+          fileFilter: "${{ split(dependency, ':')[1] }}*_${{ parameters.os }}_${{ parameters.gpuTarget }}"
         # dependencySource = staging
         ${{ if eq(parameters.dependencySource, 'staging')}}:
           branchName: ${{ parameters.componentVarList[split(dependency, ':')[0]].stagingBranch }}
@@ -384,14 +382,25 @@ steps:
         ${{ else }}:
           branchName: ${{ parameters.componentVarList[split(dependency, ':')[0]].stagingBranch }}
 # no colon (:) found in this item in the list
+  - ${{ elseif containsValue(split(parameters.downstreamAggregateNames, '+'), dependency) }}:
+    - template: local-artifact-download.yml
+      parameters:
+        ${{ if parameters.componentVarList[dependency].hasGpuTarget }}:
+          gpuTarget: ${{ parameters.gpuTarget }}
+        preTargetFilter: ${{ dependency }}
+        os: ${{ parameters.os }}
+        buildType: current
   - ${{ else }}:
     - template: artifact-download.yml
       parameters:
         componentName: ${{ dependency }}
         pipelineId: ${{ parameters.componentVarList[dependency].pipelineId }}
         aggregatePipeline: ${{ parameters.aggregatePipeline }}
+        extractAndDeleteFiles: false
         ${{ if parameters.componentVarList[dependency].hasGpuTarget }}:
-          fileFilter: ${{ parameters.gpuTarget }}
+          fileFilter: ${{ parameters.os }}_${{ parameters.gpuTarget }}
+        ${{ else }}:
+          fileFilter: ${{ parameters.os }}
         # dependencySource = staging
         ${{ if eq(parameters.dependencySource, 'staging')}}:
           branchName: ${{ parameters.componentVarList[dependency].stagingBranch }}
@@ -413,21 +422,43 @@ steps:
         # default = staging
         ${{ else }}:
           branchName: ${{ parameters.componentVarList[dependency].stagingBranch }}
-# Set link to redirect llvm folder
-- ${{ if eq(parameters.skipLlvmSymlink, false) }}:
+- task: ExtractFiles@1
+  displayName: Extract ROCm artifacts
+  inputs:
+    archiveFilePatterns: $(Pipeline.Workspace)/d/**/*.tar.gz
+    destinationFolder: $(Agent.BuildDirectory)/rocm
+    cleanDestinationFolder: false
+    overwriteExistingFiles: true
+- task: DeleteFiles@1
+  displayName: Clean up ROCm artifacts
+  inputs:
+    SourceFolder: $(Pipeline.Workspace)/d
+    Contents: '**/*.tar.gz'
+    RemoveDotFiles: true
+- ${{ if containsValue(parameters.dependencyList, 'llvm-project') }}:
   - task: Bash@3
     displayName: Symlink from rocm/llvm to rocm/lib/llvm
     inputs:
       targetType: inline
-      script: sudo ln -s $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+      script: |
+        sudo mkdir -p $(Agent.BuildDirectory)/rocm/lib
+        sudo ln -sr $(Agent.BuildDirectory)/rocm/llvm $(Agent.BuildDirectory)/rocm/lib/llvm
+        echo "Created symlink from rocm/llvm to rocm/lib/llvm"
   - task: Bash@3
     displayName: Symlink executables from rocm/llvm/bin to rocm/bin
     inputs:
       targetType: inline
       script: |
         for file in amdclang amdclang++ amdclang-cl amdclang-cpp amdflang amdlld aompcc mygpu mycpu offload-arch; do
-          sudo ln -s $(Agent.BuildDirectory)/rocm/llvm/bin/$file $(Agent.BuildDirectory)/rocm/bin/$file
+          sudo ln -sr $(Agent.BuildDirectory)/rocm/llvm/bin/$file $(Agent.BuildDirectory)/rocm/bin/$file
+          echo "Created symlink from rocm/llvm/bin/$file to rocm/bin/$file"
         done
+- ${{ if containsValue(parameters.dependencyList, 'rocm-core') }}:
+  - task: Bash@3
+    displayName: Print rocm/.info/version
+    inputs:
+      targetType: inline
+      script: cat $(Agent.BuildDirectory)/rocm/.info/version
 # dlopen calls within a ctest or pytest sequence runs into issues when shared library symlink convention is not followed
 # the convention is as follows:
 # unversioned .so is a symlink to major version .so
@@ -464,15 +495,16 @@ steps:
   inputs:
     targetType: inline
     script: ls -la1R $(Agent.BuildDirectory)/rocm
-- ${{ if eq(parameters.skipLibraryLinking, false) }}:
-  - task: Bash@3
-    displayName: 'Link ROCm shared libraries'
-    inputs:
-      targetType: inline
-# OS ignores if the ROCm lib folder shows up more than once
-      script: |
-        echo $(Agent.BuildDirectory)/rocm/lib | sudo tee /etc/ld.so.conf.d/rocm-ci.conf
-        echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
-        sudo cat /etc/ld.so.conf.d/rocm-ci.conf
-        sudo ldconfig -v
-        ldconfig -p
+- task: Bash@3
+  displayName: 'Link ROCm shared libraries'
+  inputs:
+    targetType: inline
+    # OS ignores if the ROCm lib folder shows up more than once
+    script: |
+      echo $(Agent.BuildDirectory)/rocm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
+      echo $(Agent.BuildDirectory)/rocm/llvm/lib | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
+      echo $(Agent.BuildDirectory)/rocm/lib64 | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
+      echo $(Agent.BuildDirectory)/rocm/llvm/lib64 | sudo tee -a /etc/ld.so.conf.d/rocm-ci.conf
+      sudo cat /etc/ld.so.conf.d/rocm-ci.conf
+      sudo ldconfig -v
+      ldconfig -p

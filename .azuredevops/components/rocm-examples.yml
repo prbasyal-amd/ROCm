@@ -15,6 +15,7 @@ parameters:
   default:
     - cmake
     - libglfw3-dev
+    - libmsgpack-dev
     - libtbb-dev
     - ninja-build
     - python3-pip
@@ -183,7 +184,7 @@ jobs:
       parameters:
         componentName: rocm-examples
         testDir: $(Build.SourcesDirectory)/build
-        testParameters: '--output-on-failure --force-new-ctest-process --output-junit test_output.xml --exclude-regex "rocfft_callback"'
+        testParameters: '--output-on-failure --force-new-ctest-process --output-junit test_output.xml'
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/docker-container.yml
       parameters:
         aptPackages: ${{ parameters.aptPackages }}
