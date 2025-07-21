@@ -12,6 +12,54 @@ from pathlib import Path
 shutil.copy2("../RELEASE.md", "./about/release-notes.md")
 shutil.copy2("../CHANGELOG.md", "./release/changelog.md")
 
+# Mark the consolidated changelog as orphan to prevent Sphinx from warning about missing toctree entries
+with open("./release/changelog.md", "r+") as file:
+    content = file.read()
+    file.seek(0)
+    file.write(":orphan:\n" + content)
+
+# Replace GitHub-style [!ADMONITION]s with Sphinx-compatible ```{admonition} blocks
+with open("./release/changelog.md", "r") as file:
+    lines = file.readlines()
+
+    modified_lines = []
+    in_admonition_section = False
+
+    # Map for matching the specific admonition type to its corresponding Sphinx markdown syntax
+    admonition_types = {
+        '> [!NOTE]': '```{note}',
+        '> [!TIP]': '```{tip}',
+        '> [!IMPORTANT]': '```{important}',
+        '> [!WARNING]': '```{warning}',
+        '> [!CAUTION]': '```{caution}'
+    }
+
+    for line in lines:
+        if any(line.startswith(k) for k in admonition_types):
+            for key in admonition_types:
+                if(line.startswith(key)):
+                    modified_lines.append(admonition_types[key] + '\n')
+                    break
+            in_admonition_section = True
+        elif in_admonition_section:
+            if line.strip() == '':
+                # If we encounter an empty line, close the admonition section
+                modified_lines.append('```\n\n')  # Close the admonition block
+                in_admonition_section = False
+            else:
+                modified_lines.append(line.lstrip('> '))
+        else:
+            modified_lines.append(line)
+
+    # In case the file ended while still in a admonition section, close it
+    if in_admonition_section:
+        modified_lines.append('```')
+
+    file.close()
+
+    with open("./release/changelog.md", 'w') as file:
+        file.writelines(modified_lines)
+
 os.system("mkdir -p ../_readthedocs/html/downloads")
 os.system("cp compatibility/compatibility-matrix-historical-6.0.csv ../_readthedocs/html/downloads/compatibility-matrix-historical-6.0.csv")
 
@@ -57,10 +105,22 @@ article_pages = [
     {"file": "how-to/rocm-for-ai/training/index", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/train-a-model", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/prerequisite-system-validation", "os": ["linux"]},
-    {"file": "how-to/rocm-for-ai/training/benchmark-docker/megatron-lm", "os": ["linux"]},
-    {"file": "how-to/rocm-for-ai/training/benchmark-docker/pytorch-training", "os": ["linux"]},
-    {"file": "how-to/rocm-for-ai/training/benchmark-docker/mpt-llm-foundry", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/scale-model-training", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/megatron-lm", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/megatron-lm-history", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/megatron-lm-v24.12-dev", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/megatron-lm-v25.3", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/megatron-lm-v25.4", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/megatron-lm-v25.5", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/pytorch-training", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-history", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-v25.3", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-v25.4", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-v25.5", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/jax-maxtext", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-history", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v25.4", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/mpt-llm-foundry", "os": ["linux"]},
 
     {"file": "how-to/rocm-for-ai/fine-tuning/index", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/fine-tuning/overview", "os": ["linux"]},
@@ -72,7 +132,16 @@ article_pages = [
     {"file": "how-to/rocm-for-ai/inference/hugging-face-models", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/inference/llm-inference-frameworks", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/inference/benchmark-docker/vllm", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-history", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.4.3", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.6.4", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.6.6", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.7.3-20250325", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.8.3-20250415", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.8.5-20250513", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.8.5-20250521", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.9.0.1-20250605", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/vllm-0.9.0.1-20250702", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/inference/benchmark-docker/pytorch-inference", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/inference/deploy-your-model", "os": ["linux"]},
 
