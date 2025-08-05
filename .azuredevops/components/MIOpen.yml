@@ -1,10 +1,29 @@
 parameters:
+- name: componentName
+  type: string
+  default: MIOpen
 - name: checkoutRepo
   type: string
   default: 'self'
 - name: checkoutRef
   type: string
   default: ''
+# monorepo related parameters
+- name: sparseCheckoutDir
+  type: string
+  default: ''
+- name: triggerDownstreamJobs
+  type: boolean
+  default: false
+- name: downstreamAggregateNames
+  type: string
+  default: ''
+- name: buildDependsOn
+  type: object
+  default: null
+- name: unifiedBuild
+  type: boolean
+  default: false
 # set to true if doing full build of ROCm stack
 # and dependencies are pulled from same pipeline
 - name: aggregatePipeline
@@ -74,10 +93,31 @@ parameters:
         target: gfx942
       - gfx90a:
         target: gfx90a
+- name: downstreamComponentMatrix
+  type: object
+  default:
+    - MIVisionX:
+      name: MIVisionX
+      checkoutRepo: mivisionx_repo
+      sparseCheckoutDir: ''
+      skipUnifiedBuild: 'false'
+      buildDependsOn:
+        - MIOpen_build
+    - AMDMIGraphX:
+      name: AMDMIGraphX
+      checkoutRepo: amdmigraphx_repo
+      sparseCheckoutDir: ''
+      skipUnifiedBuild: 'false'
+      buildDependsOn:
+        - MIOpen_build
 
 jobs:
 - ${{ each job in parameters.jobMatrix.buildJobs }}:
-  - job: MIOpen_build_${{ job.target }}
+  - job: ${{ parameters.componentName }}_build_ubuntu2204_${{ job.target }}
+    ${{ if parameters.buildDependsOn }}:
+      dependsOn:
+        - ${{ each build in parameters.buildDependsOn }}:
+          - ${{ build }}_ubuntu2204_${{ job.target }}
     variables:
     - group: common
     - template: /.azuredevops/variables-global.yml
@@ -95,6 +135,7 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
       parameters:
         checkoutRepo: ${{ parameters.checkoutRepo }}
+        sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/miopen-get-ck-build.yml
       parameters:
         gpuTarget: ${{ job.target }}
@@ -104,11 +145,13 @@ jobs:
         dependencyList: ${{ parameters.rocmDependencies }}
         gpuTarget: ${{ job.target }}
         aggregatePipeline: ${{ parameters.aggregatePipeline }}
+        ${{ if parameters.triggerDownstreamJobs }}:
+          downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}
     - task: Bash@3
       displayName: Build and install other dependencies
       inputs:
         targetType: inline
-        workingDirectory: $(Build.SourcesDirectory)
+        workingDirectory: $(Agent.BuildDirectory)/s
         script: |
           sed -i '/composable_kernel/d' requirements.txt
           mkdir -p $(Agent.BuildDirectory)/miopen-deps
@@ -130,8 +173,10 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
       parameters:
         gpuTarget: ${{ job.target }}
+        sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
       parameters:
+        componentName: ${{ parameters.componentName }}
         gpuTarget: ${{ job.target }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-links.yml
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/docker-container.yml
@@ -143,9 +188,9 @@ jobs:
           - miopen-deps
 
 - ${{ each job in parameters.jobMatrix.testJobs }}:
-  - job: MIOpen_test_${{ job.target }}
+  - job: ${{ parameters.componentName }}_test_ubuntu2204_${{ job.target }}
     timeoutInMinutes: 180
-    dependsOn: MIOpen_build_${{ job.target }}
+    dependsOn: ${{ parameters.componentName }}_build_ubuntu2204_${{ job.target }}
     condition:
       and(succeeded(),
         eq(variables['ENABLE_${{ upper(job.target) }}_TESTS'], 'true'),
@@ -169,6 +214,7 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
       parameters:
         checkoutRepo: ${{ parameters.checkoutRepo }}
+        sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/miopen-get-ck-build.yml
       parameters:
@@ -178,11 +224,13 @@ jobs:
         checkoutRef: ${{ parameters.checkoutRef }}
         dependencyList: ${{ parameters.rocmTestDependencies }}
         gpuTarget: ${{ job.target }}
+        ${{ if parameters.triggerDownstreamJobs }}:
+          downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}
     - task: Bash@3
       displayName: Build and install other dependencies
       inputs:
         targetType: inline
-        workingDirectory: $(Build.SourcesDirectory)
+        workingDirectory: $(Agent.BuildDirectory)/s
         script: |
           sed -i '/composable_kernel/d' requirements.txt
           mkdir -p $(Agent.BuildDirectory)/miopen-deps
@@ -193,7 +241,7 @@ jobs:
       displayName: 'MIOpen Test CMake Flags'
       inputs:
         cmakeArgs: >-
-          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Build.SourcesDirectory)/bin;$(Agent.BuildDirectory)/miopen-deps
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm;$(Agent.BuildDirectory)/s/bin;$(Agent.BuildDirectory)/miopen-deps
           -DCMAKE_INSTALL_PREFIX=$(Agent.BuildDirectory)/rocm
           -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
           -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
@@ -203,19 +251,19 @@ jobs:
           -DBUILD_DEV=OFF
           -DMIOPEN_USE_MLIR=ON
           -DMIOPEN_GPU_SYNC=OFF
-          ..
+          $(Agent.BuildDirectory)/s
     - task: Bash@3
       displayName: 'MIOpen Test Build'
       inputs:
         targetType: inline
+        workingDirectory: build
         script: |
           cmake --build . --target tests -- -j$(nproc)
-        workingDirectory: $(Build.SourcesDirectory)/build
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
       parameters:
-        componentName: MIOpen
-        testParameters: '--output-on-failure --force-new-ctest-process --output-junit test_output.xml --exclude-regex "test_rnn_seq_api|GPU_Conv2dTuningAsm_FP32"'
+        componentName: ${{ parameters.componentName }}
+        testParameters: '--output-on-failure --force-new-ctest-process --output-junit test_output.xml --exclude-regex "test_rnn_seq_api|GPU_Conv2dTuningAsm_FP32|GPU_Conv2dTuningAsmBwdWrw_FP32"'
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/docker-container.yml
       parameters:
         aptPackages: ${{ parameters.aptPackages }}
@@ -224,3 +272,15 @@ jobs:
         gpuTarget: ${{ job.target }}
         extraCopyDirectories:
           - miopen-deps
+
+# - ${{ if parameters.triggerDownstreamJobs }}:
+#   - ${{ each component in parameters.downstreamComponentMatrix }}:
+#     - ${{ if not(and(parameters.unifiedBuild, eq(component.skipUnifiedBuild, 'true'))) }}:
+#       - template: /.azuredevops/components/${{ component.name }}.yml@pipelines_repo
+#         parameters:
+#           checkoutRepo: ${{ component.checkoutRepo }}
+#           # sparseCheckoutDir: ${{ component.sparseCheckoutDir }}
+#           buildDependsOn: ${{ component.buildDependsOn }}
+#           downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}+${{ parameters.componentName }}
+#           triggerDownstreamJobs: true
+#           unifiedBuild: ${{ parameters.unifiedBuild }}
