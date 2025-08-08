@@ -19,9 +19,9 @@ subtrees:
 
 - caption: Install
   entries:
-  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/latest/
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/
     title: ROCm on Linux
-  - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/
+  - url: https://rocm.docs.amd.com/projects/install-on-windows/en/latest/
     title: HIP SDK on Windows
   - url: https://rocm.docs.amd.com/projects/radeon/en/latest/index.html
     title: ROCm on Radeon GPUs
@@ -82,6 +82,8 @@ subtrees:
             title: vLLM inference performance testing
           - file: how-to/rocm-for-ai/inference/benchmark-docker/pytorch-inference.rst
             title: PyTorch inference performance testing
+          - file: how-to/rocm-for-ai/inference/benchmark-docker/sglang.rst
+            title: SGLang inference performance testing
           - file: how-to/rocm-for-ai/inference/deploy-your-model.rst
             title: Deploy your model
 

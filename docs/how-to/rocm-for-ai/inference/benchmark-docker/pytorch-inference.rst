@@ -103,7 +103,7 @@ PyTorch inference performance testing
 
          The Chai-1 benchmark uses a specifically selected Docker image using ROCm 6.2.3 and PyTorch 2.3.0 to address an accuracy issue.
 
-   .. container:: model-doc pyt_clip_inference pyt_mochi_video_inference pyt_wan2.1_inference
+   .. container:: model-doc pyt_clip_inference pyt_mochi_video_inference pyt_wan2.1_inference pyt_janus_pro_inference
 
       Use the following command to pull the `ROCm PyTorch Docker image <https://hub.docker.com/layers/rocm/pytorch/latest/images/sha256-05b55983e5154f46e7441897d0908d79877370adca4d1fff4899d9539d6c4969>`__ from Docker Hub.
 
@@ -140,22 +140,27 @@ PyTorch inference performance testing
       .. code-block:: shell
 
          export MAD_SECRETS_HFTOKEN="your personal Hugging Face token to access gated models"
-         python3 tools/run_models.py --tags {{model.mad_tag}} --keep-model-dir --live-output --timeout 28800
+         madengine run \
+             --tags {{model.mad_tag}} \
+             --keep-model-dir \
+             --live-output \
+             --timeout 28800
 
       MAD launches a Docker container with the name
       ``container_ci-{{model.mad_tag}}``. The latency and throughput reports of the
-      model are collected in ``perf.csv``.
+      model are collected in ``perf_{{model.mad_tag}}.csv``.
 
+      {% if model.mad_tag != "pyt_janus_pro_inference" %}
       .. note::
 
          For improved performance, consider enabling TunableOp. By default,
          ``{{model.mad_tag}}`` runs with TunableOp disabled (see
          `<https://github.com/ROCm/MAD/blob/develop/models.json>`__). To enable
-         it, edit the default run behavior in the ``tools/run_models.py``-- update the model's
-         run ``args`` by changing ``--tunableop off`` to ``--tunableop on``.
+         it, include the ``--tunableop on`` argument in your run.
 
          Enabling TunableOp triggers a two-pass run -- a warm-up followed by the performance-collection run.
          Although this might increase the initial training time, it can result in a performance gain.
+      {% endif %}
 
       {% endfor %}
    {% endfor %}
@@ -163,8 +168,10 @@ PyTorch inference performance testing
 Further reading
 ===============
 
+- To learn more about MAD and the ``madengine`` CLI, see the `MAD usage guide <https://github.com/ROCm/MAD?tab=readme-ov-file#usage-guide>`__.
+
 - To learn more about system settings and management practices to configure your system for
-  MI300X accelerators, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`_.
+  AMD Instinct MI300X series accelerators, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`_.
 
 - For application performance optimization strategies for HPC and AI workloads,
   including inference with vLLM, see :doc:`../../inference-optimization/workload`.
