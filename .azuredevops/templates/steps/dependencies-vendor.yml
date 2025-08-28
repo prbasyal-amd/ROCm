@@ -17,6 +17,7 @@ steps:
 - ${{ each dependency in parameters.dependencyList }}:
   - task: DownloadPipelineArtifact@2
     displayName: Download ${{ dependency }}
+    retryCountOnTaskFailure: 3
     inputs:
       project: ROCm-CI
       buildType: specific
