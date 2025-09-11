@@ -294,6 +294,7 @@ Multicore
 Multithreaded
 MyEnvironment
 MyST
+NANOO
 NBIO
 NBIOs
 NCCL
@@ -672,6 +673,7 @@ github
 globals
 gnupg
 grayscale
+gx
 gzip
 heterogenous
 hipBLAS
@@ -744,6 +746,7 @@ logits
 lossy
 macOS
 matchers
+maxtext
 megatron
 microarchitecture
 migraphx
@@ -781,6 +784,7 @@ parallelizing
 param
 parameterization
 passthrough
+pe
 perfcounter
 performant
 perl
@@ -810,6 +814,7 @@ profiler
 profilers
 protobuf
 pseudorandom
+px
 py
 pytorch
 recommender
@@ -920,6 +925,7 @@ toolchain
 toolchains
 toolset
 toolsets
+torchtitan
 torchvision
 tqdm
 tracebacks

@@ -1,7 +1,7 @@
 parameters:
 - name: componentName
   type: string
-  default: hipSPARSELt
+  default: origami
 - name: checkoutRepo
   type: string
   default: 'self'
@@ -32,75 +32,73 @@ parameters:
 - name: aptPackages
   type: object
   default:
-    - ninja-build
-    - python3-venv
-    - libmsgpack-dev
+    - cmake
     - git
+    - ninja-build
+    - wget
+    - python3
+    - python3-dev
     - python3-pip
-    - gfortran
-    - libgfortran5
-    - libopenblas-dev
 - name: pipModules
   type: object
   default:
-    - joblib
-    - msgpack
+    - nanobind>=2.0.0
 - name: rocmDependencies
   type: object
   default:
-    - aomp
     - clr
-    - hipSPARSE
     - llvm-project
-    - rocBLAS
-    - rocm_smi_lib
+    - rocm-cmake
     - rocminfo
-    - rocprofiler-register
     - ROCR-Runtime
-    - roctracer
+    - rocprofiler-register
 - name: rocmTestDependencies
   type: object
   default:
-    - aomp
     - clr
     - llvm-project
-    - hipBLAS-common
-    - hipBLASLt
-    - rocBLAS
+    - rocm-cmake
     - rocminfo
-    - rocprofiler-register
     - ROCR-Runtime
-    - roctracer
+    - rocprofiler-register
 
 - name: jobMatrix
   type: object
   default:
     buildJobs:
-      - { os: ubuntu2204, packageManager: apt, target: gfx942 }
+      - { os: ubuntu2204, packageManager: apt }
+      - { os: almalinux8, packageManager: dnf }
     testJobs:
       - { os: ubuntu2204, packageManager: apt, target: gfx942 }
+      - { os: ubuntu2204, packageManager: apt, target: gfx90a }
+- name: downstreamComponentMatrix
+  type: object
+  default:
+    - hipBLASLt:
+      name: hipBLASLt
+      sparseCheckoutDir: projects/hipblaslt
+      skipUnifiedBuild: 'false'
+      buildDependsOn:
+        - origami_build
 
 jobs:
 - ${{ each job in parameters.jobMatrix.buildJobs }}:
-  - job: ${{ parameters.componentName }}_build_${{ job.os }}_${{ job.target }}
+  - job: origami_build_${{ job.os }}
     ${{ if parameters.buildDependsOn }}:
       dependsOn:
         - ${{ each build in parameters.buildDependsOn }}:
-          - ${{ build }}_${{ job.os }}_${{ job.target }}
+          - ${{ build }}_${{ job.os }}
     variables:
     - group: common
     - template: /.azuredevops/variables-global.yml
-    - name: HIP_ROCCLR_HOME
-      value: $(Build.BinariesDirectory)/rocm
-    - name: TENSILE_ROCM_ASSEMBLER_PATH
-      value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang
-    - name: CMAKE_CXX_COMPILER
-      value: $(Agent.BuildDirectory)/rocm/llvm/bin/hipcc
-    - name: TENSILE_ROCM_OFFLOAD_BUNDLER_PATH
-      value: $(Agent.BuildDirectory)/rocm/llvm/bin/clang-offload-bundler
-    - name: PATH
-      value: $(Agent.BuildDirectory)/rocm/llvm/bin:$(Agent.BuildDirectory)/rocm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
-    pool: ${{ variables.MEDIUM_BUILD_POOL }}
+    - name: ROCM_PATH
+      value: $(Agent.BuildDirectory)/rocm
+    pool:
+      vmImage: ${{ variables.BASE_BUILD_POOL }}
+    ${{ if eq(job.os, 'almalinux8') }}:
+      container:
+        image: rocmexternalcicd.azurecr.io/manylinux228:latest
+        endpoint: ContainerService3
     workspace:
       clean: all
     steps:
@@ -114,89 +112,54 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
       parameters:
         checkoutRepo: ${{ parameters.checkoutRepo }}
-        # ignore sparse checkout for monorepo case, we want access to hipblaslt directory
-        # sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
+        sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
       parameters:
         checkoutRef: ${{ parameters.checkoutRef }}
         dependencyList: ${{ parameters.rocmDependencies }}
-        gpuTarget: ${{ job.target }}
         os: ${{ job.os }}
         aggregatePipeline: ${{ parameters.aggregatePipeline }}
         ${{ if parameters.triggerDownstreamJobs }}:
-          downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}
-  # Build and install gtest and lapack
-  # $(Pipeline.Workspace)/deps is a temporary folder for the build process
-  # $(Pipeline.Workspace)/s/deps is part of the hipSPARSELt repo
-    - script: mkdir $(Pipeline.Workspace)/deps
-      displayName: Create temp folder for external dependencies
-  # hipSPARSELt already has a CMake script for external deps, so we can just run that
-  # https://github.com/ROCm/hipSPARSELt/blob/develop/deps/CMakeLists.txt
-    - ${{ if ne(parameters.sparseCheckoutDir, '') }}:
-        script: cmake $(Pipeline.Workspace)/s/projects/hipsparselt/deps
-      ${{ else }}:
-        script: cmake $(Pipeline.Workspace)/s/deps
-      displayName: Configure hipSPARSELt external dependencies
-      workingDirectory: $(Pipeline.Workspace)/deps
-    - script: make
-      displayName: Build hipSPARSELt external dependencies
-      workingDirectory: $(Pipeline.Workspace)/deps
-    - script: sudo make install
-      displayName: Install hipSPARSELt external dependencies
-      workingDirectory: $(Pipeline.Workspace)/deps
+            downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
       parameters:
         os: ${{ job.os }}
         extraBuildFlags: >-
-          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_PREFIX_PATH=$(Agent.BuildDirectory)/rocm
           -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++
-          -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
-          -DCMAKE_Fortran_COMPILER=f95
-          -DAMDGPU_TARGETS=${{ job.target }}
-          -DTensile_LOGIC=
-          -DTensile_CPU_THREADS=
-          -DTensile_LIBRARY_FORMAT=msgpack
-          -DCMAKE_PREFIX_PATH="$(Agent.BuildDirectory)/rocm"
-          -DROCM_PATH=$(Agent.BuildDirectory)/rocm
-          -DBUILD_CLIENTS_TESTS=ON
-          -DBUILD_USE_LOCAL_TENSILE=OFF
+          -DORIGAMI_BUILD_SHARED_LIBS=ON
+          -DORIGAMI_ENABLE_PYTHON=ON
+          -DORIGAMI_BUILD_TESTING=ON
           -GNinja
-        ${{ if ne(parameters.sparseCheckoutDir, '') }}:
-          cmakeSourceDir: $(Build.SourcesDirectory)/projects/hipsparselt
-          cmakeBuildDir: $(Build.SourcesDirectory)/projects/hipsparselt
+    - ${{ if ne(job.os, 'almalinux8') }}:
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Build Directory Artifact'
+        inputs:
+          targetPath: '$(Agent.BuildDirectory)/s/build'
+          artifact: '${{ parameters.componentName }}_${{ job.os }}_build_dir'
+          publishLocation: 'pipeline'
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Python Source Artifact'
+        inputs:
+          targetPath: '$(Agent.BuildDirectory)/s/python'
+          artifact: '${{ parameters.componentName }}_${{ job.os }}_python_src'
+          publishLocation: 'pipeline'
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/manifest.yml
       parameters:
         componentName: ${{ parameters.componentName }}
-        gpuTarget: ${{ job.target }}
-        os: ${{ job.os }}
         sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
+        os: ${{ job.os }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-upload.yml
       parameters:
-        componentName: ${{ parameters.componentName }}
-        gpuTarget: ${{ job.target }}
         os: ${{ job.os }}
+        componentName: ${{ parameters.componentName }}
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/artifact-links.yml
-    - ${{ if eq(job.os, 'ubuntu2204') }}:
-      - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/docker-container.yml
-        parameters:
-          aptPackages: ${{ parameters.aptPackages }}
-          pipModules: ${{ parameters.pipModules }}
-          gpuTarget: ${{ job.target }}
-          extraCopyDirectories:
-            - deps
-          extraPaths: /home/user/workspace/rocm/llvm/bin:/home/user/workspace/rocm/bin
-          extraEnvVars:
-            - HIP_ROCCLR_HOME:::/home/user/workspace/rocm
-            - TENSILE_ROCM_ASSEMBLER_PATH:::/home/user/workspace/rocm/llvm/bin/clang
-            - CMAKE_CXX_COMPILER:::/home/user/workspace/rocm/llvm/bin/hipcc
-            - TENSILE_ROCM_OFFLOAD_BUNDLER_PATH:::/home/user/workspace/rocm/llvm/bin/clang-offload-bundler
-          installLatestCMake: true
 
 - ${{ if eq(parameters.unifiedBuild, False) }}:
   - ${{ each job in parameters.jobMatrix.testJobs }}:
-    - job: ${{ parameters.componentName }}_test_${{ job.os }}_${{ job.target }}
+    - job: origami_test_${{ job.os }}_${{ job.target }}
       timeoutInMinutes: 120
-      dependsOn: ${{ parameters.componentName }}_build_${{ job.os }}_${{ job.target }}
+      dependsOn: origami_build_${{ job.os }}
       condition:
         and(succeeded(),
           eq(variables['ENABLE_${{ upper(job.target) }}_TESTS'], 'true'),
@@ -210,36 +173,64 @@ jobs:
       workspace:
         clean: all
       steps:
-      - checkout: none
+      - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
+        parameters:
+          checkoutRepo: ${{ parameters.checkoutRepo }}
+          sparseCheckoutDir: ${{ parameters.sparseCheckoutDir }}
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
         parameters:
           aptPackages: ${{ parameters.aptPackages }}
+          pipModules: ${{ parameters.pipModules }}
           packageManager: ${{ job.packageManager }}
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml
         parameters:
           preTargetFilter: ${{ parameters.componentName }}
-          gpuTarget: ${{ job.target }}
           os: ${{ job.os }}
+      - task: DownloadPipelineArtifact@2
+        displayName: 'Download Build Directory Artifact'
+        inputs:
+          artifact: '${{ parameters.componentName }}_${{ job.os }}_build_dir'
+          path: '$(Agent.BuildDirectory)/s/build'
+      - task: DownloadPipelineArtifact@2
+        displayName: 'Download Python Source Artifact'
+        inputs:
+          artifact: '${{ parameters.componentName }}_${{ job.os }}_python_src'
+          path: '$(Agent.BuildDirectory)/s/python'
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
         parameters:
           checkoutRef: ${{ parameters.checkoutRef }}
           dependencyList: ${{ parameters.rocmTestDependencies }}
-          gpuTarget: ${{ job.target }}
           os: ${{ job.os }}
+          gpuTarget: ${{ job.target }}
           ${{ if parameters.triggerDownstreamJobs }}:
             downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
-      - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
-        parameters:
-          componentName: ${{ parameters.componentName }}
-          os: ${{ job.os }}
-          testDir: '$(Agent.BuildDirectory)/rocm/bin'
-          testExecutable: './hipsparselt-test'
-          testParameters: '--gtest_output=xml:./test_output.xml --gtest_color=yes --gtest_filter=*pre_checkin*'
+      - script: |
+          export PYTHONPATH=$(Agent.BuildDirectory)/s/build/python:$PYTHONPATH
+
+          echo "--- Running origami_test.py ---"
+          python3 $(Agent.BuildDirectory)/s/python/origami_test.py
+          
+          echo "--- Running origami_grid_test.py ---"
+          python3 $(Agent.BuildDirectory)/s/python/origami_grid_test.py
+        displayName: 'Run Python Binding Tests'
+        condition: succeeded()
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/docker-container.yml
         parameters:
           aptPackages: ${{ parameters.aptPackages }}
           pipModules: ${{ parameters.pipModules }}
           environment: test
           gpuTarget: ${{ job.target }}
+
+- ${{ if parameters.triggerDownstreamJobs }}:
+  - ${{ each component in parameters.downstreamComponentMatrix }}:
+    - ${{ if not(and(parameters.unifiedBuild, eq(component.skipUnifiedBuild, 'true'))) }}:
+      - template: /.azuredevops/components/${{ component.name }}.yml@pipelines_repo
+        parameters:
+          checkoutRepo: ${{ parameters.checkoutRepo }}
+          sparseCheckoutDir: ${{ component.sparseCheckoutDir }}
+          buildDependsOn: ${{ component.buildDependsOn }}
+          downstreamAggregateNames: ${{ parameters.downstreamAggregateNames }}+${{ parameters.componentName }}
+          triggerDownstreamJobs: true
+          unifiedBuild: ${{ parameters.unifiedBuild }}
