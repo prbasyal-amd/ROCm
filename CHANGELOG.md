@@ -445,7 +445,7 @@ HIP runtime has the following functional improvements which improves runtime per
 
 #### Changed
 
-* The NVIDIA backend now requires CUB, Thrust, and libcu++ 2.7.0. If they aren't found, they will be downloaded from the NVIDIA CCCL repository.
+* The CUDA backend now requires CUB, Thrust, and libcu++ 2.7.0. If they aren't found, they will be downloaded from the CUDA CCCL repository.
 * Updated `thread_load` and `thread_store` to align hipCUB with CUB.
 * All kernels now have hidden symbol visibility. All symbols now have inline namespaces that include the library version, (for example, `hipcub::HIPCUB_300400_NS::symbol` instead of `hipcub::symbol`), letting the user link multiple libraries built with different versions of hipCUB.
 * Modified the broadcast kernel in warp scan benchmarks. The reported performance may be different to previous versions.
@@ -469,7 +469,7 @@ HIP runtime has the following functional improvements which improves runtime per
 #### Known issues
 
 * `BlockAdjacentDifference::FlagHeads`, `BlockAdjacentDifference::FlagTails` and `BlockAdjacentDifference::FlagHeadsAndTails` have been removed from hipCUB's CUB backend. They were already deprecated as of version 2.12.0 of hipCUB and they were removed from CCCL (CUB) as of CCCL's 2.6.0 release.
-* `BlockScan::InclusiveScan` for the NVIDIA backend does not compute the block aggregate correctly when passing an initial value parameter. This behavior is not matched by the AMD backend.
+* `BlockScan::InclusiveScan` for the CUDA backend does not compute the block aggregate correctly when passing an initial value parameter. This behavior is not matched by the AMD backend.
 
 #### Upcoming changes
 
@@ -491,7 +491,7 @@ HIP runtime has the following functional improvements which improves runtime per
 
 #### Added
 
-* Documentation clarifying how hipfort is built for the NVIDIA platform.
+* Documentation clarifying how hipfort is built for the CUDA platform.
 
 #### Changed
 
@@ -538,7 +538,7 @@ HIP runtime has the following functional improvements which improves runtime per
 
 #### Resolved issues
   
-* Corrected the value of `lwork` returned by various `bufferSize` functions to be consistent with NVIDIA cuSOLVER. The following functions now return `lwork` so that the workspace size (in bytes) is `sizeof(T) * lwork`, rather than `lwork`. To restore the original behavior, set the environment variable `HIPSOLVER_BUFFERSIZE_RETURN_BYTES`.
+* Corrected the value of `lwork` returned by various `bufferSize` functions to be consistent with CUDA cuSOLVER. The following functions now return `lwork` so that the workspace size (in bytes) is `sizeof(T) * lwork`, rather than `lwork`. To restore the original behavior, set the environment variable `HIPSOLVER_BUFFERSIZE_RETURN_BYTES`.
   * `hipsolverXorgbr_bufferSize`, `hipsolverXorgqr_bufferSize`, `hipsolverXorgtr_bufferSize`, `hipsolverXormqr_bufferSize`, `hipsolverXormtr_bufferSize`, `hipsolverXgesvd_bufferSize`, `hipsolverXgesvdj_bufferSize`, `hipsolverXgesvdBatched_bufferSize`, `hipsolverXgesvdaStridedBatched_bufferSize`, `hipsolverXsyevd_bufferSize`, `hipsolverXsyevdx_bufferSize`, `hipsolverXsyevj_bufferSize`, `hipsolverXsyevjBatched_bufferSize`, `hipsolverXsygvd_bufferSize`, `hipsolverXsygvdx_bufferSize`, `hipsolverXsygvj_bufferSize`, `hipsolverXsytrd_bufferSize`, `hipsolverXsytrf_bufferSize`.
 
 ### **hipSPARSE** (4.0.1)
@@ -566,7 +566,7 @@ HIP runtime has the following functional improvements which improves runtime per
 
 #### Known issues
   
-* In `hipsparseSpSM_solve()`, the external buffer is passed as a parameter. This does not match the NVIDIA CUDA cuSPARSE API. This extra external buffer parameter will be removed in a future release. For now, this extra parameter can be ignored and nullptr passed in because it is unused internally.
+* In `hipsparseSpSM_solve()`, the external buffer is passed as a parameter. This does not match the CUDA cuSPARSE API. This extra external buffer parameter will be removed in a future release. For now, this extra parameter can be ignored and nullptr passed in because it is unused internally.
 
 ### **hipSPARSELt** (0.2.4)
 
@@ -640,7 +640,7 @@ HIP runtime has the following functional improvements which improves runtime per
 * `llvm-flang`, AMD's next-generation Fortran compiler. It's a re-implementation of the Fortran frontend that can be found at `llvm/llvm-project/flang` on GitHub.
 * Comgr support for an in-memory virtual file system (VFS) for storing temporary files generated during intermediate compilation steps to improve performance in the device library link step.
 * Compiler support of a new target-specific builtin `__builtin_amdgcn_processor_is` for late or deferred queries of the current target processor, and  `__builtin_amdgcn_is_invocable` to determine the current target processor ability to invoke a particular builtin. 
-* HIPIFY support for NVIDIA CUDA 12.9.1 APIs. Added support for all new device and host APIs, including FP4, FP6, and FP128, and support for the corresponding ROCm HIP equivalents.
+* HIPIFY support for CUDA 12.9.1 APIs. Added support for all new device and host APIs, including FP4, FP6, and FP128, and support for the corresponding ROCm HIP equivalents.
 
 #### Changed
 
