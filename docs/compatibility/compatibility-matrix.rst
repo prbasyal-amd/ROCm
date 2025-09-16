@@ -30,9 +30,9 @@ compatibility and system requirements.
       ,Ubuntu 22.04.5,Ubuntu 22.04.5,Ubuntu 22.04.5
       ,"RHEL 9.6, 9.4","RHEL 9.6, 9.4","RHEL 9.5, 9.4"
       ,RHEL 8.10 [#rhel-700]_,RHEL 8.10 [#rhel-700],RHEL 8.10 [#rhel-700]
-      ,SLES 15 SP7,"SLES 15 SP7, SP6","SLES 15 SP6, SP5"
+      ,SLES 15 SP7 [#sles-db-700]_,"SLES 15 SP7, SP6","SLES 15 SP6, SP5"
       ,"Oracle Linux 9, 8 [#ol-700-mi300x]_","Oracle Linux 9, 8 [#ol-mi300x]_",Oracle Linux 8.10 [#ol-mi300x]_
-      ,Debian 12,Debian 12 [#single-node]_,
+      ,Debian 12 [#sles-db-700]_,Debian 12 [#single-node]_,
       ,Azure Linux 3.0 [#az-mi300x]_,Azure Linux 3.0 [#az-mi300x]_,
       ,Rocky Linux 9 [#rl-700]_,,
       ,.. _architecture-support-compatibility-matrix:,,
@@ -44,15 +44,15 @@ compatibility and system requirements.
       ,RDNA3,RDNA3,RDNA3
       ,RDNA2,RDNA2,RDNA2
       ,.. _gpu-support-compatibility-matrix:,,
-      :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx950,,
-      ,gfx1201 [#RDNA-OS]_,gfx1201 [#RDNA-OS]_,
-      ,gfx1200 [#RDNA-OS]_,gfx1200 [#RDNA-OS]_,
-      ,gfx1101 [#RDNA-OS]_ [#7700XT-OS]_,gfx1101 [#RDNA-OS]_ [#7700XT-OS]_,
-      ,gfx1100,gfx1100,gfx1100
-      ,gfx1030,gfx1030,gfx1030
-      ,gfx942,gfx942,gfx942
-      ,gfx90a,gfx90a,gfx90a
-      ,gfx908,gfx908,gfx908
+      :doc:`GPU / LLVM target <rocm-install-on-linux:reference/system-requirements>`,gfx950 [#mi350x-os]_,,
+      ,gfx1201 [#RDNA-OS-700]_,gfx1201 [#RDNA-OS]_,
+      ,gfx1200 [#RDNA-OS-700]_,gfx1200 [#RDNA-OS]_,
+      ,gfx1101 [#RDNA-OS-700]_ [#rd-v710],gfx1101 [#RDNA-OS]_ [#7700XT-OS]_,
+      ,gfx1100 [#RDNA-OS-700]_,gfx1100,gfx1100
+      ,gfx1030 [#RDNA-OS-700]_ [#rd-v620]_,gfx1030,gfx1030
+      ,gfx942 [#mi325x-os]_ [#mi300x-os]_[#mi300A-os],gfx942,gfx942
+      ,gfx90a [#mi200x-os]_,gfx90a,gfx90a
+      ,gfx908 [#mi100-os]_,gfx908,gfx908
       ,,,
       FRAMEWORK SUPPORT,.. _framework-support-compatibility-matrix:,,
       :doc:`PyTorch <../compatibility/ml-compatibility/pytorch-compatibility>`,"2.7, 2.6, 2.5, 2.4, 2.3","2.6, 2.5, 2.4, 2.3","2.4, 2.3, 2.2, 2.1, 2.0, 1.13"
@@ -159,14 +159,23 @@ compatibility and system requirements.
 .. rubric:: Footnotes
 
 .. [#rhel-700] RHEL 8.10 is only supported on AMD Instinct MI300X, MI300A, MI250X, MI250, MI210, and MI100 GPUs.
-.. [#ol-700-mi300x] **For ROCm 7.0** - Oracle Linux 9 is supported only on AMD Instinct MI300X, MI350X, and MI355X. Oracle Linux 8 is only supported on AMD Instinct MI300X.
-.. [#ol-mi300x] **Prior ROCm 7.0** - Oracle Linux is supported only on AMD Instinct MI300X.
-.. [#sles-db-700] SLES 15 SP7 and Debian 12 are only supported on AMD Instinct MI300X, MI300A, MI250X, MI250, and MI210 GPUs.
+.. [#ol-700-mi300x] **For ROCm 7.0.0** - Oracle Linux 9 is supported only on AMD Instinct MI355X, MI350X, and MI300X GPUs. Oracle Linux 8 is supported only on AMD Instinct MI300X GPUs.
+.. [#ol-mi300x] **Prior ROCm 7.0.0** - Oracle Linux is supported only on AMD Instinct MI300X GPUs.
+.. [#sles-db-700] **For ROCm 7.0.0** - SLES 15 SP7 and Debian 12 are only supported on AMD Instinct MI300X, MI300A, MI250X, MI250, and MI210 GPUs.
 .. [#az-mi300x] Starting ROCm 6.4.0, Azure Linux 3.0 is supported only on AMD Instinct MI300X and AMD Radeon PRO V710.
 .. [#rl-700] Rocky Linux 9 is only supported on AMD Instinct MI300X and MI300A GPUs.
 .. [#single-node] **Prior to ROCm 7.0.0** - Debian 12 is supported only on AMD Instinct MI300X for single-node functionality.
-.. [#az-mi300x] Starting from ROCm 6.4.0, Azure Linux 3.0 is supported only on AMD Instinct MI300X and AMD Radeon PRO V710.
+.. [#mi350x-os] AMD Instinct MI355X (gfx950) and MI350X(gfx950) GPUs are only supported on Ubuntu 24.04.3, Ubuntu 22.04.5, RHEL 9.6, RHEL 9.4, and Oracle Linux 9.
+.. [#RDNA-OS-700] **For ROCm 7.0.0** AMD Radeon PRO AI PRO R9700 (gfx1201), AMD Radeon RX 9070 XT (gfx1201), AMD Radeon RX 9070 GRE (gfx1201), AMD Radeon RX 9070 (gfx1201), AMD Radeon RX 9060 XT (gfx1200), AMD Radeon RX 7800 XT (gfx1101), AMD Radeon RX 7700 XT (gfx1101), AMD Radeon PRO W7700 (gfx1101), AMD Radeon PRO W6800 (gfx1030) are only supported on Ubuntu 24.04.3, Ubuntu 22.04.5, and RHEL 9.6.
 .. [#RDNA-OS] Radeon AI PRO R9700, Radeon RX 9070 XT (gfx1201), Radeon RX 9060 XT (gfx1200), Radeon PRO W7700 (gfx1101), and Radeon RX 7800 XT (gfx1101) are supported only on Ubuntu 24.04.2, Ubuntu 22.04.5, RHEL 9.6, and RHEL 9.4.
+.. [#rd-v710] AMD Radeon PRO V710 (gfx1101) is only supported on Ubuntu 24.04.3, Ubuntu 22.04.5, RHEL 9.6, and Azure Linux 3.0.
+.. [#rd-v620] AMD Radeon PRO V620 (gfx1030) is only supported on Ubuntu 24.04.3 and Ubuntu 22.04.5.
+.. [#mi350x-os] AMD Instinct MI355X and MI350X GPUs are only supported on Ubuntu 24.04.3, Ubuntu 22.04.5, RHEL 9.6, RHEL 9.4, and Oracle Linux 9.
+.. [#mi325x-os] AMD Instinct MI325X GPU (gfx942) is only supported on Ubuntu 24.04.3, Ubuntu 22.04.5, RHEL 9.6, and RHEL 9.4.
+.. [#mi300x-os] AMD Instinct MI300X GPU (gfx942) is supported on all below listed :ref:`supported_distributions`.
+.. [#mi300A-os] AMD Instinct MI300A GPU (gfx942) is supported only on Ubuntu 24.04, Ubuntu 22.04, RHEL 9.6, RHEL 9.4, RHEL 8.10, SLES 15 SP7, Debian 12, and Rocky Linux 9.
+.. [#mi200x-os] AMD Instinct MI200 Series GPUs are supported only on Ubuntu 24.04, Ubuntu 22.04, RHEL 9.6, RHEL 9.4, RHEL 8.10, SLES 15 SP7, and Debian 12.
+.. [#mi100-os] AMD Instinct MI100 GPU is only supported on Ubuntu 24.04.3, Ubuntu 22.04.5, RHEL 9.6, RHEL 9.4, and RHEL 8.10.
 .. [#7700XT-OS] Radeon RX 7700 XT (gfx1101) is supported only on Ubuntu 24.04.2 and RHEL 9.6.
 .. [#kfd_support] As of ROCm 6.4.0, forward and backward compatibility between the AMD Kernel-mode GPU Driver (KMD) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The supported user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and kernel-space support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
 .. [#ROCT-rocr] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
