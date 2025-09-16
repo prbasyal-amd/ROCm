@@ -224,7 +224,7 @@ For more information about MIGraphX changes, see the [MIGraphX changelog](migrap
 
 #### rocSHMEM Reverse Offload conduit inter-node support
 
-The rocSHMEM communications library has added the RO (Reverse Offload) inter-node communication backend which enables communication between GPUs on different nodes through a NIC, using a host-based CPU proxy to forward communication orders to and from the GPU.  Inter-node communication requires MPI, and is tested with Open MPI and CX7 IB NICs. For more information, see [available network backends](https://rocm.docs.amd.com/projects/rocSHMEM/en/develop/install.html#available-network-backends) for installting rocSHMEM.
+The rocSHMEM communications library has added the RO (Reverse Offload) inter-node communication backend which enables communication between GPUs on different nodes through a NIC, using a host-based CPU proxy to forward communication orders to and from the GPU.  Inter-node communication requires MPI, and is tested with Open MPI and CX7 IB NICs. For more information, see [available network backends](https://rocm.docs.amd.com/projects/rocSHMEM/en/docs-7.0.0/install.html#available-network-backends) for installing rocSHMEM.
 
 See the [rocSHMEM changelog](#rocshmem-3-0-0) for more details.
 
@@ -364,14 +364,14 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
   :margin: auto 0 auto auto
   :::{grid}
   :margin: auto 0 auto auto
-  * [hipBLAS](https://rocm.docs.amd.com/projects/hipBLAS/en/develop/reference/data-type-support.html)
-  * [hipBLASLt](https://rocm.docs.amd.com/projects/hipBLASLt/en/develop/reference/data-type-support.html)
-  * [hipSPARSE](https://rocm.docs.amd.com/projects/hipSPARSE/en/develop/reference/precision.html)
+  * [hipBLAS](https://rocm.docs.amd.com/projects/hipBLAS/en/docs-7.0.0/reference/data-type-support.html)
+  * [hipBLASLt](https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.0.0/reference/data-type-support.html)
+  * [hipSPARSE](https://rocm.docs.amd.com/projects/hipSPARSE/en/docs-7.0.0/reference/precision.html)
   :::
   :::{grid}
   :margin: auto 0 auto auto
-  * [rocSPARSE](https://rocm.docs.amd.com/projects/rocSPARSE/en/develop/reference/precision.html)
-  * [Tensile](https://rocm.docs.amd.com/projects/Tensile/en/develop/src/reference/precision-support.html#precision-support)
+  * [rocSPARSE](https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.0.0/reference/precision.html)
+  * [Tensile](https://rocm.docs.amd.com/projects/Tensile/en/docs-7.0.0/src/reference/precision-support.html#precision-support)
   :::
   ::::
 
@@ -392,15 +392,15 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
   :margin: auto 0 auto auto
   :::{grid-item}
   :margin: auto 0 auto auto
-  * [hipBLASLt](https://rocm.docs.amd.com/projects/hipBLASLt/en/develop/reference/env-variables.html)
-  * [hipSPARSELt](https://rocm.docs.amd.com/projects/hipSPARSELt/en/develop/reference/env-variables.html)
-  * [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/develop/reference/rpp-env-variables.html)
+  * [hipBLASLt](https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.0.0/reference/env-variables.html)
+  * [hipSPARSELt](https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.0.0/reference/env-variables.html)
+  * [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/docs-7.0.0/reference/rpp-env-variables.html)
   :::
   :::{grid-item}
   :margin: auto 0 auto auto
-  * [rocSOLVER](https://rocm.docs.amd.com/projects/rocSOLVER/en/develop/reference/env_variables.html)
-  * [rocSPARSE](https://rocm.docs.amd.com/projects/rocSPARSE/en/develop/reference/env_variables.html)
-  * [Tensile](https://rocm.docs.amd.com/projects/Tensile/en/develop/src/reference/environment-variables.html)
+  * [rocSOLVER](https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.0.0/reference/env_variables.html)
+  * [rocSPARSE](https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.0.0/reference/env_variables.html)
+  * [Tensile](https://rocm.docs.amd.com/projects/Tensile/en/docs-7.0.0/src/reference/environment-variables.html)
   :::
   ::::
 
@@ -495,7 +495,7 @@ The GPU and baseboard firmware releases numbering may vary by GPU family. Note t
       </tr>
       <tr>
           <td>MI210</td>
-          <td>MU5 w/ IFWI 75</td>
+          <td>MU5 w/ IFWI 75 (or later)</td>
           <td>8.4.0.K</td>
       </tr>
       <tr>
