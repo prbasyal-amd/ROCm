@@ -58,11 +58,8 @@ compatibility and system requirements.
       :doc:`PyTorch <../compatibility/ml-compatibility/pytorch-compatibility>`,"2.7, 2.6, 2.5, 2.4, 2.3","2.6, 2.5, 2.4, 2.3","2.4, 2.3, 2.2, 2.1, 2.0, 1.13"
       :doc:`TensorFlow <../compatibility/ml-compatibility/tensorflow-compatibility>`,"2.19.1, 2.18.1","2.18.1, 2.17.1, 2.16.2","2.17.0, 2.16.2, 2.15.1"
       :doc:`JAX <../compatibility/ml-compatibility/jax-compatibility>`,0.6.0,0.4.35,0.4.31
-      :doc:`verl <../compatibility/ml-compatibility/verl-compatibility>` [#verl_compat]_,N/A,N/A,N/A
-      :doc:`Stanford Megatron-LM <../compatibility/ml-compatibility/stanford-megatron-lm-compatibility>`,N/A,N/A,85f95ae
-      :doc:`DGL <../compatibility/ml-compatibility/dgl-compatibility>` [#dgl_compat]_,N/A,N/A,N/A
-      :doc:`Megablocks <../compatibility/ml-compatibility/megablocks-compatibility>`,N/A,N/A,0.7.0
-      :doc:`Taichi <../compatibility/ml-compatibility/taichi-compatibility>` [#taichi_compat]_,N/A,N/A,N/A
+      :doc:`Stanford Megatron-LM <../compatibility/ml-compatibility/stanford-megatron-lm-compatibility>` [#stanford-megatron-lm_compat]_,N/A,N/A,85f95ae
+      :doc:`Megablocks <../compatibility/ml-compatibility/megablocks-compatibility>` [#megablocks_compat]_,N/A,N/A,0.7.0
       `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.22.0,1.20.0,1.17.3
       ,,,
       THIRD PARTY COMMS,.. _thirdpartycomms-support-compatibility-matrix:,,
@@ -74,7 +71,7 @@ compatibility and system requirements.
       CUB,2.6.0,2.5.0,2.3.2
       ,,,
       KMD & USER SPACE [#kfd_support]_,.. _kfd-userspace-support-compatibility-matrix:,,
-      :doc:`KMD versions <rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`,"30.10, 6.4.x, 6.3.x, 6.2.x","6.4.x, 6.3.x, 6.2.x, 6.1.x","6.4.x, 6.3.x, 6.2.x, 6.1.x"
+      :doc:`KMD versions <rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`,"30.10, 6.4.x, 6.3.x","6.4.x, 6.3.x, 6.2.x, 6.1.x","6.4.x, 6.3.x, 6.2.x, 6.1.x"
       ,,,
       ML & COMPUTER VISION,.. _mllibs-support-compatibility-matrix:,,
       :doc:`Composable Kernel <composable_kernel:index>`,1.1.0,1.1.0,1.1.0
@@ -250,7 +247,7 @@ Expand for full historical view of:
 
    .. [#ol-700-mi300x-past-60] **For ROCm 7.0.0** - Oracle Linux 9 is supported only on AMD Instinct MI300X, MI350X, and MI355X. Oracle Linux 8 is only supported on AMD Instinct MI300X.
    .. [#mi300x-past-60] **Prior to ROCm 7.0.0** - Oracle Linux is supported only on AMD Instinct MI300X.
-   .. [#single-node-past-60] **Prior to ROCm 7.0.0 ** - Debian 12 is supported only on AMD Instinct MI300X for single-node functionality.
+   .. [#single-node-past-60] **Prior to ROCm 7.0.0** - Debian 12 is supported only on AMD Instinct MI300X for single-node functionality.
    .. [#az-mi300x-past-60] Starting from ROCm 6.4.0, Azure Linux 3.0 is supported only on AMD Instinct MI300X and AMD Radeon PRO V710.
    .. [#az-mi300x-630-past-60] **Prior ROCm 6.4.0**- Azure Linux 3.0 is supported only on AMD Instinct MI300X.
    .. [#RDNA-OS-past-60] Radeon AI PRO R9700, Radeon RX 9070 XT (gfx1201), Radeon RX 9060 XT (gfx1200), Radeon PRO W7700 (gfx1101), and Radeon RX 7800 XT (gfx1101) are supported only on Ubuntu 24.04.2, Ubuntu 22.04.5, RHEL 9.6, and RHEL 9.4.
@@ -271,6 +268,6 @@ Expand for full historical view of:
    .. [#taichi_compat] Taichi is only supported on ROCm 6.3.2.
    .. [#ray_compat] Ray is only supported on ROCm 6.4.1.
    .. [#llama-cpp_compat] llama.cpp is only supported on ROCm 6.4.0.
-   .. [#kfd_support-past-60] As of ROCm 6.4.0, forward and backward compatibility between the AMD Kernel-mode GPU Driver (KMD) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The tested user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and kernel-space support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
+   .. [#kfd_support-past-60] As of ROCm 6.4.0, forward and backward compatibility between the AMD Kernel-mode GPU Driver (KMD) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The supported user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and kernel-space support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
    .. [#ROCT-rocr-past-60] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
    
