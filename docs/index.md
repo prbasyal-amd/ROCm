@@ -65,7 +65,7 @@ ROCm documentation is organized into the following categories:
 * [ROCm libraries](./reference/api-libraries.md)
 * [ROCm tools, compilers, and runtimes](./reference/rocm-tools.md)
 * [Accelerator and  GPU hardware specifications](./reference/gpu-arch-specs.rst)
-* [Precision support](./reference/precision-support.rst)
+* [Data types and precision support](./reference/precision-support.rst)
 * [Graph safe support](./reference/graph-safe-support.rst)
 <!-- markdownlint-enable MD051 -->
 :::
