@@ -98,7 +98,11 @@ Megatron-LM for ROCm now supports:
 
 ##### TensorFlow
 
-ROCm 7.0.0 enables support for TensorFlow 2.19.1.
+ROCm 7.0.0 enables the following TensorFlow features: 
+
+* Support for TensorFlow 2.19.1.
+
+* Triton autotuner support.
 
 ##### ONNX Runtime
 
