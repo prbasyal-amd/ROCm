@@ -495,7 +495,7 @@ The GPU and baseboard firmware releases numbering may vary by GPU family. Note t
       </tr>
       <tr>
           <td>MI210</td>
-          <td>MU5 w/ IFWI 75</td>
+          <td>MU5 w/ IFWI 75 (or later)</td>
           <td>8.4.0.K</td>
       </tr>
       <tr>
