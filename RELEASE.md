@@ -394,7 +394,7 @@ ROCm documentation continues to be updated to provide clearer and more comprehen
   :margin: auto 0 auto auto
   * [hipBLASLt](https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.0.0/reference/env-variables.html)
   * [hipSPARSELt](https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.0.0/reference/env-variables.html)
-  * [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/develop/reference/rpp-env-variables.html)
+  * [ROCm Performance Primitives (RPP)](https://rocm.docs.amd.com/projects/rpp/en/docs-7.0.0/reference/rpp-env-variables.html)
   :::
   :::{grid-item}
   :margin: auto 0 auto auto
