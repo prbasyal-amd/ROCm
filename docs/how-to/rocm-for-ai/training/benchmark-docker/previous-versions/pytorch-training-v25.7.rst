@@ -5,13 +5,18 @@
    :keywords: ROCm, AI, LLM, train, PyTorch, torch, Llama, flux, tutorial, docker
 
 **************************************
-Training a model with PyTorch on ROCm
+Training a model with PyTorch for ROCm
 **************************************
+
+.. caution::
+
+   This documentation does not reflect the latest version of ROCm vLLM
+   performance benchmark documentation. See :doc:`../pytorch-training` for the latest version.
 
 PyTorch is an open-source machine learning framework that is widely used for
 model training with GPU-optimized components for transformer-based models.
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/pytorch-training-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/previous-versions/pytorch-training-v25.7-benchmark-models.yaml
 
    {% set dockers = data.dockers %}
    {% set docker = dockers[0] %}
@@ -31,7 +36,7 @@ model training with GPU-optimized components for transformer-based models.
         - {{ component_version }}
       {% endfor %}
 
-.. _amd-pytorch-training-model-support:
+.. _amd-pytorch-training-model-support-v257:
 
 Supported models
 ================
@@ -40,7 +45,7 @@ The following models are pre-optimized for performance on the AMD Instinct MI325
 Some instructions, commands, and training recommendations in this documentation might
 vary by model -- select one to get started.
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/pytorch-training-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/previous-versions/pytorch-training-v25.7-benchmark-models.yaml
 
    {% set unified_docker = data.dockers[0] %}
    {% set model_groups = data.model_groups %}
@@ -74,7 +79,7 @@ vary by model -- select one to get started.
       </div>
 
 
-   .. _amd-pytorch-training-supported-training-modes:
+   .. _amd-pytorch-training-supported-training-modes-v257:
 
    The following table lists supported training modes per model.
 
@@ -104,7 +109,7 @@ vary by model -- select one to get started.
          unlisted fine-tuning methods by using an existing file in the
          ``/workspace/torchtune/recipes/configs`` directory as a template.
 
-.. _amd-pytorch-training-performance-measurements:
+.. _amd-pytorch-training-performance-measurements-v257:
 
 Performance measurements
 ========================
@@ -143,7 +148,7 @@ doesn’t test configurations and run conditions outside those described.
 Run training
 ============
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/pytorch-training-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/previous-versions/pytorch-training-v25.7-benchmark-models.yaml
 
    {% set unified_docker = data.dockers[0] %}
    {% set model_groups = data.model_groups %}
@@ -390,7 +395,7 @@ Run training
                .. note::
 
                   Currently, FLUX models are not supported out-of-the-box on {{ unified_docker.pull_tag }}.
-                  To use FLUX, refer to ``rocm/pytorch-training`` Docker: :doc:`previous-versions/pytorch-training-v25.6`
+                  To use FLUX, refer to the previous version of the ``pytorch-training`` Docker: :doc:`pytorch-training-v25.6`
 
                   Occasionally, downloading the Flux dataset might fail. In the event of this
                   error, manually download it from Hugging Face at
@@ -435,7 +440,7 @@ Run training
 
             To start the fine-tuning benchmark, use the following command with the
             appropriate options. See the following list of options and their descriptions.
-            See :ref:`supported training modes <amd-pytorch-training-supported-training-modes>`.
+            See :ref:`supported training modes <amd-pytorch-training-supported-training-modes-v257>`.
 
             .. code-block:: shell
 
@@ -558,5 +563,5 @@ Further reading
 Previous versions
 =================
 
-See :doc:`previous-versions/pytorch-training-history` to find documentation for previous releases
+See :doc:`pytorch-training-history` to find documentation for previous releases
 of the ``ROCm/pytorch-training`` Docker image.
