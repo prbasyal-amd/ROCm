@@ -366,7 +366,8 @@ feature set available to developers.
 Supported modules and data types
 ================================================================================
 
-The following section outlines the supported data types, modules, and domain libraries available in PyTorch on ROCm.
+The following section outlines the supported data types, modules, and domain
+libraries available in PyTorch on ROCm.
 
 Supported data types
 --------------------------------------------------------------------------------
@@ -533,3 +534,72 @@ with ROCm.
         dispatching.
 
         **Note:** Only official release exists.
+
+Key features and enhancements for PyTorch 2.7 with ROCm 7.0
+================================================================================
+
+- Enhanced TunableOp framework: Introduces ``tensorfloat32`` support for
+  TunableOp operations, improved offline tuning for ScaledGEMM operations,
+  submatrix offline tuning capabilities, and better logging for BLAS operations
+  without bias vectors.
+
+- Expanded GPU architecture support: Provides optimized support for newer GPU
+  architectures, including gfx1200 and gfx1201 with preferred hipBLASLt backend
+  selection, along with improvements for gfx950 and gfx1100 series GPUs.
+
+- Advanced Triton Integration: AOTriton 0.10b introduces official support for
+  gfx950 and gfx1201, along with experimental support for gfx1101, gfx1151,
+  gfx1150, and gfx1200.
+
+- Improved element-wise kernel performance: Delivers enhanced vectorized
+  element-wise kernels with better support for heterogeneous tensor types and
+  optimized input vectorization for tensors with mixed data types.
+
+- MIOpen deep learning optimizations: Enables NHWC BatchNorm by default on
+  ROCm 7.0+, provides ``maxpool`` forward and backward performance improvements
+  targeting ResNet scenarios, and includes updated launch configurations for
+  better performance.
+
+- Enhanced memory and tensor operations: Features fixes for in-place ``aten``
+  sum operations with specialized templated kernels, improved 3D tensor
+  performance with NHWC format, and better handling of memory-bound matrix
+  multiplication operations.
+
+- Robust testing and quality improvements: Includes comprehensive test suite
+  updates with improved tolerance handling for Navi3x architectures, generalized
+  ROCm-specific test conditions, and enhanced unit test coverage for Flash
+  Attention and Memory Efficient operations.
+
+- Build system and infrastructure improvements: Provides updated CentOS Stream 9
+  support, improved Docker configuration, migration to public MAGMA repository,
+  and enhanced QA automation scripts for PyTorch unit testing.
+
+- Composable Kernel (CK) updates: Features updated CK submodule integration with
+  the latest optimizations and performance improvements for core mathematical
+  operations.
+
+- Development and debugging enhancements: Includes improved source handling for
+  dynamic compilation, better error handling for atomic operations, and enhanced
+  state checking for trace operations.
+
+- Integrate APEX fused layer normalization, which can have positive impact on
+  text-to-video models.
+
+- Integrate APEX distributed fused LAMB and distributed fused ADAM, which can
+  have positive impact on BERT-L and Llama2-SFT.
+
+- FlashAttention v3 has been integrated for AMD GPUs.
+
+- `Pytorch C++ extensions <https://pytorch.org/tutorials/advanced/cpp_extension.html>`_
+  provide a mechanism for compiling custom operations that can be used during
+  network training or inference. For AMD platforms, ``amdclang++`` has been
+  validated as the supported compiler for building these extensions.
+
+Known issues and notes for PyTorch 2.7 with ROCm 7.0
+================================================================================
+
+- The ``matmul.allow_fp16_reduced_precision_reduction`` and
+  ``matmul.allow_bf16_reduced_precision_reduction`` options under 
+  ``torch.backends.cuda`` are not supported. As a result, 
+  reduced-precision reductions using FP16 or BF16 accumulation types are not
+  available.
