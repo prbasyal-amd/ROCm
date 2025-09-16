@@ -764,7 +764,7 @@ HIP runtime has the following functional improvements which improves runtime per
 
 #### Changed
 
-* VX_RPP extension : Version 3.1.0 release.
+* VX_RPP extension: Version 3.1.0 release.
 * Update the parameters and kernel API of Blur, Fog, Jitter, LensCorrection, Rain, Pixelate, Vignette and ResizeCrop wrt tensor kernels replacing the legacy BatchPD API calls in VX_RPP extensions.
 
 #### Known issues
@@ -1144,7 +1144,7 @@ Review the [README](https://github.com/ROCm/rocm_bandwidth_test/blob/amd-mainlin
 #### Changed
 
 * Completed migration from legacy [ROCProfiler](https://rocm.docs.amd.com/projects/rocprofiler/en/latest/) to [ROCprofiler-SDK](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/latest/).
-* Reorganized the configuration files internally and improved [README/installation](https://github.com/ROCm/rdc/blob/amd-staging/README.md) instructions.
+* Reorganized the configuration files internally and improved [README/installation](https://github.com/ROCm/rdc/blob/release/rocm-rel-7.0/README.md) instructions.
 * Updated metrics and monitoring support for the latest AMD data center GPUs.
 
 #### Optimized
@@ -1346,7 +1346,7 @@ The previous default accumulator types could lead to situations in which unexpec
 - ROCprof Trace Decoder as experimental API:
   - Requires [ROCprof Trace Decoder plugin](https://github.com/rocm/rocprof-trace-decoder).
 - Thread trace option in the `rocprofv3` tool under the `--att` parameters:
-  - See [using thread trace with rocprofv3](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/amd-mainline/how-to/using-thread-trace.html)
+  - See [using thread trace with rocprofv3](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-7.0.0/how-to/using-thread-trace.html)
   - Requires [ROCprof Trace Decoder plugin](https://github.com/rocm/rocprof-trace-decoder).
 - `rocpd` output format documentation:
   - Requires [ROCprof Trace Decoder plugin](https://github.com/rocm/rocprof-trace-decoder).
