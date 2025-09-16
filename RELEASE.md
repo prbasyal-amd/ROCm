@@ -61,7 +61,7 @@ for more information about operating system and hardware compatibility.
 
 ROCm 7.0.0 introduces support for KVM Passthrough for AMD Instinct MI350X and MI355X GPUs.
 
-All KVM-based SR-IOV supported configurations require the GIM SR-IOV driver version 8.4.0.K. Refer to [GIM Release note](https://github.com/amd/MxGPU-Virtualization/releases) for more details. In addition, support for VMware ESXi 8 has been introduced for AMD Instinct MI300X GPUs. For more information, see  [Virtualization Support](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#virtualization-support).
+All KVM-based SR-IOV supported configurations require the GIM SR-IOV driver version [8.4.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/mainline%2F8.4.0.K). In addition, support for VMware ESXi 8 has been introduced for AMD Instinct MI300X GPUs. For more information, see  [Virtualization Support](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#virtualization-support).
 
 ### Deep learning and AI framework updates
 
