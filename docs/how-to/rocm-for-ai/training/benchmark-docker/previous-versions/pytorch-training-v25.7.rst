@@ -5,18 +5,18 @@
    :keywords: ROCm, AI, LLM, train, PyTorch, torch, Llama, flux, tutorial, docker
 
 **************************************
-Training a model with PyTorch on ROCm
+Training a model with PyTorch for ROCm
 **************************************
 
-.. note::
+.. caution::
 
-   Primus with the PyTorch torchtitan backend is intended to supersede the :doc:`ROCm PyTorch training <pytorch-training>` workflow.
-   See :doc:`primus-pytorch` for details.
+   This documentation does not reflect the latest version of ROCm vLLM
+   performance benchmark documentation. See :doc:`../pytorch-training` for the latest version.
 
 PyTorch is an open-source machine learning framework that is widely used for
 model training with GPU-optimized components for transformer-based models.
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/pytorch-training-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/previous-versions/pytorch-training-v25.7-benchmark-models.yaml
 
    {% set dockers = data.dockers %}
    {% set docker = dockers[0] %}
@@ -36,7 +36,7 @@ model training with GPU-optimized components for transformer-based models.
         - {{ component_version }}
       {% endfor %}
 
-.. _amd-pytorch-training-model-support:
+.. _amd-pytorch-training-model-support-v257:
 
 Supported models
 ================
@@ -45,7 +45,7 @@ The following models are pre-optimized for performance on the AMD Instinct MI325
 Some instructions, commands, and training recommendations in this documentation might
 vary by model -- select one to get started.
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/pytorch-training-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/previous-versions/pytorch-training-v25.7-benchmark-models.yaml
 
    {% set unified_docker = data.dockers[0] %}
    {% set model_groups = data.model_groups %}
@@ -56,7 +56,7 @@ vary by model -- select one to get started.
             <div class="col-2 me-1 px-2 model-param-head">Model</div>
             <div class="row col-10 pe-0">
       {% for model_group in model_groups %}
-               <div class="col-4 px-2 model-param" data-param-k="model-group" data-param-v="{{ model_group.tag }}" tabindex="0">{{ model_group.group }}</div>
+               <div class="col-3 px-2 model-param" data-param-k="model-group" data-param-v="{{ model_group.tag }}" tabindex="0">{{ model_group.group }}</div>
       {% endfor %}
             </div>
          </div>
@@ -79,7 +79,7 @@ vary by model -- select one to get started.
       </div>
 
 
-   .. _amd-pytorch-training-supported-training-modes:
+   .. _amd-pytorch-training-supported-training-modes-v257:
 
    The following table lists supported training modes per model.
 
@@ -94,11 +94,9 @@ vary by model -- select one to get started.
       {% for model_group in model_groups %}
          {% set models = model_group.models %}
          {% for model in models %}
-         {% if model.training_modes %}
          * - {{ model.model }}
            - ``{{ model.training_modes | join('``, ``') }}``
 
-         {% endif %}
          {% endfor %}
       {% endfor %}
 
@@ -111,7 +109,7 @@ vary by model -- select one to get started.
          unlisted fine-tuning methods by using an existing file in the
          ``/workspace/torchtune/recipes/configs`` directory as a template.
 
-.. _amd-pytorch-training-performance-measurements:
+.. _amd-pytorch-training-performance-measurements-v257:
 
 Performance measurements
 ========================
@@ -150,7 +148,7 @@ doesn’t test configurations and run conditions outside those described.
 Run training
 ============
 
-.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/pytorch-training-benchmark-models.yaml
+.. datatemplate:yaml:: /data/how-to/rocm-for-ai/training/previous-versions/pytorch-training-v25.7-benchmark-models.yaml
 
    {% set unified_docker = data.dockers[0] %}
    {% set model_groups = data.model_groups %}
@@ -161,22 +159,19 @@ Run training
 
       .. tab-item:: MAD-integrated benchmarking
 
+         1. Clone the ROCm Model Automation and Dashboarding (`<https://github.com/ROCm/MAD>`__) repository to a local
+            directory and install the required packages on the host machine.
+
+            .. code-block:: shell
+
+               git clone https://github.com/ROCm/MAD
+               cd MAD
+               pip install -r requirements.txt
+
    {% for model_group in model_groups %}
       {% for model in model_group.models %}
 
          .. container:: model-doc {{ model.mad_tag }}
-
-            The following run command is tailored to {{ model.model }}.
-            See :ref:`amd-pytorch-training-model-support` to switch to another available model.
-
-            1. Clone the ROCm Model Automation and Dashboarding (`<https://github.com/ROCm/MAD>`__) repository to a local
-               directory and install the required packages on the host machine.
-
-               .. code-block:: shell
-
-                  git clone https://github.com/ROCm/MAD
-                  cd MAD
-                  pip install -r requirements.txt
 
             2. For example, use this command to run the performance benchmark test on the {{ model.model }} model
                using one node with the {{ model.precision }} data type on the host machine.
@@ -198,17 +193,6 @@ Run training
    {% endfor %}
 
       .. tab-item:: Standalone benchmarking
-
-   {% for model_group in model_groups %}
-      {% for model in model_group.models %}
-
-         .. container:: model-doc {{ model.mad_tag }}
-
-            The following commands are tailored to {{ model.model }}.
-            See :ref:`amd-pytorch-training-model-support` to switch to another available model.
-
-      {% endfor %}
-   {% endfor %}
 
          .. rubric:: Download the Docker image and required packages
 
@@ -411,7 +395,7 @@ Run training
                .. note::
 
                   Currently, FLUX models are not supported out-of-the-box on {{ unified_docker.pull_tag }}.
-                  To use FLUX, refer to ``rocm/pytorch-training`` Docker: :doc:`previous-versions/pytorch-training-v25.6`
+                  To use FLUX, refer to the previous version of the ``pytorch-training`` Docker: :doc:`pytorch-training-v25.6`
 
                   Occasionally, downloading the Flux dataset might fail. In the event of this
                   error, manually download it from Hugging Face at
@@ -456,7 +440,7 @@ Run training
 
             To start the fine-tuning benchmark, use the following command with the
             appropriate options. See the following list of options and their descriptions.
-            See :ref:`supported training modes <amd-pytorch-training-supported-training-modes>`.
+            See :ref:`supported training modes <amd-pytorch-training-supported-training-modes-v257>`.
 
             .. code-block:: shell
 
@@ -579,5 +563,5 @@ Further reading
 Previous versions
 =================
 
-See :doc:`previous-versions/pytorch-training-history` to find documentation for previous releases
+See :doc:`pytorch-training-history` to find documentation for previous releases
 of the ``ROCm/pytorch-training`` Docker image.

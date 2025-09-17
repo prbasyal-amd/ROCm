@@ -89,15 +89,15 @@ project = "ROCm Documentation"
 project_path = os.path.abspath(".").replace("\\", "/")
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2025 Advanced Micro Devices, Inc. All rights reserved."
-version = "7.0.0"
-release = "7.0.0"
+version = "7.0.1"
+release = "7.0.1"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
-    {"file": "about/release-notes", "os": ["linux"], "date": "2025-09-16"},
+    {"file": "about/release-notes", "os": ["linux"], "date": "2025-09-17"},
     {"file": "release/changelog", "os": ["linux"],},
     {"file": "compatibility/compatibility-matrix", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/pytorch-compatibility", "os": ["linux"]},
@@ -135,6 +135,9 @@ article_pages = [
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-v25.4", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-v25.5", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-v25.6", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/pytorch-training-v25.7", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/primus-pytorch", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/pytorch-training", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/jax-maxtext", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-history", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v25.4", "os": ["linux"]},
