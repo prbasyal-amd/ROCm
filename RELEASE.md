@@ -139,7 +139,7 @@ The release notes provide a summary of notable changes since the previous ROCm r
 
 - [Operating system, hardware, and virtualization support changes](#operating-system-hardware-and-virtualization-support-changes)
 
-- [User space, driver, and firmware dependent changes](#user-space-driver-and-firmware-dependent-changes)
+- [User space, driver, and firmware dependent changes](#id2)
 
 - [ROCm components versioning](#rocm-components)
 
