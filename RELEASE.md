@@ -16,7 +16,7 @@ ROCm 7.0.1 is a quality release that resolves the issue listed in the Release hi
 
 ## Release highlights
 
-The following issue has been resolved in the [AMD GPU Driver (amdgpu) 30.10.1](https://advanced-micro-devices-dcgpu-documentation--38.com.readthedocs.build/projects/amdgpu-docs/en/38/documentation/change-logs/30.10.1.html#amd-gpu-driver-amdgpu-30-10-release-notes) to be used with ROCm 7.0.1.
+The following issue has been resolved in the [AMD GPU Driver (amdgpu) 30.10.1](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/change-logs/30.10.1.html#amd-gpu-driver-amdgpu-30-10-1-release-notes) to be used with ROCm 7.0.1.
 
 ### Failure to declare out-of-bound CPERs for bad memory page
 
@@ -135,7 +135,7 @@ ROCm 7.0.1 doesn't include any other significant changes or feature additions. F
 
 The release notes provide a summary of notable changes since the previous ROCm release.
 
-- [Release highlights](#release-highlights)
+- [Release highlights](#id1)
 
 - [Operating system, hardware, and virtualization support changes](#operating-system-hardware-and-virtualization-support-changes)
 
