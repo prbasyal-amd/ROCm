@@ -417,9 +417,7 @@ which facilitates profiling wavefronts at the instruction timing level.
  
 ###### rocpd
  
-The ROCm Profiling Data (``rocpd``) is now the default output format for ``rocprofv3``.
-A subproject of the ROCprofiler-SDK, ``rocpd`` enables saving profiling results to a SQLite3 database, providing a structured and 
-efficient foundation for analysis and post-processing.
+As a subcomponent of the ROCprofiler-SDK, ``rocpd`` enables storing the profiling results in a SQLite3 database, providing a structured and efficient foundation for analysis and post-processing. For details, see [Using rocpd Output Format](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-7.0.1/how-to/using-rocpd-output-format.html#using-rocpd-output-format).
  
 ###### rocprofv3 CLI tool enhancements
  
