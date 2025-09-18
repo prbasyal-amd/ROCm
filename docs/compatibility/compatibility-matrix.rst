@@ -70,8 +70,8 @@ compatibility and system requirements.
       Thrust,2.6.0,2.5.0,2.3.2
       CUB,2.6.0,2.5.0,2.3.2
       ,,,
-      KMD & USER SPACE [#kfd_support]_,.. _kfd-userspace-support-compatibility-matrix:,,
-      :doc:`KMD versions <rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`,"30.10, 6.4.x, 6.3.x, 6.2.x","6.4.x, 6.3.x, 6.2.x, 6.1.x","6.4.x, 6.3.x, 6.2.x, 6.1.x"
+      DRIVER & USER SPACE [#kfd_support]_,.. _kfd-userspace-support-compatibility-matrix:,,
+      :doc:`AMD GPU Driver <rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`,"30.10, 6.4.x, 6.3.x, 6.2.x","6.4.x, 6.3.x, 6.2.x, 6.1.x","6.4.x, 6.3.x, 6.2.x, 6.1.x"
       ,,,
       ML & COMPUTER VISION,.. _mllibs-support-compatibility-matrix:,,
       :doc:`Composable Kernel <composable_kernel:index>`,1.1.0,1.1.0,1.1.0
@@ -175,7 +175,7 @@ compatibility and system requirements.
 .. [#7700XT-OS] **Prior ROCm 7.0.0** - Radeon RX 7700 XT (gfx1101) is supported only on Ubuntu 24.04.2 and RHEL 9.6.
 .. [#stanford-megatron-lm_compat] Stanford Megatron-LM is only supported on ROCm 6.3.0.
 .. [#megablocks_compat] Megablocks is only supported on ROCm 6.3.0.
-.. [#kfd_support] As of ROCm 6.4.0, forward and backward compatibility between the AMD Kernel-mode GPU Driver (KMD) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The supported user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and kernel-space support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
+.. [#kfd_support] As of ROCm 6.4.0, forward and backward compatibility between the AMD GPU Driver (amdgpu) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The supported user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and AMD GPU Driver support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
 .. [#ROCT-rocr] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
 
 
@@ -282,6 +282,6 @@ Expand for full historical view of:
    .. [#taichi_compat-past-60] Taichi is only supported on ROCm 6.3.2.
    .. [#ray_compat-past-60] Ray is only supported on ROCm 6.4.1.
    .. [#llama-cpp_compat-past-60] llama.cpp is only supported on ROCm 6.4.0.
-   .. [#kfd_support-past-60] As of ROCm 6.4.0, forward and backward compatibility between the AMD Kernel-mode GPU Driver (KMD) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The supported user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and kernel-space support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
+   .. [#kfd_support-past-60] As of ROCm 6.4.0, forward and backward compatibility between the AMD GPU Driver (amdgpu) and its user space software is provided up to a year apart. For earlier ROCm releases, the compatibility is provided for +/- 2 releases. The supported user space versions on this page were accurate as of the time of initial ROCm release. For the most up-to-date information, see the latest version of this information at `User and AMD GPU Driver support matrix <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html>`_.
    .. [#ROCT-rocr-past-60] Starting from ROCm 6.3.0, the ROCT Thunk Interface is included as part of the ROCr runtime package.
    
