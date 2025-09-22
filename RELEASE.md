@@ -580,7 +580,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
           <td rowspan="9" style="vertical-align: middle;">ROCm 7.0.0</td>
           <td>MI355X</td>
           <td>
-              01.25.13.04 (or later)<br>
+              01.25.13.09 (or later)<br>
               01.25.11.02
           </td>
           <td>30.10</td>
@@ -589,7 +589,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
       <tr>
           <td>MI350X</td>
           <td>
-              01.25.13.04 (or later)<br>
+              01.25.13.09 (or later)<br>
               01.25.11.02
           </td>
           <td>30.10</td>
@@ -597,7 +597,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
       <tr>
           <td>MI325X</td>
           <td>
-              01.25.04.00 (or later)<br>
+              01.25.04.02 (or later)<br>
               01.25.03.03
           </td>
           <td>
@@ -649,11 +649,11 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
 
 New APIs introduced in AMD SMI for ROCm 7.0.0 provide additional data for the AMD Instinct products. To support these features, the following firmware for each GPUs are required:
 
-* AMD Instinct MI355X - PLDM bundle 01.25.13.04
+* AMD Instinct MI355X - PLDM bundle 01.25.13.09
 
-* AMD Instinct MI350X - PLDM bundle 01.25.13.04
+* AMD Instinct MI350X - PLDM bundle 01.25.13.09
 
-* AMD Instinct MI325X - PLDM bundle 01.25.04.00
+* AMD Instinct MI325X - PLDM bundle 01.25.04.02
 
 * AMD Instinct MI300X - PLDM bundle 01.25.03.12
 
@@ -661,7 +661,7 @@ If ROCm 7.0.0 is applied on system with prior version of PLDM bundles (firmware)
 
 ##### Enhanced temperature telemetry introduced in AMD SMI for MI355X and MI350X GPUs
 
-AMD SMI in ROCm 7.0.0 provides support for enhanced temperature metrics and temperature anomaly detection for AMD Instinct MI350X and MI355X GPUs when paired with: PLDM bundle 01.25.13.04.
+AMD SMI in ROCm 7.0.0 provides support for enhanced temperature metrics and temperature anomaly detection for AMD Instinct MI350X and MI355X GPUs when paired with: PLDM bundle 01.25.13.09.
 
 For more information on these features, see [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.0/CHANGELOG.md).
 
@@ -671,7 +671,7 @@ KVM SR-IOV support for all Instinct GPUs require the open source AMD GPU Virtual
 
 ##### GPU partitioning support for AMD Instinct MI355X and MI350X GPUs
 
-NPS2 and DPX partitioning on bare metal is enabled on AMD Instinct MI355X and MI350X GPUs on ROCm 7.0.0 when paired with: PLDM bundle 01.25.13.04.
+NPS2 and DPX partitioning on bare metal is enabled on AMD Instinct MI355X and MI350X GPUs on ROCm 7.0.0 when paired with: PLDM bundle 01.25.13.09.
 
 ### ROCm components
 
