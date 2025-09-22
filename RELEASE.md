@@ -347,7 +347,7 @@ For more information about hipBLASLt changes, see the [hipBLASLt changelog](#hip
 
 For more information about MIGraphX changes, see the [MIGraphX changelog](migraphx-2-13-0) below.
 
-##### rocSHMEM supports Reverse Offload inter node communication backend
+##### rocSHMEM supports Reverse Offload inter-node communication backend
 
 The rocSHMEM communications library has added the RO (Reverse Offload) inter-node communication backend which enables communication between GPUs on different nodes through a NIC, using a host-based CPU proxy to forward communication orders to and from the GPU.  Inter-node communication requires MPI, and is tested with Open MPI and CX7 IB NICs. For more information, see [available network backends](https://rocm.docs.amd.com/projects/rocSHMEM/en/docs-7.0.0/install.html#available-network-backends) for installing rocSHMEM.
 
