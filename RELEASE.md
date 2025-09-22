@@ -128,7 +128,7 @@ AMD ROCm has officially added support for the following Deep learning and AI fra
 
 ### AMD GPU Driver/ROCm packaging separation
 
-The AMD GPU Driver (amdgpu) is now distributed separately from the ROCm software stack and is stored under in its own location ``/amdgpu/`` in the package repository at [repo.radeon.com](https://repo.radeon.com/amdgpu/). The first release is designated as AMD GPU Driver (amdgpu) version 30.10. See the [User and kernel-space support matrix](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html) for more information.
+The AMD GPU Driver (amdgpu) is now distributed separately from the ROCm software stack and is stored under in its own location ``/amdgpu/`` in the package repository at [repo.radeon.com](https://repo.radeon.com/amdgpu/). The first release is designated as [AMD GPU Driver (amdgpu) version 30.10](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/change-logs/30.10.1.html#amd-gpu-driver-amdgpu-30-10-release-notes). See the [User and kernel-space support matrix](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html) for more information.
 
 [AMD SMI](https://github.com/ROCm/amdsmi) continues to stay with the ROCm software stack under the ROCm organization repository.
 
@@ -459,7 +459,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
           <td rowspan="9" style="vertical-align: middle;">ROCm 7.0.0</td>
           <td>MI355X</td>
           <td>
-              01.25.13.04 (or later)<br>
+              01.25.13.09 (or later)<br>
               01.25.11.02
           </td>
           <td>30.10</td>
@@ -468,7 +468,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
       <tr>
           <td>MI350X</td>
           <td>
-              01.25.13.04 (or later)<br>
+              01.25.13.09 (or later)<br>
               01.25.11.02
           </td>
           <td>30.10</td>
@@ -476,7 +476,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
       <tr>
           <td>MI325X</td>
           <td>
-              01.25.04.00 (or later)<br>
+              01.25.04.02 (or later)<br>
               01.25.03.03
           </td>
           <td>
@@ -528,11 +528,11 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
 
 New APIs introduced in AMD SMI for ROCm 7.0.0 provide additional data for the AMD Instinct products. To support these features, the following firmware for each GPUs are required:
 
-* AMD Instinct MI355X - PLDM bundle 01.25.13.04
+* AMD Instinct MI355X - PLDM bundle 01.25.13.09
 
-* AMD Instinct MI350X - PLDM bundle 01.25.13.04
+* AMD Instinct MI350X - PLDM bundle 01.25.13.09
 
-* AMD Instinct MI325X - PLDM bundle 01.25.04.00
+* AMD Instinct MI325X - PLDM bundle 01.25.04.02
 
 * AMD Instinct MI300X - PLDM bundle 01.25.03.12
 
@@ -540,7 +540,7 @@ If ROCm 7.0.0 is applied on system with prior version of PLDM bundles (firmware)
 
 #### Enhanced temperature telemetry introduced in AMD SMI for MI355X and MI350X GPUs
 
-AMD SMI in ROCm 7.0.0 provides support for enhanced temperature metrics and temperature anomaly detection for AMD Instinct MI350X and MI355X GPUs when paired with: PLDM bundle 01.25.13.04.
+AMD SMI in ROCm 7.0.0 provides support for enhanced temperature metrics and temperature anomaly detection for AMD Instinct MI350X and MI355X GPUs when paired with: PLDM bundle 01.25.13.09.
 
 For more information on these features, see [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.0/CHANGELOG.md).
 
@@ -550,7 +550,7 @@ KVM SR-IOV support for all Instinct GPUs require the open source AMD GPU Virtual
 
 #### GPU partitioning support for AMD Instinct MI355X and MI350X GPUs
 
-NPS2 and DPX partitioning on bare metal is enabled on AMD Instinct MI355X and MI350X GPUs on ROCm 7.0.0 when paired with: PLDM bundle 01.25.13.04.
+NPS2 and DPX partitioning on bare metal is enabled on AMD Instinct MI355X and MI350X GPUs on ROCm 7.0.0 when paired with: PLDM bundle 01.25.13.09.
 
 ## ROCm components
 
