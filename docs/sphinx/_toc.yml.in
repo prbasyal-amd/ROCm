@@ -24,7 +24,7 @@ subtrees:
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/latest/
     title: HIP SDK on Windows
   - url: https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/index.html
-    title: ROCm on Radeon GPUs
+    title: ROCm on Radeon and Ryzen
   - file: how-to/deep-learning-rocm.md
     title: Deep learning frameworks
     subtrees:
