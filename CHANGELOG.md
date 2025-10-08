@@ -4,9 +4,13 @@ This page is a historical overview of changes made to ROCm components. This
 consolidated changelog documents key modifications and improvements across
 different versions of the ROCm software stack and its components.
 
+## ROCm 7.0.1
+
+ROCm 7.0.1 is a quality release that resolves the existing issue. There is no change in component from the previous ROCm 7.0.0 release. See the [ROCm 7.0.1 release notes](https://rocm.docs.amd.com/en/docs-7.0.1/about/release-notes.html#rocm-7-0-1-release-notes) for a complete overview of this release.
+
 ## ROCm 7.0.0
 
-See the [ROCm 7.0.0 release notes](https://rocm-stg.amd.com/en/latest/about/release-notes.html#rocm-7-0-0-release-notes)
+See the [ROCm 7.0.0 release notes](https://rocm.docs.amd.com/en/docs-7.0.0/about/release-notes.html#rocm-7-0-0-release-notes)
 for a complete overview of this release.
 
 ### **AMD SMI** (26.0.0)

@@ -967,6 +967,7 @@ tabindex
 targetContainer
 td
 tensorfloat
+tf
 th
 tokenization
 tokenize
