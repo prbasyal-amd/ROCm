@@ -6,7 +6,7 @@ different versions of the ROCm software stack and its components.
 
 ## ROCm 7.0.0
 
-See the [ROCm 7.0.0 release notes](https://rocm-stg.amd.com/en/latest/about/release-notes.html#rocm-7-0-0-release-notes)
+See the [ROCm 7.0.0 release notes](https://rocm.docs.amd.com/en/docs-7.0.0/about/release-notes.html#rocm-7-0-0-release-notes)
 for a complete overview of this release.
 
 ### **AMD SMI** (26.0.0)
