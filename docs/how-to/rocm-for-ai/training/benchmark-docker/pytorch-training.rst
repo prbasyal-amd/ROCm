@@ -10,7 +10,7 @@ Training a model with PyTorch on ROCm
 
 .. note::
 
-   Primus with the PyTorch torchtitan backend is intended to supersede the :doc:`ROCm PyTorch training <pytorch-training>` workflow.
+   Primus with the PyTorch torchtitan backend is designed to replace :doc:`ROCm PyTorch training <pytorch-training>` workflow.
    See :doc:`primus-pytorch` for details.
 
 PyTorch is an open-source machine learning framework that is widely used for
@@ -22,7 +22,7 @@ model training with GPU-optimized components for transformer-based models.
    {% set docker = dockers[0] %}
    The `PyTorch for ROCm training Docker <{{ docker.docker_hub_url }}>`__
    (``{{ docker.pull_tag }}``) image provides a prebuilt optimized environment for fine-tuning and pretraining a
-   model on AMD Instinct MI325X and MI300X accelerators. It includes the following software components to accelerate
+   model on AMD Instinct MI325X and MI300X GPUs. It includes the following software components to accelerate
    training workloads:
 
    .. list-table::
@@ -41,7 +41,7 @@ model training with GPU-optimized components for transformer-based models.
 Supported models
 ================
 
-The following models are pre-optimized for performance on the AMD Instinct MI325X and MI300X accelerators.
+The following models are pre-optimized for performance on the AMD Instinct MI325X and MI300X GPUs.
 Some instructions, commands, and training recommendations in this documentation might
 vary by model -- select one to get started.
 
@@ -126,7 +126,7 @@ popular AI models.
    The performance data presented in
    `Performance results with AMD ROCm software <https://www.amd.com/en/developer/resources/rocm-hub/dev-ai/performance-results.html#tabs-a8deaeb413-item-21cea50186-tab>`_
    should not be interpreted as the peak performance achievable by AMD
-   Instinct MI325X and MI300X accelerators or ROCm software.
+   Instinct MI325X and MI300X GPUs or ROCm software.
 
 System validation
 =================
@@ -299,28 +299,28 @@ Run training
                     - `Hugging Face Datasets <https://huggingface.co/docs/datasets/v3.2.0/en/index>`_ 3.2.0
 
                   * - ``torchdata``
-                    - `TorchData <https://pytorch.org/data/beta/index.html>`_
+                    - `TorchData <https://meta-pytorch.org/data/beta/index.html#torchdata>`__
 
                   * - ``tomli``
-                    - `Tomli <https://pypi.org/project/tomli/>`_
+                    - `Tomli <https://pypi.org/project/tomli/>`__
 
                   * - ``tiktoken``
-                    - `tiktoken <https://github.com/openai/tiktoken>`_
+                    - `tiktoken <https://github.com/openai/tiktoken>`__
 
                   * - ``blobfile``
-                    - `blobfile <https://pypi.org/project/blobfile/>`_
+                    - `blobfile <https://pypi.org/project/blobfile/>`__
 
                   * - ``tabulate``
-                    - `tabulate <https://pypi.org/project/tabulate/>`_
+                    - `tabulate <https://pypi.org/project/tabulate/>`__
 
                   * - ``wandb``
-                    - `Weights & Biases <https://github.com/wandb/wandb>`_
+                    - `Weights & Biases <https://github.com/wandb/wandb>`__
 
                   * - ``sentencepiece``
-                    - `SentencePiece <https://github.com/google/sentencepiece>`_ 0.2.0
+                    - `SentencePiece <https://github.com/google/sentencepiece>`__ 0.2.0
 
                   * - ``tensorboard``
-                    - `TensorBoard <https://www.tensorflow.org/tensorboard>`_ 2.18.0
+                    - `TensorBoard <https://www.tensorflow.org/tensorboard>`__ 2.18.0
 
             .. container:: model-doc pyt_train_flux
 
@@ -336,50 +336,50 @@ Run training
                     - `Hugging Face Accelerate <https://huggingface.co/docs/accelerate/en/index>`_
 
                   * - ``datasets``
-                    - `Hugging Face Datasets <https://huggingface.co/docs/datasets/v3.2.0/en/index>`_ 3.2.0
+                    - `Hugging Face Datasets <https://huggingface.co/docs/datasets/v3.2.0/en/index>`__ 3.2.0
 
                   * - ``sentencepiece``
-                    - `SentencePiece <https://github.com/google/sentencepiece>`_ 0.2.0
+                    - `SentencePiece <https://github.com/google/sentencepiece>`__ 0.2.0
 
                   * - ``tensorboard``
-                    - `TensorBoard <https://www.tensorflow.org/tensorboard>`_ 2.18.0
+                    - `TensorBoard <https://www.tensorflow.org/tensorboard>`__ 2.18.0
 
                   * - ``csvkit``
-                    - `csvkit <https://csvkit.readthedocs.io/en/latest/>`_ 2.0.1
+                    - `csvkit <https://csvkit.readthedocs.io/en/latest/>`__ 2.0.1
 
                   * - ``deepspeed``
-                    - `DeepSpeed <https://github.com/deepspeedai/DeepSpeed>`_ 0.16.2
+                    - `DeepSpeed <https://github.com/deepspeedai/DeepSpeed>`__ 0.16.2
 
                   * - ``diffusers``
-                    - `Hugging Face Diffusers <https://huggingface.co/docs/diffusers/en/index>`_ 0.31.0
+                    - `Hugging Face Diffusers <https://huggingface.co/docs/diffusers/en/index>`__ 0.31.0
 
                   * - ``GitPython``
-                    - `GitPython <https://github.com/gitpython-developers/GitPython>`_ 3.1.44
+                    - `GitPython <https://github.com/gitpython-developers/GitPython>`__ 3.1.44
 
                   * - ``opencv-python-headless``
-                    - `opencv-python-headless <https://pypi.org/project/opencv-python-headless/>`_ 4.10.0.84
+                    - `opencv-python-headless <https://pypi.org/project/opencv-python-headless/>`__ 4.10.0.84
 
                   * - ``peft``
-                    - `PEFT <https://huggingface.co/docs/peft/en/index>`_ 0.14.0
+                    - `PEFT <https://huggingface.co/docs/peft/en/index>`__ 0.14.0
 
                   * - ``protobuf``
-                    - `Protocol Buffers <https://github.com/protocolbuffers/protobuf>`_ 5.29.2
+                    - `Protocol Buffers <https://github.com/protocolbuffers/protobuf>`__ 5.29.2
 
                   * - ``pytest``
-                    - `PyTest <https://docs.pytest.org/en/stable/>`_ 8.3.4
+                    - `PyTest <https://docs.pytest.org/en/stable/>`__ 8.3.4
 
                   * - ``python-dotenv``
-                    - `python-dotenv <https://pypi.org/project/python-dotenv/>`_ 1.0.1
+                    - `python-dotenv <https://pypi.org/project/python-dotenv/>`__ 1.0.1
 
                   * - ``seaborn``
-                    - `Seaborn <https://seaborn.pydata.org/>`_ 0.13.2
+                    - `Seaborn <https://seaborn.pydata.org/>`__ 0.13.2
 
                   * - ``transformers``
-                    - `Transformers <https://huggingface.co/docs/transformers/en/index>`_ 4.47.0
+                    - `Transformers <https://huggingface.co/docs/transformers/en/index>`__ 4.47.0
 
             ``pytorch_benchmark_setup.sh`` downloads the following datasets from Hugging Face:
 
-            * `bghira/pseudo-camera-10k <https://huggingface.co/datasets/bghira/pseudo-camera-10k>`_
+            * `bghira/pseudo-camera-10k <https://huggingface.co/datasets/bghira/pseudo-camera-10k>`__
 
    {% for model_group in model_groups %}
       {% for model in model_group.models %}
@@ -521,8 +521,13 @@ Run training
 
             For examples of benchmarking commands, see `<https://github.com/ROCm/MAD/tree/develop/benchmark/pytorch_train#benchmarking-examples>`__.
 
+.. _amd-pytorch-training-multinode-examples:
+
 Multi-node training
 -------------------
+
+Refer to :doc:`/how-to/rocm-for-ai/system-setup/multi-node-setup` to configure your environment for multi-node
+training. See :ref:`rocm-for-ai-multi-node-setup-pyt-train-example` for example Slurm run commands.
 
 Pre-training
 ~~~~~~~~~~~~
@@ -571,7 +576,7 @@ Further reading
 - To learn more about MAD and the ``madengine`` CLI, see the `MAD usage guide <https://github.com/ROCm/MAD?tab=readme-ov-file#usage-guide>`__.
 
 - To learn more about system settings and management practices to configure your system for
-  AMD Instinct MI300X series accelerators, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`_.
+  AMD Instinct MI300X series GPUs, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`_.
 
 - For a list of other ready-made Docker images for AI with ROCm, see
   `AMD Infinity Hub <https://www.amd.com/en/developer/resources/infinity-hub.html#f-amd_hub_category=AI%20%26%20ML%20Models>`_.

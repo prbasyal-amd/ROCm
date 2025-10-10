@@ -23,7 +23,7 @@ improved efficiency and throughput.
    serving engine for large language models (LLMs) and vision models. The
    ROCm-enabled `SGLang base Docker image <{{ docker.docker_hub_url }}>`__
    bundles SGLang with PyTorch, which is optimized for AMD Instinct MI300X series
-   accelerators. It includes the following software components:
+   GPUs. It includes the following software components:
 
    .. list-table::
       :header-rows: 1
@@ -37,7 +37,7 @@ improved efficiency and throughput.
       {% endfor %}
 
 The following guides on setting up and running SGLang and Mooncake for disaggregated
-distributed inference on a Slurm cluster using AMD Instinct MI300X series accelerators backed by
+distributed inference on a Slurm cluster using AMD Instinct MI300X series GPUs backed by
 Mellanox CX-7 NICs.
 
 Prerequisites
@@ -111,7 +111,7 @@ Build the Docker image
 ----------------------
 
 Get the Dockerfile located in
-`<https://github.com/ROCm/MAD/blob/develop/docker/sglang_dissag_inference.ubuntu.amd.Dockerfile>`__.
+`<https://github.com/ROCm/MAD/blob/develop/docker/sglang_disagg_inference.ubuntu.amd.Dockerfile>`__.
 It uses `lmsysorg/sglang:v0.5.2rc1-rocm700-mi30x
 <https://hub.docker.com/layers/lmsysorg/sglang/v0.4.9.post1-rocm630/images/sha256-2f6b1748e4bcc70717875a7da76c87795fd8aa46a9646e08d38aa7232fc78538>`__
 as the base Docker image and installs the necessary components for Mooncake, etcd, and Mellanox network
@@ -128,7 +128,7 @@ drivers.
 Benchmarking
 ============
 
-The `<https://github.com/ROCm/MAD/tree/develop/scripts/sglang_dissag>`__
+The `<https://github.com/ROCm/MAD/tree/develop/scripts/sglang_disagg>`__
 repository contains scripts to launch SGLang inference with prefill/decode
 disaggregation via Mooncake for supported models.
 
@@ -236,7 +236,7 @@ Further reading
 - See the base upstream Docker image on `Docker Hub <https://hub.docker.com/layers/lmsysorg/sglang/v0.5.2rc1-rocm700-mi30x/images/sha256-10c4ee502ddba44dd8c13325e6e03868bfe7f43d23d0a44780a8ee8b393f4729>`__.
 
 - To learn more about system settings and management practices to configure your system for
-  MI300X series accelerators, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`__.
+  MI300X series GPUs, see `AMD Instinct MI300X system optimization <https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/system-optimization/mi300x.html>`__.
 
 - For application performance optimization strategies for HPC and AI workloads,
   including inference with vLLM, see :doc:`/how-to/rocm-for-ai/inference-optimization/workload`.

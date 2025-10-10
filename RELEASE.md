@@ -152,7 +152,7 @@ The release notes provide a summary of notable changes since the previous ROCm r
 - [ROCm upcoming changes](#rocm-upcoming-changes)
 
 ```{note}
-If you’re using AMD Radeon™ PRO or Radeon GPUs in a workstation setting with a display connected, see the [Use ROCm on Radeon GPUs](https://rocm.docs.amd.com/projects/radeon/en/latest/docs/compatibility/native_linux/native_linux_compatibility.html)
+If you’re using AMD Radeon GPUs or Ryzen APUs in a workstation setting with a display connected, see the [Use ROCm on Radeon and Ryzen](https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/index.html)
 documentation to verify compatibility and system requirements.
 ```
 
@@ -249,7 +249,7 @@ AMD ROCm has officially added support for the following Deep learning and AI fra
 
 #### AMD GPU Driver/ROCm packaging separation
 
-The AMD GPU Driver (amdgpu) is now distributed separately from the ROCm software stack and is stored under in its own location ``/amdgpu/`` in the package repository at [repo.radeon.com](https://repo.radeon.com/amdgpu/). The first release is designated as AMD GPU Driver (amdgpu) version 30.10. See the [User and kernel-space support matrix](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html) for more information.
+The AMD GPU Driver (amdgpu) is now distributed separately from the ROCm software stack and is stored under in its own location ``/amdgpu/`` in the package repository at [repo.radeon.com](https://repo.radeon.com/amdgpu/). The first release is designated as [AMD GPU Driver (amdgpu) version 30.10](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/change-logs/30.10.1.html#amd-gpu-driver-amdgpu-30-10-release-notes). See the [User and kernel-space support matrix](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html) for more information.
 
 [AMD SMI](https://github.com/ROCm/amdsmi) continues to stay with the ROCm software stack under the ROCm organization repository.
 
@@ -347,7 +347,7 @@ For more information about hipBLASLt changes, see the [hipBLASLt changelog](#hip
 
 For more information about MIGraphX changes, see the [MIGraphX changelog](migraphx-2-13-0) below.
 
-##### rocSHMEM Reverse Offload conduit inter-node support
+##### rocSHMEM supports Reverse Offload inter-node communication backend
 
 The rocSHMEM communications library has added the RO (Reverse Offload) inter-node communication backend which enables communication between GPUs on different nodes through a NIC, using a host-based CPU proxy to forward communication orders to and from the GPU.  Inter-node communication requires MPI, and is tested with Open MPI and CX7 IB NICs. For more information, see [available network backends](https://rocm.docs.amd.com/projects/rocSHMEM/en/docs-7.0.0/install.html#available-network-backends) for installing rocSHMEM.
 
@@ -405,7 +405,7 @@ See the [ROCm Validation Suite changelog](#rocm-validation-suite-1-2-0) for more
 
 ##### ROCprofiler-SDK
 
-###### Core SDK enhancements
+###### SDK enhancements
  
 * ROCprofiler-SDK is now compatible with the HIP 7.0.0 API.
 * ROCprofiler-SDK adds support for AMD Instinct MI350X and MI355X GPUs.
@@ -417,9 +417,7 @@ which facilitates profiling wavefronts at the instruction timing level.
  
 ###### rocpd
  
-The ROCm Profiling Data (``rocpd``) is now the default output format for ``rocprofv3``.
-A subproject of the ROCprofiler-SDK, ``rocpd`` enables saving profiling results to a SQLite3 database, providing a structured and 
-efficient foundation for analysis and post-processing.
+As a subcomponent of the ROCprofiler-SDK, ``rocpd`` enables storing the profiling results in a SQLite3 database, providing a structured and efficient foundation for analysis and post-processing. For details, see [Using rocpd Output Format](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-7.0.1/how-to/using-rocpd-output-format.html#using-rocpd-output-format).
  
 ###### rocprofv3 CLI tool enhancements
  
@@ -582,7 +580,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
           <td rowspan="9" style="vertical-align: middle;">ROCm 7.0.0</td>
           <td>MI355X</td>
           <td>
-              01.25.13.04 (or later)<br>
+              01.25.13.09 (or later)<br>
               01.25.11.02
           </td>
           <td>30.10</td>
@@ -591,7 +589,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
       <tr>
           <td>MI350X</td>
           <td>
-              01.25.13.04 (or later)<br>
+              01.25.13.09 (or later)<br>
               01.25.11.02
           </td>
           <td>30.10</td>
@@ -599,7 +597,7 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
       <tr>
           <td>MI325X</td>
           <td>
-              01.25.04.00 (or later)<br>
+              01.25.04.02 (or later)<br>
               01.25.03.03
           </td>
           <td>
@@ -651,11 +649,11 @@ from ROCm. See [AMD GPU Driver/ROCm packaging separation](#amd-gpu-driver-rocm-p
 
 New APIs introduced in AMD SMI for ROCm 7.0.0 provide additional data for the AMD Instinct products. To support these features, the following firmware for each GPUs are required:
 
-* AMD Instinct MI355X - PLDM bundle 01.25.13.04
+* AMD Instinct MI355X - PLDM bundle 01.25.13.09
 
-* AMD Instinct MI350X - PLDM bundle 01.25.13.04
+* AMD Instinct MI350X - PLDM bundle 01.25.13.09
 
-* AMD Instinct MI325X - PLDM bundle 01.25.04.00
+* AMD Instinct MI325X - PLDM bundle 01.25.04.02
 
 * AMD Instinct MI300X - PLDM bundle 01.25.03.12
 
@@ -663,7 +661,7 @@ If ROCm 7.0.0 is applied on system with prior version of PLDM bundles (firmware)
 
 ##### Enhanced temperature telemetry introduced in AMD SMI for MI355X and MI350X GPUs
 
-AMD SMI in ROCm 7.0.0 provides support for enhanced temperature metrics and temperature anomaly detection for AMD Instinct MI350X and MI355X GPUs when paired with: PLDM bundle 01.25.13.04.
+AMD SMI in ROCm 7.0.0 provides support for enhanced temperature metrics and temperature anomaly detection for AMD Instinct MI350X and MI355X GPUs when paired with: PLDM bundle 01.25.13.09.
 
 For more information on these features, see [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.0/CHANGELOG.md).
 
@@ -673,7 +671,7 @@ KVM SR-IOV support for all Instinct GPUs require the open source AMD GPU Virtual
 
 ##### GPU partitioning support for AMD Instinct MI355X and MI350X GPUs
 
-NPS2 and DPX partitioning on bare metal is enabled on AMD Instinct MI355X and MI350X GPUs on ROCm 7.0.0 when paired with: PLDM bundle 01.25.13.04.
+NPS2 and DPX partitioning on bare metal is enabled on AMD Instinct MI355X and MI350X GPUs on ROCm 7.0.0 when paired with: PLDM bundle 01.25.13.09.
 
 ### ROCm components
 
@@ -2750,7 +2748,7 @@ It's anticipated that ROCTracer, ROCProfiler, `rocprof`, and `rocprofv2` will re
 #### AMDGPU wavefront size compiler macro deprecation
 
 Access to the wavefront size as a compile-time constant via the `__AMDGCN_WAVEFRONT_SIZE`
-and `__AMDGCN_WAVEFRONT_SIZE__` macros are deprecated and will be disabled in a future release. In ROCm 7.0.0 `warpSize` is only available as a non-`constextpr` variable. You're encouraged to update your code if needed to ensure future compatibility.
+and `__AMDGCN_WAVEFRONT_SIZE__` macros are deprecated and will be disabled in a future release. In ROCm 7.0.0 `warpSize` is only available as a non-`constexpr` variable. You're encouraged to update your code if needed to ensure future compatibility.
 
 * The `__AMDGCN_WAVEFRONT_SIZE__` macro and `__AMDGCN_WAVEFRONT_SIZE` alias will be removed in an upcoming release.
   It is recommended to remove any use of this macro. For more information, see

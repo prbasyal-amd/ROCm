@@ -1,12 +1,14 @@
+:orphan:
+
 .. meta::
    :description: System health checks with RVS, RCCL tests, BabelStream, and TransferBench to validate AMD hardware performance running AI workloads.
    :keywords: gpu, accelerator, system, health, validation, bench, perf, performance, rvs, rccl, babel, mi300x, mi325x, flops, bandwidth, rbt, training, inference
 
 .. _rocm-for-ai-system-health-bench:
 
-************************
-System health benchmarks
-************************
+*****************************************
+System health benchmarks for AI workloads
+*****************************************
 
 Before running AI workloads, it is important to validate that your AMD hardware is configured correctly and is performing optimally. This topic outlines several system health benchmarks you can use to test key aspects like GPU compute capabilities (FLOPS), memory bandwidth, and interconnect performance. Many of these tests are part of the ROCm Validation Suite (RVS).
 
@@ -31,7 +33,7 @@ installed, run the following command:
    sudo apt install rocm-validation-suite
 
 See the `ROCm Validation Suite installation instructions <https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/install/installation.html>`_,
-and `System validation tests <https://instinct.docs.amd.com/projects/system-acceptance/en/latest/mi300x/system-validation.html#system-validation-tests>`_
+and `System validation tests <https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html>`_
 in the Instinct documentation for more detailed instructions.
 
 Benchmark, stress, and qualification tests
@@ -41,7 +43,7 @@ The GPU stress test runs various GEMM computations as workloads to stress the GP
 meets the configured target GFLOPS.
 
 Run the benchmark, stress, and qualification tests included with RVS. See the `Benchmark, stress, qualification
-<https://instinct.docs.amd.com/projects/system-acceptance/en/latest/mi300x/system-validation.html#benchmark-stress-qualification>`_
+<https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html#benchmark-stress-qualification>`_
 section of the Instinct documentation for usage instructions.
 
 BabelStream test
@@ -53,7 +55,7 @@ BabelStream tests are included with the RVS package as part of the `BABEL module
 <https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/conceptual/rvs-modules.html#babel-benchmark-test-babel-module>`_.
 
 For more information, see `Performance benchmarking
-<https://instinct.docs.amd.com/projects/system-acceptance/en/latest/mi300x/performance-bench.html#babelstream-benchmarking-results>`_
+<https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html#babelstream>`_
 in the Instinct documentation.
 
 RCCL tests
@@ -62,7 +64,7 @@ RCCL tests
 The ROCm Communication Collectives Library (RCCL) enables efficient multi-GPU
 communication. The `<https://github.com/ROCm/rccl-tests>`__ suite benchmarks
 the performance and verifies the correctness of these collective operations.
-This helps ensure optimal scaling for multi-accelerator tasks.
+This helps ensure optimal scaling for multi-GPU tasks.
 
 1. To get started, build RCCL-tests using the official instructions in the README at
    `<https://github.com/ROCm/rccl-tests?tab=readme-ov-file#build>`__ or use the
@@ -75,8 +77,8 @@ This helps ensure optimal scaling for multi-accelerator tasks.
       make
 
 2. Run the suggested RCCL tests -- see `RCCL benchmarking
-   <https://instinct.docs.amd.com/projects/system-acceptance/en/latest/mi300x/performance-bench.html#rccl-benchmarking-results>`_
-   in the Instinct performance benchmarking documentation for instructions.
+   <https://instinct.docs.amd.com/projects/system-acceptance/en/latest/network/rdma-benchmarking.html#rccl-benchmarking-results>`_
+   in the AMD Instinct customer acceptance guide.
 
 TransferBench test
 ==================

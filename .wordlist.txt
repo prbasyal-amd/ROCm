@@ -43,6 +43,7 @@ Blit
 Blockwise
 Bluefield
 Bootloader
+Broadcom
 CAS
 CCD
 CDNA
@@ -146,6 +147,8 @@ Filesystem
 FindDb
 Flang
 FlashAttention
+FlashInfer’s
+FlashInfer
 FluxBenchmark
 Fortran
 Fuyu
@@ -310,6 +313,7 @@ Mooncake
 Mpops
 Multicore
 Multithreaded
+MXFP
 MyEnvironment
 MyST
 NANOO
@@ -480,6 +484,7 @@ TCI
 TCIU
 TCP
 TCR
+TVM
 THREADGROUPS
 threadgroups
 TensorRT
@@ -709,6 +714,7 @@ githooks
 github
 globals
 gnupg
+gpu
 grayscale
 gx
 gzip
@@ -763,6 +769,7 @@ invariants
 invocating
 ipo
 jax
+json
 kdb
 kfd
 kv
@@ -963,6 +970,7 @@ tabindex
 targetContainer
 td
 tensorfloat
+tf
 th
 tokenization
 tokenize
@@ -975,6 +983,7 @@ toolset
 toolsets
 torchtitan
 torchvision
+tp
 tqdm
 tracebacks
 txt

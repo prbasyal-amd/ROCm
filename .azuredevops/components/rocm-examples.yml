@@ -33,16 +33,20 @@ parameters:
     - hipRAND
     - hipSOLVER
     - hipSPARSE
+    - hipTensor
     - llvm-project
     - rocBLAS
     - rocFFT
+    - rocJPEG
     - rocPRIM
     - rocprofiler-register
+    - rocprofiler-sdk
     - ROCR-Runtime
     - rocRAND
     - rocSOLVER
     - rocSPARSE
     - rocThrust
+    - rocWMMA
 - name: rocmTestDependencies
   type: object
   default:
@@ -57,18 +61,22 @@ parameters:
     - hipRAND
     - hipSOLVER
     - hipSPARSE
+    - hipTensor
     - llvm-project
     - rocBLAS
     - rocFFT
     - rocminfo
     - rocPRIM
+    - rocJPEG
     - rocprofiler-register
+    - rocprofiler-sdk
     - ROCR-Runtime
     - rocRAND
     - rocSOLVER
     - rocSPARSE
     - rocThrust
     - roctracer
+    - rocWMMA
 
 - name: jobMatrix
   type: object
@@ -97,6 +105,9 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
       parameters:
         aptPackages: ${{ parameters.aptPackages }}
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-custom.yml
+      parameters:
+        cmakeVersion: '3.25.0'
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
       parameters:
@@ -158,6 +169,9 @@ jobs:
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-other.yml
       parameters:
         aptPackages: ${{ parameters.aptPackages }}
+    - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-cmake-custom.yml
+      parameters:
+        cmakeVersion: '3.25.0'
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/preamble.yml
     - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
       parameters:

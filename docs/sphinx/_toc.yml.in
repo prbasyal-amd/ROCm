@@ -23,8 +23,8 @@ subtrees:
     title: ROCm on Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/latest/
     title: HIP SDK on Windows
-  - url: https://rocm.docs.amd.com/projects/radeon/en/latest/index.html
-    title: ROCm on Radeon GPUs
+  - url: https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/index.html
+    title: ROCm on Radeon and Ryzen
   - file: how-to/deep-learning-rocm.md
     title: Deep learning frameworks
     subtrees:
@@ -49,6 +49,8 @@ subtrees:
         title: Ray compatibility
       - file: compatibility/ml-compatibility/llama-cpp-compatibility.rst
         title: llama.cpp compatibility
+      - file: compatibility/ml-compatibility/flashinfer-compatibility.rst
+        title: FlashInfer compatibility
   - file: how-to/build-rocm.rst
     title: Build ROCm from source
 
@@ -60,8 +62,15 @@ subtrees:
     - entries:
       - file: how-to/rocm-for-ai/install.rst
         title: Installation
-      - file: how-to/rocm-for-ai/system-health-check.rst
-        title: System health benchmarks
+      - file: how-to/rocm-for-ai/system-setup/index.rst
+        title: System setup
+        entries:
+        - file: how-to/rocm-for-ai/system-setup/prerequisite-system-validation.rst
+          title: System validation
+        - file: how-to/rocm-for-ai/system-setup/multi-node-setup.rst
+          title: Multi-node setup
+        - file: how-to/rocm-for-ai/system-setup/system-health-check.rst
+          title: System health benchmarks
       - file: how-to/rocm-for-ai/training/index.rst
         title: Training
         subtrees:
