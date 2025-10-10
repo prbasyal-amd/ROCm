@@ -156,7 +156,7 @@ compatibility and system requirements.
 
 .. rubric:: Footnotes
 
-.. [#rhel-10-702] RHEL 10.0 and RHEL 9.6 are supported on all listed :doc:`Supported GPUs <rocm-install-on-linux:reference/system-requirements#supported-gpus>` except AMD Radeon PRO V620 GPU.
+.. [#rhel-10-702] RHEL 10.0 and RHEL 9.6 are supported on all listed :doc:`Supported GPUs <rocm-install-on-linux:reference/system-requirements>` except AMD Radeon PRO V620 GPU.
 .. [#rhel-700] RHEL 8.10 is supported only on AMD Instinct MI300X, MI300A, MI250X, MI250, MI210, and MI100 GPUs.
 .. [#ol-700-mi300x] **For ROCm 7.0.x** - Oracle Linux 10 and 9 are supported only on AMD Instinct MI355X, MI350X, and MI300X GPUs. Oracle Linux 8 is supported only on AMD Instinct MI300X GPU.
 .. [#ol-mi300x] **Prior ROCm 7.0.0** - Oracle Linux is supported only on AMD Instinct MI300X GPUs.
