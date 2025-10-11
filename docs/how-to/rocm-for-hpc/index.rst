@@ -189,15 +189,6 @@ Ubuntu versions.
           defined in SymPy to create and execute highly optimized Finite Difference stencil
           kernels on multiple computer platforms.
 
-      * -
-        - `ECHELON <https://github.com/amd/InfinityHub-CI/tree/main/srt-echelon>`_
-        - ECHELON by Stone Ridge Technology is a reservoir simulation tool. With
-          fast processing, it retains precise accuracy and preserves legacy simulator results.
-          Faster reservoir simulation enables reservoir engineers to produce many realizations,
-          address larger models, and use advanced physics. It opens new workflows based on
-          ensemble methodologies for history matching and forecasting that yield
-          increased accuracy and more predictive results.
-
       * - Benchmark
         - `rocHPL <https://github.com/amd/InfinityHub-CI/tree/main/rochpl>`_
         - HPL, or High-Performance Linpack, is a benchmark which solves a uniformly
@@ -230,6 +221,10 @@ Ubuntu versions.
         - Base container for GPU-aware MPI with ROCm for HPC applications. This
           project provides a boilerplate for building and running a Docker
           container with ROCm supporting GPU-aware MPI implementations using MPICH.
+
+      * - 
+        - `AMD ROCm with Conda Environment Container <https://github.com/amd/InfinityHub-CI/tree/main/conda-rocm-environment>`_
+        - Container recipe that uses the `base-gpu-mpi-rocm-docker` as the base and adds Conda. The container can be used as a base for applications that require conda applications.
       
       * -
         - `Kokkos <https://github.com/amd/InfinityHub-CI/tree/main/kokkos>`_
@@ -259,5 +254,10 @@ Ubuntu versions.
         - The Trilinos Project is an effort to develop algorithms and enabling technologies
           within an object-oriented software framework for the solution of large-scale,
           complex multi-physics engineering and scientific problems.
+
+      * -
+        - `VLLM <https://github.com/amd/InfinityHub-CI/tree/main/vllm>`_
+        - The VLLM project helps to build a Dockerfile for performance testing of the LLAMA2 applications.
+          This docker file uses a base install that includes Ubuntu 20.04, ROCm 6.1.2 and Python 3.9. The container can host the LLAMA2 applications (LLMs) and requires some large input files for testing.
 
 To learn about ROCm for AI applications, see :doc:`../rocm-for-ai/index`.
