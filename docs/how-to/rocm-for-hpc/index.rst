@@ -77,6 +77,14 @@ Ubuntu versions.
           QMP, and classic vector computers.
 
       * -
+        - `Grid <https://github.com/amd/InfinityHub-CI/tree/main/grid/>`_
+        - Grid is a library for lattice QCD calculations that employs a high-level data parallel
+          approach while using a number of techniques to target multiple types of parallelism.
+          The library currently supports MPI, OpenMP and short vector parallelism. The SIMD
+          instructions sets covered include SSE, AVX, AVX2, FMA4, IMCI and AVX512. Recent
+          releases expanded this support to include GPU offloading.
+
+      * -
         - `MILC <https://github.com/amd/InfinityHub-CI/tree/main/milc/>`_
         - The MILC Code is a set of research codes developed by MIMD Lattice Computation
           (MILC) collaboration for doing simulations of four dimensional SU(3) lattice gauge
@@ -147,24 +155,6 @@ Ubuntu versions.
           multi-tier abstractions of the solver stack and facilitating various hardware
           backends ranging from general-purpose processors, CUDA and HIP enabled
           accelerators to SX-Aurora vector processors.
-
-      * -
-        - `nekRS <https://github.com/amd/InfinityHub-CI/tree/main/nekrs>`_
-        - nekRS is an open-source Navier Stokes solver based on the spectral element
-          method targeting classical processors and accelerators like GPUs.
-
-      * -
-        - `OpenFOAM <https://github.com/amd/InfinityHub-CI/tree/main/openfoam>`_
-        - OpenFOAM is a free, open-source computational fluid dynamics (CFD)
-          tool developed primarily by OpenCFD Ltd. It has a large user
-          base across most areas of engineering and science, from both commercial and
-          academic organizations. OpenFOAM has extensive features to solve
-          anything from complex fluid flows involving chemical reactions, turbulence, and
-          heat transfer, to acoustics, solid mechanics, and electromagnetics.
-
-      * -
-        - `PeleC <https://github.com/amd/InfinityHub-CI/tree/main/pelec>`_
-        - PeleC is an adaptive mesh refinement(AMR) solver for compressible reacting flows.
 
       * -
         - `Simcenter Star-CCM+ <https://github.com/amd/InfinityHub-CI/tree/main/siemens-star-ccm>`_
@@ -257,14 +247,6 @@ Ubuntu versions.
           unstructured grids containing various element types. It is also designed to target a
           range of hardware platforms via use of an in-built domain specific language derived
           from the Mako templating engine.
-
-      * -
-        - `PETSc <https://github.com/amd/InfinityHub-CI/tree/main/petsc>`_
-        - Portable, Extensible Toolkit for Scientific Computation (PETSc) is a suite of data structures
-          and routines for the scalable (parallel) solution of scientific applications modeled by partial
-          differential equations. It supports MPI, GPUs through CUDA, HIP, and OpenCL,
-          as well as hybrid MPI-GPU parallelism. It also supports the NEC-SX Tsubasa Vector Engine.
-          PETSc also includes the Toolkit for Advanced Optimization (TAO) library.
 
       * -
         - `RAJA <https://github.com/amd/InfinityHub-CI/tree/main/raja>`_
