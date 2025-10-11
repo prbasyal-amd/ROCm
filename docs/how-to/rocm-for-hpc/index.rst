@@ -80,8 +80,8 @@ Ubuntu versions.
         - `Grid <https://github.com/amd/InfinityHub-CI/tree/main/grid/>`_
         - Grid is a library for lattice QCD calculations that employs a high-level data parallel
           approach while using a number of techniques to target multiple types of parallelism.
-          The library currently supports MPI, OpenMP and short vector parallelism. The SIMD
-          instructions sets covered include SSE, AVX, AVX2, FMA4, IMCI and AVX512. Recent
+          The library currently supports MPI, OpenMP, and short vector parallelism. The SIMD
+          instruction sets covered include SSE, AVX, AVX2, FMA4, IMCI, and AVX512. Recent
           releases expanded this support to include GPU offloading.
 
       * -
@@ -258,6 +258,6 @@ Ubuntu versions.
       * -
         - `VLLM <https://github.com/amd/InfinityHub-CI/tree/main/vllm>`_
         - The VLLM project helps to build a Dockerfile for performance testing of the LLAMA2 applications.
-          This docker file uses a base install that includes Ubuntu 20.04, ROCm 6.1.2 and Python 3.9. The container can host the LLAMA2 applications (LLMs) and requires some large input files for testing.
+          This Dockerfile uses a base install that includes Ubuntu 20.04, ROCm 6.1.2 and Python 3.9. The container can host the LLAMA2 applications (LLMs) and requires some large input files for testing.
 
 To learn about ROCm for AI applications, see :doc:`../rocm-for-ai/index`.
