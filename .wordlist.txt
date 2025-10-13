@@ -86,6 +86,7 @@ Cholesky
 cholesky
 CoRR
 Codespaces
+ComfyUI
 Commitizen
 CommonMark
 Concretized
@@ -202,6 +203,7 @@ GMI
 GNN
 GNNs
 GPG
+GPGPU
 GPR
 GPT
 GPU
@@ -244,7 +246,6 @@ href
 Hyperparameters
 HybridEngine
 Huggingface
-Hunyuan
 HunyuanVideo
 IB
 ICD
@@ -335,6 +336,7 @@ MVAPICH
 MVFFR
 Makefile
 Makefiles
+ManyLinux
 Matplotlib
 Matrox
 MaxText
@@ -421,7 +423,6 @@ perf
 PEQT
 PIL
 PILImage
-PJRT
 PLDM
 POR
 PRNG
@@ -495,6 +496,7 @@ SBIOS
 SCA
 ScaledGEMM
 SDK
+SDKs
 SDMA
 SDPA
 SDRAM
@@ -543,6 +545,7 @@ TCP
 TCR
 TTM
 TVM
+TheRock
 THREADGROUPS
 threadgroups
 TensorRT
@@ -948,7 +951,7 @@ rc
 rccl
 rdc
 rdma
-reachability
+redhat
 reStructuredText
 redirections
 refactorization
@@ -1001,6 +1004,7 @@ roctracer
 rst
 runtime
 runtimes
+ryzen
 ResNet
 sL
 scalability
@@ -1065,6 +1069,7 @@ tracebacks
 txt
 TopK
 uarch
+ubuntu
 uncached
 uncacheable
 uncorrectable
@@ -1113,8 +1118,8 @@ writebacks
 wrreq
 wzo
 xargs
-xdit
 xDiT
+xdit
 xGMI
 xPacked
 xz
