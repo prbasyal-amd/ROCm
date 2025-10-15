@@ -912,11 +912,15 @@ HIP runtime has the following functional improvements which improves runtime per
 * Compatibility with NCCL 2.25.1.
 * Compatibility with NCCL 2.26.6.
 
+#### Optimized
+* Improved the performance of the `FP8` Sum operation by upcasting to `FP16`.
+
 #### Resolved issues
 
 * Resolved an issue when using more than 64 channels when multiple collectives are used in the same `ncclGroup()` call.
 * Fixed unit test failures in tests ending with the `ManagedMem` and `ManagedMemGraph` suffixes.
 * Fixed a suboptimal algorithmic switching point for AllReduce on the AMD Instinct MI300X.
+* Fixed broken functionality within the LL protocol on gfx950 by disabling inlining of LLGenericOp kernels.
 * Fixed the known issue "When splitting a communicator using `ncclCommSplit` in some GPU configurations, MSCCL initialization can cause a segmentation fault" with a design change to use `comm` instead of `rank` for `mscclStatus`. The global map for `comm` to `mscclStatus` is still not thread safe but should be explicitly handled by mutexes for read-write operations. This is tested for correctness, but there is a plan to use a thread-safe map data structure in an upcoming release.
 
 ### **rocAL** (2.3.0)
