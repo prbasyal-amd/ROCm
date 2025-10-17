@@ -149,11 +149,11 @@ firmware, AMD GPU drivers, and the ROCm user space software.
       </tr>
       <tr>
           <td>MI250</td>
-          <td>MU5 w/ IFWI 75 (or later)</td>
+          <td>MU3 w/ IFWI 73</td>
       </tr>
       <tr>
           <td>MI210</td>
-          <td>MU5 w/ IFWI 75 (or later)</td>
+          <td>MU3 w/ IFWI 73</td>
           <td>8.4.0.K</td>
       </tr>
       <tr>
