@@ -91,7 +91,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
           <td rowspan="9" style="vertical-align: middle;">ROCm 7.0.2</td>
           <td>MI355X</td>
           <td>
-              01.25.15.02 (or later)<br>
+              01.25.15.04<br>
               01.25.13.09
           </td>
           <td>30.10.2<br>
@@ -102,7 +102,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
       <tr>
           <td>MI350X</td>
           <td>
-              01.25.15.02 (or later)<br>
+              01.25.15.04<br>
               01.25.13.09
           </td>
           <td>30.10.2<br>
@@ -112,7 +112,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
       <tr>
           <td>MI325X</td>
           <td>
-              01.25.04.02 (or later)<br>
+              01.25.04.02<br>
               01.25.03.03
           </td>
           <td>
@@ -139,13 +139,13 @@ firmware, AMD GPU drivers, and the ROCm user space software.
       </tr>
       <tr>
           <td>MI300A</td>
-          <td>BKC 26 (or later)<br>
+          <td>BKC 26<br>
               BKC 25</td>
           <td rowspan="3" style="vertical-align: middle;">Not Applicable</td>
       </tr>
       <tr>
           <td>MI250X</td>
-          <td>IFWI 47 (or later)</td>
+          <td>IFWI 47</td>
       </tr>
       <tr>
           <td>MI250</td>
