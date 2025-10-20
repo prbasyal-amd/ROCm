@@ -102,7 +102,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
       <tr>
           <td>MI350X</td>
           <td>
-              01.25.15.02<br>
+              01.25.15.04<br>
               01.25.13.09
           </td>
           <td>30.10.2<br>
