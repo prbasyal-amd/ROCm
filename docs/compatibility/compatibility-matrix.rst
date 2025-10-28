@@ -113,7 +113,7 @@ compatibility and system requirements.
       :doc:`rocThrust <rocthrust:index>`,4.0.0,4.0.0,3.3.0
       ,,,
       SUPPORT LIBS,,,
-      `hipother <https://github.com/ROCm/hipother>`_,7.0.51830,7.0.51830,6.4.43482
+      `hipother <https://github.com/ROCm/hipother>`_,7.0.51831,7.0.51830,6.4.43482
       `rocm-core <https://github.com/ROCm/rocm-core>`_,7.0.2,7.0.1/7.0.0,6.4.0
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_
       ,,,
