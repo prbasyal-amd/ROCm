@@ -44,7 +44,6 @@ The following are notable new features and improvements in ROCm 7.1.0. For chang
 
 ROCm 7.1.0 extends the operating system support for the following AMD hardware:
 
-* AMD Instinct MI355X and MI350X GPUs add support for Debian 13.
 * AMD Instinct MI325X adds support for RHEL 10.0, SLES15 SP7, Debian 13, Debian 12, Oracle Linux 10, and Oracle Linux 9.
 * AMD Instinct MI100 adds support for SLES 15 SP7.
 
@@ -480,7 +479,7 @@ Click {fab}`github` to go to the component's source code on GitHub.
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipSOLVER/en/docs-7.1.0/index.html">hipSOLVER</a></td>
                 <td>3.0.0&nbsp;&Rightarrow;&nbsp;<a href="#hipsolver-3-1-0">3.1.0</a></td>
-                <td><a href="https://github.com/ROCm/hipSOLVER"><i class="fab fa-github fa-lg"></i></a></td>
+                <td><a href="https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsolver"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipSPARSE/en/docs-7.1.0/index.html">hipSPARSE</a></td>
@@ -515,7 +514,7 @@ Click {fab}`github` to go to the component's source code on GitHub.
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.1.0/index.html">rocSOLVER</a></td>
                 <td>3.30.1&nbsp;&Rightarrow;&nbsp;<a href="#rocsolver-3-31-0">3.31.0</a></td>
-                <td><a href="https://github.com/ROCm/rocSOLVER"><i class="fab fa-github fa-lg"></i></a></td>
+                <td><a href="https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocsolver"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.1.0/index.html">rocSPARSE</a></td>
