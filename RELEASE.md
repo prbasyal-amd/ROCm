@@ -44,7 +44,6 @@ The following are notable new features and improvements in ROCm 7.1.0. For chang
 
 ROCm 7.1.0 extends the operating system support for the following AMD hardware:
 
-* AMD Instinct MI355X and MI350X GPUs add support for Debian 13.
 * AMD Instinct MI325X adds support for RHEL 10.0, SLES15 SP7, Debian 13, Debian 12, Oracle Linux 10, and Oracle Linux 9.
 * AMD Instinct MI100 adds support for SLES 15 SP7.
 
