@@ -141,7 +141,6 @@ See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/roc
 #### Optimized
 
 * `TF32` kernel optimization for the AMD Instinct MI355X GPU to enhance training and inference efficiency.
-* Meta Model optimization for the AMD Instinct MI350X GPU to enable better performance across transformer-based models.
 
 #### Resolved issues
 
@@ -694,7 +693,7 @@ See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/roc
 * Updated error handling for several rocRAND unit tests to accommodate the new `hipGetLastError` behavior that was introduced in ROCm 7.0.
 As of ROCm 7.0, the internal error state is cleared on each call to `hipGetLastError` rather than on every HIP API call.
 
-### **rocSOLVER** (3.30.0)
+### **rocSOLVER** (3.31.0)
 
 #### Added
 
@@ -1043,10 +1042,6 @@ for a complete overview of this release.
 #### Known issues
 
 - `amd-smi monitor` on Linux Guest systems triggers an attribute error.
-
-```{note}
-See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.0/CHANGELOG.md) for details, examples, and in-depth descriptions.
-```
 
 ### **Composable Kernel** (1.1.0) 
 
