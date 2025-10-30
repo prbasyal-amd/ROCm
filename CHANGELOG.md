@@ -1043,10 +1043,6 @@ for a complete overview of this release.
 
 - `amd-smi monitor` on Linux Guest systems triggers an attribute error.
 
-```{note}
-See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.0/CHANGELOG.md) for details, examples, and in-depth descriptions.
-```
-
 ### **Composable Kernel** (1.1.0) 
 
 #### Added
