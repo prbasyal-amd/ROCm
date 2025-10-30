@@ -190,7 +190,7 @@ ROCm-LS provides the following tools to build a complete workflow for life scien
 
 * The hipCIM library provides powerful support for GPU-accelerated I/O operations, coupled with an array of computer vision and image processing primitives designed for N-dimensional image data in fields such as biomedical imaging. For more information, see the [hipCIM documentation](https://rocm.docs.amd.com/projects/hipCIM/en/latest/).
 
-* MONAI for AMD ROCm, a ROCm-enabled version of [MONAI](https://monai.io/), is built on top of [PyTorch for AMD ROCm](https://pytorch.org/blog/pytorch-for-amd-rocm-platform-now-available-as-python-package/), helping healthcare and life science innovators to leverage GPU acceleration with AMD Instinct GPUs for high-performance inference and training of medical AI applications. For more information, see the [MONAI for AMD ROCm documentation](https://rocm.docs.amd.com/projects/monai/en/latest/).
+* MONAI for AMD ROCm, a ROCm-enabled version of {fab}`github` [MONAI](https://github.com/Project-MONAI/MONAI), is built on top of [PyTorch for AMD ROCm](https://pytorch.org/blog/pytorch-for-amd-rocm-platform-now-available-as-python-package/), helping healthcare and life science innovators to leverage GPU acceleration with AMD Instinct GPUs for high-performance inference and training of medical AI applications. For more information, see the [MONAI for AMD ROCm documentation](https://rocm.docs.amd.com/projects/monai/en/latest/).
 
 ### Deep learning and AI framework updates
 
@@ -712,7 +712,7 @@ The issue will be resolved in a future ROCm release. See [GitHub issue #5500](ht
 
 ### Applications using OpenCV might fail due to package incompatibility between the OS
 
-OpenCV packages built on Ubuntu 24.04 are incompatible with Debian 13 due to a version conflict. As a result, applications, tests, and samples that use OpenCV might fail. To avoid the version conflict, rebuild OpenCV with the version corresponding to Debian 13, then rebuild MIVisionX on top of it. As a workaround, rebuild OpenCV from source, followed by the application that uses OpenCV. This issue will be fixed in a future ROCm release. See [GitHub issue #5501](https://github.com/ROCm/ROCm/issues/5501).
+OpenCV packages built on Ubuntu 24.04 are incompatible with Debian 13 due to a version conflict. As a result, applications, tests, and samples that use OpenCV might fail. As a workaround, rebuild OpenCV with the version corresponding to Debian 13 from source, followed by the application that uses OpenCV. This issue will be fixed in a future ROCm release. See [GitHub issue #5501](https://github.com/ROCm/ROCm/issues/5501).
 
 ## ROCm upcoming changes
 
