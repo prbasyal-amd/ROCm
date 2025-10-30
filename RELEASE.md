@@ -211,7 +211,6 @@ hipBLASLt introduces several performance and model compatibility improvements fo
 
 * TF32 kernel optimization for AMD Instinct MI355X GPUs to enhance training and inference efficiency.
 * FP32 kernel optimization for AMD Instinct MI350X GPUs, improving precision-based workloads.
-* Meta model optimization for AMD Instinct MI350X GPUs, enabling better performance across transformer-based models.
 * Llama 2 70B model support fix for AMD Instinct MI350X GPUs: Removed incorrect kernel to ensure accurate and stable execution.
 * For AMD Instinct MI350X GPUs, added multiple high-performance kernels optimized for `FP16` and `BF16` data types, enhancing heuristic-based execution.
 * FP8 low-precision data type operations on AMD Instinct MI350X GPUs. This update adds FP8 support for the Instinct MI350X using the hipBLASLt low-precision data type functionality.
@@ -464,7 +463,7 @@ Click {fab}`github` to go to the component's source code on GitHub.
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipFFT/en/docs-7.1.0/index.html">hipFFT</a></td>
-                <td>1.0.20&nbsp;&Rightarrow;&nbsp;<a href="#hipfft-1-0-20">1.0.21</a></td>
+                <td>1.0.20&nbsp;&Rightarrow;&nbsp;<a href="#hipfft-1-0-21">1.0.21</a></td>
                 <td><a href="https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipfft"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
@@ -480,7 +479,7 @@ Click {fab}`github` to go to the component's source code on GitHub.
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipSOLVER/en/docs-7.1.0/index.html">hipSOLVER</a></td>
                 <td>3.0.0&nbsp;&Rightarrow;&nbsp;<a href="#hipsolver-3-1-0">3.1.0</a></td>
-                <td><a href="https://github.com/ROCm/hipSOLVER"><i class="fab fa-github fa-lg"></i></a></td>
+                <td><a href="https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsolver"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/hipSPARSE/en/docs-7.1.0/index.html">hipSPARSE</a></td>
@@ -515,7 +514,7 @@ Click {fab}`github` to go to the component's source code on GitHub.
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.1.0/index.html">rocSOLVER</a></td>
                 <td>3.30.1&nbsp;&Rightarrow;&nbsp;<a href="#rocsolver-3-31-0">3.31.0</a></td>
-                <td><a href="https://github.com/ROCm/rocSOLVER"><i class="fab fa-github fa-lg"></i></a></td>
+                <td><a href="https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocsolver"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.1.0/index.html">rocSPARSE</a></td>
@@ -741,10 +740,6 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 
 * Fixed certain output in `amd-smi monitor` when GPUs are partitioned. It fixes the issue with amd-smi monitor such as: `amd-smi monitor -Vqt`, `amd-smi monitor -g 0 -Vqt -w 1`, and `amd-smi monitor -Vqt --file /tmp/test1`. These commands will now be able to display as normal in partitioned GPU scenarios.
 
-```{note}
-See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.1/CHANGELOG.md) for details, examples, and in-depth descriptions.
-```
-
 ### **Composable Kernel** (1.1.0)
 
 #### Added
@@ -834,7 +829,6 @@ See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/roc
 #### Optimized
 
 * `TF32` kernel optimization for the AMD Instinct MI355X GPU to enhance training and inference efficiency.
-* Meta Model optimization for the AMD Instinct MI350X GPU to enable better performance across transformer-based models.
 
 #### Resolved issues
 
@@ -1387,7 +1381,7 @@ See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/roc
 * Updated error handling for several rocRAND unit tests to accommodate the new `hipGetLastError` behavior that was introduced in ROCm 7.0.
 As of ROCm 7.0, the internal error state is cleared on each call to `hipGetLastError` rather than on every HIP API call.
 
-### **rocSOLVER** (3.30.0)
+### **rocSOLVER** (3.31.0)
 
 #### Added
 
