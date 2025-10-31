@@ -1494,7 +1494,7 @@ On RPM-based operating systems (such as RHEL 8), the `rocprofv3` tool fails with
 
 ### ROCgdb might fail on SR-IOV guest VMs
 
-The ROCgdb application might fail when running the `step-schedlock-spurious-waves.exp` test case on SR-IOV guest virtual machines (VMs). As a workaround, avoid running an inferior in ROCgdb if a background process is already heavily utilizing the GPU. The issue is currently under investigation and will be fixed in a future ROCm release. 
+ROCgdb might fail when running the `step-schedlock-spurious-waves.exp` test case on SR-IOV guest virtual machines (VMs). As a workaround, avoid running an inferior in ROCgdb if a background process is already heavily utilizing the GPU. The issue is currently under investigation and will be fixed in a future ROCm release. 
 
 ## ROCm resolved issues
 
