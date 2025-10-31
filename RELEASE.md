@@ -1484,9 +1484,9 @@ ls -l /opt/rocm-7.0.0/lib/libmigraphx_py_*.so
 ```
 The issue will be resolved in a future ROCm release. See [GitHub issue #5500](https://github.com/ROCm/ROCm/issues/5500).
 
-### Failure to uninstall ROCm Bandwidth Test using amdgpu-install script
+### Issue uninstalling ROCm Bandwidth Test using amdgpu-install script
 
-Due to missing `rocm-core` dependency from the ROCm Bandwidth Test you will be unable to make a clean uninstallation of ROCm Bandwidth Test using the `amdgpu-install` script. As a workaround, you can uninstall ROCm Bandwidth Test manually, using the native package managers. For more information, see [Installation via native package manager](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/install-methods/package-manager-index.html). The issue will be fixed in a future ROCm release.
+Due to missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't cleanly uninstal ROCm Bandwidth Test using the `amdgpu-install` script. As a workaround, uninstall ROCm Bandwidth Test manually, using the native package managers. For more information, see [Installation via native package manager](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/install-methods/package-manager-index.html). The issue will be fixed in a future ROCm release.
 
 ## ROCm resolved issues
 
