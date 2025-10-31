@@ -1486,7 +1486,11 @@ The issue will be resolved in a future ROCm release. See [GitHub issue #5500](ht
 
 ### Issue uninstalling ROCm Bandwidth Test using amdgpu-install script
 
-Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't cleanly uninstal ROCm Bandwidth Test using the `amdgpu-install` script. As a workaround, uninstall ROCm Bandwidth Test manually, using the native package managers. For more information, see [Installation via native package manager](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/install-methods/package-manager-index.html). The issue will be fixed in a future ROCm release.
+Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't cleanly uninstall ROCm Bandwidth Test using the `amdgpu-install` script. As a workaround, uninstall ROCm Bandwidth Test manually, using the native package managers. For more information, see [Installation via native package manager](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/install-methods/package-manager-index.html). The issue will be fixed in a future ROCm release.
+
+### rocprofv3 fails on RPM-based OS with Python 3.10+
+
+On RPM-based operating systems (suc as, RHEL8), the `rocprofv3` tool fails with Python 3.10 and later due to missing ROCPD bindings. As a workaround, use Python 3.6 if you need to use `rocprofv3` tool with ROCm 7.1.0. This issue will be fixed in a future ROCm release.
 
 ## ROCm resolved issues
 
