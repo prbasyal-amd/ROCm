@@ -1494,6 +1494,10 @@ On RPM-based operating systems (such as RHEL 8), the `rocprofv3` tool fails with
 
 ROCgdb might fail when running the `step-schedlock-spurious-waves.exp` test case on SR-IOV guest virtual machines (VMs). As a workaround, avoid running an inferior in ROCgdb if a background process is already heavily utilizing the GPU. The issue is currently under investigation and will be fixed in a future ROCm release. See [GitHub issue #5607](https://github.com/ROCm/ROCm/issues/5607).
 
+### Issue uninstalling ROCm Bandwidth Test using amdgpu-install script
+
+Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't cleanly uninstall ROCm Bandwidth Test using the `amdgpu-install` script. As a workaround, uninstall ROCm Bandwidth Test manually, using the native package managers. For more information, see [Installation via native package manager](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/install-methods/package-manager-index.html). The issue will be fixed in a future ROCm release. See [GitHub issue #5611](https://github.com/ROCm/ROCm/issues/5611).
+
 ## ROCm resolved issues
 
 The following are previously known issues resolved in this release. For resolved issues related to
