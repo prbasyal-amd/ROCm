@@ -2359,7 +2359,7 @@ The previous default accumulator types could lead to situations in which unexpec
 
 #### Added
 
-* Hybrid computation support for existing routines: STEQR
+* Hybrid computation support for existing STEQR routines.
 
 #### Optimized
 

@@ -1385,7 +1385,7 @@ As of ROCm 7.0, the internal error state is cleared on each call to `hipGetLastE
 
 #### Added
 
-* Hybrid computation support for existing routines: STEQR
+* Hybrid computation support for existing STEQR routines.
 
 #### Optimized
 
@@ -1491,6 +1491,10 @@ Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't 
 ### rocprofv3 fails on RPM-based OS with Python 3.10+
 
 On RPM-based operating systems (such as RHEL8), the `rocprofv3` tool fails with Python 3.10 and later due to missing ROCPD bindings. As a workaround, use Python 3.6 if you need to use the `rocprofv3` tool with ROCm 7.1.0. This issue will be fixed in a future ROCm release.
+
+### ROCgdb might fail on SR-IOV guest VMs
+
+The ROCgdb application might fail when running the `step-schedlock-spurious-waves.exp` test case on SR-IOV guest virtual machines (VMs). As workaround, avoid running `inferior` in ROCgdb if a background process is already heavily utilizing the GPU. The issue is currently under investigation and will be fixed in a future ROCm release. 
 
 ## ROCm resolved issues
 
