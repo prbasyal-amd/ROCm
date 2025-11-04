@@ -164,7 +164,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
   </table>
 </div>
 
-<p id="footnote1">[1]: PLDM bundle 01.25.05.00 will be available by October 31, 2025.</p>
+<p id="footnote1">[1]: PLDM bundle 01.25.05.00 will be available by November 2025.</p>
 
 #### AMD Instinct MI300X GPU resiliency improvement
 
