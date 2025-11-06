@@ -1498,6 +1498,18 @@ ROCgdb might fail when running the `step-schedlock-spurious-waves.exp` test case
 
 Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't cleanly uninstall ROCm Bandwidth Test using the `amdgpu-install` script. As a workaround, uninstall ROCm Bandwidth Test manually, using the native package managers. For more information, see [Installation via native package manager](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/install-methods/package-manager-index.html). The issue will be fixed in a future ROCm release. See [GitHub issue #5611](https://github.com/ROCm/ROCm/issues/5611).
 
+### Reduced precision issue in gemm_ex operations for rocBLAS and hipBLAS
+
+Some of the `gemm_ex` operations with half or f32_r data types might see 16-bit precision results instead of the expected 32-bit precision when matrix dimensions are m=1 or n=1. The issue is resulted from the optimization that enables `_ex` APIs to use lower precision multiples. It limits the high-precision matrix operations performed in PyTorch with rocBlas and hipBlas. The issue will be fixed in a future ROCm release.
+
+### OpenBLAS runtime dependency for hipblastlt-test and hipblaslt-bench
+
+Running `hipblaslt-test` or `hipblaslt-bench` without first installing the OpenBLAS development package will result in the following error:
+```
+libopenblas.so.0: cannot open shared object file: No such file or directory
+```
+As a workaround, you need to first install `libopenblas-dev` or `libopenblas-deve`, depending on the package manager used. The issue will be fixed in a future ROCm release.
+
 ## ROCm resolved issues
 
 The following are previously known issues resolved in this release. For resolved issues related to
