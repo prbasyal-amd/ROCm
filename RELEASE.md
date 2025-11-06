@@ -1500,7 +1500,7 @@ Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't 
 
 ### Reduced precision issue in gemm_ex operations for rocBLAS and hipBLAS
 
-Some of the `gemm_ex` operations with half or f32_r data types might see 16-bit precision results instead of the expected 32-bit precision when matrix dimensions are m=1 or n=1. The issue is resulted from the optimization that enables `_ex` APIs to use lower precision multiples. It limits the high-precision matrix operations performed in PyTorch with rocBlas and hipBlas. The issue will be fixed in a future ROCm release.
+Some of the `gemm_ex` operations with half or f32_r data types might see 16-bit precision results instead of the expected 32-bit precision when matrix dimensions are m=1 or n=1. The issue is resulted from the optimization that enables `_ex` APIs to use lower precision multiples. It limits the high-precision matrix operations performed in PyTorch with rocBLAS and hipBLAS. The issue will be fixed in a future ROCm release.
 
 ### OpenBLAS runtime dependency for hipblastlt-test and hipblaslt-bench
 
