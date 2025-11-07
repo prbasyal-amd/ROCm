@@ -321,11 +321,6 @@ matrix](../../docs/compatibility/compatibility-matrix.rst) for the complete list
 
 Torch-MIGraphX integrates the AMD graph inference engine with the PyTorch ecosystem. It provides a `mgx_module` object that may be invoked in the same manner as any other torch module, but utilizes the MIGraphX inference engine internally. Although Torch-MIGraphX has been available in previous releases, installable WHL files are now officially published.
 
-#### JAX
-
-* JAX customers can now use Llama-2 with JAX efficiently.
-* The latest public JAX repo is {fab}`github` [rocm-jax](https://github.com/ROCm/rocm-jax/tree/master).
-
 #### TensorFlow
 ROCm 7.1.0 enables support for TensorFlow 2.20.0.
 
