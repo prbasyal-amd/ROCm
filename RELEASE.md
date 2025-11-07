@@ -1507,7 +1507,7 @@ Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't 
 
 ### OpenBLAS runtime dependency for hipblastlt-test and hipblaslt-bench
 
-Running `hipblaslt-test` or `hipblaslt-bench` without first installing the OpenBLAS development package results in the following error:
+Running `hipblaslt-test` or `hipblaslt-bench` without installing the OpenBLAS development package results in the following error:
 ```
 libopenblas.so.0: cannot open shared object file: No such file or directory
 ```
