@@ -54,8 +54,7 @@ For more information about supported:
 * Operating systems, see [Supported operating systems](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems) and [ROCm installation for Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/).
 
 ```{note}
-If you’re using AMD Radeon GPUs or Ryzen APUs in a workstation setting with a display connected, see the [Use ROCm on Radeon and Ryzen](https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/index.html)
-documentation to verify compatibility and system requirements.
+Starting ROCm 7.1.0, Upstream Inter-Process Communication (IPC) works with Checkpoint Restore in User space (CRIU) feature, but it requires the most up-to-date kernel and CRIU plugin. 
 ```
 
 #### Virtualization support
@@ -1312,6 +1311,14 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 - Updated the grouping of "kernel dispatch" and "memory copy" events in Perfetto traces. They are now grouped together by HIP Stream rather than separately and by hardware queue.
 - Updated PAPI module to v7.2.0b2.
 - ROCprofiler-SDK is now used for tracing OMPT API calls.
+
+#### Known issues
+
+* PyTorch and other Python applications might fail to profile device activities when it is unable to find the libraries in the default linker path. As a workaround, you need to explicitly add the library path to ``LD_LIBRARY_PATH``. For PyTorch use:
+
+```
+export LD_LIBRARY_PATH=:/opt/venv/lib/python3.10/site-packages/torch/lib:$LD_LIBRARY_PATH
+```
 
 ### **rocPRIM** (4.1.0)
 
