@@ -53,6 +53,10 @@ For more information about supported:
 
 * Operating systems, see [Supported operating systems](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems) and [ROCm installation for Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/).
 
+```{note}
+Starting ROCm 7.1.0, Upstream Inter-Process Communication (IPC) works with Checkpoint Restore in User space (CRIU) feature, but it requires the most up-to-date kernel and CRIU plugin. 
+```
+
 #### Virtualization support
 
 ROCm 7.1.0 adds Guest OS support for RHEL 10.0 in KVM SR-IOV for AMD Instinct MI355X and MI350X GPUs.
@@ -119,8 +123,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
       <tr>
           <td>MI325X</td>
           <td>
-              01.25.05.01<br>
-              01.25.04.02
+              01.25.04.02<a href="#footnote2"><sup>[2]</sup></a>
           </td>
           <td>
               30.20.0<br>
@@ -174,6 +177,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
 </div>
 
 <p id="footnote1">[1]: PLDM bundle 01.25.05.00 will be available by November 2025.</p>
+<p id="footnote2">[2]: If using KVM SR-IOV, it’s recommended not to use AMD GPU Driver (amdgpu) 30.20.0 with PLDM bundle 01.25.04.02.</p>
 
 #### AMD SMI improvement: Set power cap
 
@@ -316,11 +320,6 @@ matrix](../../docs/compatibility/compatibility-matrix.rst) for the complete list
 #### PyTorch
 
 Torch-MIGraphX integrates the AMD graph inference engine with the PyTorch ecosystem. It provides a `mgx_module` object that may be invoked in the same manner as any other torch module, but utilizes the MIGraphX inference engine internally. Although Torch-MIGraphX has been available in previous releases, installable WHL files are now officially published.
-
-#### JAX
-
-* JAX customers can now use Llama-2 with JAX efficiently.
-* The latest public JAX repo is {fab}`github` [rocm-jax](https://github.com/ROCm/rocm-jax/tree/master).
 
 #### TensorFlow
 ROCm 7.1.0 enables support for TensorFlow 2.20.0.
@@ -1181,7 +1180,7 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
   * Enabled `TCP_TCP_LATENCY` counter and associated counter for all GPUs except MI300.
 * Interactive metric descriptions in TUI analyze mode.
   * You can now left click on any metric cell to view detailed descriptions in the dedicated `METRIC DESCRIPTION` tab.
-* Support for analysis report output as a sqlite database using ``--output-format db`` analysis mode option.
+* Support for analysis report output as a SQLite database using ``--output-format db`` analysis mode option.
 * `Compute Throughput` panel to TUI's `High Level Analysis` category with the following metrics: VALU FLOPs, VALU IOPs, MFMA FLOPs (F8), MFMA FLOPs (BF16), MFMA FLOPs (F16), MFMA FLOPs (F32), MFMA FLOPs (F64), MFMA FLOPs (F6F4) (in gfx950), MFMA IOPs (Int8), SALU Utilization, VALU Utilization, MFMA Utilization, VMEM Utilization, Branch Utilization, IPC
 
 * `Memory Throughput` panel to TUI's `High Level Analysis` category with the following metrics: vL1D Cache BW, vL1D Cache Utilization, Theoretical LDS Bandwidth, LDS Utilization, L2 Cache BW, L2 Cache Utilization, L2-Fabric Read BW, L2-Fabric Write BW, sL1D Cache BW, L1I BW, Address Processing Unit Busy, Data-Return Busy, L1I-L2 Bandwidth, sL1D-L2 BW
@@ -1307,6 +1306,14 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 - Updated the grouping of "kernel dispatch" and "memory copy" events in Perfetto traces. They are now grouped together by HIP Stream rather than separately and by hardware queue.
 - Updated PAPI module to v7.2.0b2.
 - ROCprofiler-SDK is now used for tracing OMPT API calls.
+
+#### Known issues
+
+* PyTorch and other Python applications might fail to profile device activities when it is unable to find the libraries in the default linker path. As a workaround, you need to explicitly add the library path to ``LD_LIBRARY_PATH``. For PyTorch use:
+
+```
+export LD_LIBRARY_PATH=:/opt/venv/lib/python3.10/site-packages/torch/lib:$LD_LIBRARY_PATH
+```
 
 ### **rocPRIM** (4.1.0)
 
@@ -1497,6 +1504,14 @@ ROCgdb might fail when running the `step-schedlock-spurious-waves.exp` test case
 ### Issue uninstalling ROCm Bandwidth Test using amdgpu-install script
 
 Due to a missing `rocm-core` dependency from the ROCm Bandwidth Test, you can't cleanly uninstall ROCm Bandwidth Test using the `amdgpu-install` script. As a workaround, uninstall ROCm Bandwidth Test manually, using the native package managers. For more information, see [Installation via native package manager](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/install-methods/package-manager-index.html). The issue will be fixed in a future ROCm release. See [GitHub issue #5611](https://github.com/ROCm/ROCm/issues/5611).
+
+### OpenBLAS runtime dependency for hipblastlt-test and hipblaslt-bench
+
+Running `hipblaslt-test` or `hipblaslt-bench` without installing the OpenBLAS development package results in the following error:
+```
+libopenblas.so.0: cannot open shared object file: No such file or directory
+```
+As a workaround, first install `libopenblas-dev` or `libopenblas-deve`, depending on the package manager used. The issue will be fixed in a future ROCm release.
 
 ## ROCm resolved issues
 
