@@ -178,7 +178,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
 </div>
 
 <p id="footnote1">[1]: PLDM bundle 01.25.05.00 will be available by November 2025.</p>
-<p id="footnote2">[2]: In KVM SR-IOV, it is not recommended to use AMD GPU Driver (amdgpu) 30.20.0 with PLDM bundle 01.25.04.02.</p>
+<p id="footnote2">[2]: If using KVM SR-IOV, it’s recommended not to use AMD GPU Driver (amdgpu) 30.20.0 with PLDM bundle 01.25.04.02.</p>
 
 #### AMD SMI improvement: Set power cap
 
