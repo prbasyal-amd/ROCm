@@ -53,6 +53,11 @@ For more information about supported:
 
 * Operating systems, see [Supported operating systems](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems) and [ROCm installation for Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/).
 
+```{note}
+If you’re using AMD Radeon GPUs or Ryzen APUs in a workstation setting with a display connected, see the [Use ROCm on Radeon and Ryzen](https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/index.html)
+documentation to verify compatibility and system requirements.
+```
+
 #### Virtualization support
 
 ROCm 7.1.0 adds Guest OS support for RHEL 10.0 in KVM SR-IOV for AMD Instinct MI355X and MI350X GPUs.
@@ -119,8 +124,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
       <tr>
           <td>MI325X</td>
           <td>
-              01.25.05.01<br>
-              01.25.04.02
+              01.25.04.02<a href="#footnote2"><sup>[2]</sup></a>
           </td>
           <td>
               30.20.0<br>
@@ -174,6 +178,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
 </div>
 
 <p id="footnote1">[1]: PLDM bundle 01.25.05.00 will be available by November 2025.</p>
+<p id="footnote2">[2]: In KVM SR-IOV, it is not recommended to use AMD GPU Driver (amdgpu) 30.20.0 with PLDM bundle 01.25.04.02.</p>
 
 #### AMD SMI improvement: Set power cap
 
@@ -1181,7 +1186,7 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
   * Enabled `TCP_TCP_LATENCY` counter and associated counter for all GPUs except MI300.
 * Interactive metric descriptions in TUI analyze mode.
   * You can now left click on any metric cell to view detailed descriptions in the dedicated `METRIC DESCRIPTION` tab.
-* Support for analysis report output as a sqlite database using ``--output-format db`` analysis mode option.
+* Support for analysis report output as a SQLite database using ``--output-format db`` analysis mode option.
 * `Compute Throughput` panel to TUI's `High Level Analysis` category with the following metrics: VALU FLOPs, VALU IOPs, MFMA FLOPs (F8), MFMA FLOPs (BF16), MFMA FLOPs (F16), MFMA FLOPs (F32), MFMA FLOPs (F64), MFMA FLOPs (F6F4) (in gfx950), MFMA IOPs (Int8), SALU Utilization, VALU Utilization, MFMA Utilization, VMEM Utilization, Branch Utilization, IPC
 
 * `Memory Throughput` panel to TUI's `High Level Analysis` category with the following metrics: vL1D Cache BW, vL1D Cache Utilization, Theoretical LDS Bandwidth, LDS Utilization, L2 Cache BW, L2 Cache Utilization, L2-Fabric Read BW, L2-Fabric Write BW, sL1D Cache BW, L1I BW, Address Processing Unit Busy, Data-Return Busy, L1I-L2 Bandwidth, sL1D-L2 BW
