@@ -117,12 +117,12 @@ firmware, AMD GPU drivers, and the ROCm user space software.
               30.10</td>
       </tr>
       <tr>
-          <td>MI325X</td>
+          <td>MI325X<a href="#footnote2"><sup>[2]</sup></a></td>
           <td>
-              01.25.04.02<a href="#footnote2"><sup>[2]</sup></a>
+              01.25.04.02
           </td>
           <td>
-              30.20.0<br>
+              30.20.0<sup>[*]</sup><br>
               30.10.2<br>
               30.10.1<br>
               30.10<br>
@@ -173,7 +173,7 @@ firmware, AMD GPU drivers, and the ROCm user space software.
 </div>
 
 <p id="footnote1">[1]: PLDM bundle 01.25.05.00 will be available by November 2025.</p>
-<p id="footnote2">[2]: If using KVM SR-IOV, it’s recommended not to use AMD GPU Driver (amdgpu) 30.20.0 with PLDM bundle 01.25.04.02.</p>
+<p id="footnote2">[2]: For AMD Instinct MI325X KVM SR-IOV users, do not use AMD GPU Driver (amdgpu) 30.20.0.</p>
 
 #### AMD SMI improvement: Set power cap
 
@@ -1485,7 +1485,7 @@ issues related to individual components, review the [Detailed component changes]
 Applications using the MIGraphX Python API will fail when running on Python 3.13 and return the error message `AttributeError: module 'migraphx' has no attribute 'parse_onnx'`. The issue doesn't occur when you manually build MIGraphX. For detailed instructions, see [Building from source](https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/install/building_migraphx.html). As a workaround, change the Python version to the one found in the installed location:
 
 ```
-ls -l /opt/rocm-7.0.0/lib/libmigraphx_py_*.so
+ls -l /opt/rocm-7.1.0/lib/libmigraphx_py_*.so
 ```
 The issue will be resolved in a future ROCm release. See [GitHub issue #5500](https://github.com/ROCm/ROCm/issues/5500).
 
