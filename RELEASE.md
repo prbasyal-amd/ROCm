@@ -1507,11 +1507,11 @@ Running `hipblaslt-test` or `hipblaslt-bench` without installing the OpenBLAS de
 ```
 libopenblas.so.0: cannot open shared object file: No such file or directory
 ```
-As a workaround, first install `libopenblas-dev` or `libopenblas-deve`, depending on the package manager used. The issue will be fixed in a future ROCm release. The issue will be fixed in a future ROCm release. See [GitHub issue #5639](https://github.com/ROCm/ROCm/issues/5639).
+As a workaround, first install `libopenblas-dev` or `libopenblas-deve`, depending on the package manager used. The issue will be fixed in a future ROCm release. See [GitHub issue #5639](https://github.com/ROCm/ROCm/issues/5639).
 
 ### Reduced precision in gemm_ex operations for rocBLAS and hipBLAS
 
-Some `gemm_ex` operations with `half` or `f32_r` data types might yield 16-bit precision results instead of the expected 32-bit precision when matrix dimensions are m=1 or n=1. The issue results from the optimization that enables `_ex` APIs to use lower precision multiples. It limits the high-precision matrix operations performed in PyTorch with rocBLAS and hipBLAS. The issue will be fixed in a future ROCm release. The issue will be fixed in a future ROCm release. See [GitHub issue #5640](https://github.com/ROCm/ROCm/issues/5640).
+Some `gemm_ex` operations with `half` or `f32_r` data types might yield 16-bit precision results instead of the expected 32-bit precision when matrix dimensions are m=1 or n=1. The issue results from the optimization that enables `_ex` APIs to use lower precision multiples. It limits the high-precision matrix operations performed in PyTorch with rocBLAS and hipBLAS. The issue will be fixed in a future ROCm release. See [GitHub issue #5640](https://github.com/ROCm/ROCm/issues/5640).
 
 ## ROCm resolved issues
 
