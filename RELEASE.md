@@ -117,9 +117,9 @@ firmware, AMD GPU drivers, and the ROCm user space software.
               30.10</td>
       </tr>
       <tr>
-          <td>MI325X</td>
+          <td>MI325X<a href="#footnote2"><sup>[2]</sup></a></td>
           <td>
-              01.25.04.02<a href="#footnote2"><sup>[2]</sup></a>
+              01.25.04.02
           </td>
           <td>
               30.20.0<sup>[*]</sup><br>
