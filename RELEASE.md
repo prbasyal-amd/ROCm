@@ -1517,6 +1517,10 @@ As a workaround, first install `libopenblas-dev` or `libopenblas-deve`, dependin
 
 Some `gemm_ex` operations with `half` or `f32_r` data types might yield 16-bit precision results instead of the expected 32-bit precision when matrix dimensions are m=1 or n=1. The issue results from the optimization that enables `_ex` APIs to use lower precision multiples. It limits the high-precision matrix operations performed in PyTorch with rocBLAS and hipBLAS. The issue will be fixed in a future ROCm release. See [GitHub issue #5640](https://github.com/ROCm/ROCm/issues/5640).
 
+### RCCL profiler plugin failure with AllToAll operations
+
+The RCCL profiler plugin `librccl-profiler.so` might fail with a segmentation fault during `AllToAll` collective operations due to improperly assigned point-to-point task function pointers. This leads to invalid memory access and prevents profiling of `AllToAll` performance. Other operations, like `AllReduce`, are unaffected. It is recommended to avoid using the RCCL profiler plugin with `AllToAll` operations until the fix is available. This issue is resolved in the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop) and will be part of a future ROCm release. 
+
 ## ROCm resolved issues
 
 The following are previously known issues resolved in this release. For resolved issues related to
@@ -1529,10 +1533,6 @@ A segmentation fault in ROCprofiler-SDK that uses `std::regex` has been resolved
 ### Clang compilation failure might occur due to incorrectly installed GNU C++ runtime
 
 An issue of Clang compilation failing with the error `fatal error: 'cmath' file not found` if the GNU C++ runtime was not installed correctly has been resolved. The error indicated that the `libstdc++-dev` package, compatible with the latest installed GNU Compiler Collection (GCC) version, was missing. This issue was a result of Clang being unable to find the newest GNU C++ runtimes it recognizes and the associated header files. See [GitHub issue #4612](https://github.com/ROCm/ROCm/issues/4612).
-
-### RCCL profiler plugin failure when running AllToAll operations
-
-The RCCL profiler plugin `librccl-profiler.so` might fail with a segmentation fault when running `AllToAll` collective operations. The issue will prevent you from profiling `AllToAll` performance. The issue is caused due to the Point-to-point task function pointers not being correctly assigned, causing the profiler to reference corrupt memory addresses. Other collective operations, such as `AllReduce` are not affected. It is recommended to avoid using the RCCL profiler plugin with `AllToAll` operations until the fix is available. This issue is resolved in the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop) and will be part of a future ROCm release. 
 
 ## ROCm upcoming changes
 
