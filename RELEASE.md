@@ -1526,6 +1526,10 @@ A segmentation fault in ROCprofiler-SDK that uses `std::regex` has been resolved
 
 An issue of Clang compilation failing with the error `fatal error: 'cmath' file not found` if the GNU C++ runtime was not installed correctly has been resolved. The error indicated that the `libstdc++-dev` package, compatible with the latest installed GNU Compiler Collection (GCC) version, was missing. This issue was a result of Clang being unable to find the newest GNU C++ runtimes it recognizes and the associated header files. See [GitHub issue #4612](https://github.com/ROCm/ROCm/issues/4612).
 
+### RCCL profiler plugin failure when running AllToAll operations
+
+The RCCL profiler plugin `librccl-profiler.so` might fail with a segmentation fault when running `AllToAll` collective operations. The issue will prevent you from profiling `AllToAll` performance. The issue is caused due to the Point-to-point task function pointers not being correctly assigned, causing the profiler to reference corrupt memory addresses. Other collective operations, such as `AllReduce` are not affected. It is recommended to avoid using the RCCL profiler plugin with `AllToAll` operations until the fix is available. This issue is resolved in the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop) and will be part of a future ROCm release. 
+
 ## ROCm upcoming changes
 
 The following changes to the ROCm software stack are anticipated for future releases.
