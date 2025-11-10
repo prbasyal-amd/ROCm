@@ -53,6 +53,10 @@ For more information about supported:
 
 * Operating systems, see [Supported operating systems](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems) and [ROCm installation for Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/).
 
+```{note}
+Starting ROCm 7.1.0, Upstream Inter-Process Communication (IPC) works with Checkpoint Restore in User space (CRIU) feature, but it requires the most up-to-date kernel and CRIU plugin. 
+```
+
 #### Virtualization support
 
 ROCm 7.1.0 adds Guest OS support for RHEL 10.0 in KVM SR-IOV for AMD Instinct MI355X and MI350X GPUs.
