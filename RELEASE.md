@@ -53,10 +53,6 @@ For more information about supported:
 
 * Operating systems, see [Supported operating systems](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems) and [ROCm installation for Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/).
 
-```{note}
-Starting ROCm 7.1.0, Upstream Inter-Process Communication (IPC) works with Checkpoint Restore in User space (CRIU) feature, but it requires the most up-to-date kernel and CRIU plugin. 
-```
-
 #### Virtualization support
 
 ROCm 7.1.0 adds Guest OS support for RHEL 10.0 in KVM SR-IOV for AMD Instinct MI355X and MI350X GPUs.
@@ -738,6 +734,10 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 * Fixed an issue where using `amd-smi ras --folder <folder_name>` was forcing the created folder's name to be lowercase. This fix also makes all string input options case-insensitive.
 
 * Fixed certain output in `amd-smi monitor` when GPUs are partitioned. It fixes the issue with amd-smi monitor such as: `amd-smi monitor -Vqt`, `amd-smi monitor -g 0 -Vqt -w 1`, and `amd-smi monitor -Vqt --file /tmp/test1`. These commands will now be able to display as normal in partitioned GPU scenarios.
+
+```{note}
+See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.1/CHANGELOG.md#amd_smi_lib-for-rocm-710) for details, examples, and in-depth descriptions.
+```
 
 ### **Composable Kernel** (1.1.0)
 
@@ -1519,7 +1519,7 @@ Some `gemm_ex` operations with `half` or `f32_r` data types might yield 16-bit p
 
 ### RCCL profiler plugin failure with AllToAll operations
 
-The RCCL profiler plugin `librccl-profiler.so` might fail with a segmentation fault during `AllToAll` collective operations due to improperly assigned point-to-point task function pointers. This leads to invalid memory access and prevents profiling of `AllToAll` performance. Other operations, like `AllReduce`, are unaffected. It is recommended to avoid using the RCCL profiler plugin with `AllToAll` operations until the fix is available. This issue is resolved in the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop) and will be part of a future ROCm release. 
+The RCCL profiler plugin `librccl-profiler.so` might fail with a segmentation fault during `AllToAll` collective operations due to improperly assigned point-to-point task function pointers. This leads to invalid memory access and prevents profiling of `AllToAll` performance. Other operations, like `AllReduce`, are unaffected. It's recommended to avoid using the RCCL profiler plugin with `AllToAll` operations until the fix is available. This issue is resolved in the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop) and will be part of a future ROCm release. 
 
 ## ROCm resolved issues
 
