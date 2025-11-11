@@ -1519,7 +1519,7 @@ Some `gemm_ex` operations with `half` or `f32_r` data types might yield 16-bit p
 
 ### RCCL profiler plugin failure with AllToAll operations
 
-The RCCL profiler plugin `librccl-profiler.so` might fail with a segmentation fault during `AllToAll` collective operations due to improperly assigned point-to-point task function pointers. This leads to invalid memory access and prevents profiling of `AllToAll` performance. Other operations, like `AllReduce`, are unaffected. It's recommended to avoid using the RCCL profiler plugin with `AllToAll` operations until the fix is available. This issue is resolved in the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop) and will be part of a future ROCm release. 
+The RCCL profiler plugin `librccl-profiler.so` might fail with a segmentation fault during `AllToAll` collective operations due to improperly assigned point-to-point task function pointers. This leads to invalid memory access and prevents profiling of `AllToAll` performance. Other operations, like `AllReduce`, are unaffected. It's recommended to avoid using the RCCL profiler plugin with `AllToAll` operations until the fix is available. This issue is resolved in the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop) and will be part of a future ROCm release. See [GitHub issue #5653](https://github.com/ROCm/ROCm/issues/5653).
 
 ## ROCm resolved issues
 
