@@ -16,7 +16,7 @@ ROCm 7.0.1 is a quality release that resolves the issue listed in the Release hi
 
 ## Release highlights
 
-The following issue has been resolved in the [AMD GPU Driver (amdgpu) 30.10.1](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/change-logs/30.10.1.html#amd-gpu-driver-amdgpu-30-10-1-release-notes) to be used with ROCm 7.0.1.
+The following issue has been resolved in the [AMD GPU Driver (amdgpu) 30.10.1](https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-30.10.1/documentation/release-notes.html#amd-gpu-driver-amdgpu-30-10-1-release-notes) to be used with ROCm 7.0.1.
 
 ### Failure to declare out-of-bound CPERs for bad memory page
 
@@ -249,7 +249,7 @@ AMD ROCm has officially added support for the following Deep learning and AI fra
 
 #### AMD GPU Driver/ROCm packaging separation
 
-The AMD GPU Driver (amdgpu) is now distributed separately from the ROCm software stack and is stored under in its own location ``/amdgpu/`` in the package repository at [repo.radeon.com](https://repo.radeon.com/amdgpu/). The first release is designated as [AMD GPU Driver (amdgpu) version 30.10](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/change-logs/30.10.1.html#amd-gpu-driver-amdgpu-30-10-release-notes). See the [User and kernel-space support matrix](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html) for more information.
+The AMD GPU Driver (amdgpu) is now distributed separately from the ROCm software stack and is stored under in its own location ``/amdgpu/`` in the package repository at [repo.radeon.com](https://repo.radeon.com/amdgpu/). The first release is designated as [AMD GPU Driver (amdgpu) version 30.10](https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-30.10/documentation/release-notes.html#amd-gpu-driver-amdgpu-30-10-release-notes). See the [User and kernel-space support matrix](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/user-kernel-space-compat-matrix.html) for more information.
 
 [AMD SMI](https://github.com/ROCm/amdsmi) continues to stay with the ROCm software stack under the ROCm organization repository.
 
