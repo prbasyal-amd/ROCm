@@ -705,17 +705,12 @@ As of ROCm 7.0, the internal error state is cleared on each call to `hipGetLastE
 
 ### **rocSOLVER** (3.31.0)
 
-#### Added
-
-* Hybrid computation support for existing STEQR routines.
-
 #### Optimized
 
 Improved the performance of:
 
-* BDSQR and downstream functions such as GESVD.
-* STEQR and downstream functions such as SYEV/HEEV.
-* LARFT and downstream functions such as GEQR2 and GEQRF.
+* LARF, LARFT, GEQR2, and downstream functions such as GEQRF.
+* STEDC and divide and conquer Eigensolvers.
 
 ### **rocSPARSE** (4.1.0)
 
