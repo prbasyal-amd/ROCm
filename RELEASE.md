@@ -1481,7 +1481,7 @@ issues related to individual components, review the [Detailed component changes]
 
 ### MIGraphX Python API will fail when running on Python 3.13
 
-Applications using the MIGraphX Python API will fail when running on Python 3.13 and return the error message `AttributeError: module 'migraphx' has no attribute 'parse_onnx'`. The issue doesn't occur when you manually build MIGraphX. For detailed instructions, see [Building from source](https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/install/building_migraphx.html). As a workaround, change the Python version to the one found in the installed location:
+Applications using the MIGraphX Python API will fail when running on Python 3.13 and return the error message `AttributeError: module 'migraphx' has no attribute 'parse_onnx'`. The issue doesn't occur when you manually build MIGraphX. For detailed instructions, see [Building from source](https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/install/install-migraphx.html#build-migraphx-from-source). As a workaround, change the Python version to the one found in the installed location:
 
 ```
 ls -l /opt/rocm-7.1.0/lib/libmigraphx_py_*.so
