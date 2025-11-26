@@ -39,7 +39,11 @@ for a complete overview of this release.
   - VMs were incorrectly reporting `AMDSMI_STATUS_API_FAILED` when unable to get the power cap within the `amdsmi_get_power_info`.
   - The API now returns `N/A` or `UINT_MAX` for values that can't be retrieved, instead of failing.
 
-- Fixed output for `amd-smi xgmi -l --json`.  
+- Fixed output for `amd-smi xgmi -l --json`.
+
+```{note}
+See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.1/CHANGELOG.md#amd_smi_lib-for-rocm-711) for details, examples, and in-depth descriptions.
+```
 
 ### **Composable Kernel** (1.1.0)
 

@@ -674,7 +674,7 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 - Fixed output for `amd-smi xgmi -l --json`.  
 
 ```{note}
-See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.1/CHANGELOG.md#amd_smi_lib-for-rocm-710) for details, examples, and in-depth descriptions.
+See the full [AMD SMI changelog](https://github.com/ROCm/amdsmi/blob/release/rocm-rel-7.1/CHANGELOG.md#amd_smi_lib-for-rocm-711) for details, examples, and in-depth descriptions.
 ```
 
 ### **Composable Kernel** (1.1.0)
