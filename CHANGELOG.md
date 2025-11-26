@@ -4,6 +4,190 @@ This page is a historical overview of changes made to ROCm components. This
 consolidated changelog documents key modifications and improvements across
 different versions of the ROCm software stack and its components.
 
+## ROCm 7.1.1
+
+See the [ROCm 7.1.1 release notes](https://rocm.docs.amd.com/en/docs-7.1.1/about/release-notes.html#rocm-7-1-1-release-notes)
+for a complete overview of this release.
+
+### **AMD SMI** (26.2.0)
+
+#### Added
+
+- Caching for repeated ASIC information calls.  
+  - The cache added to `amdsmi_get_gpu_asic_info` improves performance by avoiding redundant hardware queries.
+  - The cache stores ASIC info for each GPU device with a configurable duration, defaulting to 10 seconds. Use the `AMDSMI_ASIC_INFO_CACHE_MS` environment variable for cache duration configuration for `amdsmi_get_gpu_asic_info` API calls.
+
+- Support for GPU partition metrics.
+  - Provides support for `xcp_metrics` v1.0 and extends support for v1.1 (dynamic metrics).
+  - Added `amdsmi_get_gpu_partition_metrics_info`, which provides per XCP (partition) metrics.
+
+- Support for displaying newer VRAM memory types in `amd-smi static --vram`.
+  - The `amdsmi_get_gpu_vram_info()` API now supports detecting DDR5, LPDDR4, LPDDR5, and HBM3E memory types.
+
+#### Changed
+
+- Updated `amd-smi static --numa` socket affinity data structure. It now displays CPU affinity information in both hexadecimal bitmask format and expanded CPU core ranges, replacing the previous simplified socket enumeration approach.
+
+#### Resolved issues
+
+- Fixed incorrect topology weight calculations.  
+  - Out-of-bound writes caused corruption in the weights field.
+
+- Fixed `amd-smi event` not respecting the Linux timeout command.  
+
+- Fixed an issue where `amdsmi_get_power_info` returned `AMDSMI_STATUS_API_FAILED`.  
+  - VMs were incorrectly reporting `AMDSMI_STATUS_API_FAILED` when unable to get the power cap within the `amdsmi_get_power_info`.
+  - The API now returns `N/A` or `UINT_MAX` for values that can't be retrieved, instead of failing.
+
+- Fixed output for `amd-smi xgmi -l --json`.  
+
+### **Composable Kernel** (1.1.0)
+
+#### Upcoming changes
+
+* Composable Kernel will adopt C++20 features in an upcoming ROCm release, updating the minimum compiler requirement to C++20. Ensure that your development environment meets this requirement to facilitate a seamless transition.
+  
+### **HIP** (7.1.1)
+
+#### Added
+
+* Support for the flag `hipHostRegisterIoMemory` in `hipHostRegister`, used to register I/O memory with HIP runtime so the GPU can access it.
+
+#### Resolved issues
+
+* Incorrect Compute Unit (CU) mask in logging. HIP runtime now correctly sets the field width for the output print operation. When logging is enabled via the environment variable `AMD_LOG_LEVEL`, the runtime logs the accurate CU mask.
+* A segmentation fault occurred when the dynamic queue management mechanism was enabled. HIP runtime now ensures GPU queues aren't `NULL` during marker submission, preventing crashes and improving robustness.
+* An error encountered on HIP tear-down after device reset in certain applications due to accessing stale memory objects. HIP runtime now properly releases memory associated with host calls, ensuring reliable device resets.
+* A race condition occurred in certain graph-related applications when pending asynchronous signal handlers referenced device memory that had already been released, leading to memory corruption. HIP runtime now uses a reference counting strategy to manage access to device objects in asynchronous event handlers, ensuring safe and reliable memory usage.
+
+### **MIGraphX** (2.14.0)
+
+#### Resolved issues
+
+* Fixed an error that resulted when running `make check` on systems running on a gfx1201 GPU.
+
+### **RCCL** (2.27.7)
+
+#### Resolved issues
+
+* Fixed a single-node data corruption issue in MSCCL on the AMD Instinct MI350X and MI355X GPUs for the LL protocol. This previously affected about two percent of the runs for single-node `AllReduce` with inputs smaller than 512 KiB.
+
+### **rocBLAS** (5.1.1)
+
+#### Changed
+  * By default, rocBLAS will not use stream order allocation for its internal workspace. To enable this behavior, set the `ROCBLAS_STREAM_ORDER_ALLOC` environment variable.
+
+### **ROCm Bandwidth Test** (2.6.0)
+
+#### Resolved issues
+
+- Test failure with error message `Cannot make canonical path`.
+- Healthcheck test failure with seg fault on gfx942.
+- Segmentation fault observed in `schmoo` and `one2all` when executed on `sgpu` setup.
+
+#### Known issues
+
+- `rocm-bandwidth-test` folder fails to be removed after driver uninstallation:
+    * After running `amdgpu-uninstall`, the `rocm-bandwidth-test` folder and package are still present.
+    * Workaround: Remove the package manually using: 
+    ```
+    sudo apt-get remove -y rocm-bandwidth-test
+    ```
+
+### **ROCm Compute Profiler** (3.3.1)
+
+#### Added
+
+* Support for PC sampling of multi-kernel applications.
+  * PC Sampling output instructions are displayed with the name of the kernel to which the individual instruction belongs.
+  * Single kernel selection is supported so that the PC samples of the selected kernel can be displayed.
+
+#### Changed
+
+* Roofline analysis now runs on GPU 0 by default instead of all GPUs.
+
+#### Optimized
+
+* Improved roofline benchmarking by updating the `flops_benchmark` calculation.
+
+* Improved standalone roofline plots in profile mode (PDF output) and analyze mode (CLI and GUI visual plots):
+  * Fixed the peak MFMA/VALU lines being cut off.
+  * Cleaned up the overlapping roofline numeric values by moving them into the side legend.
+  * Added AI points chart with respective values, cache level, and compute/memory bound status.
+  * Added full kernel names to the symbol chart.
+
+#### Resolved issues
+
+* Resolved existing issues to improve stability.
+
+### **ROCm Systems Profiler** (1.2.1)
+
+#### Resolved issues
+
+- Fixed an issue of OpenMP Tools (OMPT) events, GPU performance counters, VA-API, MPI, and host events failing to be collected in the `rocpd` output.
+
+### **ROCm Validation Suite** (1.3.0)
+
+#### Added
+
+* Support for different test levels with `-r` option for AMD Instinct MI3XXx GPUs.
+* Set compute type for DGEMM operations on AMD Instinct MI350X and MI355X GPUs.
+
+### **rocSHMEM** (3.1.0)
+
+#### Added
+
+* Allowed IPC, RO, and GDA backends to be selected at runtime.
+* GDA conduit for different NIC vendors:
+   * Broadcom BNXT\_RE (Thor 2)
+   * Mellanox MLX5 (IB and RoCE ConnectX-7)
+* New APIs:
+   * `rocshmem_get_device_ctx`
+
+#### Changed
+
+* The following APIs have been deprecated:
+  * `rocshmem_wg_init`
+  * `rocshmem_wg_finalize`
+  * `rocshmem_wg_init_thread`
+
+* `rocshmem_ptr`  can now return non-null pointer to a shared memory region when the IPC transport is available to reach that region. Previously, it would return a null pointer.
+* `ROCSHMEM_RO_DISABLE_IPC` is renamed to `ROCSHMEM_DISABLE_MIXED_IPC`. 
+    - This environment variable wasn't documented in earlier releases. It's now documented.
+
+#### Removed
+
+* rocSHMEM no longer requires rocPRIM and rocThrust as dependencies.
+* Removed MPI compile-time dependency.
+
+#### Known issues
+
+* Only a subset of rocSHMEM APIs are implemented for the GDA conduit.
+
+### **rocWMMA** (2.1.0)
+
+#### Added
+
+* More unit tests to increase the code coverage.
+
+#### Changed
+
+* Increased compile timeout and improved visualization in `math-ci`.
+
+#### Removed
+
+* Absolute paths from the `RPATH` of sample and test binary files.
+
+#### Resolved issues
+
+* Fixed issues caused by HIP changes:
+    * Removed the `.data` member from `HIP_vector_type`.
+    * Broadcast constructor now only writes to the first vector element.
+* Fixed a bug related to `int32_t` usage in `hipRTC_gemm` for gfx942, caused by breaking changes in HIP.
+* Replaced `#pragma unroll` with `static for` to fix a bug caused by the upgraded compiler which no longer supports using `#pragma unroll` with template parameter indices.
+* Corrected test predicates for `BLK` and `VW` cooperative kernels.
+* Modified `compute_utils.sh` in `build-infra` to ensure rocWMMA is built with gfx1151 target for ROCm 7.0 and beyond.
+
 ## ROCm 7.1.0
 
 See the [ROCm 7.1.0 release notes](https://rocm.docs.amd.com/en/docs-7.1.0/about/release-notes.html#rocm-7-1-0-release-notes)

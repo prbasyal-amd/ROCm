@@ -79,6 +79,7 @@ CX
 Cavium
 CentOS
 ChatGPT
+Cholesky
 CoRR
 Codespaces
 Commitizen
@@ -255,6 +256,7 @@ Intersphinx
 Intra
 Ioffe
 JAX's
+JAXLIB
 Jinja
 JSON
 Jupyter
@@ -275,6 +277,7 @@ LLM
 LLMs
 LLVM
 LM
+logsumexp
 LRU
 LSAN
 LSan
@@ -327,6 +330,7 @@ Mooncake
 Mpops
 Multicore
 Multithreaded
+mx
 MXFP
 MyEnvironment
 MyST
@@ -390,6 +394,7 @@ perf
 PEQT
 PIL
 PILImage
+PJRT
 POR
 PRNG
 PRs
