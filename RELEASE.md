@@ -874,7 +874,7 @@ Due to partial data corruption of Electrically Erasable Programmable Read-Only M
 
 ### Incorrect results in gemm_ex operations for rocBLAS and hipBLAS
 
-Some `gemm_ex` operations with 8 bit input datatypes (`int8`, `float8`, `bfloat8`) for specific matrix dimensions (K = 1 and number of workgroup > 1) might yield in incorrect results. The issue results from incorrect tailoop code that fails to consider workgroup index when calculating valid element size. The issue will be fixed in a future ROCm release.
+Some `gemm_ex` operations with 8-bit input datatypes (`int8`, `float8`, `bfloat8`) for specific matrix dimensions (K = 1 and number of workgroup > 1) might yield in incorrect results. The issue results from incorrect tailoop code that fails to consider workgroup index when calculating valid element size. The issue will be fixed in a future ROCm release.
 
 ## ROCm resolved issues
 
