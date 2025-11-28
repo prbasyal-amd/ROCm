@@ -839,7 +839,7 @@ issues related to individual components, review the [Detailed component changes]
 
 ### RCCL performance degradation on AMD Instinct MI300X GPU with AMD Pollara AI NIC
 
-If you’re using RCCL on AMD Instinct MI300X GPUs with AMD Pollara AI NIC, you might observe performance degradation for specific collectives and message sizes. The affected collectives are `Scatter`, `AllToAll`, and `AlltoAllv`. It's recommended to avoid using RCCL packaged with ROCm 7.1.1. As a workaround, use the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop), which contains the fix and will be included in a future ROCm release.
+If you’re using RCCL on AMD Instinct MI300X GPUs with AMD Pollara AI NIC, you might observe performance degradation for specific collectives and message sizes. The affected collectives are `Scatter`, `AllToAll`, and `AlltoAllv`. It's recommended to avoid using RCCL packaged with ROCm 7.1.1. As a workaround, use the {fab}`github`[RCCL `develop` branch](https://github.com/ROCm/rccl/tree/develop), which contains the fix and will be included in a future ROCm release. See [GitHub issue #5717](https://github.com/ROCm/ROCm/issues/5717).
 
 ### Segmentation fault in training models using TensorFlow 2.20.0 Docker images
 
@@ -847,7 +847,7 @@ Training models `tf2_tfm_resnet50_fp16_train` and `tf2_tfm_resnet50_fp32_train`
 might fail with a segmentation fault when run on the TensorFlow 2.20.0 Docker
 image with ROCm 7.1.1. As a workaround, use TensorFlow 2.19.x Docker image for
 training the models in ROCm 7.1.1. This issue will be fixed in a future ROCm
-release.
+release. See [GitHub issue #5718](https://github.com/ROCm/ROCm/issues/5718).
 
 ### AMD SMI CLI triggers repeated kernel errors on GPUs with partitioning support
 
@@ -866,11 +866,15 @@ amdgpu 0000:15:00.0: amdgpu: renderD153 partition 1 not valid!
 These repeated kernel logs can clutter the system logs and may cause
 unnecessary concern about GPU health. However, this is a non-functional issue
 and does not affect AMD SMI functionality or GPU performance. This issue will
-be fixed in a future ROCm release.
+be fixed in a future ROCm release. See [GitHub issue #5720](https://github.com/ROCm/ROCm/issues/5720).
 
 ### Excessive bad page logs in AMD GPU Driver (amdgpu)
 
-Due to partial data corruption of Electrically Erasable Programmable Read-Only Memory (EEPROM) and limited error handling in the AMD GPU Driver(amdgpu), excessive log output might result when querying the reliability, availability, and serviceability (RAS) bad pages. This issue will be fixed in a future AMD GPU Driver(amdgpu) and ROCm release.
+Due to partial data corruption in the Electrically Erasable Programmable Read-Only Memory (EEPROM) and limited error handling in the AMD GPU Driver (amdgpu), excessive log output might occur when querying the reliability, availability, and serviceability (RAS) bad pages. This issue will be fixed in a future AMD GPU Driver (amdgpu) and ROCm release. See [GitHub issue #5719](https://github.com/ROCm/ROCm/issues/5719).
+
+### Incorrect results in gemm_ex operations for rocBLAS and hipBLAS
+
+Some `gemm_ex` operations with 8-bit input datatypes (`int8`, `float8`, `bfloat8`) for specific matrix dimensions (K = 1 and number of workgroup > 1) might yield in incorrect results. The issue results from incorrect tailloop code that fails to consider workgroup index when calculating valid element size. The issue will be fixed in a future ROCm release.
 
 ## ROCm resolved issues
 
