@@ -100,12 +100,13 @@ firmware, AMD GPU drivers, and the ROCm user space software.
               01.25.16.03<br>
               01.25.15.04
           </td>
-          <td rowspan="2" style="vertical-align: middle;">
+          <td>
               30.20.1<br>
               30.20.0<br>
               30.10.2<br>
               30.10.1<br>
-              30.10</td>
+              30.10
+            </td>
           <td rowspan="3" style="vertical-align: middle;">8.6.0.K</td>
       </tr>
       <tr>
@@ -114,6 +115,13 @@ firmware, AMD GPU drivers, and the ROCm user space software.
               01.25.16.03<br>
               01.25.15.04
           </td>
+          <td>
+              30.20.1<br>
+              30.20.0<br>
+              30.10.2<br>
+              30.10.1<br>
+              30.10
+            </td>
       </tr>
       <tr>
           <td>MI325X<a href="#footnote1"><sup>[1]</sup></a></td>
