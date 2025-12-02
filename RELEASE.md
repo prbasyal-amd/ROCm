@@ -876,6 +876,10 @@ Due to partial data corruption in the Electrically Erasable Programmable Read-On
 
 Some `gemm_ex` operations with 8-bit input datatypes (`int8`, `float8`, `bfloat8`) for specific matrix dimensions (K = 1 and number of workgroup > 1) might yield in incorrect results. The issue results from incorrect tailloop code that fails to consider workgroup index when calculating valid element size. The issue will be fixed in a future ROCm release.
 
+### hipBLASLT performance degradation for FP8 workloads on AMD Instinct MI325X GPUs
+
+If you’re using hipBLASLT on AMD Instinct MI325X GPUs, you might observe a performance degradation for FP8 workloads. The degradation can exceed 10% on large FP8 GEMM operations (such as, 9728x8192x65536). The issue is currently under investigation and will be fixed in a future ROCm release.
+
 ## ROCm resolved issues
 
 The following are previously known issues resolved in this release. For resolved issues related to
