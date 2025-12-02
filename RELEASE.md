@@ -714,7 +714,7 @@ OpenCV packages built on Ubuntu 24.04 are incompatible with Debian 13 due to a v
 
 ### Libva-based applications might fail after ROCm installation
 
-After installing ROCm, certain applications that are dependent on the libva library (such as `vainfo`, `ffmpeg`) might fail to function correctly. This issue is only relevant if your are using libva-based applications outside of ROCm on RHEL 8.10 and Oracle Linux 8. The failure occurs due to a symbol clash between the AMD-packaged `libva-amdgpu` and the system-provided libva. This conflict was introduced when adapting the RHEL 8 build to support additional operating systems, which required changes to build options. The issue will be fixed in a future ROCm release.
+After installing ROCm, certain applications that are dependent on the libva library (such as `vainfo`, `ffmpeg`) might fail to function correctly. This issue is only relevant if your are using libva-based applications outside of ROCm on RHEL 8.10 and Oracle Linux 8. The failure occurs due to a symbol clash between the AMD-packaged `libva-amdgpu` and the system-provided libva. This conflict was introduced when adapting the RHEL 8 build to support additional operating systems, which required changes to build options. The issue will be fixed in a future ROCm release. See [GitHub issue #5732](https://github.com/ROCm/ROCm/issues/5732).
 
 ## ROCm upcoming changes
 
