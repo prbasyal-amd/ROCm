@@ -874,7 +874,11 @@ Due to partial data corruption in the Electrically Erasable Programmable Read-On
 
 ### Incorrect results in gemm_ex operations for rocBLAS and hipBLAS
 
-Some `gemm_ex` operations with 8-bit input data types (`int8`, `float8`, `bfloat8`) for specific matrix dimensions (K = 1 and number of workgroup > 1) might yield in incorrect results. The issue results from incorrect tailloop code that fails to consider workgroup index when calculating valid element size. The issue will be fixed in a future ROCm release. See [GitHub issue #5722](https://github.com/ROCm/ROCm/issues/5722).
+Some `gemm_ex` operations with 8-bit input data types (`int8`, `float8`, `bfloat8`) for specific matrix dimensions (K = 1 and number of workgroups > 1) might yield incorrect results. The issue results from incorrect tailloop code that fails to consider workgroup index when calculating valid element size. The issue will be fixed in a future ROCm release. See [GitHub issue #5722](https://github.com/ROCm/ROCm/issues/5722).
+
+### hipBLASLt performance variation for a particular FP8 GEMM operation on AMD Instinct MI325X GPUs
+
+If you’re using hipBLASLt on AMD Instinct MI325X GPUs for large FP8 GEMM operations (such as 9728x8192x65536), you might observe a noticeable performance variation. The issue is currently under investigation and will be fixed in a future ROCm release. See [GitHub issue #5734](https://github.com/ROCm/ROCm/issues/5734).
 
 ## ROCm resolved issues
 
