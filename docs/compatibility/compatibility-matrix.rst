@@ -59,7 +59,7 @@ compatibility and system requirements.
       :doc:`JAX <../compatibility/ml-compatibility/jax-compatibility>`,0.7.1,0.7.1,0.4.35
       :doc:`DGL <../compatibility/ml-compatibility/dgl-compatibility>` [#dgl_compat]_,N/A,N/A,2.4.0
       :doc:`llama.cpp <../compatibility/ml-compatibility/llama-cpp-compatibility>` [#llama-cpp_compat]_,N/A,N/A,b5997
-      `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.22.0,1.22.0,1.20.0
+      `ONNX Runtime <https://onnxruntime.ai/docs/build/eps.html#amd-migraphx>`_,1.23.1,1.22.0,1.20.0
       ,,,
       THIRD PARTY COMMS,.. _thirdpartycomms-support-compatibility-matrix:,,
       `UCC <https://github.com/ROCm/ucc>`_,>=1.4.0,>=1.4.0,>=1.3.0
@@ -85,7 +85,7 @@ compatibility and system requirements.
       ,,,
       COMMUNICATION,.. _commlibs-support-compatibility-matrix:,,
       :doc:`RCCL <rccl:index>`,2.27.7,2.27.7,2.22.3
-      :doc:`rocSHMEM <rocshmem:index>`,3.0.0,3.0.0,2.0.0
+      :doc:`rocSHMEM <rocshmem:index>`,3.1.0,3.0.0,2.0.0
       ,,,
       MATH LIBS,.. _mathlibs-support-compatibility-matrix:,,
       `half <https://github.com/ROCm/half>`_ ,1.12.0,1.12.0,1.12.0
