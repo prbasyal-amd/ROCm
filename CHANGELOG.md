@@ -1734,8 +1734,8 @@ HIP runtime has the following functional improvements which improves runtime per
 
 #### Upcoming changes
 
-* `__AMDGCN_WAVEFRONT_SIZE__` macro and HIP’s `warpSize` variable as `constexpr` are deprecated and will be disabled in a future release. Users are encouraged to update their code if needed to ensure future compatibility. For more information, see [AMDGCN_WAVEFRONT_SIZE deprecation](#amdgpu-wavefront-size-compiler-macro-deprecation).
-* The `roc-obj-ls` and `roc-obj-extract` tools are  deprecated. To extract all Clang offload bundles into separate code objects use `llvm-objdump --offloading <file>`. For more information, see [Changes to ROCm Object Tooling](#changes-to-rocm-object-tooling). 
+* `__AMDGCN_WAVEFRONT_SIZE__` macro and HIP’s `warpSize` variable as `constexpr` are deprecated and will be disabled in a future release. Users are encouraged to update their code if needed to ensure future compatibility. For more information, see [AMDGCN_WAVEFRONT_SIZE deprecation](https://rocm.docs.amd.com/en/docs-7.0.0/about/release-notes.html#amdgpu-wavefront-size-compiler-macro-deprecation).
+* The `roc-obj-ls` and `roc-obj-extract` tools are  deprecated. To extract all Clang offload bundles into separate code objects use `llvm-objdump --offloading <file>`. For more information, see [Changes to ROCm Object Tooling](https://rocm.docs.amd.com/en/docs-7.0.0/about/release-notes.html#changes-to-rocm-object-tooling). 
 
 ### **MIGraphX** (2.13.0)
 

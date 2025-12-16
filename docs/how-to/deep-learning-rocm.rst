@@ -100,18 +100,6 @@ The table below summarizes information about ROCm-enabled deep learning framewor
 
           <a href="https://github.com/ROCm/megablocks"><i class="fab fa-github fa-lg"></i></a>
 
-    * - `Taichi <https://rocm.docs.amd.com/en/latest/compatibility/ml-compatibility/taichi-compatibility.html>`__
-      - .. raw:: html
-
-          <a href="https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/3rd-party/taichi-install.html"><i class="fas fa-link fa-lg"></i></a>
-      - 
-        - `Docker image <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/3rd-party/taichi-install.html#use-a-prebuilt-docker-image-with-taichi-pre-installed>`__
-        - `Wheels package <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/3rd-party/taichi-install.html#use-a-wheels-package>`__
-
-      - .. raw:: html
-
-          <a href="https://github.com/ROCm/taichi"><i class="fab fa-github fa-lg"></i></a>
-
     * - `Ray <https://rocm.docs.amd.com/en/latest/compatibility/ml-compatibility/ray-compatibility.html>`__
       - .. raw:: html
 
