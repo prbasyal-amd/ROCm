@@ -47,7 +47,7 @@ What's new
 - Supported architectures: gfx942 and gfx950 (AMD Instinct™ MI300X, MI325X, MI350X, and MI355X).
 - Supported workloads: Wan 2.1, Wan 2.2, HunyuanVideo, and Flux models.
 
-.. _xdit-video-diffusion-supported-models:
+.. _xdit-video-diffusion-supported-models-2510:
 
 Supported models
 ================
@@ -145,7 +145,7 @@ run benchmarks and generate outputs.
    .. container:: model-doc {{model.mad_tag}}
 
       The following commands are written for {{ model.model }}.
-      See :ref:`xdit-video-diffusion-supported-models` to switch to another available model.
+      See :ref:`xdit-video-diffusion-supported-models-2510` to switch to another available model.
 
      {% endfor %}
    {% endfor %}
