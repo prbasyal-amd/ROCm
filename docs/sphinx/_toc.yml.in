@@ -43,8 +43,6 @@ subtrees:
         title: DGL compatibility
       - file: compatibility/ml-compatibility/megablocks-compatibility.rst
         title: Megablocks compatibility
-      - file: compatibility/ml-compatibility/taichi-compatibility.rst
-        title: Taichi compatibility
       - file: compatibility/ml-compatibility/ray-compatibility.rst
         title: Ray compatibility
       - file: compatibility/ml-compatibility/llama-cpp-compatibility.rst

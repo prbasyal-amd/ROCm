@@ -277,7 +277,7 @@ PyTorch training
 
 .. seealso::
 
-   See :ref:`Training a model with PyTorch <amd-pytorch-multinode-examples>` for more examples and information.
+   See :ref:`Training a model with PyTorch <amd-pytorch-training-multinode-examples>` for more examples and information.
 
 Megatron-LM
 -----------
