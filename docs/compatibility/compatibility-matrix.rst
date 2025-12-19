@@ -284,7 +284,6 @@ Expand for full historical view of:
    .. [#stanford-megatron-lm_compat-past-60] Stanford Megatron-LM is only supported on ROCm 6.3.0.
    .. [#dgl_compat-past-60] DGL is only supported on ROCm 6.4.0.
    .. [#megablocks_compat-past-60] Megablocks is only supported on ROCm 6.3.0.
-   .. [#taichi_compat-past-60] Taichi is only supported on ROCm 6.3.2.
    .. [#ray_compat-past-60] Ray is only supported on ROCm 6.4.1.
    .. [#llama-cpp_compat-past-60] llama.cpp is only supported on ROCm 7.0.0 and 6.4.x.
    .. [#flashinfer_compat-past-60] FlashInfer is only supported on ROCm 6.4.1.
