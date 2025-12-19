@@ -100,7 +100,6 @@ article_pages = [
     {"file": "compatibility/ml-compatibility/stanford-megatron-lm-compatibility", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/dgl-compatibility", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/megablocks-compatibility", "os": ["linux"]},
-    {"file": "compatibility/ml-compatibility/taichi-compatibility", "os": ["linux"]},
     {"file": "how-to/deep-learning-rocm", "os": ["linux"]},
 
     {"file": "how-to/rocm-for-ai/index", "os": ["linux"]},

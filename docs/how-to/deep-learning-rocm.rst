@@ -21,7 +21,6 @@ features for these ROCm-enabled deep learning frameworks.
 * :doc:`Stanford Megatron-LM compatibility <../compatibility/ml-compatibility/stanford-megatron-lm-compatibility>`
 * :doc:`DGL compatibility <../compatibility/ml-compatibility/dgl-compatibility>`
 * :doc:`Megablocks compatibility <../compatibility/ml-compatibility/megablocks-compatibility>`
-* :doc:`Taichi compatibility <../compatibility/ml-compatibility/taichi-compatibility>`
 
 This chart steps through typical installation workflows for installing deep learning frameworks for ROCm.
 
@@ -38,7 +37,6 @@ See the installation instructions to get started.
 * :doc:`Stanford Megatron-LM for ROCm <rocm-install-on-linux:install/3rd-party/stanford-megatron-lm-install>`
 * :doc:`DGL for ROCm <rocm-install-on-linux:install/3rd-party/dgl-install>`
 * :doc:`Megablocks for ROCm <rocm-install-on-linux:install/3rd-party/megablocks-install>`
-* :doc:`Taichi for ROCm <rocm-install-on-linux:install/3rd-party/taichi-install>`
 
 .. note::
 
