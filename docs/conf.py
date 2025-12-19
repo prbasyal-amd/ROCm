@@ -111,7 +111,6 @@ article_pages = [
     {"file": "compatibility/ml-compatibility/stanford-megatron-lm-compatibility", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/dgl-compatibility", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/megablocks-compatibility", "os": ["linux"]},
-    {"file": "compatibility/ml-compatibility/taichi-compatibility", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/ray-compatibility", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/llama-cpp-compatibility", "os": ["linux"]},
     {"file": "compatibility/ml-compatibility/flashinfer-compatibility", "os": ["linux"]},
