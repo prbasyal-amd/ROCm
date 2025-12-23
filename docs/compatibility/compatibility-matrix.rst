@@ -32,7 +32,7 @@ compatibility and system requirements.
       ,SLES 15 SP7,SLES 15 SP7,SLES 15 SP6
       ,"Oracle Linux 10, 9, 8","Oracle Linux 10, 9, 8","Oracle Linux 9, 8"
       ,"Debian 13, 12","Debian 13, 12",Debian 12
-      ,Azure Linux 3.0,Azure Linux 3.0,Azure Linux 3.0
+      ,,,Azure Linux 3.0
       ,Rocky Linux 9,Rocky Linux 9,
       ,.. _architecture-support-compatibility-matrix:,,
       :doc:`Architecture <rocm-install-on-linux:reference/system-requirements>`,CDNA4,CDNA4,
@@ -98,12 +98,12 @@ compatibility and system requirements.
       :doc:`hipSPARSE <hipsparse:index>`,4.1.0,4.1.0,3.2.0
       :doc:`hipSPARSELt <hipsparselt:index>`,0.2.5,0.2.5,0.2.3
       :doc:`rocALUTION <rocalution:index>`,4.0.1,4.0.1,3.2.2
-      :doc:`rocBLAS <rocblas:index>`,5.1.0,5.1.0,4.4.0
+      :doc:`rocBLAS <rocblas:index>`,5.1.1,5.1.0,4.4.0
       :doc:`rocFFT <rocfft:index>`,1.0.35,1.0.35,1.0.32
       :doc:`rocRAND <rocrand:index>`,4.1.0,4.1.0,3.3.0
       :doc:`rocSOLVER <rocsolver:index>`,3.31.0,3.31.0,3.28.0
       :doc:`rocSPARSE <rocsparse:index>`,4.1.0,4.1.0,3.4.0
-      :doc:`rocWMMA <rocwmma:index>`,2.0.0,2.0.0,1.7.0
+      :doc:`rocWMMA <rocwmma:index>`,2.1.0,2.0.0,1.7.0
       :doc:`Tensile <tensile:src/index>`,4.44.0,4.44.0,4.43.0
       ,,,
       PRIMITIVES,.. _primitivelibs-support-compatibility-matrix:,,
@@ -114,20 +114,20 @@ compatibility and system requirements.
       ,,,
       SUPPORT LIBS,,,
       `hipother <https://github.com/ROCm/hipother>`_,7.1.52802,7.1.25424,6.4.43482
-      `rocm-core <https://github.com/ROCm/rocm-core>`_,7.1.0,7.1.0,6.4.0
+      `rocm-core <https://github.com/ROCm/rocm-core>`_,7.1.1,7.1.0,6.4.0
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_
       ,,,
       SYSTEM MGMT TOOLS,.. _tools-support-compatibility-matrix:,,
-      :doc:`AMD SMI <amdsmi:index>`,26.1.0,26.1.0,25.3.0
+      :doc:`AMD SMI <amdsmi:index>`,26.2.0,26.1.0,25.3.0
       :doc:`ROCm Data Center Tool <rdc:index>`,1.2.0,1.2.0,0.3.0
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0,1.0.0
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.8.0,7.8.0,7.5.0
-      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,1.2.0,1.2.0,1.1.0
+      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,1.3.0,1.2.0,1.1.0
       ,,,
       PERFORMANCE TOOLS,,,
       :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,2.6.0,2.6.0,1.4.0
-      :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`,3.3.0,3.3.0,3.1.0
-      :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`,1.2.0,1.2.0,1.0.0
+      :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`,3.3.1,3.3.0,3.1.0
+      :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`,1.2.1,1.2.0,1.0.0
       :doc:`ROCProfiler <rocprofiler:index>`,2.0.70101,2.0.70100,2.0.60400
       :doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`,1.0.0,1.0.0,0.6.0
       :doc:`ROCTracer <roctracer:index>`,4.1.70101,4.1.70100,4.1.60400
@@ -169,44 +169,7 @@ compatibility and system requirements.
 Operating systems, kernel and Glibc versions
 *********************************************
 
-Use this lookup table to confirm which operating system and kernel versions are supported with ROCm.
-
-.. csv-table::
-   :header: "OS", "Version", "Kernel", "Glibc"
-   :widths: 40, 20, 30, 20
-   :stub-columns: 1
-
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04.3, "6.8 [GA], 6.14 [HWE]", 2.39
-   ,,
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04.2, "6.8 [GA], 6.11 [HWE]", 2.39
-   ,,
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 22.04.5, "5.15 [GA], 6.8 [HWE]", 2.35
-   ,,
-   `Red Hat Enterprise Linux (RHEL 10) <https://access.redhat.com/articles/3078#RHEL9>`_, 10.1, 6.12.0-124, 2.39
-   ,10.0, 6.12.0-55, 2.39
-   ,,
-   `Red Hat Enterprise Linux (RHEL 9) <https://access.redhat.com/articles/3078#RHEL9>`_, 9.7, 5.14.0-611, 2.34
-   ,9.6, 5.14.0-570, 2.34
-   ,9.5, 5.14+, 2.34
-   ,9.4, 5.14.0-427, 2.34
-   ,,
-   `Red Hat Enterprise Linux (RHEL 8) <https://access.redhat.com/articles/3078#RHEL8>`_, 8.10, 4.18.0-553, 2.28
-   ,,
-   `SUSE Linux Enterprise Server (SLES) <https://www.suse.com/support/kb/doc/?id=000019587#SLE15SP4>`_, 15 SP7, 6.40-150700.51, 2.38
-   ,15 SP6, "6.5.0+, 6.4.0", 2.38
-   ,15 SP5, 5.14.21, 2.31
-   ,,
-   `Rocky Linux <https://wiki.rockylinux.org/rocky/version/>`_, 9, 5.14.0-570, 2.34
-   ,,
-   `Oracle Linux <https://blogs.oracle.com/scoter/post/oracle-linux-and-unbreakable-enterprise-kernel-uek-releases>`_, 10, 6.12.0 (UEK), 2.39
-   ,9, 6.12.0 (UEK), 2.34
-   ,8, 5.15.0 (UEK), 2.28
-   ,,
-   `Debian <https://www.debian.org/download>`_,13, 6.12, 2.35
-   ,12, 6.1.0, 2.36
-   ,,
-   `Azure Linux <https://techcommunity.microsoft.com/blog/linuxandopensourceblog/azure-linux-3-0-now-in-preview-on-azure-kubernetes-service-v1-31/4287229>`_,3.0, 6.6.92, 2.38
-   ,,
+For detailed information on operating system supported on ROCm 7.1.1 and associated Kernel and Glibc version, see the latest :ref:`supported_distributions`. For version specific information, see `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-operating-systems>`__.
 
 .. note::
 
@@ -238,8 +201,8 @@ Expand for full historical view of:
 
    .. rubric:: Footnotes
 
-   .. [#os-compatibility-past-60] Some operating systems are supported on limited GPUs. For detailed information, see :ref:`supported_distributions` and select the required ROCm version for version specific support.
-   .. [#gpu-compatibility-past-60] Some GPUs have limited operating system support. For detailed information, see :ref:`supported_GPUs` and select the required ROCm version for version specific support.
+   .. [#os-compatibility-past-60] Some operating systems are supported on limited GPUs. For detailed information, see the latest :ref:`supported_distributions`. For version specific information, see `ROCm 7.1.1 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.1/reference/system-requirements.html#supported-operating-systems>`__, `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-operating-systems>`__.
+   .. [#gpu-compatibility-past-60] Some GPUs have limited operating system support. For detailed information, see the latest :ref:`supported_GPUs`. For version specific information, see `ROCm 7.1.1 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.1/reference/system-requirements.html#supported-gpus>`__, `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-gpus>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-gpus>`__.
    .. [#tf-mi350-past-60] TensorFlow 2.17.1 is not supported on AMD Instinct MI350 Series GPUs. Use TensorFlow 2.19.1 or 2.18.1 with MI350 Series GPUs instead.
    .. [#verl_compat-past-60] verl is supported only on ROCm 7.0.0 and 6.2.0.
    .. [#stanford-megatron-lm_compat-past-60] Stanford Megatron-LM is supported only on ROCm 6.3.0.
