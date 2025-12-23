@@ -126,8 +126,8 @@ compatibility and system requirements.
       ,,,
       PERFORMANCE TOOLS,,,
       :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,2.6.0,2.6.0,1.4.0
-      :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`,3.3.0,3.3.0,3.1.0
-      :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`,1.2.0,1.2.0,1.0.0
+      :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`,3.3.1,3.3.0,3.1.0
+      :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`,1.2.1,1.2.0,1.0.0
       :doc:`ROCProfiler <rocprofiler:index>`,2.0.70101,2.0.70100,2.0.60400
       :doc:`ROCprofiler-SDK <rocprofiler-sdk:index>`,1.0.0,1.0.0,0.6.0
       :doc:`ROCTracer <roctracer:index>`,4.1.70101,4.1.70100,4.1.60400
