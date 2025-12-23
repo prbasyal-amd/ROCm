@@ -32,7 +32,7 @@ compatibility and system requirements.
       ,SLES 15 SP7,SLES 15 SP7,SLES 15 SP6
       ,"Oracle Linux 10, 9, 8","Oracle Linux 10, 9, 8","Oracle Linux 9, 8"
       ,"Debian 13, 12","Debian 13, 12",Debian 12
-      ,Azure Linux 3.0,Azure Linux 3.0,Azure Linux 3.0
+      ,,,Azure Linux 3.0
       ,Rocky Linux 9,Rocky Linux 9,
       ,.. _architecture-support-compatibility-matrix:,,
       :doc:`Architecture <rocm-install-on-linux:reference/system-requirements>`,CDNA4,CDNA4,
@@ -169,7 +169,7 @@ compatibility and system requirements.
 Operating systems, kernel and Glibc versions
 *********************************************
 
-For detailed information on operating system supported on ROCm and associated Kernel and Glibc version, see the latest :ref:`supported_distributions`. For version specific information, see `ROCm 7.1.1 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.1/reference/system-requirements.html#supported-operating-systems>`__, `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-operating-systems>`__.
+For detailed information on operating system supported on ROCm 7.1.1 and associated Kernel and Glibc version, see the latest :ref:`supported_distributions`. For version specific information, see `ROCm 7.1.1 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.1/reference/system-requirements.html#supported-operating-systems>`__, `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-operating-systems>`__.
 
 .. note::
 
