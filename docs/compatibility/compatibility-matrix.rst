@@ -169,44 +169,7 @@ compatibility and system requirements.
 Operating systems, kernel and Glibc versions
 *********************************************
 
-Use this lookup table to confirm which operating system and kernel versions are supported with ROCm.
-
-.. csv-table::
-   :header: "OS", "Version", "Kernel", "Glibc"
-   :widths: 40, 20, 30, 20
-   :stub-columns: 1
-
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04.3, "6.8 [GA], 6.14 [HWE]", 2.39
-   ,,
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 24.04.2, "6.8 [GA], 6.11 [HWE]", 2.39
-   ,,
-   `Ubuntu <https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle>`_, 22.04.5, "5.15 [GA], 6.8 [HWE]", 2.35
-   ,,
-   `Red Hat Enterprise Linux (RHEL 10) <https://access.redhat.com/articles/3078#RHEL9>`_, 10.1, 6.12.0-124, 2.39
-   ,10.0, 6.12.0-55, 2.39
-   ,,
-   `Red Hat Enterprise Linux (RHEL 9) <https://access.redhat.com/articles/3078#RHEL9>`_, 9.7, 5.14.0-611, 2.34
-   ,9.6, 5.14.0-570, 2.34
-   ,9.5, 5.14+, 2.34
-   ,9.4, 5.14.0-427, 2.34
-   ,,
-   `Red Hat Enterprise Linux (RHEL 8) <https://access.redhat.com/articles/3078#RHEL8>`_, 8.10, 4.18.0-553, 2.28
-   ,,
-   `SUSE Linux Enterprise Server (SLES) <https://www.suse.com/support/kb/doc/?id=000019587#SLE15SP4>`_, 15 SP7, 6.40-150700.51, 2.38
-   ,15 SP6, "6.5.0+, 6.4.0", 2.38
-   ,15 SP5, 5.14.21, 2.31
-   ,,
-   `Rocky Linux <https://wiki.rockylinux.org/rocky/version/>`_, 9, 5.14.0-570, 2.34
-   ,,
-   `Oracle Linux <https://blogs.oracle.com/scoter/post/oracle-linux-and-unbreakable-enterprise-kernel-uek-releases>`_, 10, 6.12.0 (UEK), 2.39
-   ,9, 6.12.0 (UEK), 2.34
-   ,8, 5.15.0 (UEK), 2.28
-   ,,
-   `Debian <https://www.debian.org/download>`_,13, 6.12, 2.35
-   ,12, 6.1.0, 2.36
-   ,,
-   `Azure Linux <https://techcommunity.microsoft.com/blog/linuxandopensourceblog/azure-linux-3-0-now-in-preview-on-azure-kubernetes-service-v1-31/4287229>`_,3.0, 6.6.92, 2.38
-   ,,
+For detailed information on operating system supported on ROCm and associated Kernel and Glibc version, see the latest :ref:`supported_distributions`. For version specific information, see `ROCm 7.1.1 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.1/reference/system-requirements.html#supported-operating-systems>`__, `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-operating-systems>`__.
 
 .. note::
 
@@ -238,8 +201,8 @@ Expand for full historical view of:
 
    .. rubric:: Footnotes
 
-   .. [#os-compatibility-past-60] Some operating systems are supported on limited GPUs. For detailed information, see :ref:`supported_distributions` and select the required ROCm version for version specific support.
-   .. [#gpu-compatibility-past-60] Some GPUs have limited operating system support. For detailed information, see :ref:`supported_GPUs` and select the required ROCm version for version specific support.
+   .. [#os-compatibility-past-60] Some operating systems are supported on limited GPUs. For detailed information, see the latest :ref:`supported_distributions`. For version specific information, see `ROCm 7.1.1 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.1/reference/system-requirements.html#supported-operating-systems>`__, `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-operating-systems>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-operating-systems>`__.
+   .. [#gpu-compatibility-past-60] Some GPUs have limited operating system support. For detailed information, see the latest :ref:`supported_GPUs`. For version specific information, see `ROCm 7.1.1 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.1/reference/system-requirements.html#supported-gpus>`__, `ROCm 7.1.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html#supported-gpus>`__, and `ROCm 6.4.0 <https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/reference/system-requirements.html#supported-gpus>`__.
    .. [#tf-mi350-past-60] TensorFlow 2.17.1 is not supported on AMD Instinct MI350 Series GPUs. Use TensorFlow 2.19.1 or 2.18.1 with MI350 Series GPUs instead.
    .. [#verl_compat-past-60] verl is supported only on ROCm 7.0.0 and 6.2.0.
    .. [#stanford-megatron-lm_compat-past-60] Stanford Megatron-LM is supported only on ROCm 6.3.0.
