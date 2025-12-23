@@ -98,12 +98,12 @@ compatibility and system requirements.
       :doc:`hipSPARSE <hipsparse:index>`,4.1.0,4.1.0,3.2.0
       :doc:`hipSPARSELt <hipsparselt:index>`,0.2.5,0.2.5,0.2.3
       :doc:`rocALUTION <rocalution:index>`,4.0.1,4.0.1,3.2.2
-      :doc:`rocBLAS <rocblas:index>`,5.1.0,5.1.0,4.4.0
+      :doc:`rocBLAS <rocblas:index>`,5.1.1,5.1.0,4.4.0
       :doc:`rocFFT <rocfft:index>`,1.0.35,1.0.35,1.0.32
       :doc:`rocRAND <rocrand:index>`,4.1.0,4.1.0,3.3.0
       :doc:`rocSOLVER <rocsolver:index>`,3.31.0,3.31.0,3.28.0
       :doc:`rocSPARSE <rocsparse:index>`,4.1.0,4.1.0,3.4.0
-      :doc:`rocWMMA <rocwmma:index>`,2.0.0,2.0.0,1.7.0
+      :doc:`rocWMMA <rocwmma:index>`,2.1.0,2.0.0,1.7.0
       :doc:`Tensile <tensile:src/index>`,4.44.0,4.44.0,4.43.0
       ,,,
       PRIMITIVES,.. _primitivelibs-support-compatibility-matrix:,,
@@ -118,11 +118,11 @@ compatibility and system requirements.
       `ROCT-Thunk-Interface <https://github.com/ROCm/ROCT-Thunk-Interface>`_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_,N/A [#ROCT-rocr]_
       ,,,
       SYSTEM MGMT TOOLS,.. _tools-support-compatibility-matrix:,,
-      :doc:`AMD SMI <amdsmi:index>`,26.1.0,26.1.0,25.3.0
+      :doc:`AMD SMI <amdsmi:index>`,26.2.0,26.1.0,25.3.0
       :doc:`ROCm Data Center Tool <rdc:index>`,1.2.0,1.2.0,0.3.0
       :doc:`rocminfo <rocminfo:index>`,1.0.0,1.0.0,1.0.0
       :doc:`ROCm SMI <rocm_smi_lib:index>`,7.8.0,7.8.0,7.5.0
-      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,1.2.0,1.2.0,1.1.0
+      :doc:`ROCm Validation Suite <rocmvalidationsuite:index>`,1.3.0,1.2.0,1.1.0
       ,,,
       PERFORMANCE TOOLS,,,
       :doc:`ROCm Bandwidth Test <rocm_bandwidth_test:index>`,2.6.0,2.6.0,1.4.0
