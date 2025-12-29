@@ -163,6 +163,7 @@ article_pages = [
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v25.4", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v25.5", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/mpt-llm-foundry", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/xdit-diffusion-inference", "os": ["linux"]},    
 
     {"file": "how-to/rocm-for-ai/fine-tuning/index", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/fine-tuning/overview", "os": ["linux"]},
