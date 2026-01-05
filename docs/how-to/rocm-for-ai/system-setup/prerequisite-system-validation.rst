@@ -34,7 +34,7 @@ Hardware verification with ROCm
 Use the command ``amd-smi set --perf-determinism 1900`` to set the max clock speed up to 1900 MHz
 instead of the default 2100 MHz. This can reduce the chance of a PCC event lowering the attainable
 GPU clocks. This setting will not be required for new IFWI releases with the production PRC feature.
-You can restore this setting to its default value with the ``amd-smi reset -c`` command.
+You can restore this setting to its default value with the ``amd-smi reset --clocks`` command.
 
 Run the command:
 
