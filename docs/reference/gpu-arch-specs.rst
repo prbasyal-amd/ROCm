@@ -334,6 +334,24 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 12
           - 0
         *
+          - Radeon AI PRO R9600D
+          - RDNA4
+          - gfx1201
+          - 32
+          - 48
+          - 32 or 64
+          - 128
+          - 48
+          - 8
+          - N/A
+          - 32
+          - 16
+          - 32
+          - 768
+          - 32
+          - 12
+          - 0
+        *
           - Radeon PRO V710
           - RDNA3
           - gfx1101
@@ -611,6 +629,24 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 12
           - 0
         *
+          - Radeon RX 9060 XT LP
+          - RDNA4
+          - gfx1200
+          - 16
+          - 32
+          - 32 or 64
+          - 128
+          - 32
+          - 4
+          - N/A
+          - 32
+          - 16
+          - 32
+          - 768
+          - 32
+          - 12
+          - 0 
+        *
           - Radeon RX 9060 XT
           - RDNA4
           - gfx1200
@@ -718,6 +754,24 @@ For more information about ROCm hardware compatibility, see the ROCm `Compatibil
           - 32
           - 11
           - 0
+        *
+          - Radeon RX 7700
+          - RDNA3
+          - gfx1101
+          - 16
+          - 40
+          - 32 or 64
+          - 128
+          - 64
+          - 4
+          - 256
+          - 32
+          - 16
+          - 32
+          - 768
+          - 32
+          - 11
+          - 0 
         *
           - Radeon RX 7700 XT
           - RDNA3
