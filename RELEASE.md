@@ -286,7 +286,7 @@ MIGraphX has the following enhancements:
 
 ### AMDGPU wavefront size macro removal
 
-The `__AMDGCN_WAVEFRONT_SIZE` and `__AMDGCN_WAVEFRONT_SIZE__` macros, which provided a compile-time-constant wavefront size, are removed. Where required, the wavefront size should instead be queried using the warpSize variable in device code, or using `hipGetDeviceProperties` in host code. Neither of these will result in a compile-time constant. For more information, see [warpSize](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_cpp_language_extensions.html#warpsize).
+The `__AMDGCN_WAVEFRONT_SIZE` and `__AMDGCN_WAVEFRONT_SIZE__` macros, which provided a compile-time-constant wavefront size, are removed. Where required, the wavefront size should instead be queried using the warpSize variable in device code, or using `hipGetDeviceProperties` in host code. Neither of these will result in a compile-time constant. For more information, see [warpSize](https://rocm.docs.amd.com/projects/HIP/en/docs-7.2.0/how-to/hip_cpp_language_extensions.html#warpsize).
 For cases where compile-time evaluation of the wavefront size cannot be avoided, uses of `__AMDGCN_WAVEFRONT_SIZE` or `__AMDGCN_WAVEFRONT_SIZE__` can be replaced with a user-defined macro or `constexpr` variable with the wavefront size(s) for the target hardware. For example:
 
 ```
