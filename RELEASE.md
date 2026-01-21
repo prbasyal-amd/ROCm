@@ -996,7 +996,7 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 
 #### Upcoming changes
 
-* As of ROCm 7.2.0, the [HIPCC](https://rocm.docs.amd.com/projects/HIPCC/en/latest/index.html) compiler is deprecated. HIPCC now invokes [AMD Clang](https://rocm.docs.amd.com/projects/llvm-project/en/latest/index.html). It’s recommended that you now invoke AMD Clang directly rather than using HIPCC. There isn’t any expected impact on usability, functionality, or performance when invoking AMD Clang directly. In a future ROCm release, HIPCC will become a symbolic link to AMD Clang.
+* As of ROCm 7.2.0, the [HIPCC](https://rocm.docs.amd.com/projects/HIPCC/en/docs-7.2.0/index.html) compiler is deprecated. HIPCC now invokes [AMD Clang](https://rocm.docs.amd.com/projects/llvm-project/en/docs-7.2.0/index.html). It’s recommended that you now invoke AMD Clang directly rather than using HIPCC. There isn’t any expected impact on usability, functionality, or performance when invoking AMD Clang directly. In a future ROCm release, HIPCC will become a symbolic link to AMD Clang.
 
 ### **MIGraphX** (2.15.0) 
 
@@ -1434,6 +1434,10 @@ python3 -m pip install --user .
 ```
 
 For detailed instructions, see [Install the Python library for multiple ROCm instances](https://rocm.docs.amd.com/projects/amdsmi/en/latest/install/install.html#install-the-python-library-for-multiple-rocm-instances). The issue will be fixed in a future ROCm release. See [GitHub issue #5875](https://github.com/ROCm/ROCm/issues/5875).
+
+### Intermittent errors when running JAX workloads
+
+You might experience intermittent errors or segmentation faults when running JAX workloads. The issue is currently under investigation and will be addressed in an upcoming ROCm release. See [GitHub issue #5878](https://github.com/ROCm/ROCm/issues/5878).
 
 ### hipBLASLt performance variation for a particular FP8 GEMM operation on AMD Instinct MI325X GPUs
 
