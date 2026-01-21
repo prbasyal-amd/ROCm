@@ -653,7 +653,6 @@ checkpointing
 chiplet
 classList
 cmake
-cmd
 coalescable
 codename
 codenamed
@@ -719,6 +718,7 @@ disambiguates
 distro
 distros
 dkms
+dnf
 dropless
 dtype
 eb
@@ -749,6 +749,7 @@ fp
 framebuffer
 gRPC
 galb
+gb
 gcc
 gdb
 gemm
@@ -761,6 +762,7 @@ globals
 gnupg
 gpu
 grayscale
+gre
 gx
 gzip
 heterogenous
@@ -796,6 +798,7 @@ hpp
 href
 hsa
 hsakmt
+hx
 hyperparameter
 hyperparameters
 iDRAC
@@ -840,6 +843,7 @@ localscratch
 logits
 loopback
 lossy
+lp
 macOS
 matchers
 maxtext
@@ -887,6 +891,7 @@ perfcounter
 performant
 piecewise
 perl
+pkgman
 pragma
 pre
 prebuild
@@ -982,6 +987,7 @@ roctracer
 rst
 runtime
 runtimes
+rx
 ryzen
 sL
 scalability
@@ -1107,6 +1113,8 @@ xPacked
 xargs
 xcc
 xdit
+xt
+xtx
 xz
 yaml
 ysvmadyb
