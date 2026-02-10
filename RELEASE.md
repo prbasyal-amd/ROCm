@@ -1489,7 +1489,7 @@ An issue where some `gemm_ex` operations with 8-bit input data types (`int8`, `f
 
 ### Libva-based applications might fail after ROCm installation
 
-The issue where certain applications that were dependent on the libva library (such as `vainfo` and `ffmpeg`) failed after ROCm installation has been resolved. The failure occured due to a symbol clash between the AMD-packaged `libva-amdgpu` and the system-provided libva. This conflict introduced when adapting the RHEL 8 build to support additional operating systems, which required changes to the build options. See [GitHub issue #5732](https://github.com/ROCm/ROCm/issues/5732).
+The issue in which certain applications that depended on the Libva library (such as `vainfo` and `ffmpeg`) failed after ROCm installation has been resolved. The failure occurred due to a symbol clash between the AMD-packaged `libva-amdgpu` and the system-provided Libva. This conflict was introduced when adapting the RHEL 8 build to support additional operating systems, which required changes to the build options. See [GitHub issue #5732](https://github.com/ROCm/ROCm/issues/5732).
 
 ## ROCm upcoming changes
 
