@@ -1443,9 +1443,9 @@ You might experience intermittent errors or segmentation faults when running JAX
 
 If you’re using hipBLASLt on AMD Instinct MI325X GPUs for large FP8 GEMM operations (such as 9728x8192x65536), you might observe a noticeable performance variation. The issue is currently under investigation and will be fixed in a future ROCm release. See [GitHub issue #5734](https://github.com/ROCm/ROCm/issues/5734).
 
-### Increased runtime latency of hipStreamCreate API
+### Increased runtime latency of the HIP hipStreamCreate API
 
-Due to an increase in the staging buffer size from from 1 MB to 4 MB, a doubling of runtime latency in the `hipStreamCreate` API might be observed. This slowdown impacts the performance of RCCL `all_reduce_perf` tests but has minimal real‑world impact on production workloads. No performance decline has been observed in other common benchmarks, including PyTorch, vLLM, and other application‑level tests. The issue is currently under investigation and will be fixed in an upcoming ROCm release. 
+Due to increasing the staging buffer size from 1 MB to 4 MB, a doubling of runtime latency of the [HIP](https://rocmdocs.amd.com/projects/HIP/en/latest/doxygen/html/group___stream.html) `hipStreamCreate` API might be observed. This slowdown impacts the performance of RCCL `all_reduce_perf` tests but has minimal real‑world impact on production workloads. No performance decline has been observed in other common benchmarks, including PyTorch, vLLM, and other application‑level tests. The issue is currently under investigation and will be fixed in an upcoming ROCm release.  
 
 ## ROCm resolved issues
 
@@ -1479,6 +1479,10 @@ unnecessary concern about GPU health. See [GitHub issue #5720](https://github.co
 ### Incorrect results in gemm_ex operations for rocBLAS and hipBLAS
 
 An issue where some `gemm_ex` operations with 8-bit input data types (`int8`, `float8`, `bfloat8`) for specific matrix dimensions (K = 1 and number of workgroups > 1) yield incorrect results has been resolved. The root cause was incorrect tailloop code that ignored workgroup index when calculating valid element size. See [GitHub issue #5722](https://github.com/ROCm/ROCm/issues/5722).
+
+### Libva-based applications might fail after ROCm installation
+
+The issue where certain applications that were dependent on the libva library (such as `vainfo` and `ffmpeg`) failed after ROCm installation has been resolved. The failure occured due to a symbol clash between the AMD-packaged `libva-amdgpu` and the system-provided libva. This conflict introduced when adapting the RHEL 8 build to support additional operating systems, which required changes to the build options. See [GitHub issue #5732](https://github.com/ROCm/ROCm/issues/5732).
 
 ## ROCm upcoming changes
 
