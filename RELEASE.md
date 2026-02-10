@@ -1443,6 +1443,10 @@ You might experience intermittent errors or segmentation faults when running JAX
 
 If you’re using hipBLASLt on AMD Instinct MI325X GPUs for large FP8 GEMM operations (such as 9728x8192x65536), you might observe a noticeable performance variation. The issue is currently under investigation and will be fixed in a future ROCm release. See [GitHub issue #5734](https://github.com/ROCm/ROCm/issues/5734).
 
+### Increased runtime latency of hipStreamCreate API
+
+Due to an increase in the staging buffer size from from 1 MB to 4 MB, a doubling of runtime latency in the `hipStreamCreate` API might be observed. This slowdown impacts the performance of RCCL `all_reduce_perf` tests but has minimal real‑world impact on production workloads. No performance decline has been observed in other common benchmarks, including PyTorch, vLLM, and other application‑level tests. The issue is currently under investigation and will be fixed in an upcoming ROCm release. 
+
 ## ROCm resolved issues
 
 The following are previously known issues resolved in this release. For resolved issues related to
