@@ -551,7 +551,7 @@ Click {fab}`github` to go to the component's source code on GitHub.
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/Tensile/en/docs-7.2.0/src/index.html">Tensile</a></td>
-                <td>4.44.0</td>
+                <td>4.44.0&nbsp;&Rightarrow;&nbsp;<a href="#tensile-4-45-0">4.45.0</a></td>
                 <td><a href="https://github.com/ROCm/rocm-libraries/tree/develop/shared/tensile"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
         </tbody>
@@ -1405,6 +1405,13 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 
 #### Resolved issues
 * Test Suite - Error Code Capture updates.
+
+### **Tensile** (4.45.0)
+
+#### Removed
+
+- `op_sel` modifiers for `v_dot4` from Tensile codegen.
+- Dependency on `rocm-agent-enumerator` during build.
 
 ## ROCm known issues
 
