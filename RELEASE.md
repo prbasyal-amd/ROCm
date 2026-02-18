@@ -1452,7 +1452,7 @@ If you’re using hipBLASLt on AMD Instinct MI325X GPUs for large FP8 GEMM opera
 
 ### Increased runtime latency of the HIP hipStreamCreate API
 
-Due to increasing the staging buffer size from 1 MB to 4 MB, a doubling of runtime latency of the [HIP](https://rocmdocs.amd.com/projects/HIP/en/latest/doxygen/html/group___stream.html) `hipStreamCreate` API might be observed. This slowdown impacts the performance of RCCL `all_reduce_perf` tests but has minimal real‑world impact on production workloads. No performance decline has been observed in other common benchmarks, including PyTorch, vLLM, and other application‑level tests. The issue is currently under investigation and will be fixed in an upcoming ROCm release.  
+Doubling of runtime latency of the [HIP](https://rocmdocs.amd.com/projects/HIP/en/latest/doxygen/html/group___stream.html) `hipStreamCreate` API might be observed. This slowdown impacts the performance of RCCL `all_reduce_perf` tests but has minimal real‑world impact on production workloads. No performance decline has been observed in other common benchmarks, including PyTorch, vLLM, and other application‑level tests. The issue is currently under investigation and will be fixed in an upcoming ROCm release.  
 
 ## ROCm resolved issues
 
