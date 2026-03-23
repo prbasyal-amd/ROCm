@@ -168,6 +168,7 @@ article_pages = [
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v25.5", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v25.9", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v25.11", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/training/benchmark-docker/previous-versions/jax-maxtext-v26.1", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/training/benchmark-docker/mpt-llm-foundry", "os": ["linux"]},
 
     {"file": "how-to/rocm-for-ai/fine-tuning/index", "os": ["linux"]},
@@ -207,6 +208,8 @@ article_pages = [
     {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/xdit-25.11", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/xdit-25.12", "os": ["linux"]},
     {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/xdit-25.13", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/xdit-26.1", "os": ["linux"]},
+    {"file": "how-to/rocm-for-ai/inference/benchmark-docker/previous-versions/xdit-26.2", "os": ["linux"]},
 
     {"file": "how-to/rocm-for-ai/inference/deploy-your-model", "os": ["linux"]},
 
