@@ -259,7 +259,7 @@ Click {fab}`github` to go to the component's source code on GitHub.
                 <th rowspan="9">Machine learning and computer vision</th>
                 <td><a href="https://rocm.docs.amd.com/projects/composable_kernel/en/docs-7.2.1/index.html">Composable Kernel</a></td>
                 <td>1.2.0</a></td>
-                <td><a href="https://github.com/ROCm/composable_kernel"><i class="fab fa-github fa-lg"></i></a></td>
+                <td><a href="https://github.com/ROCm/rocm-libraries/tree/develop/projects/composablekernel"><i class="fab fa-github fa-lg"></i></a></td>
             </tr>
             <tr>
                 <td><a href="https://rocm.docs.amd.com/projects/AMDMIGraphX/en/docs-7.2.1/index.html">MIGraphX</a></td>
