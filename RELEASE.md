@@ -679,6 +679,10 @@ Due to this issue, you might also observe a slight increase in the test or infer
 
 GEMM operations using hipBLASLt might result in longer runtime on AMD Instinct MI300X GPUs configured in CPX or NPS4 partition mode (38 control units or CUs). This issue occurs when hipBLASLt fails to find applicable pre-tuned kernels. As a result, it performs an extensive kernel search, which increases both search time and the overall operation runtime. This issue is resolved in the {fab}`github`[hipBLASLt develop branch](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblaslt) and will be part of a future ROCm release. See [GitHub issue #6066](https://github.com/ROCm/ROCm/issues/6066).
 
+### ROCTracer might fail to report kernel operations
+
+Applications using ROCTracer might fail to receive some or all kernel operations due to reporting failure of ROCTracer. ROCTracer is already deprecated and will reach end of support (EoS) by the end of 2026 Q2. For more details on ROCTracer deprecation, see  [ROCm upcoming changes](#roctracer-rocprofiler-rocprof-and-rocprofv2-deprecation). The issue will be resolved in a future PyTorch release that replaces ROCTracer with [ROCprofiler-SDK](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/latest/). 
+
 ## ROCm resolved issues
 
 The following are previously known issues resolved in this release. For resolved issues related to
