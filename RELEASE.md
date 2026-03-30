@@ -681,7 +681,7 @@ GEMM operations using hipBLASLt might result in longer runtime on AMD Instinct M
 
 ### ROCTracer might fail to report kernel operations
 
-Applications using ROCTracer might fail to receive some or all kernel operations due to reporting failure of ROCTracer. ROCTracer is already deprecated and will reach end of support (EoS) by the end of 2026 Q2. For more details on ROCTracer deprecation, see  [ROCm upcoming changes](#roctracer-rocprofiler-rocprof-and-rocprofv2-deprecation). The issue will be resolved in a future PyTorch release that replaces ROCTracer with [ROCprofiler-SDK](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/latest/). 
+Applications that use ROCTracer might fail to receive some or all kernel operation events due to ROCTracer reporting failure. ROCTracer is already deprecated and is scheduled to reach end of support (EoS) by the end of 2026 Q2. For more details on ROCTracer deprecation, see  [ROCm upcoming changes](#roctracer-rocprofiler-rocprof-and-rocprofv2-deprecation). This issue will be resolved in a future PyTorch release that replaces ROCTracer with [ROCprofiler-SDK](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/latest/). 
 
 ## ROCm resolved issues
 
