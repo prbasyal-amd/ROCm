@@ -257,7 +257,7 @@ GPU and baseboard firmware versioning might differ across GPU families.
               01.25.17.07<br>
               01.25.16.03
           </td>
-          <td>
+          <td>30.30.2<br>
               30.30.1<br>
               30.30.0<br>
               30.20.1<br>
@@ -275,7 +275,7 @@ GPU and baseboard firmware versioning might differ across GPU families.
               01.25.17.07<br>
               01.25.16.03
           </td>
-          <td>
+          <td>30.30.2<br>
               30.30.1<br>
               30.30.0<br>
               30.20.1<br>
@@ -309,6 +309,7 @@ GPU and baseboard firmware versioning might differ across GPU families.
               01.25.03.12<br>
               01.25.02.04</td>
           <td rowspan="6" style="vertical-align: middle;">
+              30.30.2<br>
               30.30.1<br>
               30.30.0<br>
               30.20.1<br>
