@@ -313,8 +313,9 @@ rocSOLVER adds the following new routines, all with 64-bit index support:
   strided-batched variants are available.
 
 Additionally, POTF2 and downstream POTRF Cholesky factorization performance
-have been improved. For more information, see the [rocSOLVER
-documentation](https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.13.0/index.html).
+have been improved.
+<!-- For more information, see the [rocSOLVER -->
+<!-- documentation](https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.13.0/index.html). -->
 
 #### rocSPARSE adds sparse factorization routines
 
