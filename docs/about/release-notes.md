@@ -141,7 +141,7 @@ supports a wide range of AMD GPUs spanning Instinct, Radeon, and Ryzen
 architectures, with unit and integration tests across all supported hardware.
 See [AMD hardware support](#amd-hardware-support) for the complete list.
 
-For more information, see [ROCprof Trace Decoder and thread trace APIs](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-7.13.0/api-reference/thread_trace.html) and [Using thread trace](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-7.13.0/how-to/using-thread-trace.html) in the ROCprofiler-SDK documentation.
+<!-- For more information, see [ROCprof Trace Decoder and thread trace APIs](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-7.13.0/api-reference/thread_trace.html) and [Using thread trace](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/docs-7.13.0/how-to/using-thread-trace.html) in the ROCprofiler-SDK documentation. -->
 
 #### HIP cooperative groups reduce operations
 
@@ -163,13 +163,14 @@ The following are notable enhancements to the ROCm Compute Profiler
 (rocprofiler-compute).
 
 * **RDNA 3.5 support:** ROCm Compute Profiler now supports GPU performance
-  profiling and analysis on AMD Ryzen AI Max 300 series processors. An [RDNA 3
-  section](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-7.13.0/conceptual/rdna/rdna-performance-model.html)
-  has been added to the performance model documentation explaining the supported
-  performance metrics for AMD Ryzen AI Max 300 series processors. A new memory
-  chart visualization accommodates the architectural differences between
-  RDNA 3.5 and CDNA GPUs. Roofline is not yet supported for AMD Ryzen AI
-  Max 300 series processors.
+  profiling and analysis on AMD Ryzen AI Max 300 series processors.
+  <!-- An [RDNA 3 -->
+  <!-- section](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-7.13.0/conceptual/rdna/rdna-performance-model.html) -->
+  <!-- has been added to the performance model documentation explaining the supported -->
+  <!-- performance metrics for AMD Ryzen AI Max 300 series processors. A new memory -->
+  <!-- chart visualization accommodates the architectural differences between -->
+  <!-- RDNA 3.5 and CDNA GPUs. Roofline is not yet supported for AMD Ryzen AI -->
+  <!-- Max 300 series processors. -->
 
 * **Removed dependency requirements for profiling:** Building ROCm Compute
   Profiler and using profile mode no longer requires installing Python
@@ -192,33 +193,37 @@ The following are notable enhancements to the ROCm Systems Profiler
   and resuming profiling at runtime through the `roctxProfilerPause` and
   `roctxProfilerResume` APIs. This allows you to capture profiling data only
   during specific execution phases, reducing overhead and minimizing output size
-  for long-running workloads. For more information, see [Configuring runtime
-  options](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/configuring-runtime-options.html)
-  in the ROCm Systems Profiler documentation.
+  for long-running workloads.
+  <!--   For more information, see [Configuring runtime -->
+  <!-- options](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/configuring-runtime-options.html) -->
+  <!-- in the ROCm Systems Profiler documentation. -->
 
 * **Selective region tracing:** You can now restrict tracing to defined regions
   of interest using the `ROCPROFSYS_SELECTED_REGIONS` environment variable,
-  reducing noise and limiting data collection to relevant workload segments. For more
-  information, see
-  [ROCPROFSYS_SELECTED_REGIONS](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/configuring-runtime-options.html#rocprofsys-selected-regions)
-  in the ROCm Systems Profiler documentation.
+  reducing noise and limiting data collection to relevant workload segments.
+  <!-- For more -->
+  <!-- information, see -->
+  <!-- [ROCPROFSYS_SELECTED_REGIONS](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/configuring-runtime-options.html#rocprofsys-selected-regions) -->
+  <!-- in the ROCm Systems Profiler documentation. -->
 
 * **KFD event tracing:** Kernel Fusion Driver (KFD) event tracing is now
   available for GPU memory management analysis, including page faults, page
   migrations, queue evictions, GPU unmap events, and dropped events. Requires
-  an XNACK-capable GPU and ROCprofiler-SDK 1.2.1 or later. For more
-  information, see [Configuring runtime
-  options](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/configuring-runtime-options.html#exploring-gpu-metrics)
-  in the ROCm Systems Profiler documentation.
+  an XNACK-capable GPU and ROCprofiler-SDK 1.2.1 or later.
+  <!-- For more -->
+  <!-- information, see [Configuring runtime -->
+  <!-- options](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/configuring-runtime-options.html#exploring-gpu-metrics) -->
+  <!-- in the ROCm Systems Profiler documentation. -->
 
 * **MPI file-output filtering:** You can now filter profiler output files based
   on MPI rank using the `--rank-filter-output` CLI option or the
   `ROCPROFSYS_RANK_FILTER_OUTPUT` configuration setting, suppressing output
   from all other ranks. An optional `--rank-filter-id` option
   (`ROCPROFSYS_RANK_FILTER_ID`) allows specifying a custom environment variable
-  for rank identification. For more information, see [Selective rank
-  profiling](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/communication-runtime-profiling.html#selective-rank-profiling)
-  in the ROCm Systems Profiler documentation.
+  for rank identification.
+  <!--   For more information, see [Selective rank -->
+  <!-- profiling](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/communication-runtime-profiling.html#selective-rank-profiling) -->
+  <!-- in the ROCm Systems Profiler documentation. -->
 
 * **JSON-based profiling presets and domain flags:** You can now configure
   common profiling workflows using JSON-based presets and a single
@@ -227,9 +232,9 @@ The following are notable enhancements to the ROCm Systems Profiler
   tracing, HPC workloads, and API-level analysis. Composable domain flags
   (`--gpu`, `--rocm`, `--cpu`, `--parallel`) and a topic-based
   `--help=<topic>` system further simplify configuration and discoverability.
-  For more information, see [Using preset profiles and domain
-  flags](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/using-preset-profiles.html)
-  in the ROCm Systems Profiler documentation.
+  <!-- For more information, see [Using preset profiles and domain -->
+  <!-- flags](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-7.13.0/how-to/using-preset-profiles.html) -->
+  <!-- in the ROCm Systems Profiler documentation. -->
 
 #### AMD SMI feature highlights
 
@@ -294,8 +299,8 @@ The new implementation includes support for Global Split-U (GSU) to improve
 performance at large problem sizes. General Batched GEMM is important for
 inference workloads that dispatch batches of same-shape GEMM operations.
 
-For more information, see the [hipBLASLt
-documentation](https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.13.0/index.html).
+<!-- For more information, see the [hipBLASLt -->
+<!-- documentation](https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.13.0/index.html). -->
 
 #### rocSOLVER adds new solver routines and matrix analysis functions
 
@@ -308,8 +313,9 @@ rocSOLVER adds the following new routines, all with 64-bit index support:
   strided-batched variants are available.
 
 Additionally, POTF2 and downstream POTRF Cholesky factorization performance
-have been improved. For more information, see the [rocSOLVER
-documentation](https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.13.0/index.html).
+have been improved.
+<!-- For more information, see the [rocSOLVER -->
+<!-- documentation](https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.13.0/index.html). -->
 
 #### rocSPARSE adds sparse factorization routines
 
@@ -324,9 +330,10 @@ triangular solve:
   singularity detection through the new `rocsparse_singularity` enumeration.
 
 Performance of tridiagonal solvers `rocsparse_Xgtsv_no_pivot` and
-`rocsparse_Xgtsv_no_pivot_strided_batch` has been improved. For more
-information, see the [rocSPARSE
-documentation](https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.13.0/index.html).
+`rocsparse_Xgtsv_no_pivot_strided_batch` has been improved.
+<!-- For more -->
+<!-- information, see the [rocSPARSE -->
+<!-- documentation](https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.13.0/index.html). -->
 
 #### Added rocDecode and rocJPEG libraries to the ROCm Core SDK
 
@@ -348,9 +355,10 @@ accelerators. RDC enables system administrators and cluster managers to monitor
 GPU health, collect telemetry data, and track per-job GPU usage across
 multi-node environments.
 
-RDC is supported on Linux with AMD Instinct GPUs. See the
-[RDC documentation](https://rocm.docs.amd.com/projects/rdc/en/docs-7.13.0/index.html)
-for more information.
+RDC is supported on Linux with AMD Instinct GPUs.
+<!-- See the -->
+<!-- [RDC documentation](https://rocm.docs.amd.com/projects/rdc/en/docs-7.13.0/index.html) -->
+<!-- for more information. -->
 
 (release-supported-hw)=
 
