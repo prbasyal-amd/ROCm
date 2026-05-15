@@ -22,7 +22,7 @@
          `AMD Ryzen AI PRO 400 Series <https://www.amd.com/en/products/processors/workstations/mobile.html#tabs-7f0c432fb2-item-0c42136112-tab>`__
 
       .. matrix-cell::
-         :show-cond: gpu=ai-9-pro-hx-475 gpu=ai-9-pro-hx-470 gpu=ai-9-pro-460
+         :show-cond: gpu=ai-9-hx-pro-475 gpu=ai-9-hx-pro-470 gpu=ai-9-pro-460
 
          `AMD Ryzen AI PRO 400 Series <https://www.amd.com/en/products/processors/laptop/ryzen-for-business.html#tabs-0d174caf43-item-87690677fc-tab>`__
 
@@ -66,7 +66,7 @@
          :show-cond: gpu=max-pro-380
 
       .. matrix-cell:: Radeon 890M
-         :show-cond: gpu=ai-9-pro-hx-475 gpu=ai-9-pro-hx-470 gpu=ai-9-hx-475 gpu=ai-9-hx-470 gpu=9-hx-pro-375 gpu=9-hx-pro-370 gpu=9-hx-375 gpu=9-hx-370
+         :show-cond: gpu=ai-9-hx-pro-475 gpu=ai-9-hx-pro-470 gpu=ai-9-hx-475 gpu=ai-9-hx-470 gpu=9-hx-pro-375 gpu=9-hx-pro-370 gpu=9-hx-375 gpu=9-hx-370
 
       .. matrix-cell:: Radeon 880M
          :show-cond: gpu=ai-9-pro-465 gpu=ai-9-465 gpu=9-365

@@ -370,9 +370,9 @@
       </td>
       <td>
         <p><a href="https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-400-series/amd-ryzen-ai-9-hx-pro-475.html"
-            target="_blank">Ryzen AI 9 PRO HX 475</a> (Radeon 890M)</p>
+            target="_blank">Ryzen AI 9 HX PRO 475</a> (Radeon 890M)</p>
         <p><a href="https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-400-series/amd-ryzen-ai-9-hx-pro-470.html"
-            target="_blank">Ryzen AI 9 PRO HX 470</a> (Radeon 890M)</p>
+            target="_blank">Ryzen AI 9 HX PRO 470</a> (Radeon 890M)</p>
         <p><a href="https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-400-series/amd-ryzen-ai-9-pro-465.html"
             target="_blank">Ryzen AI 9 PRO 465</a> (Radeon 880M)</p>
       </td>
