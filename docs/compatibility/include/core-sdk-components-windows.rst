@@ -53,7 +53,7 @@
 
       .. matrix-cell::
 
-         `hipSOLVER 3.3.0 <https://github.com/ROCm/rocm-libraries/tree/release/therock-7.13/projects/hipsolver>`__
+         `hipSOLVER 3.4.0 <https://github.com/ROCm/rocm-libraries/tree/release/therock-7.13/projects/hipsolver>`__
 
    .. matrix-row::
 
@@ -71,7 +71,7 @@
 
       .. matrix-cell::
 
-         `MIOpen 3.6.0 <https://github.com/ROCm/rocm-libraries/tree/release/therock-7.13/projects/miopen>`__
+         `MIOpen 3.5.1 <https://github.com/ROCm/rocm-libraries/tree/release/therock-7.13/projects/miopen>`__
 
    .. matrix-row::
 
@@ -101,7 +101,7 @@
 
       .. matrix-cell::
 
-         `rocSOLVER 3.33.0 <https://github.com/ROCm/rocm-libraries/tree/release/therock-7.13/projects/rocsolver>`__
+         `rocSOLVER 3.34.0 <https://github.com/ROCm/rocm-libraries/tree/release/therock-7.13/projects/rocsolver>`__
 
    .. matrix-row::
 
