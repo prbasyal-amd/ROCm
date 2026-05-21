@@ -547,12 +547,10 @@ sudo apt install amdrocm-*
 
 ### Runtime failure might occur for certain inference workloads
 
-A runtime failure might occur when running:
+During model execution the following workloads might fail to complete when running:
 
 * GPT-OSS-20B inference workload using PyTorch with ROCm
 * Stable-Diffusion-3 inference workload using JAX with ROCm
-
-The issue occurs during model execution and prevents successful completion of the workload. The issue is currently under investigation.
 
 ### Issues related to AddressSanitizer
 
