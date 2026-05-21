@@ -545,7 +545,7 @@ Installing the ROCm Core SDK using `amdrocm-core-sdk` or `amdrocm-core-dev/devel
 sudo apt install amdrocm-*
 ```
 
-### System failure might occur when running certain inference workloads
+### Runtime failure might occur for certain inference workloads
 
 A runtime failure might occur when running:
 
