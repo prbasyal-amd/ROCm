@@ -549,8 +549,8 @@ sudo apt install amdrocm-*
 
 A runtime failure might occur when running:
 
-  * GPT-OSS-20B inference workload using PyTorch with ROCm
-  * Stable-Diffusion-3 inference workload using JAX with ROCm
+* GPT-OSS-20B inference workload using PyTorch with ROCm
+* Stable-Diffusion-3 inference workload using JAX with ROCm
 
 The issue occurs during model execution and prevents successful completion of the workload. The issue is currently under investigation.
 
