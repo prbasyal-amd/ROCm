@@ -1,21 +1,34 @@
 <div align="center">
-<img src="docs/data/amd-rocm-logo.png" width="200px" alt="ROCm logo">
-
-<h3 align="center">
-Open-source stack designed for GPU computation
-</h3>
-
-<p align="center">
-<a href="https://rocm.docs.amd.com/en/latest/"><b>Docs</b></a> • <a href="https://rocm.blogs.amd.com/"><b>Blogs</b></a> • <a href="https://rocm.docs.amd.com/projects/ai-developer-hub/en/latest/"><b>Tutorials</b></a> • <a href="https://rocm.docs.amd.com/en/latest/how-to/deep-learning-rocm.html"><b>Deep learning frameworks</b></a> • <a href="https://rocm.docs.amd.com/en/latest/how-to/rocm-for-ai/index.html"><b>ROCm for AI</b></a>
-</p>
-
+  <img src="docs/images/amd-rocm-logo.png" width="200px" alt="ROCm logo">
+  <h3 align="center">
+    Open-source software stack for AMD GPU computing
+  </h3>
+  <p align="center">
+    <a href="https://rocm.docs.amd.com/en/latest/">
+      <b>ROCm Core SDK</b>
+    </a>
+    <span> • </span>
+    <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/">
+      <b>AI Ecosystem</b>
+    </a>
+    <span> • </span>
+    <a href="https://instinct.docs.amd.com/latest/">
+      <b>GPU Systems and Infrastructure</b>
+    </a>
+    <span> • </span>
+    <a href="https://rocm.blogs.amd.com/">
+      <b>Blogs</b>
+    </a>
+  </p>
 </div>
 
-# AMD ROCm™ software
+# AMD ROCm™
 
-ROCm is an open-source stack, composed primarily of open-source software, designed for graphics
-processing unit (GPU) computation. ROCm consists of a collection of drivers, development tools, and
-APIs that enable GPU programming from low-level kernel to end-user applications.
+ROCm is an open-source software stack, composed primarily of open-source
+libraries and tools, designed for high-performance general purpose GPU (GPGPU)
+computing. ROCm consists of a collection of drivers, development tools, and
+APIs that enable GPU programming from low-level kernel to end-user
+applications.
 
 You can customize the ROCm software to meet your specific needs. You can develop,
 collaborate, test, and deploy your applications in a free, open-source, integrated, and secure software

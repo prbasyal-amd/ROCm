@@ -1,81 +1,82 @@
----
-myst:
-  html_meta:
-    "description": "Start building for HPC and AI with the performance-first AMD ROCm software stack. Explore how-to guides and reference docs."
-    "keywords": "Radeon, open, compute, platform, install, how, conceptual, reference, home, docs"
----
+<style>
+.sd-card-footer {
+    border-top: none !important;
+}
+.sd-card-footer a {
+    color: inherit;
+    text-decoration-color: var(--pst-color-link);
+}
+.sd-card-footer a::after {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f054";
+    color: var(--pst-color-link);
+    margin-left: 0.4em;
+    font-size: 0.8em;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+.sd-card-footer a:hover::after {
+    transform: translateX(4px);
+}
+</style>
 
-# AMD ROCm documentation
+# AMD ROCm
 
-ROCm is an open-source software platform optimized to extract HPC and AI workload
-performance from AMD Instinct GPUs and AMD Radeon GPUs while maintaining
-compatibility with industry software frameworks. For more information, see
-[What is ROCm?](./what-is-rocm.rst)
+ROCm is AMD's open-source GPGPU computing platform: an end‑to‑end ecosystem of
+compilers, runtimes, and libraries for AI, HPC, and domain‑specific workloads.
+It is open source, cross‑platform (Linux and Windows), and optimized for AMD
+Instinct™, AMD Radeon™, and AMD Ryzen™ AI devices.
 
-ROCm supports multiple programming languages and programming interfaces such as
-{doc}`HIP <hip:index>`, OpenCL, and OpenMP, as explained in the [Programming guide](./how-to/programming_guide.rst).
-
-If you're using AMD Radeon™ GPUs or Ryzen™ APUs for graphics workloads, see the {doc}`ROCm on Radeon and Ryzen <radeon:index>` documentation.
-
-```{note}
-The [AMD ROCm Programming Guide](https://rocm-handbook.amd.com/projects/amd-rocm-programming-guide/en/latest/)
-presents key ROCm concepts in a structured, book-style format, a helpful
-starting point for those new to GPU programming.
-```
-
-ROCm documentation is organized into the following categories:
-
-::::{grid} 1 2 2 2
+::::{grid} 1 1 2 2
 :gutter: 3
-:class-container: rocm-doc-grid
 
-:::{grid-item-card} Install
-:class-body: rocm-card-banner rocm-hue-2
+:::{grid-item-card} Core SDK
+The foundational libraries, runtimes, and tools for GPU computing on AMD
+hardware — math and compute libraries, communication primitives, HIP runtime,
+profiling and debugging tools, and more.
 
-* {doc}`ROCm on Linux <rocm-install-on-linux:reference/system-requirements>`
-* {doc}`HIP SDK on Windows <rocm-install-on-windows:reference/system-requirements>`
-* {doc}`ROCm on Radeon and Ryzen<radeon:index>`
-* {doc}`Deep learning frameworks </how-to/deep-learning-rocm>`
-* {doc}`Build from source </how-to/build-rocm>`
+- [Install the ROCm Core SDK](./install/rocm)
+- [ROCm {{ ROCM_VERSION }} compatibility](./compatibility/compatibility-matrix)
++++
+[Go to Core SDK docs](about/release-notes)
 :::
 
-:::{grid-item-card} How to
-:class-body: rocm-card-banner rocm-hue-12
+:::{grid-item-card} AI Ecosystem
+Full-stack documentation and recipes to deploy AI workloads on AMD
+GPUs using popular ROCm-enabled frameworks.
 
-* [Use ROCm for AI](./how-to/rocm-for-ai/index.rst)
-* [AI tutorials](https://rocm.docs.amd.com/projects/ai-developer-hub/en/latest/)
-* [Use ROCm for HPC](./how-to/rocm-for-hpc/index.rst)
-* [System optimization](./how-to/system-optimization/index.rst)
-* [AMD Instinct MI300X performance validation and tuning](./how-to/tuning-guides/mi300x/index.rst)
-* [System debugging](./how-to/system-debugging.md)
-* [Use advanced compiler features](./conceptual/compiler-topics.md)
-* [Set the number of CUs](./how-to/setting-cus)
-* [Troubleshoot BAR access limitation](./how-to/Bar-Memory.rst)
-* [ROCm examples](https://github.com/amd/rocm-examples)
+- Deep learning frameworks
+  - [PyTorch](https://advanced-micro-devices-rocm-internal--802.com.readthedocs.build/en/802/frameworks/pytorch/install.html)
+  - [JAX](https://advanced-micro-devices-rocm-internal--802.com.readthedocs.build/en/802/frameworks/jax/install.html)
+- Training
+  - [Primus](https://advanced-micro-devices-rocm-internal--802.com.readthedocs.build/en/802/training/Primus/production_docs/index.html)
+- Inference
+  - [vLLM](https://advanced-micro-devices-rocm-internal--802.com.readthedocs.build/en/802/inference/vllm.html)
+  - [SGLang](https://advanced-micro-devices-rocm-internal--802.com.readthedocs.build/en/802/inference/sglang.html)
++++
+[Go to AI Ecosystem docs](https://advanced-micro-devices-rocm-internal--802.com.readthedocs.build/en/802/)
 :::
 
-:::{grid-item-card} Conceptual
-:class-body: rocm-card-banner rocm-hue-8
+:::{grid-item-card} GPU Systems and Infrastructure
+Deployment and operations guidance for AMD Instinct GPUs at scale, including
+AMD GPU Driver installation, cluster management, GPU partitioning, monitoring,
+virtualization, cloud deployments, and containers.
 
-* [GPU architecture overview](./conceptual/gpu-arch.md)
-* [File structure (Linux FHS)](./conceptual/file-reorg.md)
-* [GPU isolation techniques](./conceptual/gpu-isolation.md)
-* [Using CMake](./conceptual/cmake-packages.rst)
-* [Inception v3 with PyTorch](./conceptual/ai-pytorch-inception.md)
+- [AMD GPU Driver (amdgpu)](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/)
+- [Network Operator (Kubernetes)](https://instinct.docs.amd.com/projects/network-operator/en/latest/overview.html)
++++
+[Go to GPU Systems docs](https://instinct.docs.amd.com)
 :::
 
-:::{grid-item-card} Reference
-:class-body: rocm-card-banner rocm-hue-6
-<!-- markdownlint-disable MD051 -->
-* [ROCm libraries](./reference/api-libraries.md)
-* [ROCm tools, compilers, and runtime API](./reference/rocm-tools.md)
-* [GPU hardware specifications](./reference/gpu-arch-specs.rst)
-* [Hardware atomics operation support](./reference/gpu-atomics-operation.rst)
-* [Environment variables](./reference/env-variables.rst)
-* [Data types and precision support](./reference/precision-support.rst)
-* [Graph safe support](./reference/graph-safe-support.rst)
-* [ROCm glossary](./reference/glossary.rst)
-<!-- markdownlint-enable MD051 -->
-:::
+:::{grid-item-card} Toolkits
+Open-source collections of ROCm-accelerated libraries for building
+high-performance domain-specific applications.
 
+- [ROCm Data Science](https://rocm.docs.amd.com/projects/rocm-ds/en/latest/index.html)
+- [ROCm Finance](https://rocm.docs.amd.com/projects/rocm-finance/en/latest/index.html)
+- [ROCm Life Science](https://rocm.docs.amd.com/projects/rocm-ls/en/latest/index.html)
+- [ROCm LLMExt](https://rocm.docs.amd.com/projects/rocm-llmext/en/latest/index.html)
+- [ROCm Simulation](https://rocm.docs.amd.com/projects/rocm-simulation/en/latest/index.html)
+:::
 ::::
