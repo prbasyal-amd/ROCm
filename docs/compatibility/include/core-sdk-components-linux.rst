@@ -17,109 +17,109 @@
 
       .. matrix-cell::
 
-         `Composable Kernel 1.2.0 <https://rocm.docs.amd.com/projects/composable_kernel/en/docs-7.14/index.html>`__
+         `Composable Kernel 1.2.0 <https://rocm.docs.amd.com/projects/composable_kernel/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipBLAS 3.5.0 <https://rocm.docs.amd.com/projects/hipBLAS/en/docs-7.14/index.html>`__
+         `hipBLAS 3.5.0 <https://rocm.docs.amd.com/projects/hipBLAS/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipBLASLt 1.4.1 <https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.14/index.html>`__
+         `hipBLASLt 1.4.1 <https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipCUB 4.5.0 <https://rocm.docs.amd.com/projects/hipCUB/en/docs-7.14/index.html>`__
+         `hipCUB 4.5.0 <https://rocm.docs.amd.com/projects/hipCUB/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipFFT 1.0.24 <https://rocm.docs.amd.com/projects/hipFFT/en/docs-7.14/index.html>`__
+         `hipFFT 1.0.24 <https://rocm.docs.amd.com/projects/hipFFT/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipRAND 3.4.0 <https://rocm.docs.amd.com/projects/hipRAND/en/docs-7.14/index.html>`__
+         `hipRAND 3.4.0 <https://rocm.docs.amd.com/projects/hipRAND/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipSOLVER 3.5.0 <https://rocm.docs.amd.com/projects/hipSOLVER/en/docs-7.14/index.html>`__
+         `hipSOLVER 3.5.0 <https://rocm.docs.amd.com/projects/hipSOLVER/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipSPARSE 4.6.0 <https://rocm.docs.amd.com/projects/hipSPARSE/en/docs-7.14/index.html>`__
+         `hipSPARSE 4.6.0 <https://rocm.docs.amd.com/projects/hipSPARSE/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipSPARSELt 0.2.9 <https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.14/index.html>`__
+         `hipSPARSELt 0.2.9 <https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `MIOpen 3.5.2 <https://rocm.docs.amd.com/projects/MIOpen/en/docs-7.14/index.html>`__
+         `MIOpen 3.5.2 <https://rocm.docs.amd.com/projects/MIOpen/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocBLAS 5.5.0 <https://rocm.docs.amd.com/projects/rocBLAS/en/docs-7.14/index.html>`__
+         `rocBLAS 5.5.0 <https://rocm.docs.amd.com/projects/rocBLAS/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocFFT 1.0.38 <https://rocm.docs.amd.com/projects/rocFFT/en/docs-7.14/index.html>`__
+         `rocFFT 1.0.38 <https://rocm.docs.amd.com/projects/rocFFT/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocPRIM 4.5.0 <https://rocm.docs.amd.com/projects/rocPRIM/en/docs-7.14/index.html>`__
+         `rocPRIM 4.5.0 <https://rocm.docs.amd.com/projects/rocPRIM/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocRAND 4.5.0 <https://rocm.docs.amd.com/projects/rocRAND/en/docs-7.14/index.html>`__
+         `rocRAND 4.5.0 <https://rocm.docs.amd.com/projects/rocRAND/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocSOLVER 3.35.0 <https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.14/index.html>`__
+         `rocSOLVER 3.35.0 <https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocSPARSE 4.7.0 <https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.14/index.html>`__
+         `rocSPARSE 4.7.0 <https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocThrust 4.5.0 <https://rocm.docs.amd.com/projects/rocThrust/en/docs-7.14/index.html>`__
+         `rocThrust 4.5.0 <https://rocm.docs.amd.com/projects/rocThrust/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocWMMA 2.2.1 <https://rocm.docs.amd.com/projects/rocWMMA/en/docs-7.14/index.html>`__
+         `rocWMMA 2.2.1 <https://rocm.docs.amd.com/projects/rocWMMA/en/docs-7.14.0/index.html>`__
 
    .. matrix-row::
 
