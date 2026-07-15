@@ -390,7 +390,7 @@ complete your system configuration and validate the installation.
          rocm-sdk path --root
          rocm-sdk test
 
-      To learn more about the ``rocm-sdk`` tool and to see example 
+      To learn more about the ``rocm-sdk`` tool and to see example
       outputs, see `Using ROCm Python packages (TheRock)
       <https://github.com/ROCm/TheRock/blob/main/RELEASES.md#using-rocm-python-packages>`__.
 
@@ -419,7 +419,7 @@ complete your system configuration and validate the installation.
 
          rocm-sdk test
 
-      To learn more about the ``rocm-sdk`` tool and to see example 
+      To learn more about the ``rocm-sdk`` tool and to see example
       outputs, see `Using ROCm Python packages (TheRock)
       <https://github.com/ROCm/TheRock/blob/main/RELEASES.md#using-rocm-python-packages>`__.
 
@@ -433,3 +433,22 @@ complete your system configuration and validate the installation.
 
          deactivate
 
+.. seealso::
+
+   To install deep learning frameworks, including `PyTorch
+   <https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/pytorch/install.html>`__
+   and `JAX
+   <https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/jax/install.html>`__,
+   and get started with AI training and inference, see the `AI Ecosystem
+   <https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/>`__
+   documentation portal.
+
+   .. selected:: fam=instinct
+
+      To learn about HPC libraries and applications, see
+      :doc:`ROCm HPC SDK </components/hpc-sdk/index>`.
+
+   .. selected:: fam=radeon fam=ryzen
+
+      To learn about ROCm Extras, which include supplementary tools for
+      benchmarking and validating, see :doc:`ROCm Extras </components/extras>`.
