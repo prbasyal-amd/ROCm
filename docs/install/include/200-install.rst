@@ -37,24 +37,24 @@ Installation
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.30/ubuntu/resolute/amdgpu-install_31.30.313000-1_all.deb
-               sudo apt install ./amdgpu-install_31.30.313000-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/resolute/amdgpu-install_26.13.26130000-2369674.26.04_all.deb
+               sudo apt install ./amdgpu-install_26.13.26130000-2369674.26.04_all.deb
 
          .. selected:: ubuntu-ver=24.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.30/ubuntu/noble/amdgpu-install_31.30.313000-1_all.deb
-               sudo apt install ./amdgpu-install_31.30.313000-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/noble/amdgpu-install_26.13.26130000-2369674.24.04_all.deb
+               sudo apt install ./amdgpu-install_26.13.26130000-2369674.24.04_all.deb
 
          .. selected:: ubuntu-ver=22.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.30/ubuntu/jammy/amdgpu-install_31.30.313000-1_all.deb
-               sudo apt install ./amdgpu-install_31.30.313000-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/jammy/amdgpu-install_26.13.26130000-2369674.22.04_all.deb
+               sudo apt install ./amdgpu-install_26.13.26130000-2369674.22.04_all.deb
 
       .. selected:: os=rhel
 
@@ -62,15 +62,15 @@ Installation
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/10.2/amdgpu-install-31.40.314000-1.el10.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.314000-1.el10.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/10.2/amdgpu-install-26.13.26130000-2369674.el10.noarch.rpm
+               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el10.noarch.rpm
 
          .. selected:: rhel-ver=9.8
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.8/amdgpu-install-31.40.314000-1.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.314000-1.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.8/amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
 
 .. ==================================================== INSTALL KERNEL DRIVER ==
 
@@ -89,7 +89,7 @@ Installation
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Ubuntu native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
             .. selected:: ubuntu-ver=26.04
@@ -106,35 +106,35 @@ Installation
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Debian native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-debian.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-debian.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rhel
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `RHEL native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-rhel.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-rhel.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=oracle-linux
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Oracle Linux native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-ol.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-ol.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rocky-linux
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Rocky Linux native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-rl.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-rl.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=sles
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `SLES native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-sles.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-sles.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
       .. selected:: fam=instinct fam=radeon
@@ -148,42 +148,42 @@ Installation
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Ubuntu native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=debian
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Debian native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-debian.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-debian.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rhel
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `RHEL native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-rhel.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-rhel.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=oracle-linux
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Oracle Linux native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-ol.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-ol.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rocky-linux
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Rocky Linux native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-rl.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-rl.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=sles
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `SLES
             native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/install/detailed-install/package-manager/package-manager-sles.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/install/detailed-install/package-manager/package-manager-sles.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
       .. selected:: fam=ryzen
@@ -249,7 +249,7 @@ Use the following instructions to install ROCm packages on your system.
 
                # Download and install GPG key
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
@@ -266,11 +266,11 @@ Use the following instructions to install ROCm packages on your system.
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 
                # ROCm release signing key
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
-               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages/ubuntu2604 stable main
+               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages-multi-arch/ubuntu2604 stable main
                EOF
 
                sudo apt update
@@ -283,7 +283,7 @@ Use the following instructions to install ROCm packages on your system.
 
                # Download and install GPG key
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
@@ -300,11 +300,11 @@ Use the following instructions to install ROCm packages on your system.
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 
                # ROCm release signing key
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
-               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages/ubuntu2404 stable main
+               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages-multi-arch/ubuntu2404 stable main
                EOF
 
                sudo apt update
@@ -317,7 +317,7 @@ Use the following instructions to install ROCm packages on your system.
 
                # Download and install GPG key
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
@@ -334,11 +334,11 @@ Use the following instructions to install ROCm packages on your system.
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 
                # ROCm release signing key
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
-               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages/ubuntu2204 stable main
+               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages-multi-arch/ubuntu2204 stable main
                EOF
 
                sudo apt update
@@ -356,7 +356,7 @@ Use the following instructions to install ROCm packages on your system.
 
                # Download and install GPG key
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
@@ -371,11 +371,11 @@ Use the following instructions to install ROCm packages on your system.
 
                # Download and install GPG key
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
-               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages/debian13 stable main
+               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages-multi-arch/debian13 stable main
                EOF
 
                sudo apt update
@@ -388,7 +388,7 @@ Use the following instructions to install ROCm packages on your system.
 
                # Download and install GPG key
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
@@ -403,11 +403,11 @@ Use the following instructions to install ROCm packages on your system.
 
                # Download and install GPG key
                sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-               wget https://repo.amd.com/rocm/packages/gpg/rocm.gpg -O - | \
+               wget https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg -O - | \
                    gpg --dearmor | sudo tee /etc/apt/keyrings/amdrocm.gpg > /dev/null
 
                sudo tee /etc/apt/sources.list.d/rocm.list << EOF
-               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages/debian12 stable main
+               deb [arch=amd64 signed-by=/etc/apt/keyrings/amdrocm.gpg] https://repo.amd.com/rocm/packages-multi-arch/debian12 stable main
                EOF
 
                sudo apt update
@@ -442,7 +442,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/rhel10/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel10/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -476,7 +476,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/rhel9/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -510,7 +510,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/rhel8/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel8/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -549,7 +549,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/rhel10/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel10/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -583,7 +583,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/rhel9/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -617,7 +617,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/rhel8/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel8/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -641,7 +641,7 @@ Use the following instructions to install ROCm packages on your system.
             baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
             enabled=1
             gpgcheck=1
-            gpgkey=https://repo.amd.com/rocm/packages/gpg/rocm.gpg
+            gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
             priority=50
             EOF
 
@@ -654,10 +654,10 @@ Use the following instructions to install ROCm packages on your system.
             sudo tee /etc/yum.repos.d/rocm.repo <<EOF
             [rocm]
             name=ROCm 7.14.0
-            baseurl=https://repo.amd.com/rocm/packages/rhel9/x86_64
+            baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
             enabled=1
             gpgcheck=1
-            gpgkey=https://repo.amd.com/rocm/packages/gpg/rocm.gpg
+            gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
             priority=50
             EOF
 
@@ -693,7 +693,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/sles16/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/sles16/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -727,7 +727,7 @@ Use the following instructions to install ROCm packages on your system.
                sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
                [rocm]
                name=ROCm 7.14.0
-               baseurl=https://repo.amd.com/rocm/packages/sles15/x86_64
+               baseurl=https://repo.amd.com/rocm/packages-multi-arch/sles15/x86_64
                enabled=1
                gpgcheck=1
                gpgkey=https://repo.amd.com/rocm/packages-multi-arch/gpg/rocm.gpg
@@ -2084,6 +2084,12 @@ Use the following instructions to install ROCm packages on your system.
 
    Install the ``core`` ROCm components. See :ref:`ROCm meta components
    <rocm-install-runfile-meta-components>` for additional installation options.
+
+   .. selected:: fam=all
+
+      .. code-block:: bash
+
+         bash rocm-installer-7.14.0-5.run deps=install rocm gfx=all gpu-access=user
 
    .. selected:: gfx=gfx950
 

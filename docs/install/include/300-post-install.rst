@@ -375,6 +375,20 @@ complete your system configuration and validate the installation.
 .. selected:: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
 
    .. selected:: i=pip
+      :heading: Configure your environment
+      :heading-level: 3
+
+      .. note::
+
+         Follow this step only if you installed the ``devel`` package.
+
+      Initialize the ROCm SDK.
+
+      .. code-block:: bash
+
+         rocm-sdk init
+
+   .. selected:: i=pip
       :heading: Test your installation
       :heading-level: 3
 
@@ -385,9 +399,6 @@ complete your system configuration and validate the installation.
       .. code-block:: bash
 
          rocm-sdk targets
-         rocm-sdk path --cmake
-         rocm-sdk path --bin
-         rocm-sdk path --root
          rocm-sdk test
 
       To learn more about the ``rocm-sdk`` tool and to see example
