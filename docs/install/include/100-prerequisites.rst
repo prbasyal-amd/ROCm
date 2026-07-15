@@ -39,14 +39,14 @@ Prerequisites
             .. code-block:: bash
 
                apt update
-               apt install sudo wget
+               apt install sudo wget gpg
 
          .. selected:: w=graphics
 
             .. code-block:: bash
 
                apt update
-               apt install sudo wget
+               apt install sudo wget gpg
 
          .. selected:: i=pip
 
@@ -55,18 +55,33 @@ Prerequisites
                apt update
                apt install sudo cmake libgfortran5
 
-         .. selected:: i=tar i=runfile
+         .. selected:: i=tar
 
             .. code-block:: bash
 
                apt update
                apt install sudo wget python3
 
+         .. selected:: i=runfile
+
+            .. code-block:: bash
+
+               apt update
+               apt install sudo wget python3 rsync
+
       .. selected:: os=rhel os=rocky-linux os=oracle-linux
 
-         .. code-block:: bash
+         .. selected:: i=pkgman i=pip i=tar
 
-            dnf install sudo wget
+            .. code-block:: bash
+
+               dnf install sudo wget
+
+         .. selected:: i=runfile
+
+            .. code-block:: bash
+
+               dnf install sudo wget rsync
 
       .. selected:: os=sles
 
@@ -82,11 +97,17 @@ Prerequisites
 
                zypper install sudo wget cmake libgfortran5
 
-         .. selected:: i=tar i=runfile
+         .. selected:: i=tar
 
             .. code-block:: bash
 
                zypper install sudo wget
+
+         .. selected:: i=runfile
+
+            .. code-block:: bash
+
+               zypper install sudo wget rsync
 
 .. ================================================================== WINDOWS ==
 
