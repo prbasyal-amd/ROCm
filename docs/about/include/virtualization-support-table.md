@@ -263,7 +263,7 @@
         <tbody>
         <tr>
           <td style="vertical-align: middle">
-            <p>Radeon AI PRO R9700</p>
+            <p>Radeon AI PRO R9700S</p>
           </td>
           <td rowspan="2" style="vertical-align: middle">
             <p>KVM</p>
