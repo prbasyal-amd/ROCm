@@ -217,17 +217,11 @@ Installation
 
          Reboot your system after installing the AMD GPU Driver.
 
-.. selected:: os=windows
+.. selected:: os=windows os=wsl
    :heading: Install AMD Software: Adrenalin Edition
    :heading-level: 3
 
    For details and the download link, see https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-6-4.html#Downloads.
-
-.. selected:: os=wsl
-   :heading: Install AMD Software: Adrenalin Edition
-   :heading-level: 3
-
-   For details and the download link, see https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-5-2.html#Downloads.
 
 .. _rocm-install-rocm:
 
