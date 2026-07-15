@@ -144,7 +144,7 @@ subtrees:
             entries:
                 - url: https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/docs-1.5.122/index.html
                   title: ROCm Validation Suite (RVS)
-                - url: https://rocm.docs.amd.com/projects/TransferBench/en/latest/
+                - url: https://rocm.docs.amd.com/projects/TransferBench/en/docs-1.66.02/index.html
                   title: TransferBench
           - file: ai-ecosystem.md
             title: AI ecosystem
