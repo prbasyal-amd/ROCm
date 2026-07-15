@@ -7,23 +7,17 @@
 
 .. _hpc-install:
 
-***********************
+********************
 Install ROCm HPC-SDK
-***********************
+********************
 
-AMD ROCm HPC-SDK provides high-performance computing libraries and tools for AMD GPU
-architectures. This guide walks you through installing the HPC-SDK alongside ROCm installation
-on a supported Linux distribution.
+AMD ROCm HPC-SDK provides high-performance computing libraries and tools for
+AMD Instinct GPUs. This guide walks you through installing the HPC-SDK
+alongside ROCm installation on a supported Linux distribution.
 
-The ROCm for HPC applications and containers run on a standard ROCm installation.
-Install ROCm on a supported Linux distribution before running any of the HPC
-applications under the HPC application catalog.
-
-* :doc:`/install/rocm`
-
-* See the
-  :ref:`Compatibility matrix <compat-matrix>`
-  for details on supported hardware and operating systems.
+The ROCm for HPC applications and containers run on a standard ROCm
+installation. See the :ref:`Compatibility matrix <compat-matrix>` for details
+on supported hardware and operating systems.
 
 The HPC application containers are published through
 `AMD InfinityHub-CI <https://github.com/amd/InfinityHub-CI>`_. Each container
