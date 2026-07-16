@@ -45,7 +45,11 @@ For the full list of supported Linux distributions, see [Operating system suppor
 
 #### Expanded GPU virtualization support for Instinct GPUs
 
-GPU virtualization configurations supported on AMD Instinct GPUs remain unchanged from the previous [ROCm 7.13.0 preview](https://rocm.docs.amd.com/en/7.13.0-preview/about/release-notes.html#expanded-gpu-virtualization-support-for-instinct-gpus) release.
+ROCm 7.14.0 adds support for the following virtualization configurations on Radeon GPUs.
+
+* On Radeon AI PRO R9700S: KVM Passthrough with Ubuntu 24.04 host OS and Ubuntu 24.04 guest OS.
+
+* On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04 guest OS.
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.1.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
