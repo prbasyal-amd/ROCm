@@ -45,7 +45,7 @@
         <td>
           <p style="text-align: center">—</p>
         </td>
-        <td rowspan="4" style="vertical-align: middle">
+        <td style="vertical-align: middle">
           <p>Ubuntu 24.04</p>
         </td>
         <td style="vertical-align: middle">
@@ -60,6 +60,9 @@
         <a href="https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K" target="_blank">GIM 9.1.0.K
         </a>
       </td>
+      <td rowspan="3" style="vertical-align: middle">
+          <p>Ubuntu 24.04</p>
+        </td>
       <td style="vertical-align: middle">
         <p>Ubuntu 24.04</p>
       </td>
@@ -104,7 +107,7 @@
         <td>
           <p style="text-align: center">—</p>
         </td>
-        <td rowspan="3" style="vertical-align: middle">
+        <td style="vertical-align: middle">
           <p>Ubuntu 24.04</p>
         </td>
         <td style="vertical-align: middle">
@@ -119,6 +122,9 @@
         <a href="https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K" target="_blank">GIM 9.1.0.K
         </a>
       </td>
+      <td rowspan="2" style="vertical-align: middle">
+          <p>Ubuntu 24.04</p>
+        </td>
       <td style="vertical-align: middle">
         <p>Ubuntu 24.04</p>
       </td>
