@@ -23,7 +23,7 @@
 
 # AMD ROCm
 
-ROCm is AMD's open-source GPGPU computing platform: an end‑to‑end ecosystem of
+ROCm is AMD's open-source GPU computing platform: an end‑to‑end ecosystem of
 compilers, runtimes, and libraries for AI, HPC, and domain‑specific workloads.
 It is open source, cross‑platform (Linux and Windows), and optimized for AMD
 Instinct™, AMD Radeon™, and AMD Ryzen™ AI devices.
