@@ -5,7 +5,7 @@
 
       Supported SR-IOV configurations require the GPU-IOV Module (GIM) driver
       9.1.0.K -- see the `AMD Instinct Virtualization Driver documentation
-      <https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.0.0.k/>`__ to
+      <https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.1.0.k/>`__ to
       get started.
 
 
@@ -81,21 +81,10 @@
          :show-cond: gpu=mi350x
 
          .. matrix-cell:: KVM
-            :rowspan: 3
-
-         .. matrix-cell:: Passthrough
-
-         .. matrix-cell:: —
-
-         .. matrix-cell:: Ubuntu 24.04
-
-         .. matrix-cell:: Ubuntu 24.04
-
-      .. matrix-row::
-         :show-cond: gpu=mi350x
+            :rowspan: 2
 
          .. matrix-cell:: SR-IOV
-            :rowspan: 2
+            :rowspan: 3
 
          .. matrix-cell::
             :rowspan: 2
@@ -111,6 +100,17 @@
          :show-cond: gpu=mi350x
 
          .. matrix-cell:: RHEL 9.6
+
+      .. matrix-row::
+         :show-cond: gpu=mi350x
+
+         .. matrix-cell:: ESXi
+
+         .. matrix-cell:: —
+
+         .. matrix-cell:: ESXi 9.1
+
+         .. matrix-cell:: Ubuntu 24.04
 
       .. matrix-row::
          :show-cond: gpu=mi325x
