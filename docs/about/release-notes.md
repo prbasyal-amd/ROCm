@@ -151,8 +151,7 @@ ROCprof Compute Viewer (RCV) 0.2.0 adds the ability to open raw `.att` and `.out
 
 The following are notable enhancements to the ROCm Compute Profiler (rocprofiler-compute):
 
-* **PyTorch operator statistics (experimental)**: The PyTorch tracing (`--torch-trace`) now includes a per-operator statistics summary table, making it easier to spot hot operators and per-dispatch variance. The trace now also captures backward-pass and nested operators that were previously missed or misattributed. For details, see [Torch operator mapping](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/latest/how-to/profile/mode.html#torch-trace).
-
+* **PyTorch operator statistics (experimental)**: The PyTorch tracing (`--torch-trace`) now includes a per-operator statistics summary table, making it easier to spot hot operators and per-dispatch variance. The trace now also captures backward-pass and nested operators that were previously missed or misattributed.
 * **Faster analysis**: Analyze mode now processes profiling data more efficiently, reducing analysis time and memory usage on large workloads.
 
 * **Improved metric averaging accuracy**: Metric values across multiple kernel dispatches are now correctly weighted-averaged, eliminating errors that occurred when aggregating metrics with varying values across individual dispatches.
@@ -444,6 +443,10 @@ When using rocprof-compute with `per_kernel` normalization, the reported Avg val
 ### rocALUTION and hipTensor are not included in the HPC Expansion tarball
 
 The `amdrocm-hpc` meta-package installs rocALUTION and hipTensor, but there is no dedicated HPC Expansion tarball for tarball-based installations. The standard ROCm tarballs include both libraries.
+
+### HIP SPIR-V kernels might segfault on first launch
+
+HIP kernels compiled with the SPIR-V target (`--offload-arch=amdgcnspirv`) might segfault on first kernel launch at `hipLaunchKernel`. The failure affects both library-level workloads such as rocBLAS and standalone HIP applications built against the SPIR-V offload bundle. Applications compiled for a native GPU architecture target are not affected. As a workaround, compile using a direct GPU architecture target instead of `--offload-arch=amdgcnspirv`.
 
 ### RCCL might show degraded performance on multi-node configurations
 

@@ -405,16 +405,6 @@ complete your system configuration and validate the installation.
       outputs, see `Using ROCm Python packages (TheRock)
       <https://github.com/ROCm/TheRock/blob/main/RELEASES.md#using-rocm-python-packages>`__.
 
-   .. selected:: i=tar
-      :heading: Test your installation
-      :heading-level: 3
-
-      Run the ``test_hip_api`` tool to verify that the HIP runtime can access
-      your GPU and execute a simple workload.
-
-      .. code-block:: bash
-
-         test_hip_api
 
 .. selected:: os=windows
 
