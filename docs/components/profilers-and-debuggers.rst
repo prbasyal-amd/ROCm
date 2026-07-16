@@ -28,3 +28,7 @@ identify bottlenecks, and diagnose execution faults.
 * :doc:`ROCr Debug Agent <rocr_debug_agent:index>` -- Prints the state of all
   AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to
   the process while the program is running.
+
+.. note::
+
+   `ROCprof Compute Viewer <https://rocm.docs.amd.com/projects/rocprof-compute-viewer/en/latest/>`_ is a tool for visualizing and analyzing GPU thread trace data collected using :doc:`rocprofv3 <rocprofiler-sdk:index>`. Note that ROCprof Compute Viewer is in an early access state. Running production workloads is not recommended.
