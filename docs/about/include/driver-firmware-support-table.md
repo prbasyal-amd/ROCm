@@ -35,7 +35,7 @@
             target="_blank"
           >31.40.0</a><br>
           <a
-            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/documentation/release-notes.html"
+            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/documentation/release-notes.html"
             target="_blank"
           >31.30.0</a><br>
           <a
