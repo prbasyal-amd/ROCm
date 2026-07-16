@@ -4,7 +4,7 @@
   <meta name="keywords" content="license, licensing terms">
 </head>
 
-# ROCm license
+# ROCm licenses
 
 ```{include} ../../LICENSE
 ```
@@ -40,6 +40,7 @@ additional licenses. Please review individual repositories for more information.
 | [HIPCC](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/hipcc) | [MIT](https://github.com/ROCm/llvm-project/blob/amd-staging/amd/hipcc/LICENSE.txt) |
 | [hipCUB](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipcub/) | [Custom](https://github.com/ROCm/rocm-libraries/blob/develop/projects/hipcub/LICENSE.txt) |
 | [hipFFT](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipfft/) | [MIT](https://github.com/ROCm/rocm-libraries/blob/develop/projects/hipfft/LICENSE.md) |
+| [hipFile](https://github.com/ROCm/rocm-systems/tree/develop/projects/hipfile/) | [MIT](https://github.com/ROCm/rocm-systems/blob/develop/projects/hipfile/LICENSE.md) |
 | [hipfort](https://github.com/ROCm/hipfort/) | [MIT](https://github.com/ROCm/hipfort/blob/develop/LICENSE) |
 | [HIPIFY](https://github.com/ROCm/HIPIFY/) | [MIT](https://github.com/ROCm/HIPIFY/blob/amd-staging/LICENSE.txt) |
 | [hipRAND](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hiprand/) | [MIT](https://github.com/ROCm/rocm-libraries/blob/develop/projects/hiprand/LICENSE.md) |

@@ -14,3 +14,5 @@ config:
 ignores:
   - "{,docs/}{RELEASE,release,CHANGELOG,changelog}.md"
   - tools/autotag/templates/**/*.md
+  - docs/about/release-notes.md
+  - docs/about/include/core-sdk-components-aggregated-changelog.md
