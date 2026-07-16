@@ -81,10 +81,18 @@
          :show-cond: gpu=mi350x
 
          .. matrix-cell:: KVM
-            :rowspan: 2
+            :rowspan: 3
+
+         .. matrix-cell:: Passthrough
+
+         .. matrix-cell:: —
+
+         .. matrix-cell:: Ubuntu 24.04
+
+         .. matrix-cell:: Ubuntu 24.04
 
          .. matrix-cell:: SR-IOV
-            :rowspan: 3
+            :rowspan: 2
 
          .. matrix-cell::
             :rowspan: 2
@@ -100,17 +108,6 @@
          :show-cond: gpu=mi350x
 
          .. matrix-cell:: RHEL 9.6
-
-      .. matrix-row::
-         :show-cond: gpu=mi350x
-
-         .. matrix-cell:: ESXi
-
-         .. matrix-cell:: —
-
-         .. matrix-cell:: ESXi 9.1
-
-         .. matrix-cell:: Ubuntu 24.04
 
       .. matrix-row::
          :show-cond: gpu=mi325x

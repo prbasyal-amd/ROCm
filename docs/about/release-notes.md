@@ -47,8 +47,6 @@ For the full list of supported Linux distributions, see [Operating system suppor
 
 ROCm 7.14.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs.
 
-* On MI350X: VMware ESXi 9.1 with Ubuntu 24.04 guest OS.
-
 * On Radeon AI PRO R9700S: KVM Passthrough with Ubuntu 24.04 host OS and Ubuntu 24.04 guest OS.
 
 * On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04 guest OS.
