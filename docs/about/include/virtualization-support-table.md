@@ -45,7 +45,7 @@
         <td>
           <p style="text-align: center">—</p>
         </td>
-        <td rowspan="4" style="vertical-align: middle">
+        <td style="vertical-align: middle">
           <p>Ubuntu 24.04</p>
         </td>
         <td style="vertical-align: middle">
@@ -60,6 +60,9 @@
         <a href="https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K" target="_blank">GIM 9.1.0.K
         </a>
       </td>
+      <td rowspan="3" style="vertical-align: middle">
+          <p>Ubuntu 24.04</p>
+        </td>
       <td style="vertical-align: middle">
         <p>Ubuntu 24.04</p>
       </td>
@@ -95,38 +98,40 @@
     <td rowspan="3" style="vertical-align: middle">
       <p>Instinct MI350X</p>
     </td>
-    <td rowspan="2" style="vertical-align: middle">
-      <p>KVM</p>
-    </td>
     <td rowspan="3" style="vertical-align: middle">
-      <p>SR-IOV</p>
-    </td>
-    <td rowspan="2" style="vertical-align: middle">
-      <a href="https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K" target="_blank">GIM 9.1.0.K
-      </a>
-    </td>
-    <td rowspan="2" style="vertical-align: middle">
-      <p>Ubuntu 24.04</p>
-    </td>
-    <td style="vertical-align: middle">
-      <p>Ubuntu 24.04</p>
-    </td>
+          <p>KVM</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p>Passthrough</p>
+        </td>
+        <td>
+          <p style="text-align: center">—</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p>Ubuntu 24.04</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p>Ubuntu 24.04</p>
+        </td>
   </tr>
   <tr>
-    <td style="vertical-align: middle">RHEL 9.6</td>
-  </tr>
-  <tr>
+      <td rowspan="2" style="vertical-align: middle">
+        <p>SR-IOV</p>
+      </td>
+      <td rowspan="2" style="vertical-align: middle">
+        <a href="https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K" target="_blank">GIM 9.1.0.K
+        </a>
+      </td>
+      <td rowspan="2" style="vertical-align: middle">
+          <p>Ubuntu 24.04</p>
+        </td>
+      <td style="vertical-align: middle">
+        <p>Ubuntu 24.04</p>
+      </td>
+    </tr>
+    <tr>
     <td style="vertical-align: middle">
-      <p>ESXi</p>
-    </td>
-    <td>
-      <p style="text-align: center">—</p>
-    </td>
-    <td style="vertical-align: middle">
-      <p>VMware ESXi 9.1</p>
-    </td>
-    <td style="vertical-align: middle">
-      <p>Ubuntu 24.04</p>
+      <p>RHEL 9.6</p>
     </td>
   </tr>
   <tr>
@@ -206,7 +211,7 @@
     <td>
       <p style="text-align: center">—</p>
     </td>
-    <td rowspan="3" style="vertical-align: middle">
+    <td style="vertical-align: middle">
       <p>RHEL 9.4</p>
     </td>
     <td style="vertical-align: middle">
@@ -220,6 +225,9 @@
     <td rowspan="2" style="vertical-align: middle">
       <a href="https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K" target="_blank">GIM 9.1.0.K
       </a>
+    </td>
+    <td rowspan="2" style="vertical-align: middle">
+      <p>RHEL 9.4</p>
     </td>
     <td style="vertical-align: middle">
       <p>Ubuntu 22.04</p>
