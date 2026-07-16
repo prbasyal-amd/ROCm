@@ -108,8 +108,6 @@
       .. matrix-row::
          :show-cond: gpu=mi350x
 
-         .. matrix-cell:: Ubuntu 24.04
-
          .. matrix-cell:: RHEL 9.6
 
       .. matrix-row::
