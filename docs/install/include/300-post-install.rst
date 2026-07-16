@@ -97,17 +97,16 @@ complete your system configuration and validate the installation.
 
          .. code-block:: bat
 
-            setx HIP_DEVICE_LIB_PATH “C:\TheRock\build\lib\llvm\amdgcn\bitcode” /M
-            setx HIP_PATH “C:\TheRock\build” /M
-            setx HIP_PLATFORM “amd” /M
-            setx LLVM_PATH “C:\TheRock\build\lib\llvm” /M
+            setx HIP_DEVICE_LIB_PATH "C:\TheRock\build\lib\llvm\amdgcn\bitcode" /M
+            setx HIP_PATH "C:\TheRock\build" /M
+            setx HIP_PLATFORM "amd" /M
+            setx LLVM_PATH "C:\TheRock\build\lib\llvm" /M
 
       2. Add the following paths into the PATH environment variable.
 
          .. code-block:: bat
 
-            setx PATH "%PATH%;C:\TheRock\build\bin" /M
-            setx PATH "%PATH%;C:\TheRock\build\lib\llvm\bin" /M
+            setx PATH "%PATH%;C:\TheRock\build\bin;C:\TheRock\build\lib\llvm\bin" /M
 
       3. Open a new command prompt window for the environment variables to take effect. Run ``set``
          to see the list of active variables.
