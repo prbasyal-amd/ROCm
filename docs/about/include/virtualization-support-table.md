@@ -119,9 +119,6 @@
     <td style="vertical-align: middle">
       <p>ESXi</p>
     </td>
-    <td style="vertical-align: middle">
-      <p>SR-IOV</p>
-    </td>
     <td>
       <p style="text-align: center">—</p>
     </td>
