@@ -91,7 +91,6 @@
             :rowspan: 3
 
          .. matrix-cell:: Ubuntu 24.04
-            :rowspan: 2
 
       .. matrix-row::
          :show-cond: gpu=mi350x
@@ -103,9 +102,13 @@
             :rowspan: 2
 
             `GIM 9.1.0.K <https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K>`__
+         
+         .. matrix-cell:: Ubuntu 24.04
 
       .. matrix-row::
          :show-cond: gpu=mi350x
+
+         .. matrix-cell:: Ubuntu 24.04
 
          .. matrix-cell:: RHEL 9.6
 
