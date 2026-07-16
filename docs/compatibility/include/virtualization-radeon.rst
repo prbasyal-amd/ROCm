@@ -1,6 +1,8 @@
 .. selected:: gpu=ai-r9700s gfx=gfx1201 gpu=v710 gfx=gfx1101
    :heading: GPU virtualization support
 
+   .. selected:: gpu=ai-r9700s gfx=gfx1201 gpu=v710 gfx=gfx1101
+
       Supported SR-IOV configurations require the GPU-IOV Module (GIM) driver
       9.1.0.K -- see the `AMD Instinct Virtualization Driver documentation
       <https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.1.0.k/>`__ to
@@ -37,6 +39,8 @@
 
       .. matrix-row::
          :show-cond: gpu=v710 gfx=gfx1101
+
+         .. matrix-cell:: KVM
 
          .. matrix-cell:: SR-IOV
 
