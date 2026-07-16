@@ -69,7 +69,7 @@
 
          .. matrix-cell:: ESXi
 
-         .. matrix-cell:: —
+         .. matrix-cell:: SR-IOV
 
          .. matrix-cell:: —
 
