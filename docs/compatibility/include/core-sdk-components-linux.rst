@@ -64,7 +64,7 @@
    .. matrix-row::
 
       .. matrix-cell::
-         :show-cond: gpu=mi355x gfx=gfx950 gpu=mi350x gfx=gfx950 gpu=mi350p gfx=gfx950 gpu=mi325x gfx=gfx942 gpu=mi300x gfx=gfx942 gpu=mi300a gfx=gfx942
+         :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a
 
          `hipSPARSELt 0.2.9 <https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.14.0/index.html>`__
 
