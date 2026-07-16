@@ -72,6 +72,8 @@ components.
 
 .. include:: ./include/virtualization-instinct.rst
 
+.. include:: ./include/virtualization-radeon.rst
+
 .. _rocm-compat-frameworks:
 
 .. _rocm-compat-python:
