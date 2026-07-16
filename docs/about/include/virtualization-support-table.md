@@ -123,18 +123,6 @@
         <p>Ubuntu 24.04</p>
       </td>
     </tr>
-  <tr>
-      <td rowspan="2" style="vertical-align: middle">
-        <p>SR-IOV</p>
-      </td>
-      <td rowspan="2" style="vertical-align: middle">
-        <a href="https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K" target="_blank">GIM 9.1.0.K
-        </a>
-      </td>
-      <td style="vertical-align: middle">
-        <p>Ubuntu 24.04</p>
-      </td>
-    </tr>
     <tr>
     <td style="vertical-align: middle">
       <p>RHEL 9.6</p>
