@@ -126,7 +126,7 @@
 
       .. matrix-cell:: Communication libraries
          :rowspan: 2
-         :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a gpu=mi250x gpu=mi250 gpu=mi210 gpu=w7700 gpu=rx-7800-xt gpu=rx-7700-xt gpu=rx-7700 gpu=rx-7600 gfx=gfx1201 gfx=gfx1200 gfx=gfx1100 
+         :show-cond: fam=instinct fam=radeon
 
       .. matrix-cell:: Communication libraries
          :rowspan: 1
