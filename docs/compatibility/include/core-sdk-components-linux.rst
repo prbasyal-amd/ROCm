@@ -130,7 +130,7 @@
 
       .. matrix-cell:: Communication libraries
          :rowspan: 1
-         :show-cond: fam=ryzen gpu=mi100 gpu=v710 gpu=w6800 gpu=v620
+         :show-cond: fam=ryzen
 
       .. matrix-cell::
 
