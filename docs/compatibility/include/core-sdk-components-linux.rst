@@ -165,6 +165,7 @@
    .. matrix-row::
 
       .. matrix-cell:: Storage libraries
+         :show-cond: fam=instinct
 
       .. matrix-cell::
 
