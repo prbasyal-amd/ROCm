@@ -22,7 +22,7 @@
          `AMD Ryzen AI Max 300 Series <https://www.amd.com/en/products/processors/laptop/ryzen.html#tabs-1181ea0b44-item-6ccfea5f65-tab>`__
 
       .. matrix-cell::
-         :show-cond: gpu=9-hx-pro-475 gpu=9-hx-pro-470 gpu=9-pro-465 gpu=7-pro-450 gpu=5-pro-440 gpu=5-pro-435
+         :show-cond: gpu=9-hx-pro-475 gpu=9-hx-pro-470 gpu=9-pro-465 gpu=7-pro-450 gpu=5-pro-440 gpu=5-pro-435 gpu=ai-5-pro-435
 
          `AMD Ryzen AI PRO 400 Series <https://www.amd.com/en/products/processors/workstations/mobile.html#tabs-7f0c432fb2-item-0c42136112-tab>`__
 
@@ -83,7 +83,7 @@
          :show-cond: gpu=ai-7-pro-450 gpu=ai-7-450
 
       .. matrix-cell:: Radeon 840M
-         :show-cond: gpu=ai-5-pro-440 gpu=5-pro-435 gpu=ai-7-pro-350 gpu=ai-5-pro-340 gpu=ai-5-435 gpu=ai-5-430 gpu=ai-7-345 gpu=ai-5-340
+         :show-cond: gpu=ai-5-pro-440 gpu=5-pro-435 gpu=ai-7-pro-350 gpu=ai-5-pro-340 gpu=ai-5-435 gpu=ai-5-430 gpu=ai-7-345 gpu=ai-5-340 gpu=ai-5-pro-435
 
       .. matrix-cell:: Radeon 820M
          :show-cond: gpu=ai-5-330
