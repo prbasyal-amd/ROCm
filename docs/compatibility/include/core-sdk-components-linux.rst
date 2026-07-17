@@ -64,6 +64,7 @@
    .. matrix-row::
 
       .. matrix-cell::
+         :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a
 
          `hipSPARSELt 0.2.9 <https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.14.0/index.html>`__
 
@@ -125,7 +126,11 @@
 
       .. matrix-cell:: Communication libraries
          :rowspan: 2
-         :show-cond: fam=instinct fam=radeon
+         :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a gpu=mi250x gpu=mi250 gpu=mi210 gpu=ai-r9700s gpu=ai-r9700 gpu=ai-r9600d gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt-lp gpu=rx-9060-xt gpu=rx-9060 gpu=w7900-dual-slot gpu=w7900 gpu=w7800-48gb gpu=w7800 gpu=rx-7900-xtx gpu=rx-7900-gre gpu=w7700 gpu=rx-7800-xt gpu=rx-7700-xt gpu=rx-7700 gpu=rx-7600
+
+      .. matrix-cell:: Communication libraries
+         :rowspan: 1
+         :show-cond: gpu=mi100 gpu=v710 gpu=v620 gpu=w6800
 
       .. matrix-cell:: Communication libraries
          :rowspan: 1
@@ -136,7 +141,7 @@
          `RCCL 2.30.4 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rccl>`__
 
    .. matrix-row::
-      :show-cond: fam=instinct fam=radeon
+      :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a gpu=mi250x gpu=mi250 gpu=mi210 gpu=ai-r9700s gpu=ai-r9700 gpu=ai-r9600d gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt-lp gpu=rx-9060-xt gpu=rx-9060 gpu=w7900-dual-slot gpu=w7900 gpu=w7800-48gb gpu=w7800 gpu=rx-7900-xtx gpu=rx-7900-gre gpu=w7700 gpu=rx-7800-xt gpu=rx-7700-xt gpu=rx-7700 gpu=rx-7600
 
       .. matrix-cell::
 
