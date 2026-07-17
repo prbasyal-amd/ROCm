@@ -1,6 +1,30 @@
 Installation
 ============
 
+.. selected:: os=ubuntu ubuntu-ver=24.04 ubuntu-ver=22.04 i=pkgman i=runfile
+
+   .. note::
+
+      If you have ROCm 7.2.4 or older installed, please uninstall it before proceeding.
+
+.. selected:: os=rhel rhel-ver=10.0 rhel-ver=9.6 rhel-ver=9.4 rhel-ver=8.10 i=pkgman i=runfile
+
+   .. note::
+
+      If you have ROCm 7.2.4 or older installed, please uninstall it before proceeding.
+
+.. selected:: os=sles sles-ver=15.7 i=pkgman i=runfile
+
+   .. note::
+
+      If you have ROCm 7.2.4 or older installed, please uninstall it before proceeding.
+
+.. selected:: os=debian os=oracle-linux os=rocky-linux os=windows i=pkgman i=runfile
+
+   .. note::
+
+      If you have ROCm 7.2.4 or older installed, please uninstall it before proceeding.
+
 .. selected:: os=windows
 
    Before getting started, make sure you've completed the :ref:`rocm-prerequisites`.
@@ -37,24 +61,24 @@ Installation
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/resolute/amdgpu-install_26.13.26130000-2369674.26.04_all.deb
-               sudo apt install ./amdgpu-install_26.13.26130000-2369674.26.04_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/resolute/amdgpu-install_31.40.314000-1_all.deb
+               sudo apt install ./amdgpu-install_31.40.314000-1_all.deb
 
          .. selected:: ubuntu-ver=24.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/noble/amdgpu-install_26.13.26130000-2369674.24.04_all.deb
-               sudo apt install ./amdgpu-install_26.13.26130000-2369674.24.04_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/noble/amdgpu-install_31.40.314000-1_all.deb
+               sudo apt install ./amdgpu-install_31.40.314000-1_all.deb
 
          .. selected:: ubuntu-ver=22.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/jammy/amdgpu-install_26.13.26130000-2369674.22.04_all.deb
-               sudo apt install ./amdgpu-install_26.13.26130000-2369674.22.04_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.40/ubuntu/jammy/amdgpu-install_31.40.314000-1_all.deb
+               sudo apt install ./amdgpu-install_31.40.314000-1_all.deb
 
       .. selected:: os=rhel
 
@@ -62,43 +86,43 @@ Installation
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/10.2/amdgpu-install-26.13.26130000-2369674.el10.noarch.rpm
-               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el10.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/10.2/amdgpu-install-31.40.314000-1.el10.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.40.314000-1.el10.noarch.rpm
 
          .. selected:: rhel-ver=10.0
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/10.0/amdgpu-install-26.13.26130000-2369674.el10.noarch.rpm
-               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el10.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/10.0/amdgpu-install-31.40.314000-1.el10.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.40.314000-1.el10.noarch.rpm
 
          .. selected:: rhel-ver=9.8
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.8/amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.8/amdgpu-install-31.40.314000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.40.314000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=9.6
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.6/amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.6/amdgpu-install-31.40.314000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.40.314000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=9.4
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.4/amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/9.4/amdgpu-install-31.40.314000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.40.314000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=8.10
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/8.10/amdgpu-install-26.13.26130000-2369674.el8.noarch.rpm
-               sudo dnf install ./amdgpu-install-26.13.26130000-2369674.el8.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.40/rhel/8.10/amdgpu-install-31.40.314000-1.el8.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.40.314000-1.el8.noarch.rpm
 
 .. ==================================================== INSTALL KERNEL DRIVER ==
 
@@ -1027,9 +1051,11 @@ Use the following instructions to install ROCm packages on your system.
 
          .. matrix-cell:: Meta package name
 
-         .. matrix-cell:: Contents
-
          .. matrix-cell:: Use case
+
+         .. matrix-cell:: Description
+
+         .. matrix-cell:: Contents
 
       .. matrix-row::
 
@@ -1113,12 +1139,14 @@ Use the following instructions to install ROCm packages on your system.
 
             ``amdrocm7.14``
 
-         .. matrix-cell:: Runtimes, libraries, system control and monitoring tools, and other essential components.
+         .. matrix-cell:: ROCm Base
 
          .. matrix-cell::
 
             Core runtime environment.
             Install this to run ROCm applications.
+
+         .. matrix-cell:: Runtimes, libraries, system control and monitoring tools, and other essential components.
 
       .. matrix-row::
 
@@ -1256,6 +1284,13 @@ Use the following instructions to install ROCm packages on your system.
 
                ``amdrocm-core-devel7.14``
 
+         .. matrix-cell:: ROCm Developer Essentials
+
+         .. matrix-cell::
+
+            Development environment.
+            Install this to build ROCm applications.
+
          .. matrix-cell::
             :show-cond: gfx=gfx950
 
@@ -1336,20 +1371,17 @@ Use the following instructions to install ROCm packages on your system.
 
             ``amdrocm7.14`` plus compilers, CMake configurations, static library files, and headers.
 
-         .. matrix-cell::
-
-            Development environment.
-            Install this to build ROCm applications.
-
       .. matrix-row::
 
          .. matrix-cell::
 
             ``amdrocm-developer-tools7.14``
 
-         .. matrix-cell:: Profilers, debuggers, and related tools.
+         .. matrix-cell:: ROCm Profiler
 
-         .. matrix-cell:: Install this to profile, debug, and optimize ROCm applications.
+         .. matrix-cell:: Install this to profile and optimize ROCm applications.
+
+         .. matrix-cell:: Profilers and related tools.
 
       .. matrix-row::
 
@@ -1357,9 +1389,11 @@ Use the following instructions to install ROCm packages on your system.
 
             ``amdrocm-opencl7.14``
 
-         .. matrix-cell:: Components needed to run OpenCL.
+         .. matrix-cell:: ROCm OpenCL
 
          .. matrix-cell:: Install this to run OpenCL applications on ROCm.
+
+         .. matrix-cell:: Components needed to run OpenCL.
 
       .. matrix-row::
 
@@ -1443,9 +1477,11 @@ Use the following instructions to install ROCm packages on your system.
 
             ``amdrocm-core-sdk7.14``
 
-         .. matrix-cell:: The complete ROCm Core SDK including runtimes, compilers, development tools, and dependencies.
+         .. matrix-cell:: ROCm Full Suite
 
          .. matrix-cell:: Install this if you need everything.
+
+         .. matrix-cell:: The complete ROCm Core SDK including runtimes, compilers, development tools, and dependencies.
 
 
 .. selected:: w=graphics
@@ -1454,8 +1490,12 @@ Use the following instructions to install ROCm packages on your system.
 
       .. selected:: fam=radeon
 
+         .. warning::
+
+            Before proceeding, please enable "Above 4G Decoding" in your BIOS settings.
+
          Run the ``amdgpu-install`` script with the following ``--usecase`` arguments
-         to install ROCm and graphics packages.
+         to install ROCm, graphics and amdgpu driver packages.
 
          .. code-block:: bash
 
@@ -2227,9 +2267,11 @@ Use the following instructions to install ROCm packages on your system.
 
          .. matrix-cell:: Meta component name
 
-         .. matrix-cell:: Contents
-
          .. matrix-cell:: Use case
+
+         .. matrix-cell:: Description
+
+         .. matrix-cell:: Contents
 
       .. matrix-row::
 
@@ -2237,13 +2279,15 @@ Use the following instructions to install ROCm packages on your system.
 
             ``core``
 
-         .. matrix-cell::
-
-            Runtimes, libraries, system control and monitoring tools, and other essential components.
+         .. matrix-cell:: ROCm Base
 
          .. matrix-cell::
 
             Core runtime environment. Install this to run ROCm applications.
+
+         .. matrix-cell::
+
+            Runtimes, libraries, system control and monitoring tools, and other essential components.
 
       .. matrix-row::
 
@@ -2251,13 +2295,15 @@ Use the following instructions to install ROCm packages on your system.
 
             ``core-dev``
 
-         .. matrix-cell::
-
-            ``core`` plus compilers, CMake configurations, static library files, and headers.
+         .. matrix-cell:: ROCm Developer Essentials
 
          .. matrix-cell::
 
             Development environment. Install this to build ROCm applications.
+
+         .. matrix-cell::
+
+            ``core`` plus compilers, CMake configurations, static library files, and headers.
 
       .. matrix-row::
 
@@ -2265,13 +2311,15 @@ Use the following instructions to install ROCm packages on your system.
 
             ``dev-tools``
 
-         .. matrix-cell::
-
-            Profilers, debuggers, and related tools.
+         .. matrix-cell:: ROCm Profiler
 
          .. matrix-cell::
 
-            Install this to profile, debug, and optimize ROCm applications.
+            Install this to profile and optimize ROCm applications.
+
+         .. matrix-cell::
+
+            Profilers and related tools.
 
       .. matrix-row::
 
@@ -2279,13 +2327,15 @@ Use the following instructions to install ROCm packages on your system.
 
             ``opencl``
 
-         .. matrix-cell::
-
-            Components needed to run OpenCL.
+         .. matrix-cell:: ROCm OpenCL
 
          .. matrix-cell::
 
             Install this to run OpenCL applications on ROCm.
+
+         .. matrix-cell::
+
+            Components needed to run OpenCL.
 
       .. matrix-row::
 
@@ -2293,13 +2343,15 @@ Use the following instructions to install ROCm packages on your system.
 
             ``core-sdk``
 
-         .. matrix-cell::
-
-            The complete ROCm Core SDK including runtimes, compilers, development tools, and dependencies.
+         .. matrix-cell:: ROCm Full Suite
 
          .. matrix-cell::
 
             Install this if you need everything.
+
+         .. matrix-cell::
+
+            The complete ROCm Core SDK including runtimes, compilers, development tools, and dependencies.
 
    The default installation uses the core meta component. To select other
    components, add the ``compo=`` argument. For example, to install both ``core`` and
