@@ -152,14 +152,31 @@
 
       .. matrix-cell:: Media libraries
          :rowspan: 2
+         :show-cond: fam=instinct fam=radeon
 
+      .. matrix-cell:: Media libraries
+         :rowspan: 2
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+         
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
+
+         `rocDecode 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdecode>`__
+      
+      .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
          `rocDecode 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdecode>`__
 
    .. matrix-row::
 
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
+
+         `rocJPEG 1.6.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocjpeg>`__
+
+      .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
          `rocJPEG 1.6.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocjpeg>`__
 
@@ -222,6 +239,10 @@
          :rowspan: 4
          :show-cond: fam=radeon
 
+      .. matrix-cell:: Profiling and debugging tools
+         :rowspan: 3
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+
       .. matrix-cell::
          :show-cond: fam=instinct
 
@@ -231,6 +252,11 @@
          :show-cond: fam=radeon
 
          `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
+      
+      .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+
+         `ROCm Compute Profiler (rocprofiler-compute) 3.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-compute>`__
 
    .. matrix-row::
       :show-cond: fam=instinct
@@ -239,8 +265,22 @@
 
          `ROCm Systems Profiler (rocprofiler-systems) 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-systems>`__
 
+   .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+
+      .. matrix-cell::
+
+         `ROCm Systems Profiler (rocprofiler-systems) 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-systems>`__
+
    .. matrix-row::
       :show-cond: fam=instinct
+
+      .. matrix-cell::
+
+         `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
+
+   .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
       .. matrix-cell::
 
