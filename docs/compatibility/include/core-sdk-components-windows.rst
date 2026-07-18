@@ -16,6 +16,7 @@
          :rowspan: 17
 
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
 
          `Composable Kernel 1.2.0 <https://github.com/ROCm/rocm-libraries/tree/therock-7.14/projects/composablekernel>`__
 
