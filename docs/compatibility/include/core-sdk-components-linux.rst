@@ -16,6 +16,7 @@
          :rowspan: 18
 
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
 
          `Composable Kernel 1.2.0 <https://rocm.docs.amd.com/projects/composable_kernel/en/docs-7.14.0/index.html>`__
 
@@ -168,6 +169,7 @@
          :show-cond: fam=instinct
 
       .. matrix-cell::
+         :show-cond: fam=instinct
 
          `hipFile 0.3.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/hipFile>`__
 
