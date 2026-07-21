@@ -470,7 +470,7 @@ See [GitHub issue #6493](https://github.com/ROCm/ROCm/issues/6493).
 
 ### AMD SMI NIC telemetry supports Pollara 400 adapters only
 
-In ROCm 7.14.0, ADM SMI NIC telemetry only supports AMD AI NIC Pollara 400 adapters. Broadcom NIC support is planned for a future release.
+In ROCm 7.14.0, ADM SMI NIC telemetry only supports AMD AI NIC Pollara 400 adapters. Broadcom NIC support is planned for a future release. See [GitHub issue #6497](https://github.com/ROCm/ROCm/issues/6497).
 
 ## ROCm resolved issues
 
