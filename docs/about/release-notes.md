@@ -468,6 +468,10 @@ Alternatively, add the following CMake flag during compilation:
 
 See [GitHub issue #6493](https://github.com/ROCm/ROCm/issues/6493).
 
+### AMD SMI NIC telemetry supports Pollara 400 adapters only
+
+In this release, amd-smi NIC telemetry supports AMD AI NIC Pollara 400 adapters. Broadcom NIC support is planned for a future release.
+
 ## ROCm resolved issues
 
 The following notable issues have been fixed in ROCm 7.14.0.
