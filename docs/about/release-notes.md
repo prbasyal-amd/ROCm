@@ -536,7 +536,7 @@ deprecated with or without a replacement; see the following tables for details.
 We suggest updating your code to use the replacement identifiers before the
 targeted removal releases.
 
-#### Planned removal in the next release
+#### Planned removal in the next major release
 
 The following APIs, defines, enums, and struct fields are deprecated and
 scheduled for removal in the next major release.
@@ -547,7 +547,7 @@ scheduled for removal in the next major release.
 |---|---|
 | `amdsmi_get_cpusocket_handles()` | No replacement; functionality removed |
 | `amdsmi_get_gpu_vram_vendor()` | `amdsmi_get_gpu_vram_info()` |
-| `rsmi_dev_amdgpu_driver_reload()` | No replacement; functionality removed |
+| `amdsmi_gpu_driver_reload()` | No replacement; functionality removed |
 | `amdsmi_get_xgmi_plpd()` | Python: use the `policy` attribute instead of `plpds` |
 
 ##### Defines and enums
@@ -575,7 +575,7 @@ The following fields in `amdsmi_gpu_metrics_t` will change from `uint32_t` to `u
 
 Recompile any code that reads these fields. Any assignments into fixed-width 32-bit variables must be updated to use 64-bit types.
 
-#### Planned removal after the next release
+#### Future deprecation notice: planned removal after the next major release
 
 The following APIs, types, and enums are deprecated and will be removed sometime **after** the next major release.
 
