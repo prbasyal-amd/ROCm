@@ -142,6 +142,7 @@ html_css_files = ["legacy/vllm-benchmark.css"]
 external_projects_current_project = "rocm"
 html_theme = "rocm_docs_theme"
 html_theme_options = {
+    "announcement": f"Looking for an older ROCm release? See the <a id='rocm-banner' href='https://rocm.docs.amd.com/en/latest/release/versions.html'>ROCm release history</a>",
     "flavor": "rocm",
     "link_main_doc": False,
     "repository_url": "https://github.com/ROCm/ROCm",
