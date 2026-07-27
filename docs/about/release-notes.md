@@ -71,13 +71,18 @@ This release enables support for the following frameworks:
 
 * PyTorch 2.12.0
 * JAX 0.10.0
-* vLLM 0.23.0
+* vLLM 0.23.0. <a id="id4" class="footnote-reference brackets" href="#vllm-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>
 * SGLang 0.5.13
 * TensorFlow 2.21
 
 The updated framework support replaces the previous PyTorch 2.9.1, JAX 0.8.2, vLLM 0.19.1, and SGLang 0.5.9 support.
 
 For details, see [AI ecosystem support](#ai-ecosystem-support).
+
+<aside class="footnote brackets" id="vllm-support-footnotes" role="doc-footnote">
+<span id="#fn4" class="label"><span class="fn-bracket">[</span><a href="#id4" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
+<p>You might observe significantly longer LLM warmup times on some Radeon GPUs, refer to the [known issue](vllm-warmup-known-issue) for details.</p>
+</aside>
 
 ### Developer tools, profiling, and validation
 
@@ -416,6 +421,8 @@ ROCm known issues are noted on {fab}`github` [GitHub](https://github.com/ROCm/RO
 ### PyTorch might display a warning when libnuma is not installed
 
 PyTorch might display a warning when importing on Linux if the system libnuma package is not installed on some Radeon graphics products, such as Radeon AI PRO R9600D. As a workaround, install the system libnuma package or configure the library path to use the ROCm-bundled NUMA libraries. See [GitHub issue #6485](https://github.com/ROCm/ROCm/issues/6485).
+
+<a id="vllm-warmup-known-issue"></a>
 
 ### Significantly longer LLM warmup times on some Radeon GPUs
 
