@@ -49,7 +49,7 @@
    .. matrix-row::
       :show-cond: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
 
-      .. matrix-cell:: vLLM
+      .. matrix-cell:: vLLM <a id="id6" class="footnote-reference brackets" href="#vllm-framework-compat-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>
          :show-cond: gfx=gfx950 gfx=gfx942 gfx=gfx1201 gfx=gfx1200 gfx=gfx1100 gfx=gfx1101 gfx=gfx1102 gfx=gfx1152 gfx=gfx1151 gfx=gfx1150
 
       .. matrix-cell:: 0.23
@@ -93,3 +93,8 @@
 
       .. matrix-cell:: 3.12
          :show-cond: gfx=gfx950 gfx=gfx942
+
+<aside class="footnote brackets" id="vllm-framework-compat-footnotes" role="doc-footnote">
+<span id="fn6" class="label"><span class="fn-bracket">[</span><a href="#id6" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
+<p>You might observe significantly longer LLM warmup times on some Radeon GPUs. Refer to the <a href="release-notes.html#vllm-warmup-known-issue">known issue</a> for details.</p>
+</aside>
