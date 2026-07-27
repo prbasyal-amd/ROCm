@@ -81,7 +81,7 @@ For details, see [AI ecosystem support](#ai-ecosystem-support).
 
 <aside class="footnote brackets" id="vllm-support-footnotes" role="doc-footnote">
 <span id="fn4" class="label"><span class="fn-bracket">[</span><a href="#id4" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
-<p>You might observe significantly longer LLM warmup times on some Radeon GPUs. Refer to the <a href="#vllm-warmpup-known-issue">known issue</a> for details.</p>
+<p>You might observe significantly longer LLM warmup times on some Radeon GPUs. Refer to the <a href="#vllm-warmup-known-issue">known issue</a> for details.</p>
 </aside>
 
 ### Developer tools, profiling, and validation
