@@ -25,9 +25,9 @@ This release expands GPU, operating system, virtualization, and partitioning sup
 
 ROCm 7.14.0 adds support for the following AMD APUs:
 
-* [AMD Ryzen AI MAX+ PRO 495 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html)
-* [AMD Ryzen AI MAX PRO 490 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-pro-490.html)
-* [AMD Ryzen AI MAX PRO 485 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-pro-485.html)
+* [AMD Ryzen AI Max+ PRO 495 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html)
+* [AMD Ryzen AI Max PRO 490 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-pro-490.html)
+* [AMD Ryzen AI Max PRO 485 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-pro-485.html)
 * [AMD Ryzen AI 5 435 (gfx1153)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-400-series/amd-ryzen-ai-5-435.html)
 * [AMD Ryzen AI 5 430 (gfx1153)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-400-series/amd-ryzen-ai-5-430.html)
 * [AMD Ryzen AI 5 PRO 435 (gfx1153)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-400-series/amd-ryzen-ai-5-pro-435.html)
@@ -80,8 +80,8 @@ The updated framework support replaces the previous PyTorch 2.9.1, JAX 0.8.2, vL
 For details, see [AI ecosystem support](#ai-ecosystem-support).
 
 <aside class="footnote brackets" id="vllm-support-footnotes" role="doc-footnote">
-<span id="#fn4" class="label"><span class="fn-bracket">[</span><a href="#id4" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
-<p>You might observe significantly longer LLM warmup times on some Radeon GPUs, refer to the [known issue](vllm-warmup-known-issue) for details.</p>
+<span id="fn4" class="label"><span class="fn-bracket">[</span><a href="#id4" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
+<p>You might observe significantly longer LLM warmup times on some Radeon GPUs. Refer to the <a href="#vllm-warmpup-known-issue">known issue</a> for details.</p>
 </aside>
 
 ### Developer tools, profiling, and validation
@@ -439,9 +439,9 @@ export SGLANG_ROCM_FUSED_DECODE_MLA=false
 
 Additionally, some models might not function correctly on Radeon GPUs, including certain Mixture-of-Experts (MoE) models (such as GPT-OSS-20B and MiniMax-M2.7) and Qwen3-ASR models. Users experiencing these issues are recommended to use the latest upstream SGLang versions, which will include the necessary fixes once they are merged. See the [SGLang environment variables reference](https://docs.sglang.io/docs/references/environment_variables#environment-variables) for more details. See [GitHub issue #6487](https://github.com/ROCm/ROCm/issues/6487).
 
-### Lower-than-expected LLM inference performance on RDNA3 Radeon GPUs and Ryzen AI MAX / MAX+ Series Processors
+### Lower-than-expected LLM inference performance on RDNA3 Radeon GPUs and Ryzen AI Max / Max+ Series Processors
 
-Lower-than-expected performance might be observed in some large language model inference workloads, including vLLM FP16 decode workloads with batch sizes of 8 or greater, on AMD Radeon RX 7900 Series Graphics, AMD Radeon RX 7800 XT Graphics, and AMD Ryzen AI MAX / MAX+ Series Processors when using PyTorch versions earlier than 2.14. As a workaround, set the `TORCH_BLAS_PREFER_HIPBLASLT=1` environment variable to use the hipBLASLt backend. This setting becomes the default for these architectures in PyTorch 2.14. See [GitHub issue #6488](https://github.com/ROCm/ROCm/issues/6488).
+Lower-than-expected performance might be observed in some large language model inference workloads, including vLLM FP16 decode workloads with batch sizes of 8 or greater, on AMD Radeon RX 7900 Series Graphics, AMD Radeon RX 7800 XT Graphics, and AMD Ryzen AI Max / Max+ Series Processors when using PyTorch versions earlier than 2.14. As a workaround, set the `TORCH_BLAS_PREFER_HIPBLASLT=1` environment variable to use the hipBLASLt backend. This setting becomes the default for these architectures in PyTorch 2.14. See [GitHub issue #6488](https://github.com/ROCm/ROCm/issues/6488).
 
 ### ROCprofiler-SDK SPM sessions can remain in a stale state after abrupt termination
 
@@ -451,7 +451,7 @@ If a Streaming Performance Monitors (SPM) session is terminated abruptly (for ex
 
 When using ROCm Compute Profiler with `per_kernel` normalization, the reported Avg value for certain normalized metrics might be incorrectly inflated and can exceed the corresponding Min and Max values. This issue affects analysis results only. As a workaround, use an alternative normalization unit (`-n`/`--normal-unit`) until a fix is available. See [GitHub issue #6490](https://github.com/ROCm/ROCm/issues/6490).
 
-### rocALUTION and hipTensor are not included in the HPC Expansion tarball
+### rocALUTION and hipTensor have no dedicated HPC Expansion tarball
 
 The `amdrocm-hpc` meta-package installs rocALUTION and hipTensor, but there is no dedicated HPC Expansion tarball for tarball-based installations. The standard ROCm tarballs include both libraries. See [GitHub issue #6491](https://github.com/ROCm/ROCm/issues/6491).
 
@@ -461,7 +461,8 @@ HIP kernels compiled with the SPIR-V target (`--offload-arch=amdgcnspirv`) might
 
 ### RCCL might show degraded performance on multi-node configurations
 
-RCCL operations with message sizes in the 64 MB to 512 MB range might show suboptimal performance on multi-node configurations. This might severely impact production workloads. Llama 3 405B is a known affected workload; additional workloads might also be affected. As a workaround, disable the fault injection path in the RCCL CMake file:
+RCCL operations with message sizes in the 64 MB to 512 MB range might show suboptimal performance on multi-node, multi-threaded configurations. This issue affects the packaged binary distribution and might severely impact production workloads. Known affected workloads include Llama 3 405B and JAX stack; additional workloads might also be affected. Single-node (scale-up) configurations are not affected.
+To work around this issue, recompile RCCL from the ROCm 7.14 source with fault injection disabled (see Building and installing RCCL). You can either set the option in the RCCL CMake file:
 
 ```cmake
 option(FAULT_INJECTION         "Enable fault injection"           OFF)
