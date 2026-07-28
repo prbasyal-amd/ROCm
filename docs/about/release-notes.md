@@ -71,7 +71,7 @@ This release enables support for the following frameworks:
 
 * PyTorch 2.12.0
 * JAX 0.10.0
-* vLLM 0.23.0. <a id="id4" class="footnote-reference brackets" href="#vllm-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>
+* vLLM 0.23.0 <a id="id4" class="footnote-reference brackets" href="#vllm-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>
 * SGLang 0.5.13
 * TensorFlow 2.21
 
