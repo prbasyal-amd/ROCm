@@ -95,7 +95,7 @@
     </td>
   </tr>
   <tr>
-    <td rowspan="3" style="vertical-align: middle">
+    <td rowspan="4" style="vertical-align: middle">
       <p>Instinct MI350X</p>
     </td>
     <td rowspan="3" style="vertical-align: middle">
@@ -132,6 +132,23 @@
     <tr>
     <td style="vertical-align: middle">
       <p>RHEL 9.6</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: middle">
+      <p>ESXi</p>
+    </td>
+    <td style="vertical-align: middle">
+      <p>SR-IOV</p>
+    </td>
+    <td>
+      <p style="text-align: center">—</p>
+    </td>
+    <td style="vertical-align: middle">
+      <p>VMware ESXi 9.1</p>
+    </td>
+    <td style="vertical-align: middle">
+      <p>Ubuntu 24.04</p>
     </td>
   </tr>
   <tr>
