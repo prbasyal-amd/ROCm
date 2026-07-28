@@ -81,7 +81,7 @@
   - Added shadow detection: if `amdsmi` loads from a path other than the resolved expected path (`AMDSMI_PATH`, `ROCM_HOME`, `ROCM_PATH`, or `/opt/rocm` default), tests exit early with a clear error message and remediation steps.
   - Non-root invocations now exit with code 1 immediately with a clear message instead of failing mid-test.
 
-##### Resolved Issues
+##### Resolved issues
 
 - `amd-smi set --power-cap` rejecting the minimum allowed value.
   - The lower bound is now inclusive, so setting the power cap to the exact minimum of the reported range (for example, `210` when the range is 210-300W) succeeds instead of failing validation, matching the inclusive range shown in the error message.
@@ -279,7 +279,7 @@
 
 - [Conv] Naive convolution solvers are now skipped by default during find when any non-naive solver succeeds across any algorithm. Set `MIOPEN_NAIVE_DISABLE_IF_ALT=0` to restore the previous behavior.
 
-##### Resolved Issues
+##### Resolved issues
 
 - [RNN] RNN workspace tensor descriptor integer overflow.
 - [Conv] Enabled grouped Composable Kernel (CK) xdlops fwd, bwd, and wrw convolution (2D and 3D) for tensors whose strides exceed the int32 range.
@@ -376,7 +376,7 @@
 - Removed RVS integration. [RVS](https://github.com/ROCm/ROCmValidationSuite) is built independently of RDC and TheRock, so its integration has been disabled.
   - `BUILD_RVS` now defaults to `OFF` (#7116).
 
-##### Resolved Issues
+##### Resolved issues
 
 - The `Failed to insert module: N3amd3rdc10RdcRVSLibE` error.
 
@@ -506,7 +506,7 @@
 
 ##### Known issues
 
-- On gfx1151, `TCP_REQ_sum` is zero in single-pass counter collection, so the related `GL0` metrics always reports zero. This will be fixed in a future release.
+- On gfx1151, `TCP_REQ_sum` is zero in single-pass counter collection, so the related `GL0` metrics always report zero. This issue will be fixed in a future release.
 
 - On gfx1151, `$max_mclk` is not automatically populated in sysinfo, so the related bandwidth metrics may be incorrect. Use `amd-smi` to obtain the maximum memory clock and provide it via `--specs-correction`.
 
@@ -718,7 +718,7 @@
 
 ##### Upcoming changes
 
-- Deprecated the `rocsparse_indextype_u16` index type. It is no longer supported and will be removed in a future release. Use `rocsparse_indextype_i32` or `rocsparse_indextype_i64` instead.
+- Deprecated the `rocsparse_indextype_u16` index type and will be removed in a future release. Use `rocsparse_indextype_i32` or `rocsparse_indextype_i64` instead.
 
 #### **rocThrust** (4.5.0)
 
