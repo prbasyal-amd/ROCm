@@ -95,9 +95,9 @@
 
       .. matrix-cell::
 
-         RHEL 10.2 (kernel: 6.17)
+         RHEL 10.2 (kernel: 6.12.0-211)
 
-         RHEL 9.8 (kernel: 6.17)
+         RHEL 9.8 (kernel: 5.14.0-687)
 
    .. matrix-row::
       :show-cond: os=windows

@@ -165,7 +165,7 @@
 
 <aside class="footnote brackets" id="firmware-support-footnotes" role="doc-footnote">
 <span id="#fn1" class="label"><span class="fn-bracket">[</span><a href="#id1" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
-<p>New PLDM bundle (Firmware) planned to release in a few weeks. These firmware are required for Multi-VF support.</p>
+<p>New PLDM bundle (Firmware) planned for release in a few weeks. These firmware bundles are required for Multi-VF support.</p>
 </aside>
 :::
 
