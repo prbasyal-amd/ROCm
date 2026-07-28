@@ -45,7 +45,7 @@ For the full list of supported Linux distributions, see [Operating system suppor
 
 #### Expanded GPU virtualization support for Instinct and Radeon GPUs
 
-ROCm 7.14.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs.
+ROCm 7.14.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
 
 * On MI350X: VMware ESXi 9.1 with Ubuntu 24.04 guest OS.
 

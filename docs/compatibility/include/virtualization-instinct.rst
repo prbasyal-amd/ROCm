@@ -113,7 +113,7 @@
          .. matrix-cell:: RHEL 9.6
 
       .. matrix-row::
-         :show-cond: gpu=mi355x
+         :show-cond: gpu=mi350x
 
          .. matrix-cell:: ESXi
 
