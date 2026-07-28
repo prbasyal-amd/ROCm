@@ -220,7 +220,7 @@
 
 ##### Added
 
-- Introduced a new API: `hipBLASLt-ext::isSolutionSupported()`. This API is used by the new hipBLASLt integration from rocBLAS to check if a given solution is supported for a specific GPU and problem type.
+- Introduced a new API: `hipBLASLt_ext::isSolutionSupported()`. This API is used by the new hipBLASLt integration from rocBLAS to check if a given solution is supported for a specific GPU and problem type.
 
 #### **hipCUB** (4.5.0)
 
