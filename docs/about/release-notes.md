@@ -43,9 +43,11 @@ SUSE Linux Enterprise Server (SLES) 15 SP7, SLES 16, and Debian 13 are now suppo
 
 For the full list of supported Linux distributions, see [Operating system support](#operating-system-support).
 
-#### Expanded GPU virtualization support for Radeon GPUs
+#### Expanded GPU virtualization support for Instinct and Radeon GPUs
 
-ROCm 7.14.0 adds support for the following virtualization configurations on AMD Radeon GPUs.
+ROCm 7.14.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
+
+* On MI350X: VMware ESXi 9.1 with Ubuntu 24.04 guest OS.
 
 * On Radeon AI PRO R9700S: KVM Passthrough with Ubuntu 24.04 host OS and Ubuntu 24.04 guest OS.
 
