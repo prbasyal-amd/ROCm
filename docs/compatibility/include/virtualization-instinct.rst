@@ -104,13 +104,26 @@
 
          .. matrix-cell:: Ubuntu 24.04
             :rowspan: 2
-         
+
          .. matrix-cell:: Ubuntu 24.04
 
       .. matrix-row::
          :show-cond: gpu=mi350x
 
          .. matrix-cell:: RHEL 9.6
+
+      .. matrix-row::
+         :show-cond: gpu=mi350x
+
+         .. matrix-cell:: ESXi
+
+         .. matrix-cell:: SR-IOV
+
+         .. matrix-cell:: —
+
+         .. matrix-cell:: ESXi 9.1
+
+         .. matrix-cell:: Ubuntu 24.04
 
       .. matrix-row::
          :show-cond: gpu=mi325x
