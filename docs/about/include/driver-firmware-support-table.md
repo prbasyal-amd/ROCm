@@ -95,7 +95,7 @@
         <p>Instinct MI350P</p>
       </td>
       <td style="vertical-align: middle">
-        <p>BKC11.0 (IFWI PRD1008B) or later
+        <p>BKC11.0 (IFWI PRD1000A) or later
         <a id="id1" class="footnote-reference brackets" href="#firmware-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>
         IFWI 00189938
         </p>
