@@ -502,7 +502,7 @@
 
 ##### Upcoming changes
 
--  Roofline support for gfx1153 devices.
+- Roofline support for gfx1153 devices.
 
 ##### Known issues
 
