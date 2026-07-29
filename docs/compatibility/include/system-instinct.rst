@@ -236,25 +236,35 @@
       .. matrix-cell::
          :show-cond: gpu=mi355x gpu=mi350x
 
+         01.26.01.03 (or later)
+
          01.26.00.02
 
       .. matrix-cell::
          :show-cond: gpu=mi350p
+
+         BKC11.0 (IFWI PRD1000A) or later
 
          IFWI 00189938
 
       .. matrix-cell::
          :show-cond: gpu=mi325x
 
+         01.26.01.02 (or later)
+
          01.25.06.08
 
       .. matrix-cell::
          :show-cond: gpu=mi300x
 
+         01.26.00.04 (or later)
+
          01.25.06.05
 
       .. matrix-cell::
          :show-cond: gpu=mi300a
+
+         BKC 27 (or later)
 
          BKC 26.1
 
