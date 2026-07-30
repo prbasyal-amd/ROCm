@@ -8,11 +8,11 @@
 .. _hpc-install:
 
 ********************
-Install ROCm HPC-SDK
+Install ROCm HPC SDK
 ********************
 
-AMD ROCm HPC-SDK provides high-performance computing libraries and tools for
-AMD Instinct GPUs. This guide walks you through installing the HPC-SDK
+AMD ROCm HPC SDK provides high-performance computing libraries and tools for
+AMD Instinct GPUs. This guide walks you through installing the HPC SDK
 alongside ROCm installation on a supported Linux distribution.
 
 The ROCm for HPC applications and containers run on a standard ROCm
@@ -292,19 +292,19 @@ OpenMPI, UCX, and Ubuntu.
 
 ----
 
-Before installing the HPC-SDK, make sure your system meets the ROCm hardware,
+Before installing the HPC SDK, make sure your system meets the ROCm hardware,
 software, and driver requirements. For instructions, see :ref:`Install AMD ROCm <rocm-install-selector>`. Use the
 selector panel on that page to view instructions appropriate for your system
 environment.
 
-HPC-SDK includes `hipTensor <https://github.com/ROCm/rocm-libraries/tree/develop/projects/hiptensor>`_ and `rocALUTION <https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocalution>`_ packaged as part of the installation.
+HPC SDK includes `hipTensor <https://github.com/ROCm/rocm-libraries/tree/develop/projects/hiptensor>`_ and `rocALUTION <https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocalution>`_ packaged as part of the installation.
 
-Install HPC-SDK
+Install HPC SDK
 ---------------
 
 .. selected:: i=tar
 
-   The standard ROCm tarball installation includes the HPC-SDK. No
+   The standard ROCm tarball installation includes the HPC SDK. No
    additional steps are required. For details on ROCm tarball installation,
    refer to :ref:`Install AMD ROCm <rocm-install>` and select Tarball
    installation method from installation environment selector.
@@ -317,7 +317,7 @@ Install HPC-SDK
 
    .. selected:: fam=all
 
-      2. Use the following command to install HPC-SDK for all GPU architectures:
+      2. Use the following command to install HPC SDK for all GPU architectures:
 
          .. selected:: os=ubuntu os=debian
 
@@ -339,7 +339,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx950
 
-      2. Use the following command to install HPC-SDK for your ``gfx950`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx950`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -361,7 +361,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx942
 
-      2. Use the following command to install HPC-SDK for your ``gfx942`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx942`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -383,7 +383,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx90a
 
-      2. Use the following command to install HPC-SDK for your ``gfx90a`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx90a`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -405,7 +405,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx908
 
-      2. Use the following command to install HPC-SDK for your ``gfx908`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx908`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -427,7 +427,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1200
 
-      2. Use the following command to install HPC-SDK for your ``gfx1200`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1200`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -449,7 +449,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1201
 
-      2. Use the following command to install HPC-SDK for your ``gfx1201`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1201`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -471,7 +471,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1100
 
-      2. Use the following command to install HPC-SDK for your ``gfx1100`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1100`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -493,7 +493,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1101
 
-      2. Use the following command to install HPC-SDK for your ``gfx1101`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1101`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -515,7 +515,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1102
 
-      2. Use the following command to install HPC-SDK for your ``gfx1102`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1102`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -537,7 +537,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1103
 
-      2. Use the following command to install HPC-SDK for your ``gfx1103`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1103`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -559,7 +559,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1030
 
-      2. Use the following command to install HPC-SDK for your ``gfx1030`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1030`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -581,7 +581,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1151
 
-      2. Use the following command to install HPC-SDK for your ``gfx1151`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1151`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -603,7 +603,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1150
 
-      2. Use the following command to install HPC-SDK for your ``gfx1150`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1150`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -625,7 +625,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1152
 
-      2. Use the following command to install HPC-SDK for your ``gfx1152`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1152`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -647,7 +647,7 @@ Install HPC-SDK
 
    .. selected:: gfx=gfx1153
 
-      2. Use the following command to install HPC-SDK for your ``gfx1153`` GPU:
+      2. Use the following command to install HPC SDK for your ``gfx1153`` GPU:
 
          .. selected:: os=ubuntu os=debian
 
@@ -667,20 +667,20 @@ Install HPC-SDK
 
                 sudo zypper install amdrocm-hpc7.14-gfx1153 amdrocm-hpc-sdk7.14-gfx1153
 
-Uninstall HPC-SDK
+Uninstall HPC SDK
 ----------------------
 
 .. selected:: i=tar
 
-   The standard ROCm uninstallation process can be followed to uninstall HPC-SDK. No additional
-   steps are required to remove the HPC-SDK separately. Refer to :ref:`Uninstalling <rocm-uninstall>`
+   The standard ROCm uninstallation process can be followed to uninstall HPC SDK. No additional
+   steps are required to remove the HPC SDK separately. Refer to :ref:`Uninstalling <rocm-uninstall>`
    section and select Tarball from the installation environment selector.
 
 .. selected:: i=pkgman
 
    .. selected:: fam=all
 
-      Use the following command to uninstall HPC-SDK for all GPU architectures:
+      Use the following command to uninstall HPC SDK for all GPU architectures:
 
       .. selected:: os=ubuntu os=debian
 
@@ -702,7 +702,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx950
 
-      Use the following command to uninstall HPC-SDK for your ``gfx950`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx950`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -724,7 +724,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx942
 
-      Use the following command to uninstall HPC-SDK for your ``gfx942`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx942`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -746,7 +746,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx90a
 
-      Use the following command to uninstall HPC-SDK for your ``gfx90a`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx90a`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -768,7 +768,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx908
 
-      Use the following command to uninstall HPC-SDK for your ``gfx908`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx908`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -790,7 +790,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1200
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1200`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1200`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -812,7 +812,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1201
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1201`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1201`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -834,7 +834,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1100
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1100`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1100`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -856,7 +856,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1101
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1101`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1101`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -878,7 +878,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1102
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1102`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1102`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -900,7 +900,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1103
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1103`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1103`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -922,7 +922,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1030
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1030`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1030`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -944,7 +944,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1151
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1151`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1151`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -966,7 +966,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1150
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1150`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1150`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -988,7 +988,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1152
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1152`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1152`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
@@ -1010,7 +1010,7 @@ Uninstall HPC-SDK
 
    .. selected:: gfx=gfx1153
 
-      Use the following command to uninstall HPC-SDK for your ``gfx1153`` GPU:
+      Use the following command to uninstall HPC SDK for your ``gfx1153`` GPU:
 
       .. selected:: os=ubuntu os=debian
 
