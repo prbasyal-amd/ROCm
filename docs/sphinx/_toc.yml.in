@@ -110,6 +110,10 @@ subtrees:
                         title: HIPIFY
                       - url: ${project:llvm-project}
                         title: LLVM
+                      - url: ${project:ROCR-Runtime}
+                        title: ROCr Runtime
+                      - url: https://github.com/ROCm/SPIRV-LLVM-Translator
+                        title: SPIRV-LLVM-Translator
                 - file: components/profilers-and-debuggers.rst
                   title: Profiling and debugging tools
                   entries:
