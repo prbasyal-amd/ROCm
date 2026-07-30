@@ -110,8 +110,6 @@ subtrees:
                         title: HIPIFY
                       - url: ${project:llvm-project}
                         title: LLVM
-                      - url: ${project:ROCR-Runtime}
-                        title: ROCr Runtime
                 - file: components/profilers-and-debuggers.rst
                   title: Profiling and debugging tools
                   entries:
