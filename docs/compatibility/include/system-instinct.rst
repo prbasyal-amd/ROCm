@@ -243,7 +243,7 @@
       .. matrix-cell::
          :show-cond: gpu=mi350p
 
-         BKC11.0 (IFWI PRD1000A) or later
+         BKC12.0 (IFWI PRD1000A) or later
 
          IFWI 00189938
 
