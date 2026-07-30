@@ -619,6 +619,7 @@ SONAME
 SPARSELt
 SPI
 SPIR
+SPIRV
 SPM
 SPX
 SQTT
@@ -912,6 +913,7 @@ dequantization
 dequantized
 dequantizes
 dereference
+desc
 deserializers
 detections
 dev
@@ -1041,6 +1043,7 @@ hpp
 href
 hsa
 hsakmt
+https
 hx
 hyperparameter
 hyperparameters
@@ -1315,6 +1318,7 @@ spdlog
 spmm
 src
 stanford
+startswith
 statx
 stochastically
 strided
