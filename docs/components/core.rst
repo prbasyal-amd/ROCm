@@ -60,15 +60,19 @@ applications on AMD hardware.
     {% endif %}
     {%- for name, comp in group_items | sort(attribute="0") -%}
     {%-     if comp.xref is defined and comp.xref.rtd_project is defined -%}
-    {%-         set doc_ref = comp.xref.rtd_project -%}
-    {%-     elif comp.xref is defined and comp.xref.docs is defined and "/" not in comp.xref.docs -%}
-    {%-         set doc_ref = comp.xref.docs | lower -%}
+    {%-         set link = base_url + "/" + comp.xref.rtd_project + "/en/" + version_slug -%}
+    {%-     elif comp.xref is defined and comp.xref.github_repo is defined -%}
+    {%-         if comp.xref.github_repo.startswith("https://") -%}
+    {%-             set link = comp.xref.github_repo -%}
+    {%-         else -%}
+    {%-             set link = "https://github.com/ROCm/" + comp.xref.github_repo -%}
+    {%-         endif -%}
     {%-     else -%}
-    {%-         set doc_ref = None -%}
+    {%-         set link = None -%}
     {%-     endif -%}
     {%-     set desc = " -- " + comp.description if comp.description is defined else "" -%}
-    {%-     if doc_ref %}
-    * `{{ name }} <{{ base_url }}/{{ doc_ref }}/en/{{ version_slug }}>`__{{ desc }}
+    {%-     if link %}
+    * `{{ name }} <{{ link }}>`__{{ desc }}
     {%-     else %}
     * {{ name }}{{ desc }}
     {%-     endif %}
