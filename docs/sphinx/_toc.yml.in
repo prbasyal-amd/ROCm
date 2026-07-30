@@ -135,10 +135,10 @@ subtrees:
                       - url: ${project:rocminfo}
                         title: rocminfo
           - file: components/hpc-sdk/index.rst
-            title: ROCm HPC-SDK
+            title: ROCm HPC SDK
             entries:
                 - file: components/hpc-sdk/install.rst
-                  title: Install HPC-SDK
+                  title: Install HPC SDK
           - file: components/extras.rst
             title: ROCm Extras
             entries:
