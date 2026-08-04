@@ -128,7 +128,7 @@ and [ROCm Systems](https://github.com/ROCm/rocm-systems/) super-repos by domain.
 - [ROCprofiler-SDK](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-sdk)
 - [ROCdbgapi](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocdbgapi)
 - [ROCgdb](https://github.com/ROCm/ROCgdb)
-- [ROCr Debug Agent](https://github.com/ROCm/rocr_debug_agent)
+- [ROCR Debug Agent](https://github.com/ROCm/rocr_debug_agent)
 
 ### Control and monitoring tools
 

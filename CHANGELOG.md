@@ -3325,7 +3325,7 @@ The previous default accumulator types could lead to situations in which unexpec
 
 * Deprecated the rocRAND Fortran API in favor of hipfort.
 
-### **ROCr Debug Agent** (2.1.0)
+### **ROCR Debug Agent** (2.1.0)
 
 #### Added
 
@@ -4743,7 +4743,7 @@ The following lists the backward incompatible changes planned for upcoming major
 * `--test|-t` is no longer a required flag for `rtest.py`. Instead, the user can use either `--emulation|-e` or `--test|-t`, but not both.
 * Removed the TBB dependency for multi-core processing of host-side generation.
 
-### **ROCr Debug Agent** (2.0.4)
+### **ROCR Debug Agent** (2.0.4)
 
 #### Added
 
