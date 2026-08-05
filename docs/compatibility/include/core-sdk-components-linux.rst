@@ -305,7 +305,7 @@
 
       .. matrix-cell::
 
-         `ROCr Debug Agent 2.1.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocr-debug-agent>`__
+         `ROCR Debug Agent 2.1.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocr-debug-agent>`__
 
    .. matrix-row::
 

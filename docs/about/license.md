@@ -80,7 +80,7 @@ additional licenses. Please review individual repositories for more information.
 | [ROCprofiler-SDK](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-sdk/) | [MIT](https://github.com/ROCm/rocm-systems/blob/develop/projects/rocprofiler-sdk/LICENSE.md) |
 | [rocPyDecode](https://github.com/ROCm/rocPyDecode) | [MIT](https://github.com/ROCm/rocPyDecode/blob/develop/LICENSE.txt) |
 | [rocRAND](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocrand/) | [MIT](https://github.com/ROCm/rocm-libraries/blob/develop/projects/rocrand/LICENSE.md) |
-| [ROCr Debug Agent](https://github.com/ROCm/rocr_debug_agent/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocr_debug_agent/blob/amd-staging/LICENSE.txt) |
+| [ROCR Debug Agent](https://github.com/ROCm/rocr_debug_agent/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocr_debug_agent/blob/amd-staging/LICENSE.txt) |
 | [ROCR-Runtime](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocr-runtime/) | [The University of Illinois/NCSA](https://github.com/ROCm/rocm-systems/blob/develop/projects/rocr-runtime/LICENSE.txt) |
 | [rocSHMEM](https://github.com/ROCm/rocSHMEM/) | [MIT](https://github.com/ROCm/rocSHMEM/blob/develop/LICENSE.md) |
 | [rocSOLVER](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocsolver/) | [BSD-2-Clause](https://github.com/ROCm/rocm-libraries/blob/develop/projects/rocsolver/LICENSE.md) |
