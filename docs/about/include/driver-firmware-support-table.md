@@ -106,7 +106,7 @@
         <p>Instinct MI325X</p>
       </td>
       <td style="vertical-align: middle">
-        <p>01.26.01.02 (or later)
+        <p>01.26.01.03 (or later)
         <a id="id1" class="footnote-reference brackets" href="#firmware-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>
         01.25.06.08
         </p>
@@ -128,7 +128,7 @@
         <p>Instinct MI300A</p>
       </td>
       <td>
-        <p>BKC 27 (or later)
+        <p>BKC 27
         <a id="id1" class="footnote-reference brackets" href="#firmware-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>
         BKC 26.1
         </p>

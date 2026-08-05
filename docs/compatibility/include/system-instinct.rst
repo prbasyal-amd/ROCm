@@ -250,7 +250,7 @@
       .. matrix-cell::
          :show-cond: gpu=mi325x
 
-         01.26.01.02 (or later)
+         01.26.01.03 (or later)
 
          01.25.06.08
 
@@ -264,7 +264,7 @@
       .. matrix-cell::
          :show-cond: gpu=mi300a
 
-         BKC 27 (or later)
+         BKC 27
 
          BKC 26.1
 
