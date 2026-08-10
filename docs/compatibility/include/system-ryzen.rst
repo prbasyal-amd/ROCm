@@ -22,17 +22,17 @@
          `AMD Ryzen AI Max 300 Series <https://www.amd.com/en/products/processors/laptop/ryzen.html#tabs-1181ea0b44-item-6ccfea5f65-tab>`__
 
       .. matrix-cell::
-         :show-cond: gpu=9-hx-pro-475 gpu=9-hx-pro-470 gpu=9-pro-465 gpu=7-pro-450 gpu=5-pro-440 gpu=5-pro-435
+         :show-cond: gpu=9-hx-pro-475 gpu=9-hx-pro-470 gpu=9-pro-465 gpu=7-pro-450 gpu=5-pro-440
 
          `AMD Ryzen AI PRO 400 Series <https://www.amd.com/en/products/processors/workstations/mobile.html#tabs-7f0c432fb2-item-0c42136112-tab>`__
 
       .. matrix-cell::
-         :show-cond: gpu=ai-9-hx-pro-475 gpu=ai-9-hx-pro-470 gpu=ai-9-pro-460
+         :show-cond: gpu=ai-5-pro-435 gpu=ai-9-hx-pro-475 gpu=ai-9-hx-pro-470 gpu=ai-9-pro-460 gpu=ai-9-pro-465 gpu=ai-7-pro-450 gpu=gpu=ai-5-pro-440
 
          `AMD Ryzen AI PRO 400 Series <https://www.amd.com/en/products/processors/laptop/ryzen-for-business.html#tabs-0d174caf43-item-87690677fc-tab>`__
 
       .. matrix-cell::
-         :show-cond: gpu=ai-9-hx-475 gpu=ai-9-hx-470 gpu=ai-9-465 gpu=ai-7-450 gpu=ai-5-435 gpu=ai-5-430
+         :show-cond: gpu=ai-5-435 gpu=ai-5-430 gpu=ai-7-445 gpu=ai-9-hx-475 gpu=ai-9-hx-470 gpu=ai-9-465 gpu=ai-7-450 
 
          `AMD Ryzen AI 400 Series <https://www.amd.com/en/products/processors/consumer/ryzen-ai.html#tabs-f556098628-item-808b56dca3-tab>`__
 
@@ -47,7 +47,7 @@
          `AMD Ryzen AI 300 Series <https://www.amd.com/en/products/processors/consumer/ryzen-ai.html#tabs-f556098628-item-54e149d850-tab>`__
 
       .. matrix-cell::
-         :show-cond: gpu=7-pro-250 gpu=5-pro-240 gpu=5-pro-230 gpu=5-pro-220 gpu=3-pro-210
+         :show-cond: gpu=7-pro-250 gpu=5-pro-230 gpu=5-pro-220 gpu=5-pro-215 gpu=3-pro-210 
 
          `AMD Ryzen PRO 200 Series <https://www.amd.com/en/products/processors/laptop/ryzen-for-business.html#tabs-0d174caf43-item-a8ec88d07e-tab>`__
 
@@ -80,10 +80,10 @@
          :show-cond: gpu=ai-9-pro-465 gpu=ai-9-465 gpu=9-365
 
       .. matrix-cell:: Radeon 860M
-         :show-cond: gpu=ai-7-pro-450 gpu=ai-7-450
+         :show-cond: gpu=ai-7-pro-450 gpu=ai-7-450 gpu=ai-7-350
 
       .. matrix-cell:: Radeon 840M
-         :show-cond: gpu=ai-5-pro-440 gpu=5-pro-435 gpu=ai-7-pro-350 gpu=ai-5-pro-340 gpu=ai-5-435 gpu=ai-5-430 gpu=ai-7-345 gpu=ai-5-340
+         :show-cond: gpu=ai-5-pro-440 gpu=5-pro-435 gpu=ai-7-pro-350 gpu=ai-5-pro-340 gpu=ai-5-435 gpu=ai-5-430 gpu=ai-7-345 gpu=ai-5-340 gpu=ai-5-pro-435 gpu=ai-7-445
 
       .. matrix-cell:: Radeon 820M
          :show-cond: gpu=ai-5-330

@@ -31,11 +31,15 @@
         <p>
           <strong>AMD GPU Driver (amdgpu)</strong><br>
           <a
-            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/release-notes.html"
+            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/documentation/release-notes.html"
+            target="_blank"
+          >31.40.1</a><br>
+          <a
+            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/documentation/release-notes.html"
             target="_blank"
           >31.40.0</a><br>
           <a
-            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/documentation/release-notes.html"
+            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/documentation/release-notes.html"
             target="_blank"
           >31.30.0</a><br>
           <a
@@ -95,7 +99,7 @@
         <p>Instinct MI350P</p>
       </td>
       <td style="vertical-align: middle">
-        <p>BKC11.0 (IFWI PRD1008B) or later
+        <p>BKC12.0 (IFWI PRD1000A) or later
         <a id="id1" class="footnote-reference brackets" href="#firmware-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>
         IFWI 00189938
         </p>
@@ -106,7 +110,7 @@
         <p>Instinct MI325X</p>
       </td>
       <td style="vertical-align: middle">
-        <p>01.26.01.02 (or later)
+        <p>01.26.01.03 (or later)
         <a id="id1" class="footnote-reference brackets" href="#firmware-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>
         01.25.06.08
         </p>
@@ -128,7 +132,7 @@
         <p>Instinct MI300A</p>
       </td>
       <td>
-        <p>BKC 27 (or later)
+        <p>BKC 27
         <a id="id1" class="footnote-reference brackets" href="#firmware-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>
         BKC 26.1
         </p>
@@ -165,7 +169,7 @@
 
 <aside class="footnote brackets" id="firmware-support-footnotes" role="doc-footnote">
 <span id="#fn1" class="label"><span class="fn-bracket">[</span><a href="#id1" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
-<p>New PLDM bundle (Firmware) planned to release in a few weeks</p>
+<p>New PLDM bundle (Firmware) planned for release in a few weeks. These firmware bundles are required for Multi-VF support.</p>
 </aside>
 :::
 
@@ -190,11 +194,15 @@
         <p>
           <strong>AMD GPU Driver (amdgpu)</strong><br>
           <a
-            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/release-notes.html"
+            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/documentation/release-notes.html"
+            target="_blank"
+          >31.40.1</a><br>
+          <a
+            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/documentation/release-notes.html"
             target="_blank"
           >31.40.0</a><br>
           <a
-            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.0/documentation/release-notes.html"
+            href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/31.30.0-preview/documentation/release-notes.html"
             target="_blank"
           >31.30.0</a><br>
           <a

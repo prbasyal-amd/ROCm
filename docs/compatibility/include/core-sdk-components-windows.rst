@@ -13,9 +13,10 @@
    .. matrix-row::
 
       .. matrix-cell:: Math and compute libraries
-         :rowspan: 18
+         :rowspan: 17
 
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
 
          `Composable Kernel 1.2.0 <https://github.com/ROCm/rocm-libraries/tree/therock-7.14/projects/composablekernel>`__
 
@@ -60,12 +61,6 @@
       .. matrix-cell::
 
          `hipSPARSE 4.6.0 <https://github.com/ROCm/rocm-libraries/tree/therock-7.14/projects/hipsparse>`__
-
-   .. matrix-row::
-
-      .. matrix-cell::
-
-         `hipSPARSELt 0.2.9 <https://github.com/ROCm/rocm-libraries/tree/therock-7.14/projects/hipsparselt>`__
 
    .. matrix-row::
 

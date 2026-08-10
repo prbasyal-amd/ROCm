@@ -199,5 +199,5 @@ information.
 
 <aside class="footnote brackets" id="partitioning-support-footnotes" role="doc-footnote">
 <span id="#fn2" class="label"><span class="fn-bracket">[</span><a href="#id2" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
-<p>Multi-VF (8 VF) support requires a compatible firmware. See <a href="#kernel-driver-and-firmware-bundle-support">Kernel driver and firmware bundle support</a> for the list of required firmware versions and supported configurations.</p>
+<p>Multi-VF support requires a compatible firmware. See <a href="#kernel-driver-and-firmware-bundle-support">Kernel driver and firmware bundle support</a> for the list of required firmware versions and supported configurations.</p>
 </aside>

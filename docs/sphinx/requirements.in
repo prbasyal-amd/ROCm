@@ -1,4 +1,0 @@
-rocm-docs-core[llms] @ git+https://github.com/ROCm/rocm-docs-core.git@ai-ecosystem-theme
-sphinxcontrib.datatemplates==0.11.0
-sphinx_substitution_extensions
-sphinx-sitemap
