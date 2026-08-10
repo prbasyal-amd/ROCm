@@ -180,10 +180,6 @@ rocm_core_sdk:
       xref:
         rtd_project: rocr_debug_agent
         github_repo: rocm-systems/projects/rocr-debug-agent
-    ROCr Runtime:
-      group: *runtimes
-      xref:
-        rtd_project: rocm-libraries/projects/rocr-runtime
     rocSHMEM:
       group: *comm_libs
       description: An intra-kernel networking library that provides GPU-centric networking througithub_repo an OpenSHMEM-like interface.
@@ -220,10 +216,6 @@ rocm_core_sdk:
       xref:
         rtd_project: rocWMMA
         github_repo: rocm-libraries/projects/rocwmma
-    SPIRV-LLVM-Translator:
-      group: *compilers
-      xref:
-        github_repo: SPIRV-LLVM-Translator
 
 rocm_extras:
   - name: ROCm Validation Suite

@@ -16,6 +16,7 @@
          :rowspan: 18
 
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
 
          `Composable Kernel 1.2.0 <https://rocm.docs.amd.com/projects/composable_kernel/en/docs-7.14.0/index.html>`__
 
@@ -64,6 +65,7 @@
    .. matrix-row::
 
       .. matrix-cell::
+         :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a
 
          `hipSPARSELt 0.2.9 <https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.14.0/index.html>`__
 
@@ -125,7 +127,11 @@
 
       .. matrix-cell:: Communication libraries
          :rowspan: 2
-         :show-cond: fam=instinct fam=radeon
+         :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a gpu=mi250x gpu=mi250 gpu=mi210 gpu=ai-r9700s gpu=ai-r9700 gpu=ai-r9600d gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt-lp gpu=rx-9060-xt gpu=rx-9060 gpu=w7900-dual-slot gpu=w7900 gpu=w7800-48gb gpu=w7800 gpu=rx-7900-xtx gpu=rx-7900-gre gpu=w7700 gpu=rx-7800-xt gpu=rx-7700-xt gpu=rx-7700 gpu=rx-7600
+
+      .. matrix-cell:: Communication libraries
+         :rowspan: 1
+         :show-cond: gpu=mi100 gpu=v710 gpu=v620 gpu=w6800
 
       .. matrix-cell:: Communication libraries
          :rowspan: 1
@@ -136,7 +142,7 @@
          `RCCL 2.30.4 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rccl>`__
 
    .. matrix-row::
-      :show-cond: fam=instinct fam=radeon
+      :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a gpu=mi250x gpu=mi250 gpu=mi210 gpu=ai-r9700s gpu=ai-r9700 gpu=ai-r9600d gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt-lp gpu=rx-9060-xt gpu=rx-9060 gpu=w7900-dual-slot gpu=w7900 gpu=w7800-48gb gpu=w7800 gpu=rx-7900-xtx gpu=rx-7900-gre gpu=w7700 gpu=rx-7800-xt gpu=rx-7700-xt gpu=rx-7700 gpu=rx-7600
 
       .. matrix-cell::
 
@@ -146,22 +152,41 @@
 
       .. matrix-cell:: Media libraries
          :rowspan: 2
+         :show-cond: fam=instinct fam=radeon
 
+      .. matrix-cell:: Media libraries
+         :rowspan: 2
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+         
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
+
+         `rocDecode 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdecode>`__
+      
+      .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
          `rocDecode 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdecode>`__
 
    .. matrix-row::
 
       .. matrix-cell::
+         :show-cond: fam=instinct fam=radeon
+
+         `rocJPEG 1.6.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocjpeg>`__
+
+      .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
          `rocJPEG 1.6.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocjpeg>`__
 
    .. matrix-row::
 
       .. matrix-cell:: Storage libraries
+         :show-cond: fam=instinct
 
       .. matrix-cell::
+         :show-cond: fam=instinct
 
          `hipFile 0.3.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/hipFile>`__
 
@@ -214,6 +239,10 @@
          :rowspan: 4
          :show-cond: fam=radeon
 
+      .. matrix-cell:: Profiling and debugging tools
+         :rowspan: 3
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+
       .. matrix-cell::
          :show-cond: fam=instinct
 
@@ -223,6 +252,11 @@
          :show-cond: fam=radeon
 
          `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
+      
+      .. matrix-cell::
+         :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+
+         `ROCm Compute Profiler (rocprofiler-compute) 3.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-compute>`__
 
    .. matrix-row::
       :show-cond: fam=instinct
@@ -232,7 +266,21 @@
          `ROCm Systems Profiler (rocprofiler-systems) 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-systems>`__
 
    .. matrix-row::
+      :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
+
+      .. matrix-cell::
+
+         `ROCm Systems Profiler (rocprofiler-systems) 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-systems>`__
+
+   .. matrix-row::
       :show-cond: fam=instinct
+
+      .. matrix-cell::
+
+         `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
+
+   .. matrix-row::
+      :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
       .. matrix-cell::
 
