@@ -59,20 +59,15 @@ For details, see [GPU partitioning support](#gpu-partitioning-support).
 
 This release enables support for the following frameworks:
 
-* PyTorch 2.12.0
-* JAX 0.10.0
-* vLLM 0.23.0 <a id="id4" class="footnote-reference brackets" href="#vllm-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>
-* SGLang 0.5.13
-* TensorFlow 2.21
+* PyTorch 2.13.0
+* JAX 0.11.0
+* JAX 0.10.2
+* vLLM 0.26.0
+* SGLang 0.5.15
 
-The updated framework support replaces the previous PyTorch 2.9.1, JAX 0.8.2, vLLM 0.19.1, and SGLang 0.5.9 support.
+The updated framework support replaces the previous PyTorch 2.10.0, JAX 0.9.1, vLLM 0.23.0, and SGLang 0.5.13 support.
 
 For details, see [AI ecosystem support](#ai-ecosystem-support).
-
-<aside class="footnote brackets" id="vllm-support-footnotes" role="doc-footnote">
-<span id="fn4" class="label"><span class="fn-bracket">[</span><a href="#id4" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
-<p>You might observe significantly longer LLM warmup times on some Radeon GPUs. Refer to the <a href="#vllm-warmup-known-issue">known issue</a> for details.</p>
-</aside>
 
 ### Developer tools, profiling, and validation
 
@@ -185,98 +180,15 @@ ROCm Systems Profiler now captures the nine host-stream rocSHMEM API calls (`put
 
 For more information, see the [ROCm Systems Profiler section](#rocm-systems-profiler-1-8-0) in the ROCm component changelogs.
 
-#### AMD SMI feature highlights
-
-The following are notable enhancements to AMD SMI:
-
-* **Per-partition GPU metrics**: AMD SMI now reports temperature, clock, and usage at the partition level through the new `amd-smi metric --partition` flag, giving partition-level observability where previously only socket-level metrics were available. For CLI usage, see [AMD SMI CLI tool](https://rocm.docs.amd.com/projects/amdsmi/en/latest/how-to/amdsmi-cli-tool.html); for partitioning concepts, see [GPU partitioning](https://rocm.docs.amd.com/projects/amdsmi/en/latest/conceptual/partition.html).
-
-* **Compute partition memory allocation mode**: AMD SMI now controls memory allocation behavior at the compute partition level through the new `amd-smi set --compute-partition-mem-alloc-mode` command. The current mode is visible in `amd-smi static --partition` output, and new C and Python APIs expose the same controls programmatically.
-
-* **APU CLI metrics**: AMD SMI now surfaces APU-specific data through the existing `amd-smi metric` flags when APU metrics are available. `amd-smi monitor` adds temperature and clock fallbacks when standard discrete GPU sensors report N/A.
-
-* **APU VRAM carve-out and GTT tuning**: AMD SMI now tunes APU memory from the command line, consolidating the get and set controls previously handled by the standalone `amd-ttm` tool and adding VRAM carve-out configuration. Carve-out and GTT changes take effect after the next reboot, and AMD SMI rebuilds the initramfs automatically so the new configuration is applied at boot. For details, see the memory tuning section in [AMD SMI CLI tool](https://rocm.docs.amd.com/projects/amdsmi/en/latest/how-to/amdsmi-cli-tool.html).
-
-* **PID-grouped process listing**: AMD SMI now groups multi-GPU process output by PID with `amd-smi process --sort-by-pid` and `amd-smi monitor --sort-by-pid`, merging each process's per-GPU usage into a single row. A new C and Python API, `amdsmi_get_gpu_process_list_by_pid()`, exposes the same data programmatically.
-
-* **Fabric clock (FCLK) capping on MI300A**: You can now cap the maximum fabric clock (FCLK) on AMD Instinct MI300A APUs to steer power, using the new `fclk` clock type for `amd-smi set --clk-limit`. Only a maximum limit is supported.
-
-* **Go bindings for CPU telemetry**: AMD SMI now exposes EPYC System Management Interface (ESMI) CPU functionality through its Go bindings, so Go applications can query CPU telemetry in-process without invoking external binaries or embedding C or Python runtimes. This simplifies integrating AMD CPU observability into Go-based control planes. For details, see [AMD SMI Go interface](https://rocm.docs.amd.com/projects/amdsmi/en/latest/how-to/amdsmi-go-lib.html).
-
-For more information, see the [AMD SMI section](#amd-smi-26-5-0) in the ROCm component changelogs.
-
-#### RDC expands telemetry coverage for DME parity
-
-ROCm Data Center (RDC) adds 59 telemetry fields, bringing its metric coverage near parity with the Device Metrics Exporter (DME). New fields cover energy, temperature, clocks, memory, PCIe, engine activity, error correction code (ECC), and health and throttle metrics. Some metrics require recent driver and hardware support. For the available field groups and how to monitor them, see [Using RDC features](https://rocm.docs.amd.com/projects/rdc/en/latest/how-to/using_RDC_features.html).
-
-For more information, see the [RDC section](#rdc-1-3-1) in the ROCm component changelogs.
-
-#### ROCm Bandwidth Test (RBT) reaches end-of-life
-
-ROCm Bandwidth Test (RBT) is deprecated and reaches end-of-life with the TheRock-based ROCm 10.0.0 release. Active development has ceased, and no further feature enhancements or fixes are planned. For equivalent and expanded functionality, transition to [TransferBench](https://rocm.docs.amd.com/projects/TransferBench/en/latest/) and the [ROCm Validation Suite (RVS)](https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/).
-
-For more details, refer to the [ROCm Bandwidth Test](https://rocm.docs.amd.com/projects/rocm_bandwidth_test/en/latest/) documentation.
-
 ### Libraries
 
 This release updates ROCm math, sparse compute, and communication libraries with additional routines, expanded datatype support, and performance improvements. It also adds the hipFile storage library.
-
-#### hipFile direct storage I/O support
-
-hipFile is now included in the ROCm Core SDK, enabling direct data transfers between storage and GPU memory as part of AMD Infinity Storage. hipFile enables storage-intensive workloads to bypass host-side copies, reducing latency and command overhead for high-throughput GPU I/O.
-
-hipFile is supported on Linux with AMD Instinct GPUs. See the [ROCm hipFile examples](https://github.com/ROCm/rocm-examples/tree/release/therock-7.14/Systems/hipFile) and the [hipFile documentation](https://rocm.docs.amd.com/projects/hipFile/en/latest/) to get started.
 
 #### hipBLASLt adds GEMM Kernel Optimizer
 
 The GEMM Kernel Optimizer (GEKO) is now available as a command-line tool within hipBLASLt. It lets you tune GEMM kernels for your workloads locally, without sharing confidential model or workload data with AMD. GEKO automates the full tuning workflow, from workload analysis to a final optimized library. It uses Ductile, which replaces exhaustive search for faster tuning. It targets AMD Instinct MI350 Series GPUs (CDNA 4 architecture).
 
 For more information, see the [hipBLASLt documentation](https://rocm.docs.amd.com/projects/hipBLASLt/en/latest/index.html).
-
-#### Per-batch scalar coefficients for Level 2 batched BLAS
-
-rocBLAS and hipBLAS now support per-batch scalar coefficients for Level 2 batched and strided-batched routines in device pointer mode. Each batch index uses its own device-resident scalar rather than a single value shared across the entire batch:
-
-* **GEMV**: per-batch alpha and beta.
-* **GER, GERU, and GERC**: per-batch alpha.
-
-S, D, C, and Z precision variants are available for all routines.
-
-For more information, see the [rocBLAS section](#rocblas-5-5-0) and [hipBLAS section](#hipblas-3-5-0) in the ROCm component changelogs.
-
-#### Per-batch alpha for axpy_batched and axpy_strided_batched
-
-rocBLAS adds per-batch alpha support for `axpy_batched`, `axpy_strided_batched`, and their `_ex` variants via `rocblas_set_batch_alpha_stride` in device pointer mode.
-
-For more information, see the [rocBLAS section](#rocblas-5-5-0) in the ROCm component changelogs.
-
-#### hipSPARSE feature highlights
-
-The following are notable enhancements to hipSPARSE:
-
-* **BSR format support in hipSPARSE generic routines**: hipSPARSE adds Block Sparse Row (BSR) format support to its generic sparse compute routines: `hipsparseSpMM` (sparse matrix-matrix multiplication) and `hipsparseSpMV` (sparse matrix-vector multiplication). Two new descriptor functions, `hipsparseCreateBsr` and `hipsparseCreateConstBsr`, let you construct BSR-format sparse matrices for use with the generic API. This brings hipSPARSE to parity with the equivalent NVIDIA cuSPARSE routines, where BSR was previously available only through the rocSPARSE API.
-
-* **Legacy SpGEAM routines deprecated**: The legacy hipSPARSE `csrgeam` routines (`hipsparseXcsrgeamNnz`, `hipsparseScsrgeam`, `hipsparseDcsrgeam`, `hipsparseCcsrgeam`, and `hipsparseZcsrgeam`) are deprecated and will be removed in a future release. Use the `csrgeam2` routines instead: `hipsparseScsrgeam2_bufferSizeExt`, `hipsparseDcsrgeam2_bufferSizeExt`, `hipsparseCcsrgeam2_bufferSizeExt`, `hipsparseZcsrgeam2_bufferSizeExt`, `hipsparseXcsrgeam2Nnz`, `hipsparseScsrgeam2`, `hipsparseDcsrgeam2`, `hipsparseCcsrgeam2`, and `hipsparseZcsrgeam2`.
-
-#### rocSPARSE feature highlights
-
-The following are notable enhancements to rocSPARSE:
-
-* **Incomplete LDLᵀ factorization**: rocSPARSE adds the `rocsparse_spildlt0` routine, which computes an incomplete LDLᵀ factorization with zero fill-in (ILDLT(0)) for symmetric real or Hermitian complex sparse matrices in CSR format. The routine supports strided batched computation for factoring multiple matrices in a single call, a common building block for preconditioning iterative sparse solvers.
-
-* **`rocsparse_indextype_u16` index type deprecated**: The `rocsparse_indextype_u16` field of the `rocsparse_indextype` enum is deprecated in this release. Code using `rocsparse_indextype_u16` now produces deprecation warnings at compile time. Migrate to `rocsparse_indextype_i32` or `rocsparse_indextype_i64`; `rocsparse_indextype_u16` will be removed in a future release.
-
-#### RCCL feature highlights
-
-The following are notable enhancements to RCCL:
-
-* **Hierarchical AllGather**: RCCL adds a hierarchical AllGather algorithm for large multi-node jobs by separating inter-node from intra-node communication, relieving the concurrency pressure that constrains the existing ring and direct algorithms across many GPUs. On AMD Instinct MI350X GPUs, hierarchical AllGather is enabled by default for multi-node configurations. To disable it, set `RCCL_HIERARCHICAL_ALLGATHER=0`.
-
-* **Direct reduce-scatter**: RCCL adds a direct reduce-scatter algorithm for small-to-medium message sizes on AMD Instinct MI350X GPUs, as an alternative to the existing ring-based implementation. RCCL selects it automatically for multi-node reduce-scatter operations within a configurable message-size threshold.
-
-* **Copy Engine collectives (Preview)**: RCCL now offloads collective data movement to the GPU copy engine on AMD Instinct MI355X GPUs through new Copy Engine collectives. This frees compute units during communication-bound collectives, so compute and communication can overlap. RCCL uses a batched copy path when available, falls back to multi-stream or single-stream transfers otherwise, and preserves correct behavior during HIP graph capture.
-
-For more information, see the [RCCL section](#rccl-2-30-4) in the ROCm component changelogs.
 
 (release-supported-hw)=
 
@@ -310,39 +222,6 @@ The following table is a general overview of supported operating systems. Actual
 ## Installation updates
 
 ROCm 10.0.0 introduces several improvements to the Runfile Installer:
-
-### Multi-architecture GPU support
-
-The installer provides multi-architecture support, allowing you to install ROCm components for one or more GPU architectures. This is particularly useful for heterogeneous GPU environments or when deploying across multiple systems with different GPU types.
-
-* Install single or multiple GPU architectures in one installation.
-* Autodetect GPU and install matching architecture.
-* Query available and installed architectures.
-* Selectively uninstall specific architectures while keeping others.
-
-### Flexible component selection
-
-Choose exactly which ROCm components to install, reducing installation time and disk space requirements:
-
-* **core**: Essential runtime libraries and tools (default)
-* **core-dev**: Development headers and files
-* **dev-tools**: Debugging and profiling utilities
-* **core-sdk**: Comprehensive SDK with libraries and development tools
-* **opencl**: OpenCL runtime support
-
-### Graphics support
-
-Optional graphics support for Mesa and OpenGL workloads is now available. When enabled, the installer includes the `amdgpu-lib` package for graphics capabilities.
-
-### Build and manifest information
-
-* Display TheRock build information including commit hash, GitHub run ID, and build date
-* View complete manifest of all components and their versions included in the installer
-* Query components by specific GPU architecture
-
-### Universal installer
-
-A single installer file now supports all Linux distributions, eliminating the need to download distribution-specific builds.
 
 (release-supported-fw)=
 
