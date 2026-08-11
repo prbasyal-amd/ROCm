@@ -16,7 +16,7 @@ rocm_core_sdk:
     ROCm Data Center Tool: { version: 1.3.0 }
     ROCm Systems Profiler: { version: 1.6.0 }
     ROCprofiler-SDK: { version: 1.3.0 }
-    ROCr Debug Agent: { version: 2.1.0 }
+    ROCR Debug Agent: { version: 2.1.0 }
     ROCr Runtime: { version: 1.21.0 }
     SPIRV-LLVM-Translator: { version: 23.0.0 }
     hipBLAS: { version: 3.4.0 }

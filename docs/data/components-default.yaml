@@ -174,7 +174,7 @@ rocm_core_sdk:
       xref:
         rtd_project: rocRAND
         github_repo: rocm-libraries/projects/rocrand
-    ROCr Debug Agent:
+    ROCR Debug Agent:
       group: *debuggers
       description: Prints the state of all AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to the process while the program is running.
       xref:

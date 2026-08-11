@@ -139,7 +139,7 @@ corresponding legacy packages.
     </tr>
     <tr>
       <td>amdrocm-debugger</td>
-      <td>rocgdb, ROCdbgapi, ROCr Debug Agent</td>
+      <td>rocgdb, ROCdbgapi, ROCR Debug Agent</td>
       <td>rocm-gdb, rocm-dbgapi, rocm-debug-agent</td>
     </tr>
     <tr>
@@ -314,7 +314,7 @@ When redistributing software built on the ROCm Core SDK (for example, via contai
     </tr>
     <tr>
       <td>Profiling and debugging tools</td>
-      <td>ROCm Compute Profiler, ROCm Systems Profiler, ROCprofiler-SDK, ROCdbgapi, ROCm Debugger, ROCr Debug Agent</td>
+      <td>ROCm Compute Profiler, ROCm Systems Profiler, ROCprofiler-SDK, ROCdbgapi, ROCm Debugger, ROCR Debug Agent</td>
       <td>ROCTracer, ROCProfiler</td>
     </tr>
     <tr>

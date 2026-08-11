@@ -25,7 +25,7 @@ identify bottlenecks, and diagnose execution faults.
 * :doc:`ROCm Debugger <rocgdb:index>` (ROCgdb) -- Source-level debugger for
   Linux, based on the GNU Debugger (GDB).
 
-* :doc:`ROCr Debug Agent <rocr_debug_agent:index>` -- Prints the state of all
+* :doc:`ROCR Debug Agent <rocr_debug_agent:index>` -- Prints the state of all
   AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to
   the process while the program is running.
 

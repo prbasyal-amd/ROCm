@@ -124,7 +124,7 @@ subtrees:
                       - url: ${project:rocgdb}
                         title: ROCm Debugger (ROCgdb)
                       - url: ${project:rocr_debug_agent}
-                        title: ROCr Debug Agent
+                        title: ROCR Debug Agent
                 - file: components/control-and-monitoring-tools.rst
                   title: Control and monitoring tools
                   entries:
