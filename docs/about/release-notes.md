@@ -23,41 +23,29 @@ This release expands GPU, operating system, virtualization, and partitioning sup
 
 #### Expanded AMD GPU support
 
-ROCm 7.14.0 adds support for the following AMD APUs:
+ROCm 10.0.0 adds support for the following AMD GPUs:
 
-* [AMD Ryzen AI Max+ PRO 495 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html)
-* [AMD Ryzen AI Max PRO 490 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-pro-490.html)
-* [AMD Ryzen AI Max PRO 485 (gfx1151)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-pro-485.html)
-* [AMD Ryzen AI 5 435 (gfx1153)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-400-series/amd-ryzen-ai-5-435.html)
-* [AMD Ryzen AI 5 430 (gfx1153)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-400-series/amd-ryzen-ai-5-430.html)
-* [AMD Ryzen AI 5 PRO 435 (gfx1153)](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-400-series/amd-ryzen-ai-5-pro-435.html)
-* [AMD Ryzen AI 7 445 (gfx1153)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-400-series/amd-ryzen-ai-7-445.html)
+* [AMD Radeon RX 9050 (gfx1151)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html)
 
 For the complete list of supported AMD hardware, see [AMD hardware support](#amd-hardware-support).
 
 #### Expanded operating system support
 
-ROCm 7.14.0 adds support for RHEL 10.2 and RHEL 9.8 on AMD Instinct and Radeon GPUs. RHEL 10.2 replaces RHEL 10.1 as the validated RHEL 10 release; RHEL 9.8 replaces RHEL 9.7 as the validated RHEL 9 release.
-
-SUSE Linux Enterprise Server (SLES) 15 SP7, SLES 16, and Debian 13 are now supported on AMD Instinct MI350P.
+ROCm 10.10.0 adds support for Ubuntu 26.04.1 and Ubuntu 24.04.5 on AMD Instinct and Radeon GPUs, replacing support for Ubuntu 26.04 and Ubuntu 24.04.4, respectively.
 
 For the full list of supported Linux distributions, see [Operating system support](#operating-system-support).
 
 #### Expanded GPU virtualization support for Instinct and Radeon GPUs
 
-ROCm 7.14.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
+ROCm 10.0.0 adds support for the following virtualization configurations on AMD Instinct GPUs:
 
-* On MI350X: VMware ESXi 9.1 with Ubuntu 24.04 guest OS.
-
-* On Radeon AI PRO R9700S: KVM Passthrough with Ubuntu 24.04 host OS and Ubuntu 24.04 guest OS.
-
-* On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04 guest OS.
+* On MI350XP: VMware ESXi 9.1 with Ubuntu 24.04 guest OS.
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.1.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
 #### Expanded Instinct GPU partitioning support
 
-ROCm 7.14.0 has enabled and optimized multi-VF partition modes for the following GPU partitioning configurations in SR-IOV deployments:
+ROCm 10.0.0 has enabled and optimized multi-VF partition modes for the following GPU partitioning configurations in SR-IOV deployments:
 
 On MI355X and MI350X:
 
@@ -118,7 +106,7 @@ Starting with PyTorch 2.12, `rocprofiler-sdk` is used as the ROCm profiling back
 
 `rocprofiler-sdk` and `rocprofv3` add beta support for Streaming Performance Monitors (SPM), enabling selected hardware counters to be sampled over time while workloads execute. Unlike traditional counter collection, which captures a single aggregated value per kernel dispatch, SPM provides time-resolved hardware counter data. This is useful for analyzing long-running workloads and training jobs where temporal behavior matters as much as aggregate metrics. ROCpd support is planned for a future release.
 
-In ROCm 7.14.0, SPM support is available through the `rocprofiler-sdk` API and `rocprofv3`. To enable SPM in `rocprofv3`, use the `--spm-beta-enabled` flag or set the `ROCPROFILER_SPM_BETA_ENABLED` environment variable. For API-based usage, set `ROCPROFILER_SPM_BETA_ENABLED`.
+In ROCm 10.0.0, SPM support is available through the `rocprofiler-sdk` API and `rocprofv3`. To enable SPM in `rocprofv3`, use the `--spm-beta-enabled` flag or set the `ROCPROFILER_SPM_BETA_ENABLED` environment variable. For API-based usage, set `ROCPROFILER_SPM_BETA_ENABLED`.
 
 Supported hardware: AMD Instinct MI300X, MI325X, MI350X, and MI355X GPUs.
 
@@ -132,7 +120,7 @@ SPM is a beta capability under active development and may affect system stabilit
 
 `rocprofiler-sdk` and `rocprofv3` include support for profiling selected ROCTx regions, allowing users to focus profiling on specific application phases instead of collecting data for the entire workload. By inserting `roctxProfilerPause` and `roctxProfilerResume` markers in application code and using the `--selected-regions` option, only the GPU activity within the marked regions is captured. This helps reduce profiling noise and output size while making it easier to isolate performance behavior in targeted code paths. This is particularly useful for long-running workloads where full-execution traces are impractical.
 
-Counter collection for selected regions is available in ROCm 7.14.0. For details on `--selected-regions`, including usage with RCCL collectives and ROCTx markers, see [Using ROCprofiler-SDK ROCTx](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/latest/how-to/using-rocprofiler-sdk-roctx.html).
+Counter collection for selected regions is available in ROCm 10.0.0. For details on `--selected-regions`, including usage with RCCL collectives and ROCTx markers, see [Using ROCprofiler-SDK ROCTx](https://rocm.docs.amd.com/projects/rocprofiler-sdk/en/latest/how-to/using-rocprofiler-sdk-roctx.html).
 
 ##### Improved attach and re-attach profiling workflows
 
@@ -140,7 +128,7 @@ Counter collection for selected regions is available in ROCm 7.14.0. For details
 
 ##### Reduced profiling overhead for counter collection
 
-`rocprofiler-sdk` reduces profiling overhead in ROCm 7.14.0, including customer-driven improvements for `rocprofv3` and SDK-based profiling paths. These changes make profiling more practical for performance-sensitive workflows and produce more representative trace data.
+`rocprofiler-sdk` reduces profiling overhead in ROCm 10.0.0, including customer-driven improvements for `rocprofv3` and SDK-based profiling paths. These changes make profiling more practical for performance-sensitive workflows and produce more representative trace data.
 
 ##### ROCprof Trace Decoder decoupled from the ROCprofiler-SDK API
 
@@ -219,7 +207,7 @@ For more information, see the [RDC section](#rdc-1-3-1) in the ROCm component ch
 
 #### ROCm Bandwidth Test (RBT) reaches end-of-life
 
-ROCm Bandwidth Test (RBT) is deprecated and reaches end-of-life with the TheRock-based ROCm 7.14.0 release. Active development has ceased, and no further feature enhancements or fixes are planned. For equivalent and expanded functionality, transition to [TransferBench](https://rocm.docs.amd.com/projects/TransferBench/en/latest/) and the [ROCm Validation Suite (RVS)](https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/).
+ROCm Bandwidth Test (RBT) is deprecated and reaches end-of-life with the TheRock-based ROCm 10.0.0 release. Active development has ceased, and no further feature enhancements or fixes are planned. For equivalent and expanded functionality, transition to [TransferBench](https://rocm.docs.amd.com/projects/TransferBench/en/latest/) and the [ROCm Validation Suite (RVS)](https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/).
 
 For more details, refer to the [ROCm Bandwidth Test](https://rocm.docs.amd.com/projects/rocm_bandwidth_test/en/latest/) documentation.
 
@@ -315,7 +303,7 @@ The following table is a general overview of supported operating systems. Actual
 
 ## Installation updates
 
-ROCm 7.14.0 introduces several improvements to the Runfile Installer:
+ROCm 10.0.0 introduces several improvements to the Runfile Installer:
 
 ### Multi-architecture GPU support
 
@@ -384,7 +372,7 @@ See the [AMD GPU partitioning](https://instinct.docs.amd.com/projects/amdgpu-doc
 
 ## AI ecosystem support
 
-ROCm 7.14.0 provides optimized support for popular deep learning frameworks and AI inference engines. The following table lists supported frameworks and libraries, their compatible operating systems, and validated versions.
+ROCm 10.0.0 provides optimized support for popular deep learning frameworks and AI inference engines. The following table lists supported frameworks and libraries, their compatible operating systems, and validated versions.
 
 :::{important}
 The following table is a general overview of supported frameworks and AI inference engines. Actual support might vary by AMD GPU or APU. Use the {doc}`Compatibility matrix </compatibility/compatibility-matrix>` to verify support for your specific setup.
@@ -398,7 +386,7 @@ The following table is a general overview of supported frameworks and AI inferen
 
 ## ROCm Core SDK components
 
-The following table lists core tools and libraries included in the ROCm 7.14.0 release.
+The following table lists core tools and libraries included in the ROCm 10.0.0 release.
 
 :::{important}
 The following table is a general overview of ROCm Core SDK components. Actual support for these libraries and tools can vary by GPU and OS. Use the {doc}`Compatibility matrix </compatibility/compatibility-matrix>` to verify support for your specific setup.
@@ -480,11 +468,11 @@ See [GitHub issue #6493](https://github.com/ROCm/ROCm/issues/6493).
 
 ### AMD SMI NIC telemetry supports Pollara 400 adapters only
 
-In ROCm 7.14.0, AMD SMI NIC telemetry only supports AMD AI NIC Pollara 400 adapters. Broadcom NIC support is planned for a future release. See [GitHub issue #6497](https://github.com/ROCm/ROCm/issues/6497).
+In ROCm 10.0.0, AMD SMI NIC telemetry only supports AMD AI NIC Pollara 400 adapters. Broadcom NIC support is planned for a future release. See [GitHub issue #6497](https://github.com/ROCm/ROCm/issues/6497).
 
 ## ROCm resolved issues
 
-The following notable issues have been fixed in ROCm 7.14.0.
+The following notable issues have been fixed in ROCm 10.0.0.
 
 ### ROCm Compute Profiler failed when profiling bash scripts or commands
 
