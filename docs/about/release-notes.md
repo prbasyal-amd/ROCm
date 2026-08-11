@@ -109,7 +109,7 @@ In `rocprofv3`, graph attribution is enabled with the `--hip-graph-trace` flag, 
 
 ROCprofiler-SDK extends the rocpd output format to include Streaming Performance Monitor (SPM) counter data. SPM records are stored as `rocpd_track` rows with a `"SPM"` label, with counter values grouped by timestamp into `rocpd_sample` rows and per-dimension data in `rocpd_pmc_event` rows. The rocpd schema is updated to include `sample_id`, `xcc`, `shader_engine`, and `instance` columns. SPM data can now be consumed by any tool that reads the rocpd database, or converted to other output formats such as Perfetto.
 
-Known Issue: SPM sessions can remain in a stale state after abrupt termination. See [GitHub issue #6489](https://github.com/ROCm/ROCm/issues/6489 for details.
+Known Issue: SPM sessions can remain in a stale state after abrupt termination. See [GitHub issue #6489](https://github.com/ROCm/ROCm/issues/6489) for details.
 
 ##### hipFile tracing support
 
