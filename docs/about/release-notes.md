@@ -1,17 +1,22 @@
 # ROCm Core SDK {{ ROCM_VERSION }} release notes
 
-ROCm Core SDK {{ ROCM_VERSION }} transitions ROCm to [TheRock](https://github.com/ROCm/TheRock), a build and release system that introduces a modular architecture to improve flexibility, maintainability, and alignment with community use cases:
+These release notes summarize notable changes since the previous ROCm release.
 
-* **Leaner core**: The Core SDK focuses on essential runtime and development components.
-* **Use case-specific expansions**: Optional domain-specific SDKs for AI, data science, and HPC.
-* **Modular installation**: Install only the components required for your workflow.
+- [Release highlights](#release-highlights)
+- [AMD hardware support](#amd-hardware-support)
+- [Operating system support](#operating-system-support)
+- [Installation updates](#installation-updates)
+- [Kernel driver and firmware bundle support](#kernel-driver-and-firmware-bundle-support)
+- [GPU virtualization support](#gpu-virtualization-support)
+- [GPU partitioning support](#gpu-partitioning-support)
+- [AI ecosystem support](#ai-ecosystem-support)
+- [ROCm Core SDK components](#rocm-core-sdk-components)
+- [ROCm known issues](#rocm-known-issues)
+- [ROCm upcoming changes](#rocm-upcoming-changes)
 
-This approach streamlines installation, reduces footprint, and accelerates innovation through independently released packages. To learn more, see the [transition guide](/about/transition-guide-TheRock).
-
-(preview-stream-note)=
-:::{note}
-ROCm {{ ROCM_VERSION }} follows the [versioning discontinuity that began with the 7.9.0 preview](https://rocm.docs.amd.com/en/7.9.0-preview/about/release-notes.html#preview-stream-note) release.
-:::
+```{note}
+Since ROCm 7.14, ROCm uses [TheRock](https://github.com/ROCm/TheRock) as its build and release system. For more information, see the [transition guide](/about/transition-guide-TheRock).
+```
 
 ## Release highlights
 
