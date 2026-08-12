@@ -11,10 +11,6 @@ These release notes summarize notable changes since the previous ROCm release. R
 - [ROCm resolved issues](#rocm-resolved-issues)
 - [ROCm upcoming changes](#rocm-upcoming-changes)
 
-```{note}
-If you're using AMD Radeon GPUs or Ryzen APUs in a workstation setting with a display connected, see the [Use ROCm on Radeon and Ryzen](https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/index.html) documentation to verify compatibility and system requirements.
-```
-
 ## Release highlights
 
 This release focuses on AI inference, distributed workloads, and profiling across AMD Instinct™, Radeon™, and Ryzen™ AI platforms. Highlights include inference-ready vLLM images and packages, ROCprofiler-SDK adoption across AI profiling workflows, expanded system telemetry and validation coverage, and updates to math, sparse, and communication libraries.
