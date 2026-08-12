@@ -178,6 +178,7 @@
         <p>gfx1200</p>
       </td>
     </tr>
+    <tr>
     <td>
         <p><a href="https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html"
             target="_blank">AMD Radeon RX 9050</a></p>
