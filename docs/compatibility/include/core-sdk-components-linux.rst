@@ -157,12 +157,12 @@
       .. matrix-cell:: Media libraries
          :rowspan: 2
          :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
-         
+
       .. matrix-cell::
          :show-cond: fam=instinct fam=radeon
 
          `rocDecode 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdecode>`__
-      
+
       .. matrix-cell::
          :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
@@ -252,7 +252,7 @@
          :show-cond: fam=radeon
 
          `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
-      
+
       .. matrix-cell::
          :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 

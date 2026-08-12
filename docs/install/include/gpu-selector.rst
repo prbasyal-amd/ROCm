@@ -69,6 +69,9 @@
          .. selector-option:: AMD Radeon RX 9060 (gfx1200)
             :value: rx-9060 gfx=gfx1200
 
+         .. selector-option:: AMD Radeon RX 9050 (gfx1151)
+            :value: rx-9050 gfx=gfx1151
+
          .. selector-option:: AMD Radeon PRO W7900 Dual Slot (gfx1100)
             :value: w7900-dual-slot gfx=gfx1100
 

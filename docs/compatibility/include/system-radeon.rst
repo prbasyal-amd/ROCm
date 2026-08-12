@@ -27,7 +27,7 @@
          `AMD Radeon PRO V Series <https://www.amd.com/en/products/accelerators/radeon-pro.html>`__
 
       .. matrix-cell::
-         :show-cond: gpu=rx-9070 gpu=rx-9070-gre gpu=rx-9070-xt gpu=rx-9060 gpu=rx-9060-xt gpu=rx-9060-xt-lp
+         :show-cond: gpu=rx-9070 gpu=rx-9070-gre gpu=rx-9070-xt gpu=rx-9060 gpu=rx-9060-xt gpu=rx-9060-xt-lp gpu=rx-9050
 
          `AMD Radeon RX 9000 Series <https://www.amd.com/en/products/graphics/desktops/radeon.html#tabs-ff9c5c3863-item-37fb38a236-tab>`__
 
@@ -42,7 +42,7 @@
          :header:
 
       .. matrix-cell:: RDNA 4
-         :show-cond: gpu=ai-r9700s gpu=ai-r9700 gpu=ai-r9600d gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt-lp gpu=rx-9060-xt gpu=rx-9060
+         :show-cond: gpu=ai-r9700s gpu=ai-r9700 gpu=ai-r9600d gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt-lp gpu=rx-9060-xt gpu=rx-9060 gpu=rx-9050
 
       .. matrix-cell:: RDNA 3
          :show-cond: gpu=w7900-dual-slot gpu=w7900 gpu=w7800-48gb gpu=w7800 gpu=w7700 gpu=v710 gpu=rx-7900-xtx gpu=rx-7900-xt gpu=rx-7900-gre gpu=rx-7800-xt gpu=rx-7700-xt gpu=rx-7700 gpu=rx-7600
@@ -60,6 +60,9 @@
 
       .. matrix-cell:: gfx1200
          :show-cond: gpu=rx-9060 gpu=rx-9060-xt gpu=rx-9060-xt-lp
+
+      .. matrix-cell:: gfx1151
+         :show-cond: gpu=rx-9050
 
       .. matrix-cell:: gfx1100
          :show-cond: gpu=rx-7900-xtx gpu=rx-7900-xt gpu=rx-7900-gre gpu=w7900-dual-slot gpu=w7900 gpu=w7800-48gb gpu=w7800

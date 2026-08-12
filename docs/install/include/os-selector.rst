@@ -166,11 +166,11 @@
 
    .. selected:: fam=radeon
 
-      .. selected:: gfx=gfx1201 gfx=gfx1200
+      .. selected:: gfx=gfx1201 gfx=gfx1200 gfx=gfx1151
 
          .. selector:: Operating system
             :key: os
-            :show-cond: gpu=ai-r9700s gpu=ai-r9700 gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt gpu=rx-9060
+            :show-cond: gpu=ai-r9700s gpu=ai-r9700 gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt gpu=rx-9060 gpu=rx-9050
 
             .. selector-option:: Ubuntu
                :value: ubuntu
