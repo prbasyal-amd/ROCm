@@ -3,12 +3,15 @@
 These release notes summarize notable changes since the previous ROCm release. ROCm is built with [TheRock](https://github.com/ROCm/TheRock); for background, see the [transition guide](/about/transition-guide-TheRock).
 
 - [Release highlights](#release-highlights)
-- [Supported hardware, operating system, and virtualization changes](#supported-hardware-operating-system-and-virtualization-changes)
-- [User space, driver, and firmware dependent changes](#user-space-driver-and-firmware-dependent-changes)
-- [ROCm components versioning](#rocm-components)
-- [Detailed component changes](#detailed-component-changes)
+- [AMD hardware support](#amd-hardware-support)
+- [Operating system support](#operating-system-support)
+- [Installation updates](#installation-updates)
+- [Kernel driver and firmware bundle support](#kernel-driver-and-firmware-bundle-support)
+- [GPU virtualization support](#gpu-virtualization-support)
+- [GPU partitioning support](#gpu-partitioning-support)
+- [AI ecosystem support](#ai-ecosystem-support)
+- [ROCm Core SDK components](#rocm-core-sdk-components)
 - [ROCm known issues](#rocm-known-issues)
-- [ROCm resolved issues](#rocm-resolved-issues)
 - [ROCm upcoming changes](#rocm-upcoming-changes)
 
 ## Release highlights
