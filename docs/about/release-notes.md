@@ -1,6 +1,6 @@
 # ROCm Core SDK {{ ROCM_VERSION }} release notes
 
-These release notes summarize notable changes since the previous ROCm release. ROCm now uses [TheRock](https://github.com/ROCm/TheRock) as its build and release system. For more information, see the [transition guide](/about/transition-guide-TheRock).
+These release notes summarize notable changes since the previous ROCm release.
 
 - [Release highlights](#release-highlights)
 - [AMD hardware support](#amd-hardware-support)
@@ -13,6 +13,10 @@ These release notes summarize notable changes since the previous ROCm release. R
 - [ROCm Core SDK components](#rocm-core-sdk-components)
 - [ROCm known issues](#rocm-known-issues)
 - [ROCm upcoming changes](#rocm-upcoming-changes)
+
+```{note}
+Since ROCm 7.14, ROCm uses [TheRock](https://github.com/ROCm/TheRock) as its build and release system. For more information, see the [transition guide](/about/transition-guide-TheRock).
+```
 
 ## Release highlights
 
