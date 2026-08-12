@@ -149,7 +149,7 @@
       </td>
     </tr>
     <tr>
-      <td rowspan="2" class="stub">
+      <td rowspan="3" class="stub">
         <a href="https://www.amd.com/en/products/graphics/desktops/radeon.html#tabs-ff9c5c3863-item-37fb38a236-tab"
           target="_blank">AMD Radeon RX 9000 Series</a>
       </td>
@@ -176,6 +176,14 @@
       </td>
       <td>
         <p>gfx1200</p>
+      </td>
+    </tr>
+    <td>
+        <p><a href="https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html"
+            target="_blank">AMD Radeon RX 9050</a></p>
+      </td>
+      <td>
+        <p>gfx1151</p>
       </td>
     </tr>
     <tr>

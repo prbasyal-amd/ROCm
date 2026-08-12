@@ -1,68 +1,9 @@
-## Detailed component changes
-
-The following sections describe key changes to ROCm components.
-
-```{note}
-For a historical overview of ROCm component updates, see the {doc}`ROCm consolidated changelog </release/changelog>`.
-```
-
 ### **AMD SMI** (27.0.0)
-
-#### Added
-
-- **Added accelerator partition memory allocation mode API**.
-  - New APIs: `amdsmi_get_gpu_accelerator_partition_mem_alloc_mode()`, `amdsmi_set_gpu_accelerator_partition_mem_alloc_mode()`.
-  - New enum: `amdsmi_accelerator_partition_mem_alloc_mode_t` (`AMDSMI_ACCELERATOR_PARTITION_MEM_ALLOC_CAPPING`, `AMDSMI_ACCELERATOR_PARTITION_MEM_ALLOC_ALL`).
-  - Supersedes the equivalent `compute_partition` memory allocation mode APIs, which are now deprecated.
 
 #### Changed
 
 - **Bumped the library major version to 27.0.0** (breaking).
   - The shared library SONAME is now `libamd_smi.so.27`. Consumers linked against `libamd_smi.so.26` must relink; no source changes are required beyond the API changes listed elsewhere in this release.
-
-- **Widened five `amdsmi_gpu_metrics_t` accumulator counters from 32-bit to 64-bit** (breaking).
-  - `gfx_activity_acc`, `mem_activity_acc`, `pcie_nak_sent_count_acc`, `pcie_nak_rcvd_count_acc`, and `pcie_lc_perf_other_end_recovery` are now `uint64_t` to match the amdgpu pmfw metrics header. Recompile callers that read these fields; the struct layout and field offsets have changed.
-
-- **Aligned the fabric telemetry and NIC firmware API surface with the unified ABI** (breaking).
-  - `amdsmi_fabric_telem_id_to_string()` now returns `amdsmi_status_t` and writes the name through a `const char**` out-parameter, instead of returning a `const char*` directly.
-  - Renamed `amdsmi_nic_fw_t` to `amdsmi_nic_fw_entry_t`.
-  - Added the `amdsmi_fabric_type_t` enumerator `AMDSMI_FABRIC_TYPE_UALINK`; the previous spelling `AMDSMI_FABRIC_TYPE_UALLINK` is retained as a deprecated alias with the same value and is slated for removal in a future ROCm release.
-
-- **Flattened the `amdsmi_fabric_info_t` structure and removed `amdsmi_fabric_info_ver_t`**.
-  - The intermediate `amdsmi_fabric_info_ver_t` type was removed from the public header. Its payload union is now the `fabric_info` member of `amdsmi_fabric_info_t`, and its version field is exposed directly as the top-level `fabric_version` field.
-  - Field access simplifies from `fabric_info.fabric_version.v1.<field>` to `fabric_info.v1.<field>`, and `fabric_info.version` becomes `fabric_version`.
-  - The change is ABI-preserving: field offsets and the overall structure size are unchanged. The Python `amdsmi_get_gpu_fabric_info()` dictionary keys are also unchanged.
-
-- **Prefixed public preprocessor macros with `AMDSMI_` in `amdsmi.h`** (breaking).
-  - `MAX_SVI3_RAIL_INDEX`, `MAX_SVI3_RAIL_SELECTION`, `POWER_EFFICIENCY_MODE_4`, `POWER_EFFICIENCY_MODE_5`, and `MAX_NUMBER_OF_AFIDS_PER_RECORD` are now `AMDSMI_MAX_SVI3_RAIL_INDEX`, `AMDSMI_MAX_SVI3_RAIL_SELECTION`, `AMDSMI_POWER_EFFICIENCY_MODE_4`, `AMDSMI_POWER_EFFICIENCY_MODE_5`, and `AMDSMI_MAX_NUMBER_OF_AFIDS_PER_RECORD`. The unused `CENTRIGRADE_TO_MILLI_CENTIGRADE` macro was removed. Update references to the new names.
-
-- **Deprecated the `compute_partition` APIs in favor of `accelerator_partition` equivalents**.
-  - `amdsmi_get_gpu_compute_partition()`, `amdsmi_set_gpu_compute_partition()`, `amdsmi_get_gpu_compute_partition_mem_alloc_mode()`, and `amdsmi_set_gpu_compute_partition_mem_alloc_mode()` are slated for removal in a future ROCm release. They now emit a `DeprecationWarning` from the Python interface and delegate to their `accelerator_partition` counterparts.
-  - The `amdsmi_compute_partition_type_t` and `amdsmi_compute_partition_mem_alloc_mode_t` enums are deprecated in favor of `amdsmi_accelerator_partition_type_t` and `amdsmi_accelerator_partition_mem_alloc_mode_t`.
-
-- **Deprecated `amdsmi_set_gpu_memory_partition()` in favor of `amdsmi_set_gpu_memory_partition_mode()`**.
-  - `amdsmi_set_gpu_memory_partition` is slated for removal in a future ROCm release. It now emits a `DeprecationWarning` from the Python interface and functions as a wrapper of `amdsmi_set_gpu_memory_partition_mode()`.
-
-- **Namespaced `amdsmi_clk_limit_type_t` and `amdsmi_io_bw_encoding_t` enumerators with an `AMDSMI_` prefix**.
-  - Added `AMDSMI_CLK_LIMIT_MIN`/`AMDSMI_CLK_LIMIT_MAX` and `AMDSMI_AGG_BW0`/`AMDSMI_RD_BW0`/`AMDSMI_WR_BW0`.
-  - The unprefixed names (`CLK_LIMIT_MIN`, `CLK_LIMIT_MAX`, `AGG_BW0`, `RD_BW0`, `WR_BW0`) are retained as deprecated aliases with unchanged values and are slated for removal in a future ROCm release.
-
-- **Removed the `amdsmi_gpu_driver_reload()` API and its Python binding** (breaking).
-  - Reload the amdgpu driver out of band with `sudo modprobe -r amdgpu && sudo modprobe amdgpu` to apply memory partition changes instead.
-
-- **Removed unused public macros to match the unified ABI** (breaking).
-  - Dropped the `AMDSMI_MAX_VF_COUNT`, `AMDSMI_MAX_DRIVER_NUM`, `AMDSMI_DFC_FW_NUMBER_OF_ENTRIES`, `AMDSMI_MAX_WHITE_LIST_ELEMENTS`, `AMDSMI_MAX_BLACK_LIST_ELEMENTS`, `AMDSMI_MAX_TA_WHITE_LIST_ELEMENTS`, `AMDSMI_MAX_ERR_RECORDS`, `AMDSMI_MAX_PROFILE_COUNT`, and `AMDSMI_PF_INDEX` defines, which were unreferenced by any API or struct.
-
-- **Deduplicated the `amdsmi_fabric_telemetry_category_t` enumerators**.
-  - `AMDSMI_FABRIC_TELEMETRY_CATEGORY_INVALID` is now the canonical `0xFFFFFFFF` value; the previous `AMDSMI_FABRIC_TELEMETRY_CATEGORY_UNKNOWN` name (same value) is retained as a deprecated alias and is slated for removal in a future ROCm release.
-
-- **Deprecated `amdsmi_get_gpu_vram_vendor()`**. Use `amdsmi_get_gpu_vram_info()` and read the `vram_vendor` field instead. The function is retained (it now delegates to `amdsmi_get_gpu_vram_info()`, and the Python binding emits a `DeprecationWarning`) and is slated for removal in a future ROCm release.
-
-- **Removed `amdsmi_get_cpusocket_handles()` from the Python interface** (breaking). Use `amdsmi_get_cpu_handles()` instead.
-
-- **Removed the `plpds` key from `amdsmi_get_xgmi_plpd()` Python output** (breaking). Use the `policies` key instead.
-
-- **Removed `amdsmi_set_gpu_clk_range()`** (breaking). Use `amdsmi_set_gpu_clk_limit()` instead.
 
 - **Restructured AMD SMI C++ tests into unit and functional suites**.
   - The `amdsmitst` source tree now separates unit tests from hardware-backed functional tests under `tests/amd_smi_test/unit/` and `tests/amd_smi_test/functional/`.
@@ -102,14 +43,7 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 - **Fixed ctypes `DeprecationWarning` from `amdsmi_wrapper.py` on Python 3.14**.
   - Python 3.14 deprecates the implicit ctypes structure layout when `_pack_` is set (slated to become an error in 3.19). Each packed structure/union in the generated wrapper now sets `_layout_ = 'ms'`, preserving the existing MSVC-compatible layout (no ABI change) while silencing the warning.
 
-#### Upcoming Changes
-
-- **UUIDs will be replaced by CUIDs in an upcoming version**.
-  - UUIDs will soon be replaced with Component Unified IDs (CUIDs). These CUIDs will be consistent across various AMD tools and products so users will be able to definitively identify their devices regardless of what tool they're using.
-  - `amdsmi_get_gpu_device_cuid` has been added as an API for this upcoming change but will remain disabled until full support from the amdgpu driver is available.
-  - The CLI `list` output and GPU selection now report the CUID in place of the UUID when a CUID is available, and fall back to the UUID otherwise.
-
-### **HIP** (10.0.0)
+### **HIP** (7.15.0)
 
 #### Added
 * New HIP APIs
@@ -173,19 +107,6 @@ Copy operations at or below the 256-row threshold are unchanged.
 * Deprecated `HIPCUB_IS_INT128_ENABLED`, use `_CCCL_HAS_INT128()` instead.
 * Deprecated `hipcub::Equality`, `hipcub::Inequality`, `hipcub::InequalityWrapper`, `hipcub::Sum`, `hipcub::Difference`, `hipcub::Division`, `hipcub::Max` and `hipcub::Min` operators. Use `hip::std::equal_to`, `hip::std::not_equal_to`, `hip::std::plus`, `hip::std::minus`, `hip::std::divides`, `hip::maximum` and `hip:minimum` operators instead.
 
-### **hipFile** (0.4.0)
-
-#### Added
-
-* A KFD-based alternative check for P2P DMA support was added to `ais-check`. This inspects the `capability` property under `/sys/class/kfd/kfd/topology/nodes/*/properties`.
-* Added guides for setting up storage targets to the documentation
-
-#### Changed
-
-* `ais-check` now lists the AIS-capable file system mounts detected on the system and fails if none are found.
-* Fastpath-only tests are now automatically skipped on systems that do not support the AIS fastpath instead of failing. Running ctest in verbose mode (`ctest -V`) will provide the reason why the test was skipped.
-* Updated INSTALL.md to point to official install docs
-
 ### **hipSPARSE** (4.7.0)
 
 #### Added
@@ -206,9 +127,6 @@ Copy operations at or below the 256-row threshold are unchanged.
 * Per-batch `alpha` (scalar vector) API support for Level 1 `scal_batched`, `scal_strided_batched`, and their `_ex` forms through `rocblas_set_batch_alpha_stride` when `rocblas_handle` is in `rocblas_pointer_mode_device`.
 * Support custom build with CMake arguments `BUILD_WITH_HIPBLASLT_ONLY=ON` that bypasses legacy Tensile.
 
-#### Resolved issues
-* Fix for issue in `rocblas_gemm_batched_ex_get_solutions`. Starting in `rocBLAS 5.5.0` when using `hipBLASLt` backend it could provide sub-optimal solutions.
-
 #### Upcoming changes
 
 * Deprecated the `ROCBLAS_USE_HIPBLASLT_BATCHED` environment variable. It is no longer required to disable only batched use of hipBLASLt due to optimizations. This env control is planned for removal in a future release.
@@ -223,7 +141,6 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 * Fixed decode errors of some AVC interlaced container streams by adding support for the picture data packet from the demuxer which contains multiple pictures.
 * Corrected fake CTest passes.
-* Resolved vendored libva link issue in samples without extra env vars.
 
 ### **rocFFT** (1.0.39)
 
@@ -322,12 +239,10 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 #### Added
 
-- Dumping core of AMD GPU programs with the "gcore" command is now
-  significantly faster, particularly for kernels that use small
-  amounts of VRAM.
-- New "catch hiperr" command that stops the inferior when a HIP API
-  call returns an error.  The convenience variable `$_hiperr` holds
-  the error code at the catchpoint.
+- The "catch hiperr" feature is now exposed to MI too, with a new
+  `-catch-hiperr` command and related fields in `*stopped` records.
+  See the "HIP Runtime Error" subsection of the "GDB/MI Catchpoint
+  Commands" section in the ROCgdb manual.
 
 ### **ROCm Systems Profiler** (1.8.0)
 
@@ -397,64 +312,11 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 * Combined and simplified separate assertion templates using `std::is_floating_point`, `rocprim::half`, and `rocprim::bfloat16` to use `rocprim::is_floating_point`
 
-### **ROCprofiler-SDK** (1.3.5)
-
-#### Added
-
-**API:**
-
-  - Streaming Performance Monitor (SPM) counter collection support (beta):
-    - New experimental API in `rocprofiler-sdk/experimental/spm.h`:
-    - GPU-timestamped counter values alongside kernel dispatch information.
-  - Added `spm_support` along with reserved padding to `rocprofiler_counter_info_v1_t`
-
-**rocprofv3 (CLI):**
-
-  - SPM counter collection support in `rocprofv3` (beta):
-    - `--spm <counter>` flag to specify counters for SPM collection.
-    - `--spm-sample-interval` and `--spm-sample-interval-unit` parameters to configure sampling rate.
-    - `--spm-beta-enabled` flag to opt in to the beta SPM feature.
-    - `--spm-config` option in `rocprofv3-avail` to list available SPM configurations.
-  - JSON and rocpd output format support for SPM.
-  - OpenMP (OMPT) tracing via the new `--ompt-trace` flag:
-    - Accepts a bare boolean or category list (`all, thread, parallel, task, sync, mutex, target, device, error`); also folded into `--sys-trace`/`--runtime-trace`.
-    - rocpd-only trace: records go to the rocpd database (auto-added when another format is requested) and export via `rocpd convert`.
-
-**Documentation:**
-
-  - SPM API reference guide (`api-reference/spm.rst`).
-  - SPM usage guide for `rocprofv3` (`how-to/using-spm.rst`).
-  - `--spm-config` documentation to `rocprofv3-avail` usage guide.
-
-#### Changed
-- Bump rocpd schema to version 3.0.1 which supports NIC agent types.
-- Bump rocpd schema to version 3.0.2 for HIP graph per-node attribution (`graph_exec_id`/`graph_node_id` columns on `rocpd_kernel_dispatch`/`rocpd_memory_copy` and the new `rocpd_graph_launch` table). The pre-graph-attribution 3.0.1 schema is now frozen under `versions/3.0.1/` per the rocpd schema versioning scheme.
-- Bump rocpd schema to version 3.0.3 for SPM support. The pre-spm-support 3.0.2 schema is now frozen under `versions/3.0.2/` per the rocpd schema versioning scheme.
-
 ### **rocRAND** (4.5.0)
 
 #### Removed
 
 * Removed `h_scrambled_sobol(32|64)_constants`, `rocrand_h_scrambled_sobol(32|64)_direction_vectors`, `rocrand_h_sobol(32|64)_direction_vectors` from public namespace.
-
-### **rocSOLVER** (3.36.0)
-
-#### Added
-
-* 64-bit APIs for the symmetric/Hermitian eigensolvers
-    * SYEV_64 and HEEV_64 (with batched and strided\_batched versions)
-    * SYEVD_64 and HEEVD_64 (with batched and strided\_batched versions)
-* Support added for the gfx1250 architecture.
-
-#### Changed
-
-* Clarified the `geblttrf_npvt` API documentation to accurately describe the in-place LU block-factorization storage.
-
-#### Known issues
-
-* The 64-bit eigensolver APIs (SYEV_64, HEEV_64, SYEVD_64, HEEVD_64) require the matrix
-  dimensions `n` and `lda` to fit within a 32-bit integer, because their internal tridiagonal
-  reduction and back-transformation steps remain 32-bit.
 
 ### **rocSPARSE** (5.0.0)
 
@@ -472,8 +334,8 @@ Copy operations at or below the 256-row threshold are unchanged.
 #### Removed
 * The deprecated `rocsparse_indextype_u16` enum.
 
-#### Upcoming changes
-* Deprecated the `rocsparse_spildlt0_input_diag` enum value. It was used to dump the diagonal `D` of the ILDLT(0) factorization, which is now stored in-place on the diagonal entries of the `L` factor. It will be removed in a future release.
+#### Deprecated
+* Deprecated the `rocsparse_spildlt0_input_diag` enum value. It was used to dump the diagonal `D` of the ILDLT(0) factorization, which is now stored in-place on the diagonal entries of the `L` factor.
 
 ### **rocThrust** (5.0.0)
 
