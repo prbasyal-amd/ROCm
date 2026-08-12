@@ -143,7 +143,7 @@
       <td>
         <p>gfx1201</p>
       </td>
-      <td rowspan="3">
+      <td rowspan="4">
         <a href="https://www.amd.com/en/technologies/rdna.html#tabs-1fabb91c39-item-330ee548f0-tab" target="_blank">RDNA
           4</a>
       </td>
