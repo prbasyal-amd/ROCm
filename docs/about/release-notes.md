@@ -1,17 +1,19 @@
 # ROCm Core SDK {{ ROCM_VERSION }} release notes
 
-ROCm Core SDK {{ ROCM_VERSION }} transitions ROCm to [TheRock](https://github.com/ROCm/TheRock), a build and release system that introduces a modular architecture to improve flexibility, maintainability, and alignment with community use cases:
+These release notes summarize notable changes since the previous ROCm release. ROCm is built with [TheRock](https://github.com/ROCm/TheRock); for background, see the [transition guide](/about/transition-guide-TheRock).
 
-* **Leaner core**: The Core SDK focuses on essential runtime and development components.
-* **Use case-specific expansions**: Optional domain-specific SDKs for AI, data science, and HPC.
-* **Modular installation**: Install only the components required for your workflow.
+- [Release highlights](#release-highlights)
+- [Supported hardware, operating system, and virtualization changes](#supported-hardware-operating-system-and-virtualization-changes)
+- [User space, driver, and firmware dependent changes](#user-space-driver-and-firmware-dependent-changes)
+- [ROCm components versioning](#rocm-components)
+- [Detailed component changes](#detailed-component-changes)
+- [ROCm known issues](#rocm-known-issues)
+- [ROCm resolved issues](#rocm-resolved-issues)
+- [ROCm upcoming changes](#rocm-upcoming-changes)
 
-This approach streamlines installation, reduces footprint, and accelerates innovation through independently released packages. To learn more, see the [transition guide](/about/transition-guide-TheRock).
-
-(preview-stream-note)=
-:::{note}
-ROCm {{ ROCM_VERSION }} follows the [versioning discontinuity that began with the 7.9.0 preview](https://rocm.docs.amd.com/en/7.9.0-preview/about/release-notes.html#preview-stream-note) release.
-:::
+```{note}
+If you're using AMD Radeon GPUs or Ryzen APUs in a workstation setting with a display connected, see the [Use ROCm on Radeon and Ryzen](https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/index.html) documentation to verify compatibility and system requirements.
+```
 
 ## Release highlights
 
