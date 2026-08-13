@@ -91,13 +91,9 @@ and improving execution efficiency.
 
 HIP `cooperative_groups` library adds `cooperative_groups::inclusive_scan` and `cooperative_groups::exclusive_scan` scan APIs in parity with CUDA. Both accept any cooperative group type and an optional custom binary operator, defaulting to summation when none is given.
 
-##### HIP API additions for CUDA parity
+##### HIP API addition for CUDA parity
 
-The following new HIP APIs have been added to the Stream Ordered Memory Allocator group:
-
-* `hipMemGetDefaultMemPool`: Gets the default memory pool for a device.
-* `hipMemGetMemPool`: Gets the current memory pool for a device.
-* `hipMemSetMemPool`: Sets the current memory pool for a device.
+HIP adds `hipMemGetDefaultMemPool`, which returns the default memory pool for a given memory location and allocation type.
 
 For more information, see the [HIP section](#hip-10-0-0) in the ROCm component changelogs.
 
