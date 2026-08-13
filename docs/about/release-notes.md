@@ -78,7 +78,7 @@ The following are notable enhancements to HIP:
 
 ##### HIP Record and Replay (HRR) support
 
-HIP Record and Replay (HRR) captures HIP API calls made by an application and stores them in a binary archive (`.hrr`). The recorded workload can then be replayed on a GPU, reproducing application behavior, including multi-threaded execution, graph launches, and GPU memory transfers. This capability enables efficient bug reproduction, performance regression testing, and kernel benchmarking without requiring access to the original application.
+HIP Record and Replay (HRR) captures HIP API calls made by an application and stores them in a binary archive (`.hrr`). The recorded workload can then be replayed on a GPU, reproducing application behavior, including multi-threaded execution, graph launches, and GPU memory transfers. This capability enables efficient bug reproduction, performance regression testing, and kernel benchmarking without requiring access to the original application. For more details, see [HIP Record & Replay](https://rocm.docs.amd.com/projects/HIP/en/develop/how-to/debugging.html#hip-record-replay).
 
 ##### Improved HIP performance
 
