@@ -91,6 +91,14 @@ and improving execution efficiency.
 
 HIP `cooperative_groups` library adds `cooperative_groups::inclusive_scan` and `cooperative_groups::exclusive_scan` scan APIs in parity with CUDA. Both accept any cooperative group type and an optional custom binary operator, defaulting to summation when none is given.
 
+##### HIP API additions for CUDA parity
+
+The following new HIP APIs have been added to the Stream Ordered Memory Allocator group:
+
+* `hipMemGetDefaultMemPool`: Gets the default memory pool for a device.
+* `hipMemGetMemPool`: Gets the current memory pool for a device.
+* `hipMemSetMemPool`: Sets the current memory pool for a device.
+
 For more information, see the [HIP section](#hip-10-0-0) in the ROCm component changelogs.
 
 #### ROCprofiler-SDK feature highlights
@@ -205,7 +213,7 @@ For more information, see the [hipBLASLt documentation](https://rocm.docs.amd.co
 
 #### rocPRIM adds parallel top-K algorithms
 
-rocPRIM adds `rocprim::device_topk` and `rocprim::device_segmented_topk`, parallel device-level algorithms that find the largest or smallest K elements from an input array or from segmented groups, respectively. This feature is enabled via the, add the `-DROCPRIM_ENABLE_TOPK=ON` CMake build option. The default variant is hipGraph-compatible; a stable-ordering variant is also available for callers that need guaranteed ordering.
+rocPRIM adds `rocprim::device_topk` and `rocprim::device_segmented_topk`, parallel device-level algorithms that find the largest or smallest K elements from an input array or from segmented groups, respectively. To enable this feature, add the `-DROCPRIM_ENABLE_TOPK=ON` CMake build option. The default variant is hipGraph-compatible; a stable-ordering variant is also available for callers that need guaranteed ordering.
 
 #### rocFFT supports multi-GPU RCCL backend
 
