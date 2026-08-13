@@ -107,6 +107,19 @@ Copy operations at or below the 256-row threshold are unchanged.
 * Deprecated `HIPCUB_IS_INT128_ENABLED`, use `_CCCL_HAS_INT128()` instead.
 * Deprecated `hipcub::Equality`, `hipcub::Inequality`, `hipcub::InequalityWrapper`, `hipcub::Sum`, `hipcub::Difference`, `hipcub::Division`, `hipcub::Max` and `hipcub::Min` operators. Use `hip::std::equal_to`, `hip::std::not_equal_to`, `hip::std::plus`, `hip::std::minus`, `hip::std::divides`, `hip::maximum` and `hip:minimum` operators instead.
 
+### **hipFile** (0.4.0)
+
+### Added
+
+* A KFD-based alternative check for P2P DMA support was added to `ais-check`. This inspects the `capability` property under `/sys/class/kfd/kfd/topology/nodes/*/properties`.
+* Guides for setting up storage targets to the documentation.
+
+### Changed
+
+* `ais-check` now lists the AIS-capable file system mounts detected on the system and fails if none are found.
+* Fastpath-only tests are now automatically skipped on systems that do not support the AIS fastpath instead of failing. Running ctest in verbose mode (`ctest -V`) will provide the reason why the test was skipped.
+* Updated INSTALL.md to point to official install docs.
+
 ### **hipSPARSE** (4.7.0)
 
 #### Added
@@ -144,6 +157,15 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 ### **rocFFT** (1.0.39)
 
+#### Added
+
+* Added optional RCCL (ROCm Collective Communications Library) backend for single-node multi-GPU communication, enabled via `-DROCFFT_RCCL_ENABLE=ON`.
+
+#### Changed
+
+* Relaxed the usage requirements for `rocfft_setup` and `rocfft_cleanup`.
+* Removed the ROCFFT_RTC_PROCESS_HELPER debug environment variable.
+
 #### Optimized
 
 * Improved performance of unit-strided, interleaved, real-to-complex FFTs on gfx1201, gfx90a, gfx942, and gfx950 for the following lengths:
@@ -165,15 +187,6 @@ Copy operations at or below the 256-row threshold are unchanged.
   * (224,104,104)
   * (224,108,104)
   * (224,108,108)
-
-#### Added
-
-* Added optional RCCL (ROCm Collective Communications Library) backend for single-node multi-GPU communication, enabled via `-DROCFFT_RCCL_ENABLE=ON`.
-
-#### Changed
-
-* Relaxed the usage requirements for `rocfft_setup` and `rocfft_cleanup`.
-* Removed the ROCFFT_RTC_PROCESS_HELPER debug environment variable.
 
 #### Resolved issues
 
