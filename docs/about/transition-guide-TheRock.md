@@ -61,7 +61,7 @@ ROCm Core SDK is available in the following distribution formats.
     <tr>
       <td><strong>Tarball archives</strong></td>
       <td>
-        Self-contained install that requires neither root nor a package manager, suited to containers and HPC module systems. Archives follow the naming convention <code>therock-dist-linux-{FAMILY}-{VERSION}.tar.gz</code> (for example, <code>therock-dist-linux-gfx110X-all-{VERSION}.tar.gz</code>). For the <code>{FAMILY}</code> value for your GPU, see <a href="#architecture-specific-packages">Architecture-specific packages available in ROCm 10.0.0</a>.<br><br>
+        Self-contained install that requires neither root nor a package manager, suited to HPC module systems and custom install locations. Archives follow the naming convention <code>therock-dist-linux-{FAMILY}-{VERSION}.tar.gz</code> (for example, <code>therock-dist-linux-gfx110X-all-{VERSION}.tar.gz</code>). For the <code>{FAMILY}</code> value for your GPU, see <a href="#architecture-specific-packages">Architecture-specific packages available in ROCm 10.0.0</a>.<br><br>
         Extract to any directory, then set <code>PATH</code>, <code>LD_LIBRARY_PATH</code>, and <code>ROCM_PATH</code> to point to the extracted location (default: <code>/opt/rocm/core</code>). Tarballs don't create symlinks or resolve dependencies.<br><br>
         Available from <code>repo.amd.com</code>.
       </td>
