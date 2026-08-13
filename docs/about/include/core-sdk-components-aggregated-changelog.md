@@ -109,12 +109,12 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 ### **hipFile** (0.4.0)
 
-### Added
+#### Added
 
 * A KFD-based alternative check for P2P DMA support was added to `ais-check`. This inspects the `capability` property under `/sys/class/kfd/kfd/topology/nodes/*/properties`.
 * Guides for setting up storage targets to the documentation.
 
-### Changed
+#### Changed
 
 * `ais-check` now lists the AIS-capable file system mounts detected on the system and fails if none are found.
 * Fastpath-only tests are now automatically skipped on systems that do not support the AIS fastpath instead of failing. Running ctest in verbose mode (`ctest -V`) will provide the reason why the test was skipped.
@@ -330,6 +330,55 @@ Copy operations at or below the 256-row threshold are unchanged.
 #### Removed
 
 * Removed `h_scrambled_sobol(32|64)_constants`, `rocrand_h_scrambled_sobol(32|64)_direction_vectors`, `rocrand_h_sobol(32|64)_direction_vectors` from public namespace.
+
+### **rocSHMEM** (3.6.0)
+
+#### Added
+
+* New APIs:
+   * `rocshmem_broadcast_wave`
+   * `rocshmem_fcollect_wave`
+   * `rocshmem_alltoall_wave`
+   * `rocshmem_reduce_wave`
+   * `rocshmem_reducescatter_wave`
+* Support for some tile-granular collectives for the IPC backend:
+   * `rocshmem_tile_broadcast`
+   * `rocshmem_tile_broadcast_wave`
+   * `rocshmem_tile_broadcast_wg`
+   * `rocshmem_ctx_tile_broadcast`
+   * `rocshmem_ctx_tile_broadcast_wave`
+   * `rocshmem_ctx_tile_broadcast_wg`
+   * `rocshmem_tile_allgather`
+   * `rocshmem_tile_allgather_wave`
+   * `rocshmem_tile_allgather_wg`
+   * `rocshmem_ctx_tile_allgather`
+   * `rocshmem_ctx_tile_allgather_wave`
+   * `rocshmem_ctx_tile_allgather_wg`
+* Single node support for gfx1250 / MI455X
+* Support for HIP Fabric Handles
+
+### Changed
+
+* Drop LLC dependency when compiling HSCO objects
+
+### **rocSOLVER** (3.36.0)
+
+#### Added
+
+* 64-bit APIs for the symmetric/Hermitian eigensolvers
+    * SYEV_64 and HEEV_64 (with batched and strided\_batched versions)
+    * SYEVD_64 and HEEVD_64 (with batched and strided\_batched versions)
+* Support added for the gfx1250 architecture.
+
+#### Changed
+
+* Clarified the `geblttrf_npvt` API documentation to accurately describe the in-place LU block-factorization storage.
+
+#### Known issues
+
+* The 64-bit eigensolver APIs (SYEV_64, HEEV_64, SYEVD_64, HEEVD_64) require the matrix
+  dimensions `n` and `lda` to fit within a 32-bit integer, because their internal tridiagonal
+  reduction and back-transformation steps remain 32-bit.
 
 ### **rocSPARSE** (5.0.0)
 
