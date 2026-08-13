@@ -186,8 +186,8 @@ corresponding legacy packages.
 
 Packages are offered in the following variants:
 
-- **For all supported GPUs** -- works across all GPUs supported by ROCm (for example, `apt install amdrocm-core-sdk7.14`).
-- **For a specific GPU architecture** -- smaller install size, but requires you to know the GPU installed in your system (for example, `apt install amdrocm-core-sdk7.14-gfx110x`).
+- **For all supported GPUs** -- works across all GPUs supported by ROCm (for example, `apt install amdrocm-core-sdk10.0`).
+- **For a specific GPU architecture** -- smaller install size, but requires you to know the GPU installed in your system (for example, `apt install amdrocm-core-sdk10.0-gfx110x`).
 
 Installing all GPU architectures is not required. You can install packages for a specific architecture, multiple architectures side by side, or all supported GPU architectures.
 
