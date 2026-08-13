@@ -56,7 +56,7 @@ ROCm Core SDK is available in the following distribution formats.
   <tbody>
     <tr>
       <td><strong>DEB / RPM packages</strong></td>
-      <td>System-wide install through your package manager (<code>apt</code>, <code>dnf</code>, or <code>yum</code>). Recommended for most users. Available from <code>repo.amd.com</code>.</td>
+      <td>System-wide install through your package manager (<code>apt</code>, <code>dnf</code>, or <code>yum</code>). The most familiar install path on a managed Linux system. Available from <code>repo.amd.com</code>.</td>
     </tr>
     <tr>
       <td><strong>Tarball archives</strong></td>
@@ -86,7 +86,7 @@ ROCm Core SDK is available in the following distribution formats.
 | If you need… | Use |
 |---|---|
 | Automatic updates and dependency tracking on bare metal | **DEB / RPM packages** |
-| A non-root install, multiple ROCm versions side by side, or container images | **Tarball** |
+| A non-root install or multiple ROCm versions side by side | **Tarball** |
 | Only the Python interface to GPU-accelerated libraries in a virtual environment | **Wheel** |
 | A guided install without a package manager | **Runfile** |
 
