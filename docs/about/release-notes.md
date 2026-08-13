@@ -76,6 +76,24 @@ This release improves ROCm developer workflows with new HIP APIs, expanded profi
 
 The following are notable enhancements to HIP:
 
+##### HIP Record and Replay (HRR) support
+
+HIP Record and Replay (HRR) captures HIP API calls made by an application and stores them in a binary archive (`.hrr`). The recorded workload can then be replayed on a GPU, reproducing application behavior, including multi-threaded execution, graph launches, and GPU memory transfers. This capability enables efficient bug reproduction, performance regression testing, and kernel benchmarking without requiring access to the original application. For more details, see [HIP Record & Replay](https://rocm.docs.amd.com/projects/HIP/en/develop/how-to/debugging.html#hip-record-replay).
+
+##### Improved HIP performance
+
+Improved `hipEventRecord` performance by using the `hipEventDisableTiming` flag to avoid
+unnecessary profiling when timing information is not required. Event operations are
+now coalesced to eliminate redundant barrier submissions, reducing runtime overhead
+and improving execution efficiency.
+
+##### HIP cooperative groups exclusive and inclusive scan support
+
+HIP `cooperative_groups` library adds `cooperative_groups::inclusive_scan` and `cooperative_groups::exclusive_scan` scan APIs in parity with CUDA. Both accept any cooperative group type and an optional custom binary operator, defaulting to summation when none is given.
+
+##### HIP API addition for CUDA parity
+
+HIP adds `hipMemGetDefaultMemPool`, which returns the default memory pool for a given memory location and allocation type.
 
 For more information, see the [HIP section](#hip-10-0-0) in the ROCm component changelogs.
 
@@ -188,6 +206,39 @@ This release updates ROCm math, sparse compute, and communication libraries with
 The GEMM Kernel Optimizer (GEKO) is now available as a command-line tool within hipBLASLt. It lets you tune GEMM kernels for your workloads locally, without sharing confidential model or workload data with AMD. GEKO automates the full tuning workflow, from workload analysis to a final optimized library. It uses Ductile, which replaces exhaustive search for faster tuning. It targets AMD Instinct MI350 Series GPUs (CDNA 4 architecture).
 
 For more information, see the [hipBLASLt documentation](https://rocm.docs.amd.com/projects/hipBLASLt/en/latest/index.html).
+
+#### rocPRIM adds parallel top-K algorithms
+
+rocPRIM adds `rocprim::device_topk` and `rocprim::device_segmented_topk`, parallel device-level algorithms that find the largest or smallest K elements from an input array or from segmented groups, respectively. To enable this feature, add the `-DROCPRIM_ENABLE_TOPK=ON` CMake build option. The default variant is hipGraph-compatible; a stable-ordering variant is also available for callers that need guaranteed ordering.
+
+#### rocFFT supports multi-GPU RCCL backend
+
+rocFFT adds an optional RCCL backend for single-node, multi-GPU FFT communication within a single process, enabled via the `-DROCFFT_RCCL_ENABLE=ON` CMake build option. RCCL's GPU topology-awareness targets help improve communication performance over rocFFT's existing memory-copy-based transport in this configuration.
+
+#### hipSPARSE and rocSPARSE feature highlights
+
+The following are notable enhancements to hipSPARSE and rocSPARSE:
+
+##### rocSPARSE and hipSPARSE add Blocked ELL format support
+
+rocSPARSE and hipSPARSE now support Blocked ELL format in their dense-to-sparse conversion routines,`rocsparse_dense_to_sparse` and `hipsparseDenseToSparse`. Each library adds a companion pointer-setter function, `rocsparse_bell_set_pointers` and `hipsparseBlockedEllSetPointers` respectively, to configure the Blocked ELL array pointers.
+
+##### CSC format support for sparse triangular solves in rocSPARSE and hipSPARSE
+
+rocSPARSE and hipSPARSE sparse triangular solve routines now accept matrices in Compressed Sparse Column (CSC) format directly, removing the need to convert to Compressed Sparse Row (CSR) first. CSC support extends to `rocsparse_spsv/rocsparse_sptrsv` and `rocsparse_spsm/rocsparse_sptrsm` in rocSPARSE, and to `hipsparseSpSV` and `hipsparseSpS` in hipSPARSE.
+
+##### rocSPARSE removes rocsparse_indextype_u16 index type
+
+The `rocsparse_indextype_u16` field of the `rocsparse_indextype` enumerator is now removed; and only `rocsparse_indextype_i32` and `rocsparse_indextype_i64` remain. `rocsparse_indextype_u16` was deprecated in ROCm 7.14.0; code that still references it will now fail to compile.
+
+##### rocSPARSE improves default SpMM algorithm selection
+
+rocSPARSE's default `rocsparse_spmm` algorithm now switches to a nnz-split kernel for strongly skewed CSR/CSC matrices  (a single very long row or column). This avoids the throughput loss the previous row-split default caused on such matrices. Non-skewed matrices and explicitly chosen algorithms are unaffected.
+
+##### hipSPARSE adds the SpMV nnz-split algorithm
+
+hipSPARSE adds the `HIPSPARSE_SPMV_CSR_ALG3` algorithm to `hipsparseSpMV`, exposing the rocSPARSE's analysis-free `nnz-split` CSR algorithm (`rocsparse_spmv_alg_csr_nnzsplit`) for sparse matrix-vector multiplication. The algorithm distributes work across threads based on the number of non-zero entries per row and requires no preliminary analysis step before execution.
+
 
 (release-supported-hw)=
 
