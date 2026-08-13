@@ -40,9 +40,55 @@ The [ROCm Core SDK](https://rocm.docs.amd.com/en/latest/index.html#rocm-core-sdk
 For installations using your
 Linux distribution's package manager, the `amdrocm` meta package configures
 `update-alternatives` and provides backward-compatible symlinks for
-`/opt/rocm/bin`, `/opt/rocm/lib`, and other `/opt/rocm/` directories. For
-tarball installs, update `PATH`, `LD_LIBRARY_PATH`, `ROCM_PATH`, or other
-environment variables to reflect the new installation path (`/opt/rocm/core`).
+`/opt/rocm/bin`, `/opt/rocm/lib`, and other `/opt/rocm/` directories.
+
+## Installation formats
+
+ROCm Core SDK is available in the following distribution formats.
+
+<table class="rocm-docs-table table">
+  <thead>
+    <tr>
+      <th class="head">Format</th>
+      <th class="head">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>DEB / RPM packages</strong></td>
+      <td>System-wide install through your package manager (<code>apt</code>, <code>dnf</code>, or <code>yum</code>). Recommended for most users. Available from <code>repo.amd.com</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Tarball archives</strong></td>
+      <td>
+        Self-contained install that requires neither root nor a package manager, suited to containers and HPC module systems. Archives follow the naming convention <code>therock-dist-linux-{FAMILY}-{VERSION}.tar.gz</code> (for example, <code>therock-dist-linux-gfx110X-all-{VERSION}.tar.gz</code>). For the <code>{FAMILY}</code> value for your GPU, see <a href="#architecture-specific-packages">Architecture-specific packages available in ROCm 10.0.0</a>.<br><br>
+        Extract to any directory, then set <code>PATH</code>, <code>LD_LIBRARY_PATH</code>, and <code>ROCM_PATH</code> to point to the extracted location (default: <code>/opt/rocm/core</code>). Tarballs don't create symlinks or resolve dependencies.<br><br>
+        Available from <code>repo.amd.com</code>.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Python wheels</strong></td>
+      <td>
+        Install ROCm libraries directly into a virtual environment with <code>pip</code>, for Python-only workflows. Use the ROCm Python package index:<br><br>
+        <code>python -m pip install --index-url &lt;ROCm-package-index&gt; "rocm[libraries,devel]"</code><br><br>
+        Framework wheels such as PyTorch, JAX, and vLLM are distributed separately.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Runfile installer</strong></td>
+      <td>Single-file guided installer with interactive and silent modes. Supports a custom install directory, automatic GPU detection, and optional driver installation. Use it when you want neither a package manager nor manual tarball extraction.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Choosing a format
+
+| If you need… | Use |
+|---|---|
+| Automatic updates and dependency tracking on bare metal | **DEB / RPM packages** |
+| A non-root install, multiple ROCm versions side by side, or container images | **Tarball** |
+| Only the Python interface to GPU-accelerated libraries in a virtual environment | **Wheel** |
+| A guided install without a package manager | **Runfile** |
 
 ## Software packages
 
@@ -191,15 +237,20 @@ Packages are offered in the following variants:
 
 Installing all GPU architectures is not required. You can install packages for a specific architecture, multiple architectures side by side, or all supported GPU architectures.
 
-When redistributing software built on the ROCm Core SDK (for example, via containers), we recommend the all GPU package variant for broad hardware support. If disk footprint is a concern, you can use a single GPU architecture package variant instead.
+When redistributing software built on the ROCm Core SDK (for example, in container images), choose the all-architecture variant for broad hardware support. If disk footprint is a concern, use a single-architecture variant instead.
+
+(architecture-specific-packages)=
 
 ### Architecture-specific packages available in ROCm 10.0.0
+
+Tarball archives use *family* names that differ from the deb/rpm package suffixes. The **Tarball family name** column maps each package suffix to its corresponding tarball family.
 
 <table class="rocm-docs-table table">
   <thead>
     <tr>
       <th class="head">Architecture Family</th>
       <th class="head">Package Suffix</th>
+      <th class="head">Tarball family name</th>
       <th class="head">Product Name (Not Exhaustive)</th>
     </tr>
   </thead>
@@ -207,41 +258,49 @@ When redistributing software built on the ROCm Core SDK (for example, via contai
     <tr>
       <td>CDNA4</td>
       <td>-gfx950</td>
+      <td>gfx950-dcgpu</td>
       <td>AMD Instinct MI355X / MI350X</td>
     </tr>
     <tr>
       <td>CDNA3</td>
       <td>-gfx94x</td>
+      <td>gfx94X-dcgpu</td>
       <td>AMD Instinct MI325X / MI300X / MI300A</td>
     </tr>
     <tr>
       <td>CDNA2</td>
       <td>-gfx90a</td>
+      <td>gfx90a</td>
       <td>AMD Instinct MI250X / MI250 / MI210</td>
     </tr>
     <tr>
       <td>CDNA</td>
       <td>-gfx908</td>
+      <td>—</td>
       <td>AMD Instinct MI100</td>
     </tr>
     <tr>
       <td>RDNA4</td>
       <td>-gfx120x</td>
+      <td>gfx120X-all</td>
       <td>AMD Radeon RX 9070 / AMD Radeon RX 9060 / AMD Radeon RX 9070 XT / AMD Radeon RX 9060 XT / AMD Radeon RX 9070 GRE / AMD Radeon AI PRO R9700S / AMD Radeon AI PRO R9700 / AMD Radeon AI PRO R9600D / AMD Radeon RX 9060 XT LP</td>
     </tr>
     <tr>
       <td>RDNA3.5</td>
       <td>-gfx1150<br>-gfx1151<br>-gfx1152</td>
+      <td>—</td>
       <td>AMD Ryzen AI 9 465 / AMD Ryzen AI 9 365 / AMD Ryzen AI 9 HX 475 / AMD Ryzen AI 9 HX 470 / AMD Ryzen AI 9 HX 375 / AMD Ryzen AI 9 HX 370 / AMD Ryzen AI 9 PRO 465 / AMD Ryzen AI 9 PRO HX 475 / AMD Ryzen AI 9 PRO HX 470 / AMD Ryzen AI 9 HX PRO 375 / AMD Ryzen AI 9 HX PRO 370 / AMD Ryzen AI Max 390 / AMD Ryzen AI Max 385 / AMD Ryzen AI Max+ 395 / AMD Ryzen AI Max+ 392 / AMD Ryzen AI Max+ 388 / AMD Ryzen AI Max PRO 390 / AMD Ryzen AI Max PRO 385 / AMD Ryzen AI Max PRO 380 / AMD Ryzen AI Max+ PRO 395 / AMD Ryzen AI 7 450 / AMD Ryzen AI 7 350 / AMD Ryzen AI 7 345 / AMD Ryzen AI 5 340 / AMD Ryzen AI 5 330 / AMD Ryzen AI 7 PRO 450 / AMD Ryzen AI 5 PRO 440 / AMD Ryzen AI 7 PRO 350 / AMD Ryzen AI 5 PRO 340</td>
     </tr>
     <tr>
       <td>RDNA3</td>
       <td>-gfx110x</td>
+      <td>gfx110X-all</td>
       <td>AMD Radeon RX 7700 / AMD Radeon RX 7600 / AMD Radeon PRO V710 / AMD Radeon PRO W7900 / AMD Radeon PRO W7800 / AMD Radeon PRO W7700 / AMD Radeon RX 7900 XT / AMD Radeon RX 7800 XT / AMD Radeon RX 7700 XT / AMD Radeon RX 7700 XE / AMD Radeon RX 7900 XTX / AMD Radeon RX 7900 GRE / AMD Radeon PRO W7800 48GB / AMD Radeon PRO W7900 Dual Slot</td>
     </tr>
     <tr>
       <td>RDNA2</td>
       <td>-gfx1030</td>
+      <td>—</td>
       <td>AMD Radeon PRO V620 / AMD Radeon PRO W6800</td>
     </tr>
   </tbody>
