@@ -1,0 +1,237 @@
+{#
+  Template: system-instinct.rst.jinja
+  Renders the AMD Instinct system requirements matrix.
+  Output: RST with matrix/matrix-row/matrix-cell directives.
+
+  Primary data: gpus.yaml (passed as `data` by the caller)
+  Secondary data:
+    - os-support.yaml (loaded via load())
+    - driver-firmware-support.yaml (loaded via load())
+
+  To update GPU properties: edit gpus.yaml.
+  To update OS support:     edit os-support.yaml.
+  To update driver/firmware: edit driver-firmware-support.yaml.
+
+  Fingerprint grouping: GPUs sharing the same value for a field are grouped
+  into one .. matrix-cell:: with a combined :show-cond:. This allows adding
+  or removing GPUs from data without touching the template.
+#}
+{%- set os_data  = load("/data/os-support.yaml") -%}
+{%- set drv_data = load("/data/driver-firmware-support.yaml") -%}
+{%- set instinct_gpus = data["AMD Instinct"] -%}
+{%- set instinct_os   = os_data["AMD Instinct"] -%}
+{%- set instinct_drv  = drv_data["AMD Instinct"] -%}
+
+{#-- slugify: "AMD Instinct MI355X" -> "amd-instinct-mi355x" --#}
+{%- macro slugify(name) -%}
+{{- name | lower | replace("+", "") | replace("  ", " ") | replace(" ", "-") -}}
+{%- endmacro -%}
+
+{#--
+  show_cond(gpu_names)
+  Returns "gpu=slug1 gpu=slug2 ..." for a list of GPU names.
+--#}
+{%- macro show_cond(gpu_names) -%}
+{%- for name in gpu_names %}gpu={{ slugify(name) }} {% endfor -%}
+{%- endmacro -%}
+
+{#--
+  Build GPU name list in yaml order (preserves column ordering).
+--#}
+{%- set gpu_names = instinct_gpus.keys() | list -%}
+
+{#-- ── Series fingerprint groups ─────────────────────────────────────────── --#}
+{%- set ns_ser = namespace(seen=[], groups=[]) -%}
+{%- for name in gpu_names -%}
+  {%- set fp = instinct_gpus[name].series.name -%}
+  {%- if fp not in ns_ser.seen -%}
+    {%- set ns_ser.seen = ns_ser.seen + [fp] -%}
+    {%- set _ = ns_ser.groups.append({"fp": fp, "gpus": [name]}) -%}
+  {%- else -%}
+    {%- for g in ns_ser.groups if g.fp == fp -%}
+      {%- set _ = g.gpus.append(name) -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- ── Architecture fingerprint groups ───────────────────────────────────── --#}
+{%- set ns_arch = namespace(seen=[], groups=[]) -%}
+{%- for name in gpu_names -%}
+  {%- set fp = instinct_gpus[name].arch.name -%}
+  {%- if fp not in ns_arch.seen -%}
+    {%- set ns_arch.seen = ns_arch.seen + [fp] -%}
+    {%- set _ = ns_arch.groups.append({"fp": fp, "gpus": [name]}) -%}
+  {%- else -%}
+    {%- for g in ns_arch.groups if g.fp == fp -%}
+      {%- set _ = g.gpus.append(name) -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- ── GFX fingerprint groups ────────────────────────────────────────────── --#}
+{%- set ns_gfx = namespace(seen=[], groups=[]) -%}
+{%- for name in gpu_names -%}
+  {%- set fp = instinct_gpus[name].gfx -%}
+  {%- if fp not in ns_gfx.seen -%}
+    {%- set ns_gfx.seen = ns_gfx.seen + [fp] -%}
+    {%- set _ = ns_gfx.groups.append({"fp": fp, "gpus": [name]}) -%}
+  {%- else -%}
+    {%- for g in ns_gfx.groups if g.fp == fp -%}
+      {%- set _ = g.gpus.append(name) -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- ── OS version fingerprint groups ─────────────────────────────────────── --#}
+{%- set os_distros = [
+  {"key": "Ubuntu",                       "show_cond": "ubuntu",       "header": "Supported Ubuntu versions",                          "prefix": "Ubuntu"},
+  {"key": "Red Hat Enterprise Linux",     "show_cond": "rhel",         "header": "Supported Red Hat Enterprise Linux versions",         "prefix": "RHEL"},
+  {"key": "Debian",                       "show_cond": "debian",       "header": "Supported Debian version",                            "prefix": "Debian"},
+  {"key": "Oracle Linux",                 "show_cond": "oracle-linux", "header": "Supported Oracle Linux versions",                     "prefix": "Oracle Linux"},
+  {"key": "Rocky Linux",                  "show_cond": "rocky-linux",  "header": "Supported Rocky Linux versions",                      "prefix": "Rocky Linux"},
+  {"key": "SUSE Linux Enterprise Server", "show_cond": "sles",         "header": "Supported SUSE Linux Enterprise Server versions",     "prefix": "SLES"},
+] -%}
+
+{#--
+  Build per-distro fingerprint groups.
+  ns_os_groups[distro_key] = list of {fp, gpus, versions}
+  We store them in a flat list keyed by distro index.
+--#}
+{%- set ns_os = namespace(all_groups=[]) -%}
+{%- for distro in os_distros -%}
+  {%- set ns_d = namespace(seen=[], groups=[]) -%}
+  {%- for name in gpu_names -%}
+    {%- if name in instinct_os and distro.key in instinct_os[name] -%}
+      {%- set versions = instinct_os[name][distro.key].versions -%}
+      {%- set fp = versions | map(attribute="version") | join("|") -%}
+      {%- if fp not in ns_d.seen -%}
+        {%- set ns_d.seen = ns_d.seen + [fp] -%}
+        {%- set _ = ns_d.groups.append({"fp": fp, "gpus": [name], "versions": versions}) -%}
+      {%- else -%}
+        {%- for g in ns_d.groups if g.fp == fp -%}
+          {%- set _ = g.gpus.append(name) -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- set _ = ns_os.all_groups.append(ns_d.groups) -%}
+{%- endfor -%}
+
+{#-- ── Firmware fingerprint groups ───────────────────────────────────────── --#}
+{%- set ns_fw = namespace(seen=[], groups=[]) -%}
+{%- for name in gpu_names -%}
+  {%- if name in instinct_drv -%}
+    {%- set fw_list = instinct_drv[name].firmware -%}
+    {%- set fp_parts = [] -%}
+    {%- for f in fw_list -%}
+      {%- if f is mapping -%}
+        {%- set _ = fp_parts.append(f.text) -%}
+      {%- else -%}
+        {%- set _ = fp_parts.append(f) -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- set fp = fp_parts | join("|") -%}
+    {%- if fp not in ns_fw.seen -%}
+      {%- set ns_fw.seen = ns_fw.seen + [fp] -%}
+      {%- set _ = ns_fw.groups.append({"fp": fp, "gpus": [name], "firmware": fw_list}) -%}
+    {%- else -%}
+      {%- for g in ns_fw.groups if g.fp == fp -%}
+        {%- set _ = g.gpus.append(name) -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- ── Driver list (shared across all Instinct GPUs — use first GPU's list) --#}
+{%- set amdgpu_drivers = instinct_drv[gpu_names[0]].linux.amdgpu -%}
+
+.. matrix::
+   :show-cond: fam=instinct
+
+   .. matrix-row::
+
+      .. matrix-cell:: AMD GPU series
+         :header:
+
+{% for g in ns_ser.groups %}
+{%- set series = instinct_gpus[g.gpus[0]].series %}
+{%- set ser_url = series.mkt_page if series.mkt_page is defined else instinct_gpus[g.gpus[0]].mkt_page %}
+      .. matrix-cell::
+         :show-cond: {{ show_cond(g.gpus) }}
+
+         `{{ g.fp }} <{{ ser_url }}>`__
+
+{% endfor %}
+   .. matrix-row::
+
+      .. matrix-cell:: Architecture
+         :header:
+
+{% for g in ns_arch.groups %}
+      .. matrix-cell:: {{ g.fp }}
+         :show-cond: {{ show_cond(g.gpus) }}
+
+{% endfor %}
+   .. matrix-row::
+
+      .. matrix-cell:: LLVM target
+         :header:
+
+{% for g in ns_gfx.groups %}
+      .. matrix-cell:: {{ g.fp }}
+         :show-cond: {{ show_cond(g.gpus) }}
+
+{% endfor %}
+{%- for i in range(os_distros | length) %}
+{%- set distro = os_distros[i] %}
+{%- set groups = ns_os.all_groups[i] %}
+{%- if groups | length > 0 %}
+
+   .. matrix-row::
+      :show-cond: os={{ distro.show_cond }}
+
+      .. matrix-cell:: {{ distro.header }}
+         :header:
+
+{% for g in groups %}
+      .. matrix-cell::
+         :show-cond: {{ show_cond(g.gpus) }}
+
+{% for v in g.versions %}
+         {{ distro.prefix }} {{ v.version }} (kernel: {{ v.kernel }})
+
+{% endfor %}
+{% endfor %}
+{%- endif %}
+{%- endfor %}
+
+   .. matrix-row::
+
+      .. matrix-cell:: Supported AMD GPU Driver (amdgpu) versions
+         :header:
+
+      .. matrix-cell::
+
+{% for d in amdgpu_drivers %}
+         `{{ d.version }} <{{ d.url }}>`__
+
+{% endfor %}
+
+   .. matrix-row::
+
+      .. matrix-cell:: Supported PLDM bundle (firmware) versions
+         :header:
+
+{% for g in ns_fw.groups %}
+      .. matrix-cell::
+         :show-cond: {{ show_cond(g.gpus) }}
+
+{% for f in g.firmware %}
+{%- if f is mapping %}
+         {{ f.text }}
+{%- else %}
+         {{ f }}
+{%- endif %}
+
+{% endfor %}
+{% endfor %}

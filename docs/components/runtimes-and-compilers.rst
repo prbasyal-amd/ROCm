@@ -16,7 +16,7 @@ programming tools for GPU application development on AMD hardware.
     {%- set slug = data.rocm_core_sdk.meta.rtd_version_slug -%}
     {%- set tag = data.rocm_core_sdk.meta.release_tag -%}
     {%- for name, comp in defaults.items() | sort(attribute="0") -%}
-    {%-     if comp.group == "Runtime and compilers" -%}
+    {%-     if comp.group == "Runtimes and compilers" -%}
     {%-         set cur = current.get(name, {}) -%}
     {%-         set ver_label = " " + cur.version|string if cur.version is defined else "" -%}
     {%-         set desc = " -- " + comp.description if comp.description is defined else "" -%}

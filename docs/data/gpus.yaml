@@ -207,6 +207,11 @@ AMD Radeon:
     series: *radeon_pro_w7000_series
     arch: *arch_rdna_3
     mkt_page: https://www.amd.com/en/products/graphics/workstations/radeon-pro/w7800.html
+  AMD Radeon PRO W7700:
+    gfx: gfx1101
+    series: *radeon_pro_w7000_series
+    arch: *arch_rdna_3
+    mkt_page: https://www.amd.com/en/products/graphics/workstations/radeon-pro/w7700.html
   AMD Radeon RX 7900 XTX:
     gfx: gfx1100
     series: *radeon_rx_7000_series
@@ -222,11 +227,6 @@ AMD Radeon:
     series: *radeon_rx_7000_series
     arch: *arch_rdna_3
     mkt_page: https://www.amd.com/en/products/graphics/desktops/radeon/7000-series/amd-radeon-rx-7900-gre.html
-  AMD Radeon PRO W7700:
-    gfx: gfx1101
-    series: *radeon_pro_w7000_series
-    arch: *arch_rdna_3
-    mkt_page: https://www.amd.com/en/products/graphics/workstations/radeon-pro/w7700.html
   AMD Radeon RX 7800 XT:
     gfx: gfx1101
     series: *radeon_rx_7000_series
@@ -242,26 +242,26 @@ AMD Radeon:
     series: *radeon_rx_7000_series
     arch: *arch_rdna_3
     mkt_page: https://www.amd.com/en/products/graphics/desktops/radeon/7000-series/amd-radeon-rx-7700.html
-  AMD Radeon PRO V710:
-    gfx: gfx1101
-    series: *radeon_pro_v_series
-    arch: *arch_rdna_3
-    mkt_page: https://www.amd.com/en/products/accelerators/radeon-pro/amd-radeon-pro-v710.html
   AMD Radeon RX 7600:
     gfx: gfx1102
     series: *radeon_rx_7000_series
     arch: *arch_rdna_3
     mkt_page: https://www.amd.com/en/products/graphics/desktops/radeon/7000-series/amd-radeon-rx-7600.html
-  AMD Radeon PRO W6800:
-    gfx: gfx1030
-    series: *radeon_pro_w6000_series
-    arch: *arch_rdna_2
-    mkt_page: https://www.amd.com/en/products/graphics/workstations/radeon-pro/w6800.html
+  AMD Radeon PRO V710:
+    gfx: gfx1101
+    series: *radeon_pro_v_series
+    arch: *arch_rdna_3
+    mkt_page: https://www.amd.com/en/products/accelerators/radeon-pro/amd-radeon-pro-v710.html
   AMD Radeon PRO V620:
     gfx: gfx1030
     series: *radeon_pro_v_series
     arch: *arch_rdna_2
     mkt_page: https://www.amd.com/en/products/accelerators/radeon-pro/amd-radeon-pro-v620.html
+  AMD Radeon PRO W6800:
+    gfx: gfx1030
+    series: *radeon_pro_w6000_series
+    arch: *arch_rdna_2
+    mkt_page: https://www.amd.com/en/products/graphics/workstations/radeon-pro/w6800.html
 AMD Ryzen:
   AMD Ryzen AI Max+ PRO 495:
     gfx: gfx1151

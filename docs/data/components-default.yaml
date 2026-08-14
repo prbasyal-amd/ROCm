@@ -4,9 +4,9 @@ _groups:
   - &math_libs Math and compute libraries
   - &comm_libs Communication libraries
   - &media_libs Media libraries
-  - &storage Storage
-  - &runtimes Runtime and compilers
-  - &compilers Runtime and compilers
+  - &storage Storage libraries
+  - &runtimes Runtimes and compilers
+  - &compilers Runtimes and compilers
   - &profilers Profiling and debugging tools
   - &debuggers Profiling and debugging tools
   - &sys_tools Control and monitoring tools
@@ -233,6 +233,9 @@ rocm_core_sdk:
       description: Library and tool for bidirectional translation between SPIR-V and LLVM.
       xref:
         github_repo: https://github.com/ROCm/SPIRV-LLVM-Translator/tree/${release_tag}
+    hipinfo:
+      group: *sys_tools
+      description: Utility to print HIP device information.
 
 rocm_extras:
   - name: ROCm Validation Suite

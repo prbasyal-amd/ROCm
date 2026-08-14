@@ -131,6 +131,7 @@ templates_path = [
     "extension/rocm_docs_custom/selector/templates",
     "about/include/templates",
     "install/include/templates",
+    "compatibility/include/templates",
 ]
 
 # Omit custom matrix/selector content from PDF (LaTeX) output.

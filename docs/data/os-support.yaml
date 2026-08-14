@@ -252,6 +252,15 @@ AMD Radeon:
     WSL2:
       versions: ["26.04", "24.04", "22.04"]
 
+  AMD Radeon RX 9050:
+    Ubuntu:
+      versions: [*ubuntu_26_04, *ubuntu_24_04, *ubuntu_22_04]
+    Red Hat Enterprise Linux:
+      <<: *rhel
+      versions: [*rhel_10_2, *rhel_9_8]
+    Windows:
+      versions: [*windows_11]
+
   AMD Radeon PRO W7900 Dual Slot:
     Ubuntu:
       versions: [*ubuntu_26_04, *ubuntu_24_04, *ubuntu_22_04]

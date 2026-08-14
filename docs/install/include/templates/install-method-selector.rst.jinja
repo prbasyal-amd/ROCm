@@ -63,9 +63,11 @@
 
 {%- set n = data.radeon_ryzen | length %}
 {%- set w = col_width(n) %}
+{%- set linux_os_cond %}{% for group in data.os_groups %}{% for os in group.os %}os={{ os }} {% endfor %}{% endfor %}{% endset %}
 
    .. selector:: Installation method
       :key: i
+      :show-cond: {{ linux_os_cond | trim }}
 
 {% for m in data.radeon_ryzen %}
       .. selector-option:: {{ m.display }}

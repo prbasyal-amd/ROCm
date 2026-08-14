@@ -6,6 +6,8 @@
   Primary data: gpus.yaml (passed as `data` by the caller)
 
   Row structure: each HTML <tr> corresponds to a unique (series, gfx) pair.
+    Rows are emitted grouped by series (in first-encounter order), so series cells
+    are always contiguous regardless of YAML entry order.
     - series cell: rowspan = number of consecutive rows with the same series name
     - arch cell:   rowspan = number of consecutive rows with the same arch name
 #}
@@ -19,15 +21,30 @@
 ---------------------------------------------------------------------------#}
 {%- macro render_table(family, col1_pct, col2_pct) -%}
 
-{#-- Step 1: collect ordered (series_name|||gfx) keys, preserving YAML order --#}
-{%- set row_keys = [] -%}
-{%- set ns_k = namespace(prev="") -%}
+{#-- Step 1: collect unique (series_name|||gfx) keys, grouped by series-encounter order.
+     Using global deduplication (not consecutive) so interleaved YAML entries don't
+     produce duplicate series rows. --#}
+{%- set ns_k = namespace(seen=[], ser_order=[], gfx_order=[]) -%}
 {%- for gpu_name, gpu in family.items() -%}
   {%- set key = gpu.series.name ~ "|||" ~ gpu.gfx -%}
-  {%- if key != ns_k.prev -%}
-    {%- set _ = row_keys.append(key) -%}
-    {%- set ns_k.prev = key -%}
+  {%- if key not in ns_k.seen -%}
+    {%- set _ = ns_k.seen.append(key) -%}
   {%- endif -%}
+  {%- if gpu.series.name not in ns_k.ser_order -%}
+    {%- set _ = ns_k.ser_order.append(gpu.series.name) -%}
+  {%- endif -%}
+  {%- if gpu.gfx not in ns_k.gfx_order -%}
+    {%- set _ = ns_k.gfx_order.append(gpu.gfx) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set row_keys = [] -%}
+{%- for ser in ns_k.ser_order -%}
+  {%- for gfx in ns_k.gfx_order -%}
+    {%- set key = ser ~ "|||" ~ gfx -%}
+    {%- if key in ns_k.seen -%}
+      {%- set _ = row_keys.append(key) -%}
+    {%- endif -%}
+  {%- endfor -%}
 {%- endfor -%}
 
 {#-- Step 2: for each (series, gfx) pair, collect matching devices and metadata --#}

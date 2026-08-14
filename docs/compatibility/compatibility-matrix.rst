@@ -30,9 +30,11 @@ see :doc:`/install/rocm`.
       :width: 4
       :toc-label: AMD Ryzen
 
-.. include:: /install/include/gpu-selector.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: gpu-selector.rst.jinja
 
-.. include:: /install/include/os-selector.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: os-selector.rst.jinja
 
 ----
 
@@ -47,13 +49,29 @@ expected GPU operation and performance, especially for AMD data center
 products. This table lists GPU details followed by supported operating systems,
 kernel driver, and firmware versions.
 
-.. include:: ./include/system-instinct.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: system-instinct.rst.jinja
 
-.. include:: ./include/system-radeon.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: system-radeon.rst.jinja
 
-.. include:: ./include/system-ryzen.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: system-ryzen.rst.jinja
 
 For hardware specifications, see :ref:`gpu-specs`.
+
+----
+
+.. datatemplate:yaml:: /data/virtualization-support.yaml
+   :template: virtualization-instinct.rst.jinja
+
+.. datatemplate:yaml:: /data/virtualization-support.yaml
+   :template: virtualization-radeon.rst.jinja
+
+----
+
+.. datatemplate:yaml:: /data/partitioning-support.yaml
+   :template: partitioning-support.rst.jinja
 
 ----
 
@@ -64,15 +82,13 @@ The following table lists core components included in the ROCm |ROCM_VERSION|
 release. Expect future releases in this stream to expand the list of
 components.
 
-.. include:: ./include/core-sdk-components-linux.rst
+.. datatemplate:yaml:: /data/components-current.yaml
+   :template: core-sdk-components-linux.rst.jinja
 
-.. include:: ./include/core-sdk-components-windows.rst
+.. datatemplate:yaml:: /data/components-current.yaml
+   :template: core-sdk-components-windows.rst.jinja
 
 ----
-
-.. include:: ./include/virtualization-instinct.rst
-
-.. include:: ./include/virtualization-radeon.rst
 
 .. _rocm-compat-frameworks:
 

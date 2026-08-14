@@ -49,10 +49,12 @@ _amdgpu_drivers:
 _windows_drivers:
   - &adrenalin_26_6_4
     name: "AMD Software: Adrenalin Edition"
+    label: Adrenalin Driver
     version: "26.6.4"
     url: https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-6-4.html
   - &windows_oem_26_10_28
     name: Windows OEM Driver
+    label: Windows OEM Driver
     version: "26.10.28"
 # }}}
 

@@ -1,0 +1,191 @@
+{#
+  Template: virtualization-instinct.rst.jinja
+  Renders the AMD Instinct GPU virtualization support section.
+  Output: RST with selected/matrix/matrix-row/matrix-cell directives.
+
+  Primary data: virtualization-support.yaml (passed as `data` by the caller)
+
+  To update virtualization support: edit docs/data/virtualization-support.yaml.
+
+  Data model (per GPU, flat list of entries):
+    - hypervisor: KVM | ESXi | ...
+      technology: Passthrough | SR-IOV | ...
+      driver: null | {name: str, url: str}
+      host_os: str
+      guest_os: [str, ...]   # one row per element
+
+  RST rowspan rules:
+  - Hypervisor cell spans all rows for that GPU's consecutive same-hypervisor entries.
+  - Technology + driver cells span all rows across consecutive same-hypervisor/technology/driver entries.
+  - Host OS cell spans len(guest_os) rows within each entry.
+  - Each guest_os value is one matrix-row (continuation rows emit only the guest_os cell).
+#}
+{%- set instinct = data["AMD Instinct"] -%}
+
+{#-- slugify: "AMD Instinct MI355X" -> "amd-instinct-mi355x" --#}
+{%- macro slugify(name) -%}
+{{- name | lower | replace("+", "") | replace("  ", " ") | replace(" ", "-") -}}
+{%- endmacro -%}
+
+{#--
+  gpu_slugs(gpu_names)
+  Returns "gpu=slug1 gpu=slug2 ..." for a list of GPU names.
+--#}
+{%- macro gpu_slugs(gpu_names) -%}
+{%- for name in gpu_names %}gpu={{ slugify(name) }} {% endfor -%}
+{%- endmacro -%}
+
+{#--
+  Collect the ordered list of GPU names that have virt data.
+--#}
+{%- set virt_gpu_names = instinct.keys() | list -%}
+{%- set all_slugs = gpu_slugs(virt_gpu_names) -%}
+
+{#--
+  hyp_groups(entries)
+  Groups a GPU's flat entry list into consecutive same-hypervisor blocks.
+  Returns a list of {hypervisor, entries, total_rows} dicts.
+--#}
+{%- macro hyp_groups(entries) -%}{%- endmacro -%}
+
+.. selected:: {{ all_slugs }}
+   :heading: GPU virtualization support
+
+   .. selected:: {{ all_slugs }}
+
+      Supported SR-IOV configurations require the GPU-IOV Module (GIM) driver
+      9.1.0.K -- see the `AMD Instinct Virtualization Driver documentation
+      <https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.1.0.k/>`__ to
+      get started.
+
+
+   .. matrix::
+
+      .. matrix-row::
+         :header:
+
+         .. matrix-cell:: Hypervisor
+
+         .. matrix-cell:: Virtualization technology
+
+         .. matrix-cell:: Virtualization driver
+
+         .. matrix-cell:: Host OS
+
+         .. matrix-cell:: Guest OS
+
+{%- for gpu_name in virt_gpu_names %}
+{%- set slug = slugify(gpu_name) %}
+{%- set entries = instinct[gpu_name] %}
+
+{#-- Group entries into consecutive same-hypervisor blocks --#}
+{%- set ns = namespace(hyp_groups=[], cur_hyp="", cur_entries=[], cur_rows=0) -%}
+{%- for entry in entries -%}
+  {%- set rows = entry.guest_os | length -%}
+  {%- if entry.hypervisor == ns.cur_hyp -%}
+    {%- set _ = ns.cur_entries.append(entry) -%}
+    {%- set ns.cur_rows = ns.cur_rows + rows -%}
+  {%- else -%}
+    {%- if ns.cur_hyp != "" -%}
+      {%- set _ = ns.hyp_groups.append({"hypervisor": ns.cur_hyp, "entries": ns.cur_entries, "total_rows": ns.cur_rows}) -%}
+    {%- endif -%}
+    {%- set ns.cur_hyp = entry.hypervisor -%}
+    {%- set ns.cur_entries = [entry] -%}
+    {%- set ns.cur_rows = rows -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if ns.cur_hyp != "" -%}
+  {%- set _ = ns.hyp_groups.append({"hypervisor": ns.cur_hyp, "entries": ns.cur_entries, "total_rows": ns.cur_rows}) -%}
+{%- endif -%}
+
+{%- for hg in ns.hyp_groups %}
+
+{#-- Compute technology+driver rowspan groups within this hypervisor block --#}
+{%- set ns_td = namespace(td_groups=[], cur_tech="", cur_driver="", cur_td_entries=[], cur_td_rows=0) -%}
+{%- for entry in hg.entries -%}
+  {%- set rows = entry.guest_os | length -%}
+  {%- set drv_key = entry.driver.name if entry.driver else "" -%}
+  {%- if entry.technology == ns_td.cur_tech and drv_key == ns_td.cur_driver -%}
+    {%- set _ = ns_td.cur_td_entries.append(entry) -%}
+    {%- set ns_td.cur_td_rows = ns_td.cur_td_rows + rows -%}
+  {%- else -%}
+    {%- if ns_td.cur_tech != "" -%}
+      {%- set _ = ns_td.td_groups.append({"technology": ns_td.cur_tech, "driver": ns_td.cur_driver, "entries": ns_td.cur_td_entries, "total_rows": ns_td.cur_td_rows}) -%}
+    {%- endif -%}
+    {%- set ns_td.cur_tech = entry.technology -%}
+    {%- set ns_td.cur_driver = drv_key -%}
+    {%- set ns_td.cur_td_entries = [entry] -%}
+    {%- set ns_td.cur_td_rows = rows -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if ns_td.cur_tech != "" -%}
+  {%- set _ = ns_td.td_groups.append({"technology": ns_td.cur_tech, "driver": ns_td.cur_driver, "entries": ns_td.cur_td_entries, "total_rows": ns_td.cur_td_rows}) -%}
+{%- endif -%}
+
+{#-- Emit rows for this hypervisor block --#}
+{%- set ns_hfirst = namespace(first=true) %}
+{%- for tdg in ns_td.td_groups %}
+{%- set ns_tdfirst = namespace(first=true) %}
+{%- for entry in tdg.entries %}
+{%- set host_rowspan = entry.guest_os | length %}
+{%- for guest_os in entry.guest_os %}
+{%- set is_first_guest = loop.first %}
+
+      .. matrix-row::
+         :show-cond: gpu={{ slug }}
+
+{% if ns_hfirst.first and ns_tdfirst.first and is_first_guest %}
+{%- if hg.total_rows > 1 %}
+         .. matrix-cell:: {{ hg.hypervisor }}
+            :rowspan: {{ hg.total_rows }}
+{%- else %}
+         .. matrix-cell:: {{ hg.hypervisor }}
+{%- endif %}
+{%- set ns_hfirst.first = false %}
+{%- endif %}
+
+{%- if ns_tdfirst.first and is_first_guest %}
+{%- if tdg.total_rows > 1 %}
+         .. matrix-cell:: {{ entry.technology }}
+            :rowspan: {{ tdg.total_rows }}
+{%- else %}
+         .. matrix-cell:: {{ entry.technology }}
+{%- endif %}
+{%- if entry.driver %}
+{%- if tdg.total_rows > 1 %}
+         .. matrix-cell::
+            :rowspan: {{ tdg.total_rows }}
+
+            `{{ entry.driver.name }} <{{ entry.driver.url }}>`__
+
+{%- else %}
+         .. matrix-cell::
+
+            `{{ entry.driver.name }} <{{ entry.driver.url }}>`__
+
+{%- endif %}
+{%- else %}
+         .. matrix-cell:: —
+{%- endif %}
+{%- set ns_tdfirst.first = false %}
+{%- endif %}
+
+{%- if is_first_guest %}
+{%- if host_rowspan > 1 %}
+         .. matrix-cell:: {{ entry.host_os }}
+            :rowspan: {{ host_rowspan }}
+{%- else %}
+         .. matrix-cell:: {{ entry.host_os }}
+{%- endif %}
+{%- endif %}
+         .. matrix-cell:: {{ guest_os }}
+{%- endfor %}
+{%- endfor %}
+{%- endfor %}
+
+{%- endfor %}
+{%- endfor %}
+
+   See the :ref:`release notes <release-virtualization-support>`
+   for the full list of supported configurations.
+

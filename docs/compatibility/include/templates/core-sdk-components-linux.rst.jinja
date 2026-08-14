@@ -1,0 +1,235 @@
+{#
+  Template: core-sdk-components-linux.rst.jinja
+  Renders the Linux ROCm Core SDK components matrix.
+  Output: RST with matrix/matrix-row/matrix-cell directives.
+
+  Primary data: components-current.yaml (passed as `data` by the caller)
+  Secondary data: components-default.yaml (loaded via load())
+
+  To update component versions or support: edit components-current.yaml.
+  To update component URLs or groups: edit components-default.yaml.
+
+  URL selection (Linux):
+  - If github_repo contains "rocm-libraries" → use rtd_project URL
+  - Otherwise → use github_repo URL
+  - Placeholders: ${release_tag} and ${rtd_version_slug} are substituted from meta.
+
+  show-cond semantics (selector JS):
+  - Same-key tokens are OR'd: "gfx=gfx1150 gfx=gfx1151" → gfx is gfx1150 OR gfx1151.
+  - Different-key tokens are AND'd: "fam=instinct gfx=gfx1150" → fam==instinct AND gfx==gfx1150.
+  - Therefore "fam=instinct" and "gfx=gfx115x" CANNOT be combined in one show-cond;
+    they must be emitted as separate matrix-cell entries in the same row.
+
+  show-cond derivation (per component, per linux support key):
+  - instinct: true, radeon: true, ryzen: true → no show-cond (always visible)
+  - instinct: true, radeon: true              → fam=instinct fam=radeon
+  - instinct: true only                       → fam=instinct
+  - radeon: true only                         → fam=radeon
+  - instinct: [gfx...], radeon: [gfx...]      → gfx=... (combined)
+  - instinct: [gfx...] only                   → gfx=...
+  - ryzen: [gfx...] only                      → gfx=...
+  - instinct: true, ryzen: [gfx...]           → TWO cells: "fam=instinct" | "gfx=..."
+  - instinct: true, radeon: true, ryzen: [gfx...] → TWO cells: "fam=instinct fam=radeon" | "gfx=..."
+
+  Group header cell: one cell spanning all group items (:rowspan: N).
+  Its show-cond = union of all distinct tokens from all item cells in the group.
+  Browsers correctly handle rowspan over display:none rows.
+#}
+{%- set defaults = load("/data/components-default.yaml") -%}
+{%- set current  = data -%}
+{%- set meta     = current.rocm_core_sdk.meta -%}
+{%- set tag      = meta.release_tag -%}
+{%- set slug     = meta.rtd_version_slug -%}
+{%- set comps_c  = current.rocm_core_sdk.components -%}
+{%- set comps_d  = defaults.rocm_core_sdk.components -%}
+
+{#-- Substitute URL placeholders --#}
+{%- macro sub(url) -%}
+{{- url | replace("${release_tag}", tag) | replace("${rtd_version_slug}", slug) -}}
+{%- endmacro -%}
+
+{#-- Resolve Linux URL for a component --#}
+{%- macro linux_url(name) -%}
+{%- if name in comps_d and comps_d[name].xref is defined -%}
+{%- set xref = comps_d[name].xref -%}
+{%- if xref.github_repo is defined and "rocm-libraries" in xref.github_repo -%}
+{{- sub(xref.rtd_project) -}}
+{%- elif xref.github_repo is defined -%}
+{{- sub(xref.github_repo) -}}
+{%- endif -%}
+{%- endif -%}
+{%- endmacro -%}
+
+{#-- Build gfx= show-cond string from a list of gfx values --#}
+{%- macro gfx_sc(gfx_list) -%}
+{%- set parts = [] -%}
+{%- for g in gfx_list %}{%- set _ = parts.append("gfx=" ~ g) %}{%- endfor -%}
+{{ parts | join(" ") }}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  Build the item list grouped by group label.
+  Pass 1: collect unordered items and build group_order (first-appearance).
+  Pass 2: flatten by iterating group_order and collecting matching items.
+  Each item: {name, group, version, url, cells}
+  where cells is a list of show_cond strings (one per matrix-cell to emit).
+---------------------------------------------------------------------------#}
+{%- set unordered = [] -%}
+{%- set ns_grp = namespace(seen=[]) -%}
+{%- for name in comps_d.keys() -%}
+  {%- if name in comps_c and comps_c[name].support.linux is defined -%}
+    {%- set grp = comps_d[name].group -%}
+    {%- if grp not in ns_grp.seen -%}
+      {%- set ns_grp.seen = ns_grp.seen + [grp] -%}
+    {%- endif -%}
+    {%- set sup = comps_c[name].support.linux -%}
+    {%- set i_val = sup.instinct if sup.instinct is defined else false -%}
+    {%- set r_val = sup.radeon   if sup.radeon   is defined else false -%}
+    {%- set y_val = sup.ryzen    if sup.ryzen    is defined else false -%}
+    {%- set i_bool = i_val is sameas true -%}
+    {%- set r_bool = r_val is sameas true -%}
+    {%- set y_bool = y_val is sameas true -%}
+    {%- set i_gfx  = i_val is sequence and i_val is not string and not (i_val is sameas true) and not (i_val is sameas false) -%}
+    {%- set r_gfx  = r_val is sequence and r_val is not string and not (r_val is sameas true) and not (r_val is sameas false) -%}
+    {%- set y_gfx  = y_val is sequence and y_val is not string and not (y_val is sameas true) and not (y_val is sameas false) -%}
+    {#-- Determine cells (list of show_cond strings) --#}
+    {%- set ns_cells = namespace(cells=[]) -%}
+    {%- if i_bool and r_bool and y_bool -%}
+      {%- set _ = ns_cells.cells.append("") -%}
+    {%- elif i_bool and r_bool and not (sup.ryzen is defined) -%}
+      {%- set _ = ns_cells.cells.append("fam=instinct fam=radeon") -%}
+    {%- elif i_bool and not (sup.radeon is defined) and not (sup.ryzen is defined) -%}
+      {%- set _ = ns_cells.cells.append("fam=instinct") -%}
+    {%- elif r_bool and not (sup.instinct is defined) and not (sup.ryzen is defined) -%}
+      {%- set _ = ns_cells.cells.append("fam=radeon") -%}
+    {%- elif i_bool and y_bool and not (sup.radeon is defined) -%}
+      {%- set _ = ns_cells.cells.append("fam=instinct fam=ryzen") -%}
+    {%- elif i_bool and r_bool and y_gfx -%}
+      {%- set _ = ns_cells.cells.append("fam=instinct fam=radeon") -%}
+      {%- set _ = ns_cells.cells.append(gfx_sc(y_val) | trim) -%}
+    {%- elif i_bool and y_gfx and not (sup.radeon is defined) -%}
+      {%- set _ = ns_cells.cells.append("fam=instinct") -%}
+      {%- set _ = ns_cells.cells.append(gfx_sc(y_val) | trim) -%}
+    {%- elif i_gfx or r_gfx or y_gfx -%}
+      {%- set parts = [] -%}
+      {%- if i_gfx %}{%- for g in i_val %}{%- set _ = parts.append("gfx=" ~ g) %}{%- endfor %}{%- endif -%}
+      {%- if r_gfx %}{%- for g in r_val %}{%- set _ = parts.append("gfx=" ~ g) %}{%- endfor %}{%- endif -%}
+      {%- if y_gfx %}{%- for g in y_val %}{%- set _ = parts.append("gfx=" ~ g) %}{%- endfor %}{%- endif -%}
+      {%- set _ = ns_cells.cells.append(parts | join(" ")) -%}
+    {%- else -%}
+      {%- set _ = ns_cells.cells.append("") -%}
+    {%- endif -%}
+    {%- set _ = unordered.append({
+      "name":    name,
+      "group":   comps_d[name].group,
+      "version": comps_c[name].version,
+      "url":     linux_url(name) | trim,
+      "cells":   ns_cells.cells
+    }) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- Pass 2: flatten items in group order --#}
+{%- set items = [] -%}
+{%- for grp in ns_grp.seen -%}
+  {%- for item in unordered if item.group == grp -%}
+    {%- set _ = items.append(item) -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+{#-- Build group blocks from the now-grouped items list --#}
+{%- set ns_g = namespace(blocks=[], cur_label="", cur_start=0, cur_count=0) -%}
+{%- for item in items -%}
+  {%- if item.group != ns_g.cur_label -%}
+    {%- if ns_g.cur_label != "" -%}
+      {%- set _ = ns_g.blocks.append({"label": ns_g.cur_label, "start": ns_g.cur_start, "count": ns_g.cur_count}) -%}
+    {%- endif -%}
+    {%- set ns_g.cur_label = item.group -%}
+    {%- set ns_g.cur_start = loop.index0 -%}
+    {%- set ns_g.cur_count = 1 -%}
+  {%- else -%}
+    {%- set ns_g.cur_count = ns_g.cur_count + 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if ns_g.cur_label != "" -%}
+  {%- set _ = ns_g.blocks.append({"label": ns_g.cur_label, "start": ns_g.cur_start, "count": ns_g.cur_count}) -%}
+{%- endif -%}
+
+{#-- Compute group header show-cond: union of all distinct tokens from all item cells.
+     If any item has an empty (always-visible) show-cond, the header must also be
+     always visible (no show-cond), since the group is needed for those GPUs. --#}
+{%- macro group_header_sc(block) -%}
+{%- set b_items = items[block.start : block.start + block.count] -%}
+{%- set ns_always = namespace(found=false) -%}
+{%- for it in b_items -%}
+  {%- for sc in it.cells -%}
+    {%- if sc == "" -%}{%- set ns_always.found = true -%}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- if not ns_always.found -%}
+{%- set ns_t = namespace(tokens=[], has_fam=false, has_gfx=false) -%}
+{%- for it in b_items -%}
+  {%- for sc in it.cells -%}
+    {%- for tok in sc.split() -%}
+      {%- if tok not in ns_t.tokens -%}
+        {%- set ns_t.tokens = ns_t.tokens + [tok] -%}
+      {%- endif -%}
+      {%- if tok.startswith("fam=") -%}{%- set ns_t.has_fam = true -%}{%- endif -%}
+      {%- if tok.startswith("gfx=") -%}{%- set ns_t.has_gfx = true -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- if not (ns_t.has_fam and ns_t.has_gfx) -%}
+{{ ns_t.tokens | join(" ") }}
+{%- endif -%}
+{%- endif -%}
+{%- endmacro -%}
+
+.. matrix::
+   :show-cond: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
+
+   .. matrix-head::
+
+      .. matrix-row::
+         :header:
+
+         .. matrix-cell:: Component group
+
+         .. matrix-cell:: Component name
+
+{% for block in ns_g.blocks %}
+{%- set b_items = items[block.start : block.start + block.count] -%}
+{%- set hdr_sc = group_header_sc(block) | trim %}
+   .. matrix-row::
+
+      .. matrix-cell:: {{ block.label }}
+{%- if block.count > 1 %}
+         :rowspan: {{ block.count }}
+{%- endif %}
+{%- if hdr_sc != "" %}
+         :show-cond: {{ hdr_sc }}
+{%- endif %}
+
+{% for sc in b_items[0].cells %}
+      .. matrix-cell::
+{%- if sc != "" %}
+         :show-cond: {{ sc }}
+{%- endif %}
+
+         `{{ b_items[0].name }} {{ b_items[0].version }} <{{ b_items[0].url }}>`__
+
+{% endfor %}
+{%- for item in b_items[1:] %}
+   .. matrix-row::
+
+{% for sc in item.cells %}
+      .. matrix-cell::
+{%- if sc != "" %}
+         :show-cond: {{ sc }}
+{%- endif %}
+
+         `{{ item.name }} {{ item.version }} <{{ item.url }}>`__
+
+{% endfor %}
+{% endfor %}
+{% endfor %}
