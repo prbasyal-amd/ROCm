@@ -196,7 +196,7 @@ Main menu
 
 The **Main** menu is the installation starting point.
 
-.. image:: ../data/how-to/rocm-runfile-main-menu-1.png
+.. image:: images/rocm-runfile-main-menu-1.png
    :width: 800
    :alt: The Main user interface menu for the ROCm Runfile Installer
 
@@ -207,7 +207,7 @@ The **Pre-Install Configuration Settings** menu is an optional menu used to conf
 requirements before installation. The pre-installation settings relate to the dependent libraries
 and packages required by the ROCm runtime or the AMD GPU Driver.
 
-.. image:: ../data/how-to/rocm-runfile-preinstall-menu-2.png
+.. image:: images/rocm-runfile-preinstall-menu-2.png
    :width: 800
    :alt: The Pre-Install Configuration user interface menu for the ROCm Runfile Installer
 
@@ -265,7 +265,7 @@ ROCm Options menu
 
 The **ROCm Options** menu can include or exclude ROCm from the installation and provides access to device/architecture and component selection.
 
-.. image:: ../data/how-to/rocm-runfile-rocm-menu-3.png
+.. image:: images/rocm-runfile-rocm-menu-3.png
    :width: 800
    :alt: The ROCm Options user interface menu for the ROCm Runfile Installer
 
@@ -281,9 +281,9 @@ The **ROCm Options** menu can include or exclude ROCm from the installation and 
   (gfx942, gfx1100, gfx950, and so on), multiple architectures, or all available architectures. The installer will list the
   currently auto-detected GPU and associated architecture by default.
 
-  .. image:: ../data/how-to/rocm-runfile-rocm-device-3a.png
-   :width: 800
-   :alt: The ROCm Device user interface menu for the ROCm Runfile Installer
+  .. image:: images/rocm-runfile-rocm-device-3a.png
+     :width: 800
+     :alt: The ROCm Device user interface menu for the ROCm Runfile Installer
 
 * **ROCm Components**
 
@@ -295,9 +295,9 @@ The **ROCm Options** menu can include or exclude ROCm from the installation and 
   * **core-sdk**: Core SDK components
   * **opencl**: OpenCL runtime
 
-  .. image:: ../data/how-to/rocm-runfile-rocm-components-3b.png
-   :width: 800
-   :alt: The ROCm Components user interface menu for the ROCm Runfile Installer
+  .. image:: images/rocm-runfile-rocm-components-3b.png
+     :width: 800
+     :alt: The ROCm Components user interface menu for the ROCm Runfile Installer
 
 * **ROCm Install Path**
 
@@ -335,7 +335,7 @@ Driver Options menu
 
 The **Driver Options** menu can include or exclude the AMD GPU Driver from the installation.
 
-.. image:: ../data/how-to/rocm-runfile-driver-menu-4.png
+.. image:: images/rocm-runfile-driver-menu-4.png
    :width: 800
    :alt: The Driver Options user interface menu for the ROCm Runfile Installer
 
@@ -370,7 +370,7 @@ Post-Install Options menu
 Use the **Post-Install Options** menu to optionally enable additional setup and configuration items
 after the initial ROCm install.
 
-.. image:: ../data/how-to/rocm-runfile-postinstall-menu-5.png
+.. image:: images/rocm-runfile-postinstall-menu-5.png
    :width: 800
    :alt: The Post-Install Options user interface menu for the ROCm Runfile Installer
 
