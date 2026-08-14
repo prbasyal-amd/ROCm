@@ -64,19 +64,17 @@
    not needed for install as long as dependencies for ROCm and/or AMD GPU driver
    (amdgpu) are met. A single installer supports all GFX architectures, automates
    post-installation configuration, and offers an interactive command line TUI for
-   guided setup. 
-   
+   guided setup.
+
    .. note::
 
-      For detailed installation options and configuration, see 
+      For detailed installation options and configuration, see
       :doc:`ROCm Runfile Installer </install/rocm-runfile-installer>`.
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
-   .. selected:: os=ubuntu os=rhel
-
-      Use the ``amdgpu-install`` script to install ROCm, the AMD GPU driver,
-      graphics components, and other packages. It simplifies installation by
-      automating GPU-specific and distro-specific package selection. The script
-      also runs post-installation checks and installs an uninstallation script,
-      allowing you to remove the entire ROCm stack with a single command.
+   Use the ``amdgpu-install`` script to install ROCm, the AMD GPU driver,
+   graphics components, and other packages. It simplifies installation by
+   automating GPU-specific and distro-specific package selection. The script
+   also runs post-installation checks and installs an uninstallation script,
+   allowing you to remove the entire ROCm stack with a single command.

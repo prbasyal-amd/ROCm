@@ -442,7 +442,7 @@ Uninstalling
 
          bash rocm-installer-7.14.0-7.run uninstall-amdgpu
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=ubuntu os=rhel
 

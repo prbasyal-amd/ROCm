@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+$schema: https://json-schema.org/draft/2020-12/schema
+title: AMD GPU Virtualization Support Data
+description: Virtualization support matrix per GPU.
+
+type: object
+additionalProperties: false
+patternProperties:
+  "^_":
+    description: YAML anchor blocks (internal use only)
+properties:
+  AMD Instinct:
+    $ref: "#/$defs/deviceFamily"
+  AMD Radeon:
+    $ref: "#/$defs/deviceFamily"
+
+$defs:
+  deviceFamily:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: "#/$defs/virtEntry"
+
+  virtEntry:
+    type: object
+    required: [hypervisor, technology, host_os, guest_os]
+    additionalProperties: false
+    properties:
+      hypervisor:
+        type: string
+      technology:
+        type: string
+        enum: [Passthrough, SR-IOV]
+      driver:
+        $ref: "#/$defs/driverInfo"
+      host_os:
+        type: string
+      guest_os:
+        type: array
+        items:
+          type: string
+
+  driverInfo:
+    type: object
+    required: [name]
+    additionalProperties: false
+    properties:
+      name:
+        type: string
+      url:
+        type: string
+        format: uri

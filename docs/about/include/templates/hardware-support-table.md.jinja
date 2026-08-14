@@ -1,0 +1,158 @@
+{#
+  Template: hardware-support-table.md.jinja
+  Renders the hardware support tab-set (Instinct / Radeon / Ryzen).
+  Output: MyST markup with HTML tables inside {raw} html fences.
+
+  Primary data: gpus.yaml (passed as `data` by the caller)
+
+  Row structure: each HTML <tr> corresponds to a unique (series, gfx) pair.
+    - series cell: rowspan = number of consecutive rows with the same series name
+    - arch cell:   rowspan = number of consecutive rows with the same arch name
+#}
+{%- set instinct = data["AMD Instinct"] -%}
+{%- set radeon   = data["AMD Radeon"] -%}
+{%- set ryzen    = data["AMD Ryzen"] -%}
+
+{#---------------------------------------------------------------------------
+  render_table(family, col1_pct, col2_pct)
+  Builds and renders a complete <table> for one GPU family.
+---------------------------------------------------------------------------#}
+{%- macro render_table(family, col1_pct, col2_pct) -%}
+
+{#-- Step 1: collect ordered (series_name|||gfx) keys, preserving YAML order --#}
+{%- set row_keys = [] -%}
+{%- set ns_k = namespace(prev="") -%}
+{%- for gpu_name, gpu in family.items() -%}
+  {%- set key = gpu.series.name ~ "|||" ~ gpu.gfx -%}
+  {%- if key != ns_k.prev -%}
+    {%- set _ = row_keys.append(key) -%}
+    {%- set ns_k.prev = key -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- Step 2: for each (series, gfx) pair, collect matching devices and metadata --#}
+{%- set rows = [] -%}
+{%- for row_key in row_keys -%}
+  {%- set parts  = row_key.split("|||") -%}
+  {%- set rk_ser = parts[0] -%}
+  {%- set rk_gfx = parts[1] -%}
+  {%- set devices = [] -%}
+  {%- set ns_r = namespace(ser_mkt="", arch_name="", arch_mkt="") -%}
+  {%- for gpu_name, gpu in family.items() -%}
+    {%- if gpu.series.name == rk_ser and gpu.gfx == rk_gfx -%}
+      {%- if gpu.series.mkt_page is defined -%}{%- set ns_r.ser_mkt  = gpu.series.mkt_page -%}{%- endif -%}
+      {%- set ns_r.arch_name = gpu.arch.name -%}
+      {%- if gpu.arch.mkt_page is defined -%}{%- set ns_r.arch_mkt = gpu.arch.mkt_page -%}{%- endif -%}
+      {%- set igpu = gpu.igpu if gpu.igpu is defined else "" -%}
+      {%- set _ = devices.append({"name": gpu_name, "mkt_page": gpu.mkt_page, "igpu": igpu}) -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {#- If the series anchor has no mkt_page (e.g. MI100), fall back to the first device's page -#}
+  {%- if not ns_r.ser_mkt and devices -%}{%- set ns_r.ser_mkt = devices[0].mkt_page -%}{%- endif -%}
+  {%- set _ = rows.append({
+    "series_name": rk_ser,
+    "series_mkt":  ns_r.ser_mkt,
+    "gfx":         rk_gfx,
+    "arch_name":   ns_r.arch_name,
+    "arch_mkt":    ns_r.arch_mkt,
+    "devices":     devices
+  }) -%}
+{%- endfor -%}
+
+{#-- Step 3: compute per-row span metadata (series_start/span, arch_start/span) --#}
+{%- set row_meta = [] -%}
+{%- for row in rows -%}
+  {%- set i = loop.index0 -%}
+  {%- set ser_start  = (i == 0) or (rows[i - 1].series_name != row.series_name) -%}
+  {%- set arch_start = (i == 0) or (rows[i - 1].arch_name   != row.arch_name) -%}
+
+  {%- set ns_s = namespace(n=0, done=false) -%}
+  {%- set ns_a = namespace(n=0, done=false) -%}
+  {%- for fr in rows[i:] -%}
+    {%- if not ns_s.done -%}
+      {%- if fr.series_name == row.series_name -%}{%- set ns_s.n = ns_s.n + 1 -%}
+      {%- else -%}{%- set ns_s.done = true -%}{%- endif -%}
+    {%- endif -%}
+    {%- if not ns_a.done -%}
+      {%- if fr.arch_name == row.arch_name -%}{%- set ns_a.n = ns_a.n + 1 -%}
+      {%- else -%}{%- set ns_a.done = true -%}{%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- set _ = row_meta.append({
+    "row":        row,
+    "ser_start":  ser_start,
+    "ser_span":   ns_s.n,
+    "arch_start": arch_start,
+    "arch_span":  ns_a.n
+  }) -%}
+{%- endfor -%}
+
+{#-- Step 4: render the HTML table --#}
+<table class="rocm-docs-table table">
+  <thead>
+    <colgroup style="width: {{ col1_pct }};">
+    <colgroup style="width: {{ col2_pct }};">
+    <tr>
+      <th class="head"><p>Device series</p></th>
+      <th class="head"><p>Device</p></th>
+      <th class="head"><p>LLVM target</p></th>
+      <th class="head"><p>Architecture</p></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- for meta in row_meta -%}
+{%- set row = meta.row %}
+    <tr>
+{%- if meta.ser_start %}
+      <td{% if meta.ser_span > 1 %} rowspan="{{ meta.ser_span }}"{% endif %} class="stub">
+        {%- if row.series_mkt %}<a href="{{ row.series_mkt }}" target="_blank">{{ row.series_name }}</a>
+        {%- else %}{{ row.series_name }}{%- endif %}
+      </td>
+{%- endif %}
+      <td>
+{%- for device in row.devices %}
+        <p><a href="{{ device.mkt_page }}" target="_blank">{{ device.name | replace("AMD ", "") }}</a>{% if device.igpu %} ({{ device.igpu }}){% endif %}</p>
+{%- endfor %}
+      </td>
+      <td><p>{{ row.gfx }}</p></td>
+{%- if meta.arch_start %}
+      <td{% if meta.arch_span > 1 %} rowspan="{{ meta.arch_span }}"{% endif %}>
+        {%- if row.arch_mkt %}<a href="{{ row.arch_mkt }}" target="_blank">{{ row.arch_name }}</a>
+        {%- else %}{{ row.arch_name }}{%- endif %}
+      </td>
+{%- endif %}
+    </tr>
+{%- endfor %}
+  </tbody>
+</table>
+{%- endmacro -%}
+
+::::{tab-set}
+:::{tab-item} Instinct
+:sync: instinct
+
+```{raw} html
+{{ render_table(instinct, "33%", "32%") }}
+```
+
+:::
+
+:::{tab-item} Radeon
+:sync: radeon
+
+```{raw} html
+{{ render_table(radeon, "33%", "32%") }}
+```
+
+:::
+
+:::{tab-item} Ryzen
+:sync: ryzen
+
+```{raw} html
+{{ render_table(ryzen, "26%", "40%") }}
+```
+
+:::
+::::

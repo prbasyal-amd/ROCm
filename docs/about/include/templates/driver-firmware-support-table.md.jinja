@@ -1,0 +1,203 @@
+{#
+  Template: driver-firmware-support-table.md.jinja
+  Renders the driver and firmware support tab-set (Instinct / Radeon / Ryzen).
+  Output: MyST markup with HTML tables inside {raw} html fences.
+
+  Primary data: driver-firmware-support.yaml (passed as `data` by the caller)
+
+  Instinct table columns: AMD device | PLDM Bundle (Firmware) | Linux driver
+    - Firmware cell: rowspan = count of consecutive GPUs sharing the same firmware list
+    - Linux driver cell: rowspan = total number of Instinct GPU rows (all share the list)
+
+  Radeon table columns: Linux driver | Windows driver
+  Ryzen table columns: Linux driver | Windows driver
+#}
+{%- set instinct = data["AMD Instinct"] -%}
+{%- set radeon   = data["AMD Radeon"] -%}
+{%- set ryzen    = data["AMD Ryzen"] -%}
+
+{#---------------------------------------------------------------------------
+  fw_key(gpu)
+  Returns a string key representing the firmware list for a GPU, used to
+  detect consecutive GPUs that share the same firmware and should be merged.
+---------------------------------------------------------------------------#}
+{%- macro fw_key(gpu) -%}
+{%- for f in gpu.firmware -%}
+{{ f }}{%- if not loop.last %}|||{% endif -%}
+{%- endfor -%}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  render_fw_line(f)
+  Renders a single firmware line: text, plus footnote marker if flagged.
+---------------------------------------------------------------------------#}
+{%- macro render_fw_line(f) -%}
+{{ f }}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  Instinct table
+
+  Step 1: build ordered GPU list
+  Step 2: compute firmware rowspans (consecutive identical firmware)
+  Step 3: compute linux driver rowspan (all GPUs share the same list)
+  Step 4: render
+---------------------------------------------------------------------------#}
+{%- set gpu_list = [] -%}
+{%- for gpu_name, gpu in instinct.items() -%}
+  {%- set _ = gpu_list.append({"name": gpu_name, "gpu": gpu}) -%}
+{%- endfor -%}
+
+{#-- Firmware rowspan: for each GPU, count consecutive following GPUs with same fw_key --#}
+{%- set fw_meta = [] -%}
+{%- for item in gpu_list -%}
+  {%- set i = loop.index0 -%}
+  {%- set cur_key = fw_key(item.gpu) -%}
+  {%- set fw_start = (i == 0) or (fw_key(gpu_list[i - 1].gpu) != cur_key) -%}
+  {%- set ns = namespace(n=0, done=false) -%}
+  {%- for fr in gpu_list[i:] -%}
+    {%- if not ns.done -%}
+      {%- if fw_key(fr.gpu) == cur_key -%}{%- set ns.n = ns.n + 1 -%}
+      {%- else -%}{%- set ns.done = true -%}{%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- set _ = fw_meta.append({"fw_start": fw_start, "fw_span": ns.n}) -%}
+{%- endfor -%}
+
+{#-- Linux driver rowspan: all Instinct GPUs share the same driver list --#}
+{%- set total_instinct = gpu_list | length -%}
+
+::::{tab-set}
+:::{tab-item} Instinct
+:sync: instinct
+
+```{raw} html
+<table class="rocm-docs-table table">
+  <colgroup style="width: 25%;">
+  <thead>
+    <tr>
+      <th class="head"><p>AMD device</p></th>
+      <th class="head"><p>PLDM Bundle (Firmware)</p></th>
+      <th class="head"><p>Linux driver</p></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- for item in gpu_list %}
+{%- set meta = fw_meta[loop.index0] %}
+{%- set gpu = item.gpu %}
+{%- set short_name = item.name | replace("AMD ", "") %}
+    <tr>
+      <td><p>{{ short_name }}</p></td>
+{%- if meta.fw_start %}
+      <td{% if meta.fw_span > 1 %} rowspan="{{ meta.fw_span }}" style="vertical-align: middle"{% endif %}>
+        <p>
+{%- for f in gpu.firmware %}
+          {{ render_fw_line(f) | trim }}
+{%- if not loop.last %}<br>
+{%- endif %}
+{%- endfor %}
+        </p>
+      </td>
+{%- endif %}
+{%- if loop.first %}
+      <td rowspan="{{ total_instinct }}" style="vertical-align: middle">
+        <p>
+          <strong>AMD GPU Driver (amdgpu)</strong><br>
+{%- for drv in gpu.linux.amdgpu %}
+          <a href="{{ drv.url }}" target="_blank">{{ drv.version }}</a><br>
+{%- endfor %}
+        </p>
+      </td>
+{%- endif %}
+    </tr>
+{%- endfor %}
+  </tbody>
+</table>
+
+```
+
+:::
+
+:::{tab-item} Radeon
+:sync: radeon
+
+```{raw} html
+<table class="rocm-docs-table table">
+  <colgroup style="width: 50%;">
+  <thead>
+    <tr>
+      <th class="head"><p>Linux driver</p></th>
+      <th class="head"><p>Windows driver</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="vertical-align: middle">
+        <p>
+          <strong>AMD GPU Driver (amdgpu)</strong><br>
+{%- for drv in radeon.linux.amdgpu %}
+          <a href="{{ drv.url }}" target="_blank">{{ drv.version }}</a><br>
+{%- endfor %}
+        </p>
+      </td>
+      <td style="vertical-align: middle">
+{%- for drv in radeon.windows %}
+        <p>
+{%- if drv.url is defined %}
+          <strong>{{ drv.name }}</strong>
+          <a href="{{ drv.url }}" target="_blank">{{ drv.version }}</a>
+{%- else %}
+          <strong>{{ drv.name }}</strong><br>
+          {{ drv.version }}
+{%- endif %}
+        </p>
+{%- endfor %}
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+:::
+
+:::{tab-item} Ryzen
+:sync: ryzen
+
+```{raw} html
+<table class="rocm-docs-table table">
+  <colgroup style="width: 50%;">
+  <thead>
+    <tr>
+      <th class="head"><p>Linux driver</p></th>
+      <th class="head"><p>Windows driver</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="vertical-align: middle">
+        <p>
+{%- for entry in ryzen.linux %}
+          {{ entry.driver }} ({{ entry.os }})<br>
+{%- endfor %}
+        </p>
+      </td>
+      <td style="vertical-align: middle">
+{%- for drv in ryzen.windows %}
+        <p>
+{%- if drv.url is defined %}
+          <strong>{{ drv.name }}</strong>
+          <a href="{{ drv.url }}" target="_blank">{{ drv.version }}</a>
+{%- else %}
+          <strong>{{ drv.name }}</strong><br>
+          {{ drv.version }}
+{%- endif %}
+        </p>
+{%- endfor %}
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+:::
+::::

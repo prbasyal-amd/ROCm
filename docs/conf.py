@@ -122,13 +122,16 @@ extensions = [
     "rocm_docs_custom.remote_content",
     "rocm_docs_custom.remote_yaml",
     "rocm_docs_custom.version_ref",
-    "rocm_docs_custom.merge_components",
     "sphinxcontrib.datatemplates",
     "sphinx_substitution_extensions",
     # "sphinx_reredirects",
     # "sphinx_sitemap",
 ]
-templates_path = ["extension/rocm_docs_custom/selector/templates"]
+templates_path = [
+    "extension/rocm_docs_custom/selector/templates",
+    "about/include/templates",
+    "install/include/templates",
+]
 
 # Omit custom matrix/selector content from PDF (LaTeX) output.
 rocm_selector_pdf_generation = False
@@ -213,7 +216,3 @@ official_branch = run(
     ["git", "rev-parse", "--abbrev-ref", "HEAD"], capture_output=True, text=True
 ).stdout.find("docs/")
 
-rocdoc_components_data_current = DOCS_DIR / "data" / "components.yaml"
-rocdoc_components_data_previous = DOCS_DIR / "data" / "components-previous.yaml"
-rocdoc_components_data_default = DOCS_DIR / "data" / "components-default.yaml"
-rocdoc_components_data_output = DOCS_DIR / "_data" / "components.yaml"

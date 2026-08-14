@@ -16,17 +16,17 @@ see :doc:`/install/rocm`.
    :key: fam
 
    .. selector-option:: AMD Instinct™
-      :value: instinct w=compute
+      :value: instinct
       :width: 4
       :toc-label: AMD Instinct
 
    .. selector-option:: AMD Radeon™
-      :value: radeon w=compute
+      :value: radeon
       :width: 4
       :toc-label: AMD Radeon
 
    .. selector-option:: AMD Ryzen™
-      :value: ryzen w=compute
+      :value: ryzen
       :width: 4
       :toc-label: AMD Ryzen
 

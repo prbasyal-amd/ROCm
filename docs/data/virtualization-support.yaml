@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=schemas/virtualization-support.schema.yaml
+# vim: set foldmethod=marker:
+
+# Anchors {{{
+_drivers:
+  - &gim_9_1_0_k
+    name: GIM 9.1.0.K
+    url: https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K
+# }}}
+
+AMD Instinct:
+  AMD Instinct MI355X:
+    - hypervisor: KVM
+      technology: Passthrough
+      host_os: Ubuntu 24.04
+      guest_os: [Ubuntu 24.04]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_1_0_k
+      host_os: Ubuntu 24.04
+      guest_os: [Ubuntu 24.04, RHEL 10.0, RHEL 9.6]
+    - hypervisor: ESXi
+      technology: SR-IOV
+      host_os: VMware ESXi 9.1
+      guest_os: [Ubuntu 24.04]
+
+  AMD Instinct MI350X:
+    - hypervisor: KVM
+      technology: Passthrough
+      host_os: Ubuntu 24.04
+      guest_os: [Ubuntu 24.04]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_1_0_k
+      host_os: Ubuntu 24.04
+      guest_os: [Ubuntu 24.04, RHEL 9.6]
+    - hypervisor: ESXi
+      technology: SR-IOV
+      host_os: VMware ESXi 9.1
+      guest_os: [Ubuntu 24.04]
+
+  AMD Instinct MI325X:
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_1_0_k
+      host_os: Ubuntu 22.04
+      guest_os: [Ubuntu 22.04]
+
+  AMD Instinct MI300X:
+    - hypervisor: KVM
+      technology: Passthrough
+      host_os: Ubuntu 22.04
+      guest_os: [Ubuntu 22.04]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_1_0_k
+      host_os: Ubuntu 24.04
+      guest_os: [Ubuntu 24.04]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_1_0_k
+      host_os: Ubuntu 22.04
+      guest_os: [Ubuntu 22.04]
+
+  AMD Instinct MI210:
+    - hypervisor: KVM
+      technology: Passthrough
+      host_os: RHEL 9.4
+      guest_os: [Ubuntu 22.04]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_1_0_k
+      host_os: RHEL 9.4
+      guest_os: [Ubuntu 22.04, RHEL 9.4]
+
+AMD Radeon:
+  AMD Radeon AI PRO R9700S:
+    - hypervisor: KVM
+      technology: Passthrough
+      host_os: Ubuntu 24.04
+      guest_os: [Ubuntu 24.04]
+
+  AMD Radeon PRO V710:
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_1_0_k
+      host_os: Ubuntu 24.04
+      guest_os: [Ubuntu 24.04]

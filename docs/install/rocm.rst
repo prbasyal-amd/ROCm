@@ -11,7 +11,7 @@ Install AMD ROCm |ROCM_VERSION|
 
 .. _rocm-install-methods:
 
-.. include:: ./include/050-install-methods.rst
+.. include:: ./include/000-install-methods.rst
 
 ----
 
@@ -31,35 +31,26 @@ in ROCm |ROCM_VERSION|, see the :doc:`Release notes </about/release-notes>`.
    installation guidance, see `TheRock releases
    <https://github.com/ROCm/TheRock/blob/main/RELEASES.md>`__.
 
-.. include:: ./include/fam-multi-arch-selector.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: fam-selector.rst.jinja
 
-.. include:: ./include/gpu-selector.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: gpu-selector.rst.jinja
 
-.. include:: ./include/os-selector.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: os-selector.rst.jinja
 
-.. include:: ./include/ror-gpu-selector.rst
+.. datatemplate:yaml:: /data/gpus.yaml
+   :template: os-version-selector.rst.jinja
 
-.. include:: ./include/ubuntu-ver-selector.rst
-
-.. include:: ./include/debian-ver-selector.rst
-
-.. include:: ./include/rhel-ver-selector.rst
-
-.. include:: ./include/oracle-linux-ver-selector.rst
-
-.. include:: ./include/rocky-linux-ver-selector.rst
-
-.. include:: ./include/sles-ver-selector.rst
-
-.. include:: ./include/windows-ver-selector.rst
-
-.. include:: ./include/install-method-selector.rst
+.. datatemplate:yaml:: /data/install-methods.yaml
+   :template: install-method-selector.rst.jinja
 
 ----
 
 .. _rocm-install-about:
 
-.. include:: ./include/000-intro.rst
+.. include:: ./include/050-intro.rst
 
 ----
 

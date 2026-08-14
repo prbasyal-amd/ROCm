@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=schemas/partitioning-support.schema.yaml
+# vim: set foldmethod=marker:
+
+AMD Instinct:
+  AMD Instinct MI355X:
+    bare-metal:
+      - {compute: CPX, memory: NPS2}
+      - {compute: DPX, memory: NPS2}
+      - {compute: QPX, memory: NPS2}
+    kvm-sriov:
+      - {vfs: 1, compute: SPX, memory: NPS1, default: true}
+      - {vfs: [1, 8], compute: CPX, memory: NPS2}
+      - {vfs: [1, 2], compute: DPX, memory: NPS2}
+
+  AMD Instinct MI350X:
+    bare-metal:
+      - {compute: CPX, memory: NPS2}
+      - {compute: DPX, memory: NPS2}
+      - {compute: QPX, memory: NPS2}
+    kvm-sriov:
+      - {vfs: 1, compute: SPX, memory: NPS1, default: true}
+      - {vfs: [1, 8], compute: CPX, memory: NPS2}
+      - {vfs: [1, 2], compute: DPX, memory: NPS2}
+
+  AMD Instinct MI350P:
+    bare-metal:
+      - {compute: CPX, memory: NPS1}
+      - {compute: SPX, memory: NPS1}
+
+  AMD Instinct MI325X:
+    kvm-sriov:
+      - {vfs: 1, compute: SPX, memory: NPS1}
+
+  AMD Instinct MI300X:
+    bare-metal:
+      - {compute: CPX, memory: NPS4}
+      - {compute: DPX, memory: NPS2}
+    kvm-sriov:
+      - {vfs: 1, compute: SPX, memory: NPS1}
+      - {vfs: 8, compute: CPX, memory: NPS4}

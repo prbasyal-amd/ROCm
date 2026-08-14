@@ -251,8 +251,8 @@ The following table lists supported AMD Instinct GPUs, Radeon GPUs, and Ryzen AP
 If your GPU is not listed, it might be community-enabled through TheRock nightly builds. For more information, see [TheRock supported GPUs](https://github.com/ROCm/TheRock/blob/main/SUPPORTED_GPUS.md). For installation guidance, see [TheRock releases](https://github.com/ROCm/TheRock/blob/main/RELEASES.md).
 :::
 
-```{include} ./include/hardware-support-table.md
-:parser: myst
+```{datatemplate:yaml} /data/gpus.yaml
+:template: hardware-support-table.md.jinja
 ```
 
 (release-supported-os)=
@@ -265,8 +265,8 @@ ROCm supports the following Linux distributions and Microsoft Windows versions. 
 The following table is a general overview of supported operating systems. Actual support might vary by AMD GPU or APU. Use the {doc}`Compatibility matrix </compatibility/compatibility-matrix>` to verify support for your specific setup before installation.
 :::
 
-```{include} ./include/os-support-table.md
-:parser: myst
+```{datatemplate:yaml} /data/os-support.yaml
+:template: os-support-table.md.jinja
 ```
 
 ## Installation updates
@@ -279,8 +279,8 @@ ROCm 10.0.0 introduces several improvements to the Runfile Installer:
 
 ROCm requires a coordinated stack of compatible firmware, driver, and user-space components. Maintaining version alignment between these layers ensures correct GPU operation and performance, especially for AMD data center products. While AMD publishes the AMD GPU driver and ROCm user space components, your server OEM (original equipment manufacturer) or infrastructure provider distributes the firmware packages. AMD supplies those firmware images (platform level data model (PLDM) bundles), which the OEM integrates and distributes.
 
-```{include} ./include/driver-firmware-support-table.md
-:parser: myst
+```{datatemplate:yaml} /data/driver-firmware-support.yaml
+:template: driver-firmware-support-table.md.jinja
 ```
 
 (release-virtualization-support)=
@@ -289,16 +289,16 @@ ROCm requires a coordinated stack of compatible firmware, driver, and user-space
 
 AMD Instinct data center GPUs support virtualization in the following configurations. Supported SR-IOV configurations require the AMD GPU Virtualization Driver (GIM) 9.1.0.K—see the [AMD Instinct Virtualization Driver documentation](https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.1.0.k/) for more information.
 
-```{include} ./include/virtualization-support-table.md
-:parser: myst
+```{datatemplate:yaml} /data/virtualization-support.yaml
+:template: virtualization-support-table.md.jinja
 ```
 
 (release-gpu-partitioning-support)=
 
 ## GPU partitioning support
 
-```{include} ./include/partitioning-support-table.md
-:parser: myst
+```{datatemplate:yaml} /data/partitioning-support.yaml
+:template: partitioning-support-table.md.jinja
 ```
 
 See the [AMD GPU partitioning](https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/gpu-partitioning/index.html) topic in the AMD GPU Driver documentation to learn more.
@@ -327,8 +327,8 @@ The following table lists core tools and libraries included in the ROCm 10.0.0 r
 The following table is a general overview of ROCm Core SDK components. Actual support for these libraries and tools can vary by GPU and OS. Use the {doc}`Compatibility matrix </compatibility/compatibility-matrix>` to verify support for your specific setup.
 :::
 
-```{include} ./include/core-sdk-components-table.html
-:parser: myst
+```{datatemplate:yaml} /data/components-current.yaml
+:template: core-sdk-components-table.html.jinja
 ```
 
 ### ROCm component changelogs

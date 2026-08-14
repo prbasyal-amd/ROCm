@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+$schema: https://json-schema.org/draft/2020-12/schema
+title: AMD ROCm Component Catalog
+description: Static component definitions — groups, descriptions, and cross-reference links.
+
+type: object
+additionalProperties: false
+patternProperties:
+  "^_":
+    description: YAML anchor blocks (internal use only)
+properties:
+  rocm_core_sdk:
+    $ref: "#/$defs/coreSDKDef"
+  rocm_extras:
+    type: array
+    items:
+      $ref: "#/$defs/extraEntry"
+
+$defs:
+  xref:
+    type: object
+    additionalProperties: false
+    properties:
+      rtd_project:
+        type: string
+        description: 'URI template for the Read the Docs project page (may contain ${rtd_version_slug})'
+      github_repo:
+        type: string
+        description: 'URI template for the GitHub repository (may contain ${release_tag})'
+
+  componentDef:
+    type: object
+    required: [group, description, xref]
+    additionalProperties: false
+    properties:
+      group:
+        type: string
+      description:
+        type: string
+      xref:
+        $ref: "#/$defs/xref"
+
+  coreSDKDef:
+    type: object
+    required: [components]
+    additionalProperties: false
+    properties:
+      components:
+        type: object
+        additionalProperties:
+          $ref: "#/$defs/componentDef"
+
+  extraEntry:
+    type: object
+    required: [name, xref]
+    additionalProperties: false
+    properties:
+      name:
+        type: string
+      xref:
+        $ref: "#/$defs/xref"

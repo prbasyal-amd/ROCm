@@ -28,11 +28,11 @@ OpenMPI, UCX, and Ubuntu.
    :key: fam
 
    .. selector-option:: All
-      :value: all w=compute
+      :value: all
       :width: 6
 
    .. selector-option:: AMD Instinct™
-      :value: instinct w=compute
+      :value: instinct
       :width: 6
       :toc-label: AMD Instinct
 
