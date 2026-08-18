@@ -28,25 +28,21 @@ This release expands GPU, operating system, virtualization, and partitioning sup
 
 #### Expanded AMD GPU support
 
-ROCm 10.0.0 adds support for the following AMD GPUs:
-
-* [AMD Radeon RX 9050 (gfx1200)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html)
+ROCm 10.0.0 adds support for the [AMD Radeon RX 9050 (gfx1200)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html) GPUs.
 
 For the complete list of supported AMD hardware, see [AMD hardware support](#amd-hardware-support).
 
 #### Expanded operating system support
 
-ROCm 10.0.0 adds support for Ubuntu 26.04.1 and Ubuntu 24.04.5 on AMD Instinct and Radeon GPUs, replacing support for Ubuntu 26.04 and Ubuntu 24.04.4, respectively.
+Operating system support remains unchanged in this release.
 
 For the full list of supported Linux distributions, see [Operating system support](#operating-system-support).
 
 #### Expanded GPU virtualization support for Instinct and Radeon GPUs
 
-ROCm 10.0.0 adds support for the following virtualization configurations on AMD Instinct GPUs:
+ROCm 10.0.0 adds support for the VMware ESXi 9.1 with Ubuntu 24.04 guest OS virtualization configurations on AMD Instinct MI350XP GPUs.
 
-* On MI350XP: VMware ESXi 9.1 with Ubuntu 24.04 guest OS.
-
-Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.1.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
+Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.2.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
 #### Expanded Instinct GPU partitioning support
 
@@ -287,7 +283,7 @@ ROCm requires a coordinated stack of compatible firmware, driver, and user-space
 
 ## GPU virtualization support
 
-AMD Instinct data center GPUs support virtualization in the following configurations. Supported SR-IOV configurations require the AMD GPU Virtualization Driver (GIM) 9.1.0.K—see the [AMD Instinct Virtualization Driver documentation](https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.1.0.k/) for more information.
+AMD Instinct data center GPUs support virtualization in the following configurations. Supported SR-IOV configurations require the AMD GPU Virtualization Driver (GIM) 9.2.0.K—see the [AMD Instinct Virtualization Driver documentation](https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.1.0.k/) for more information.
 
 ```{include} ./include/virtualization-support-table.md
 :parser: myst
