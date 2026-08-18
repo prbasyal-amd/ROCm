@@ -30,7 +30,7 @@ This release expands GPU, operating system, virtualization, and partitioning sup
 
 ROCm 10.0.0 adds support for the following AMD GPUs:
 
-* [AMD Radeon RX 9050 (gfx1151)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html)
+* [AMD Radeon RX 9050 (gfx1200)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html)
 
 For the complete list of supported AMD hardware, see [AMD hardware support](#amd-hardware-support).
 
@@ -169,7 +169,7 @@ This release includes a range of quality and stability improvements across ROCpr
 
 The following are notable enhancements to the ROCm Compute Profiler (rocprofiler-compute):
 
-##### gfx1153 support
+##### gfx1153 (Garogon Point) support
 
 Profiling, GPU metrics, and analysis now cover gfx1153. The Dual VALU (VOPD) instruction mix metric is now also reported for gfx115x GPUs in the WGP panel. For the supported hardware list, see [Compatible GPUs/APUs](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/reference/compatible-accelerators.html).
 
@@ -177,7 +177,7 @@ Profiling, GPU metrics, and analysis now cover gfx1153. The Dual VALU (VOPD) ins
 
 Operator tracing now covers Triton and `torch.compile` kernels in addition to PyTorch, and a single option traces every supported machine learning framework in one run. For details, see [Triton trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#triton-trace), [ML API trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#ml-api-trace), and [Operator filtering](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/analyze/cli.html#operator-filtering).
 
-##### Improved roofline support on gfx1150, gfx1151, and gfx1152
+##### Improved roofline support on gfx1150(Strix Point, Gorgon Point 1), gfx1151 (Strix Halo), and gfx1152 (Gorgon Point 2)
 
 Roofline benchmarking and analysis on these GPUs now report the correct set of supported precisions, so `--roofline-data-type` no longer offers precisions that cannot be measured. Machine specification reporting for APUs is corrected as well. Roofline benchmarking on gfx1153 is not yet supported. For details, see [Standalone roofline](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#standalone-roofline) and [Roofline HTML generation](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/analyze/cli.html#roofline-html-generation).
 
