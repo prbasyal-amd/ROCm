@@ -21,4 +21,7 @@ for verifying hardware health, measuring system performance, and managing GPU fl
 
   * `TransferBench <https://rocm.docs.amd.com/projects/TransferBench/en/latest/index.html>`_ -- A utility for benchmarking simultaneous memory transfers between user-specified devices (CPUs, GPUs, and NICs). This component is part of the ROCmValidationSuite (RVS) and is installed with it.
 
+* `ROCm Optiq <https://rocm.docs.amd.com/projects/roc-optiq/en/latest/index.html>`_ -- A unified visualization and analysis tool for performance data collected by ROCm profiling tools, specifically :doc:`ROCm Systems Profiler <rocprofiler-systems:index>` and :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`. It provides deep insights into both system-level behavior and kernel-level performance for applications running on the ROCm stack.
+
+
 * More coming soon.

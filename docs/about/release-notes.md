@@ -40,7 +40,11 @@ For the full list of supported Linux distributions, see [Operating system suppor
 
 #### Expanded GPU virtualization support for Instinct and Radeon GPUs
 
-ROCm 10.0.0 adds support for the VMware ESXi 9.1 with Ubuntu 24.04 guest OS virtualization configurations on AMD Instinct MI350XP GPUs.
+ROCm 10.0.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
+
+* On AMD Instinct MI350XP: Passthrough ESXi 9.1 with Ubuntu 24.04 guest OS
+* On AMD Instinct MI325X and MI300X: KVM SR-IOV with RHEL 10.1 host OS and guest OS
+* On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04, RHEL 10.1, and RHEL 9.6 guest OS.
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.2.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
@@ -68,6 +72,10 @@ For details, see [AI ecosystem support](#ai-ecosystem-support).
 
 This release improves ROCm developer workflows with new HIP APIs, expanded profiling and tracing capabilities, and broader telemetry coverage.
 
+### AMD SMI VCN busy metric on Radeon RX GPUs
+
+AMD SMI now correctly reports the VCN busy percentage for Radeon RX GPUs in the `amd-smi metric --usage` output. On affected devices where GPU metrics lacked VCN activity data, the value previously displayed as `N/A`.AMD SMI now reads the metric from the available sysfs source and reports it correctly.
+
 #### HIP feature highlights
 
 The following are notable enhancements to HIP:
@@ -90,6 +98,10 @@ HIP `cooperative_groups` library adds `cooperative_groups::inclusive_scan` and `
 ##### HIP API addition for CUDA parity
 
 HIP adds `hipMemGetDefaultMemPool`, which returns the default memory pool for a given memory location and allocation type.
+
+##### ROCr Runtime core dump support with attached debuggers
+
+The ROCr Runtime now generates a valid GPU core dump even when a debugger such as [ROCm Debugger (ROCgdb)](https://rocm.docs.amd.com/projects/ROCgdb/en/latest/index.html) or [ROCR Debug Agent](https://rocm.docs.amd.com/projects/rocr_debug_agent/en/latest/index.html) is already attached to the process. The runtime now captures the triggering GPU exception from its own internal state, so debugging sessions and core dump collection no longer need to be mutually exclusive.
 
 For more information, see the [HIP section](#hip-10-0-0) in the ROCm component changelogs.
 
@@ -165,7 +177,7 @@ This release includes a range of quality and stability improvements across ROCpr
 
 The following are notable enhancements to the ROCm Compute Profiler (rocprofiler-compute):
 
-##### gfx1153 (Garogon Point) support
+##### gfx1153 (Gorgon Point) support
 
 Profiling, GPU metrics, and analysis now cover gfx1153. The Dual VALU (VOPD) instruction mix metric is now also reported for gfx115x GPUs in the WGP panel. For the supported hardware list, see [Compatible GPUs/APUs](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/reference/compatible-accelerators.html).
 
@@ -173,7 +185,7 @@ Profiling, GPU metrics, and analysis now cover gfx1153. The Dual VALU (VOPD) ins
 
 Operator tracing now covers Triton and `torch.compile` kernels in addition to PyTorch, and a single option traces every supported machine learning framework in one run. For details, see [Triton trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#triton-trace), [ML API trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#ml-api-trace), and [Operator filtering](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/analyze/cli.html#operator-filtering).
 
-##### Improved roofline support on gfx1150(Strix Point, Gorgon Point 1), gfx1151 (Strix Halo), and gfx1152 (Gorgon Point 2)
+##### Improved roofline support on gfx1150(Strix Point, Gorgon Point), gfx1151 (Strix Halo), and gfx1152 (Gorgon Point)
 
 Roofline benchmarking and analysis on these GPUs now report the correct set of supported precisions, so `--roofline-data-type` no longer offers precisions that cannot be measured. Machine specification reporting for APUs is corrected as well. Roofline benchmarking on gfx1153 is not yet supported. For details, see [Standalone roofline](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#standalone-roofline) and [Roofline HTML generation](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/analyze/cli.html#roofline-html-generation).
 
@@ -210,6 +222,10 @@ rocPRIM adds `rocprim::device_topk` and `rocprim::device_segmented_topk`, parall
 #### rocFFT supports multi-GPU RCCL backend
 
 rocFFT adds an optional RCCL backend for single-node, multi-GPU FFT communication within a single process, enabled via the `-DROCFFT_RCCL_ENABLE=ON` CMake build option. RCCL's GPU topology-awareness targets help improve communication performance over rocFFT's existing memory-copy-based transport in this configuration.
+
+#### hipFile fastpath I/O support for LVM volumes
+
+hipFile now supports fastpath I/O to files on Logical Volume Manager(LVM) volumes backed by NVMe devices, resolving a previous ENODEV error caused by the underlying PCI device not being resolvable through the volume manager.
 
 #### hipSPARSE and rocSPARSE feature highlights
 

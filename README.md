@@ -152,7 +152,9 @@ SDK components](https://rocm.docs.amd.com/en/latest/components/core.html).
 
 ROCm Extras include supplementary tools for benchmarking, validating, and managing ROCm deployment.
 
-- [ROCm Validation Suite (RVS)](https://github.com/ROCm/ROCmValidationSuite) and [TransferBench](https://github.com/ROCm/TransferBench)
+- [ROCm Validation Suite (RVS)](https://github.com/ROCm/ROCmValidationSuite)
+- [TransferBench](https://github.com/ROCm/TransferBench)
+- [ROCm Optiq](https://github.com/ROCm/roc-optiq)
 
 ---
 
