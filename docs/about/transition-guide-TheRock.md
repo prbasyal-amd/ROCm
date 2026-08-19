@@ -317,6 +317,7 @@ Tarball archives use *family* names that differ from the deb/rpm package suffixe
 
 - ROCm Validation Suite
 - TransferBench
+- MIGraphX
 
 ### Moved to Standalone/ONNX
 
