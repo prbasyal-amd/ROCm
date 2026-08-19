@@ -286,7 +286,7 @@ The following table is a general overview of supported operating systems. Actual
 
 ## Installation updates
 
-ROCm 10.0.0 introduces several improvements to the Runfile Installer:
+ROCm 10.0.0 adds support for new GPUs and APUs and fixes minor bug in the Runfile Installer.
 
 (release-supported-fw)=
 
