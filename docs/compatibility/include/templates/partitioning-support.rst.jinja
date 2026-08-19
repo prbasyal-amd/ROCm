@@ -1,0 +1,170 @@
+{#
+  Template: partitioning-support.rst.jinja
+  Renders the GPU partitioning support section for AMD Instinct GPUs.
+  Output: RST with selected/matrix/matrix-row/matrix-cell directives.
+
+  Primary data: partitioning-support.yaml (passed as `data` by the caller)
+
+  To update partitioning support: edit docs/data/partitioning-support.yaml.
+
+  Data model (per GPU):
+    bare-metal: [{compute, memory, default?}, ...]
+    kvm-sriov:  [{vfs, compute, memory, default?}, ...]   (vfs may be scalar or list)
+
+  Merging: consecutive GPUs with identical config lists share matrix-rows
+  (same fingerprint-grouping approach as system-instinct.rst.jinja).
+  The matrix has no GPU column -- the GPU selector already identifies the GPU.
+
+  RST whitespace rules:
+  - {% for %} (no leading dash) is used for data-row loops so the blank line
+    between a directive's options (:header:/:show-cond:) and its body is preserved.
+
+  Columns:
+    bare-metal  → Compute partition mode | Memory partition mode
+    kvm-sriov   → VFs per GPU | Compute partition mode | Memory partition mode
+
+  If default: true, "(Default)" is appended to the compute mode label.
+#}
+{%- set instinct = data["AMD Instinct"] -%}
+{%- set gpu_names = instinct.keys() | list -%}
+
+{#-- slugify: "AMD Instinct MI355X" -> "amd-instinct-mi355x" --#}
+{%- macro slugify(name) -%}
+{{- name | lower | replace("+", "") | replace("  ", " ") | replace(" ", "-") -}}
+{%- endmacro -%}
+
+{#-- gpu_slugs(names): "gpu=slug1 gpu=slug2 ..." --#}
+{%- macro gpu_slugs(names) -%}
+{%- for name in names %}gpu={{ slugify(name) }} {% endfor -%}
+{%- endmacro -%}
+
+{#-- vfs_display(entry): scalar or list joined with " or " --#}
+{%- macro vfs_display(entry) -%}
+{%- if entry.vfs is iterable and entry.vfs is not string and entry.vfs is not number -%}
+{{ entry.vfs | join(" or ") }}
+{%- else -%}
+{{ entry.vfs }}
+{%- endif -%}
+{%- endmacro -%}
+
+{#-- config_key(entry): stable fingerprint for one config row --#}
+{%- macro config_key(entry) -%}
+{{ entry.compute }}|||{{ entry.memory }}{%- if entry.vfs is defined %}|||{{ entry.vfs | string }}{%- endif %}{%- if entry.default is defined %}|||default{%- endif %}
+{%- endmacro -%}
+
+{#-- configs_key(entries): fingerprint for a full config list --#}
+{%- macro configs_key(entries) -%}
+{%- for e in entries %}{{ config_key(e) | trim }}~~~{%- endfor -%}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  Build bare-metal merged groups and collect slugs for bare-metal GPUs.
+---------------------------------------------------------------------------#}
+{%- set ns_bm = namespace(groups=[], prev_key="", prev_idx=-1) -%}
+{%- set bm_gpu_names = [] -%}
+{%- for name in gpu_names -%}
+  {%- if instinct[name]["bare-metal"] is defined -%}
+    {%- set _ = bm_gpu_names.append(name) -%}
+    {%- set entries = instinct[name]["bare-metal"] -%}
+    {%- set k = configs_key(entries) | trim -%}
+    {%- if k == ns_bm.prev_key and ns_bm.prev_idx >= 0 -%}
+      {%- set last = ns_bm.groups[-1] -%}
+      {%- set _ = ns_bm.groups.pop() -%}
+      {%- set _ = ns_bm.groups.append({"gpus": last.gpus + [name], "entries": last.entries}) -%}
+    {%- else -%}
+      {%- set _ = ns_bm.groups.append({"gpus": [name], "entries": entries}) -%}
+    {%- endif -%}
+    {%- set ns_bm.prev_key = k -%}
+    {%- set ns_bm.prev_idx = loop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set bm_slugs = gpu_slugs(bm_gpu_names) -%}
+
+{#---------------------------------------------------------------------------
+  Build kvm-sriov merged groups and collect slugs for kvm-sriov GPUs.
+---------------------------------------------------------------------------#}
+{%- set ns_ks = namespace(groups=[], prev_key="", prev_idx=-1) -%}
+{%- set ks_gpu_names = [] -%}
+{%- for name in gpu_names -%}
+  {%- if instinct[name]["kvm-sriov"] is defined -%}
+    {%- set _ = ks_gpu_names.append(name) -%}
+    {%- set entries = instinct[name]["kvm-sriov"] -%}
+    {%- set k = configs_key(entries) | trim -%}
+    {%- if k == ns_ks.prev_key and ns_ks.prev_idx >= 0 -%}
+      {%- set last = ns_ks.groups[-1] -%}
+      {%- set _ = ns_ks.groups.pop() -%}
+      {%- set _ = ns_ks.groups.append({"gpus": last.gpus + [name], "entries": last.entries}) -%}
+    {%- else -%}
+      {%- set _ = ns_ks.groups.append({"gpus": [name], "entries": entries}) -%}
+    {%- endif -%}
+    {%- set ns_ks.prev_key = k -%}
+    {%- set ns_ks.prev_idx = loop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set ks_slugs = gpu_slugs(ks_gpu_names) -%}
+
+{#-- all_slugs: gates the outer section heading (Instinct only) --#}
+{%- set all_slugs = gpu_slugs(gpu_names) -%}
+
+.. selected:: {{ all_slugs }}
+   :heading: GPU partitioning support
+
+   AMD Instinct GPUs support compute and memory partitioning modes for
+   bare-metal and SR-IOV deployments.
+
+{% if ns_bm.groups | length > 0 %}
+   .. selected:: {{ bm_slugs }}
+      :heading: Bare-metal partitioning support
+      :heading-level: 3
+
+      .. matrix::
+
+         .. matrix-row::
+            :header:
+
+            .. matrix-cell:: Compute partition mode
+
+            .. matrix-cell:: Memory partition mode
+
+{% for group in ns_bm.groups %}
+{% for entry in group.entries %}
+         .. matrix-row::
+            :show-cond: {{ gpu_slugs(group.gpus) }}
+
+            .. matrix-cell:: {{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}
+
+            .. matrix-cell:: {{ entry.memory }}
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if ns_ks.groups | length > 0 %}
+   .. selected:: {{ ks_slugs }}
+      :heading: KVM SR-IOV partitioning support
+      :heading-level: 3
+
+      .. matrix::
+
+         .. matrix-row::
+            :header:
+
+            .. matrix-cell:: VFs per GPU
+
+            .. matrix-cell:: Compute partition mode
+
+            .. matrix-cell:: Memory partition mode
+
+{% for group in ns_ks.groups %}
+{% for entry in group.entries %}
+         .. matrix-row::
+            :show-cond: {{ gpu_slugs(group.gpus) }}
+
+            .. matrix-cell:: {{ vfs_display(entry) | trim }}
+
+            .. matrix-cell:: {{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}
+
+            .. matrix-cell:: {{ entry.memory }}
+
+{% endfor %}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,196 @@
+{#
+  Template: partitioning-support-table.md.jinja
+  Renders the two partitioning support tables (bare-metal and KVM SR-IOV).
+  Output: MyST markup with HTML tables inside {raw} html fences.
+
+  Primary data: partitioning-support.yaml (passed as `data` by the caller)
+
+  Bare-metal table columns:  Deployment | Device | Compute partition mode | Memory partition mode
+  KVM SR-IOV table columns:  Deployment | Device | VFs per GPU | Compute partition mode | Memory partition mode
+
+  Device merging: consecutive GPUs with identical configurations are merged
+  into a single device cell showing combined names (e.g. "Instinct MI355X, MI350X").
+
+  VFs rendering:
+    - scalar   → displayed as-is (e.g. "1", "8")
+    - list     → joined with " or " (e.g. "1 or 8")
+  If default: true, "(Default)" is appended to the compute mode label.
+#}
+{%- set instinct = data["AMD Instinct"] -%}
+
+{#---------------------------------------------------------------------------
+  config_key(entry)
+  Returns a string key for a bare-metal or kvm-sriov entry for comparison.
+---------------------------------------------------------------------------#}
+{%- macro config_key(entry) -%}
+{{ entry.compute }}|||{{ entry.memory }}{% if entry.vfs is defined %}|||{{ entry.vfs | string }}{% endif %}{% if entry.default is defined %}|||default{% endif %}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  configs_key(entries)
+  Returns a string key for a full list of entries.
+---------------------------------------------------------------------------#}
+{%- macro configs_key(entries) -%}
+{%- for e in entries %}{{ config_key(e) | trim }}~~~{%- endfor -%}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  vfs_display(entry)
+  Returns the display string for the VFs column.
+---------------------------------------------------------------------------#}
+{%- macro vfs_display(entry) -%}
+{%- if entry.vfs is iterable and entry.vfs is not string and entry.vfs is not number -%}
+{{ entry.vfs | join(" or ") }}
+{%- else -%}
+{{ entry.vfs }}
+{%- endif -%}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  build_merged_groups(section_key)
+  Builds a list of merged device groups for a given section (bare-metal or kvm-sriov).
+  Each group: {names: [list of short GPU names], entries: [config entries]}
+---------------------------------------------------------------------------#}
+{%- macro render_bare_metal() -%}
+{#-- Collect GPUs that have bare-metal entries --#}
+{%- set bm_gpus = [] -%}
+{%- for gpu_name, gpu in instinct.items() -%}
+  {%- if gpu["bare-metal"] is defined -%}
+    {%- set short = gpu_name | replace("AMD Instinct ", "Instinct ") -%}
+    {%- set _ = bm_gpus.append({"name": short, "entries": gpu["bare-metal"]}) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- Merge consecutive GPUs with identical configs --#}
+{%- set groups = [] -%}
+{%- set ns = namespace(prev_key="", prev_idx=-1) -%}
+{%- for gpu in bm_gpus -%}
+  {%- set k = configs_key(gpu.entries) | trim -%}
+  {%- if k == ns.prev_key and ns.prev_idx >= 0 -%}
+    {#- Same as previous: append name to existing group -#}
+    {%- set last = groups[-1] -%}
+    {%- set new_names = last.names + [gpu.name] -%}
+    {%- set _ = groups.pop() -%}
+    {%- set _ = groups.append({"names": new_names, "entries": last.entries}) -%}
+  {%- else -%}
+    {%- set _ = groups.append({"names": [gpu.name], "entries": gpu.entries}) -%}
+  {%- endif -%}
+  {%- set ns.prev_key = k -%}
+  {%- set ns.prev_idx = loop.index0 -%}
+{%- endfor -%}
+
+{#-- Compute total rows (sum of entries across all groups) --#}
+{%- set ns_total = namespace(n=0) -%}
+{%- for g in groups -%}{%- set ns_total.n = ns_total.n + (g.entries | length) -%}{%- endfor -%}
+
+<table class="rocm-docs-table table">
+  <thead>
+    <tr>
+      <th class="head"><p>Deployment</p></th>
+      <th class="head"><p>Device</p></th>
+      <th class="head"><p>Compute partition mode</p></th>
+      <th class="head"><p>Memory partition mode</p></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- set g_first = namespace(deploy_written=false) -%}
+{%- for group in groups %}
+{%- set n_rows = group.entries | length %}
+{%- set dev_label = group.names | join(", ") %}
+{%- for entry in group.entries %}
+    <tr>
+{%- if not g_first.deploy_written %}
+      <td rowspan="{{ ns_total.n }}" style="vertical-align: middle;"><p>Bare metal</p></td>
+{%- set g_first.deploy_written = true %}
+{%- endif %}
+{%- if loop.first %}
+      <td{% if n_rows > 1 %} rowspan="{{ n_rows }}" style="vertical-align: middle;"{% endif %}><p>{{ dev_label }}</p></td>
+{%- endif %}
+      <td><p>{{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}</p></td>
+      <td><p>{{ entry.memory }}</p></td>
+    </tr>
+{%- endfor %}
+{%- endfor %}
+  </tbody>
+</table>
+{%- endmacro -%}
+
+{%- macro render_kvm_sriov() -%}
+{#-- Collect GPUs that have kvm-sriov entries --#}
+{%- set ks_gpus = [] -%}
+{%- for gpu_name, gpu in instinct.items() -%}
+  {%- if gpu["kvm-sriov"] is defined -%}
+    {%- set short = gpu_name | replace("AMD Instinct ", "Instinct ") -%}
+    {%- set _ = ks_gpus.append({"name": short, "entries": gpu["kvm-sriov"]}) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- Merge consecutive GPUs with identical configs --#}
+{%- set groups = [] -%}
+{%- set ns = namespace(prev_key="", prev_idx=-1) -%}
+{%- for gpu in ks_gpus -%}
+  {%- set k = configs_key(gpu.entries) | trim -%}
+  {%- if k == ns.prev_key and ns.prev_idx >= 0 -%}
+    {%- set last = groups[-1] -%}
+    {%- set new_names = last.names + [gpu.name] -%}
+    {%- set _ = groups.pop() -%}
+    {%- set _ = groups.append({"names": new_names, "entries": last.entries}) -%}
+  {%- else -%}
+    {%- set _ = groups.append({"names": [gpu.name], "entries": gpu.entries}) -%}
+  {%- endif -%}
+  {%- set ns.prev_key = k -%}
+  {%- set ns.prev_idx = loop.index0 -%}
+{%- endfor -%}
+
+{#-- Compute total rows --#}
+{%- set ns_total = namespace(n=0) -%}
+{%- for g in groups -%}{%- set ns_total.n = ns_total.n + (g.entries | length) -%}{%- endfor -%}
+
+<table class="rocm-docs-table table">
+  <thead>
+    <tr>
+      <th class="head"><p>Deployment</p></th>
+      <th class="head"><p>Device</p></th>
+      <th class="head"><p>VFs per GPU</p></th>
+      <th class="head"><p>Compute partition mode</p></th>
+      <th class="head"><p>Memory partition mode</p></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- set g_first = namespace(deploy_written=false) -%}
+{%- for group in groups %}
+{%- set n_rows = group.entries | length %}
+{%- set dev_label = group.names | join(", ") %}
+{%- for entry in group.entries %}
+    <tr>
+{%- if not g_first.deploy_written %}
+      <td rowspan="{{ ns_total.n }}" style="vertical-align: middle;"><p>KVM SR-IOV</p></td>
+{%- set g_first.deploy_written = true %}
+{%- endif %}
+{%- if loop.first %}
+      <td{% if n_rows > 1 %} rowspan="{{ n_rows }}" style="vertical-align: middle;"{% endif %}><p>{{ dev_label }}</p></td>
+{%- endif %}
+      <td><p>{{ vfs_display(entry) | trim }}</p></td>
+      <td><p>{{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}</p></td>
+      <td><p>{{ entry.memory }}</p></td>
+    </tr>
+{%- endfor %}
+{%- endfor %}
+  </tbody>
+</table>
+{%- endmacro -%}
+
+The following compute partition and NUMA-per-socket (NPS) configurations are
+available on AMD Instinct GPUs in bare metal deployments.
+
+```{raw} html
+{{ render_bare_metal() }}
+```
+
+The following configurations are available on AMD Instinct GPUs in SR-IOV
+deployments. See {ref}`release-virtualization-support` for driver support
+information.
+
+```{raw} html
+{{ render_kvm_sriov() }}
+```

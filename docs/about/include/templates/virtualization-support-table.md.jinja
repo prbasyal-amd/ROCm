@@ -1,0 +1,166 @@
+{#
+  Template: virtualization-support-table.md.jinja
+  Renders the virtualization support tab-set (Instinct / Radeon).
+  Output: MyST markup with HTML tables inside {raw} html fences.
+
+  Primary data: virtualization-support.yaml (passed as `data` by the caller)
+
+  Column order: AMD GPU | Hypervisor | Virtualization technology | Virtualization driver | Host OS | Guest OS
+
+  Row expansion:
+    - Each config entry (hypervisor+technology+driver+host_os) expands into one row
+      per guest OS value.
+    - host_os cell: rowspan = number of guest OS entries in that config
+    - technology+driver cells: rowspan = consecutive sub-rows with the same tech+driver
+      (can merge across config entries within a GPU if tech and driver match)
+    - hypervisor cell: rowspan = consecutive sub-rows with the same hypervisor
+    - GPU cell: rowspan = total sub-rows for the GPU
+#}
+{%- set instinct = data["AMD Instinct"] -%}
+{%- set radeon   = data["AMD Radeon"] -%}
+
+{#---------------------------------------------------------------------------
+  build_subrows(gpu_configs)
+  Expands a list of config entries into flat sub-rows.
+  Each sub-row: {tech, driver_name, driver_url, host_os, guest_os,
+                 is_host_first, host_span, is_tech_first, tech_span,
+                 is_hyp_first, hyp_span, is_gpu_first, gpu_span}
+  (span values filled in a second pass)
+---------------------------------------------------------------------------#}
+{%- macro render_table(family) -%}
+
+{#-- Step 1: for each GPU, build flat list of sub-rows --#}
+{%- set gpu_rows = [] -%}
+{%- for gpu_name, configs in family.items() -%}
+  {%- set short = gpu_name | replace("AMD Instinct ", "Instinct ") | replace("AMD Radeon ", "Radeon ") -%}
+  {%- set sub_list = [] -%}
+  {%- for cfg in configs -%}
+    {%- set drv_name = cfg.driver.name if cfg.driver is defined else "" -%}
+    {%- set drv_url  = cfg.driver.url  if cfg.driver is defined else "" -%}
+    {%- set n_guests = cfg.guest_os | length -%}
+    {%- for g in cfg.guest_os -%}
+      {%- set _ = sub_list.append({
+        "hyp":        cfg.hypervisor,
+        "tech":       cfg.technology,
+        "drv_name":   drv_name,
+        "drv_url":    drv_url,
+        "host_os":    cfg.host_os,
+        "guest_os":   g,
+        "host_span":  n_guests,
+        "is_host_first": loop.first
+      }) -%}
+    {%- endfor -%}
+  {%- endfor -%}
+  {%- set _ = gpu_rows.append({"name": short, "rows": sub_list}) -%}
+{%- endfor -%}
+
+{#-- Step 2: compute hypervisor and tech+driver rowspans per GPU --#}
+{%- set gpu_meta = [] -%}
+{%- for gpu in gpu_rows -%}
+  {%- set rows = gpu.rows -%}
+  {%- set row_meta = [] -%}
+  {%- for row in rows -%}
+    {%- set i = loop.index0 -%}
+
+    {#- Hypervisor: start when prev row has different hyp -#}
+    {%- set hyp_start = (i == 0) or (rows[i-1].hyp != row.hyp) -%}
+    {%- set ns_h = namespace(n=0, done=false) -%}
+    {%- for fr in rows[i:] -%}
+      {%- if not ns_h.done -%}
+        {%- if fr.hyp == row.hyp -%}{%- set ns_h.n = ns_h.n + 1 -%}
+        {%- else -%}{%- set ns_h.done = true -%}{%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {#- Tech+driver: start when prev row has different tech or driver -#}
+    {%- set prev_tech = rows[i-1].tech    if i > 0 else "" -%}
+    {%- set prev_drv  = rows[i-1].drv_name if i > 0 else "" -%}
+    {%- set td_start = (i == 0) or (prev_tech != row.tech) or (prev_drv != row.drv_name) -%}
+    {%- set ns_t = namespace(n=0, done=false) -%}
+    {%- for fr in rows[i:] -%}
+      {%- if not ns_t.done -%}
+        {%- if fr.tech == row.tech and fr.drv_name == row.drv_name -%}{%- set ns_t.n = ns_t.n + 1 -%}
+        {%- else -%}{%- set ns_t.done = true -%}{%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- set _ = row_meta.append({
+      "row":       row,
+      "hyp_start": hyp_start,
+      "hyp_span":  ns_h.n,
+      "td_start":  td_start,
+      "td_span":   ns_t.n
+    }) -%}
+  {%- endfor -%}
+  {%- set _ = gpu_meta.append({"name": gpu.name, "rows": row_meta, "total": rows | length}) -%}
+{%- endfor -%}
+
+{#-- Step 3: render the HTML table --#}
+<table class="rocm-docs-table table">
+  <colgroup style="width: 14%;">
+    <colgroup style="width: 14%;">
+      <colgroup style="width: 17%;">
+        <colgroup style="width: 17%;">
+          <colgroup style="width: 19%;">
+            <colgroup style="width: 19%;">
+  <thead>
+    <tr>
+      <th class="head"><p>AMD GPU</p></th>
+      <th class="head"><p>Hypervisor</p></th>
+      <th class="head"><p>Virtualization technology</p></th>
+      <th class="head"><p>Virtualization driver</p></th>
+      <th class="head"><p>Host OS</p></th>
+      <th class="head"><p>Guest OS</p></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- for gpu in gpu_meta %}
+{%- for meta in gpu.rows %}
+{%- set row = meta.row %}
+    <tr>
+{%- if loop.first %}
+      <td{% if gpu.total > 1 %} rowspan="{{ gpu.total }}" style="vertical-align: middle"{% endif %}><p>{{ gpu.name }}</p></td>
+{%- endif %}
+{%- if meta.hyp_start %}
+      <td{% if meta.hyp_span > 1 %} rowspan="{{ meta.hyp_span }}" style="vertical-align: middle"{% endif %}><p>{{ row.hyp }}</p></td>
+{%- endif %}
+{%- if meta.td_start %}
+      <td{% if meta.td_span > 1 %} rowspan="{{ meta.td_span }}" style="vertical-align: middle"{% endif %}><p>{{ row.tech }}</p></td>
+      <td{% if meta.td_span > 1 %} rowspan="{{ meta.td_span }}" style="vertical-align: middle"{% endif %}>
+{%- if row.drv_url %}
+        <a href="{{ row.drv_url }}" target="_blank">{{ row.drv_name }}</a>
+{%- else %}
+        <p style="text-align: center">—</p>
+{%- endif %}
+      </td>
+{%- endif %}
+{%- if row.is_host_first %}
+      <td{% if row.host_span > 1 %} rowspan="{{ row.host_span }}" style="vertical-align: middle"{% endif %}><p>{{ row.host_os }}</p></td>
+{%- endif %}
+      <td><p>{{ row.guest_os }}</p></td>
+    </tr>
+{%- endfor %}
+{%- endfor %}
+  </tbody>
+</table>
+{%- endmacro -%}
+
+::::{tab-set}
+:::{tab-item} Instinct
+:sync: instinct
+
+```{raw} html
+{{ render_table(instinct) }}
+```
+
+:::
+
+:::{tab-item} Radeon
+:sync: radeon
+
+```{raw} html
+{{ render_table(radeon) }}
+```
+
+:::
+::::

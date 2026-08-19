@@ -184,7 +184,7 @@ Prerequisites
 
             Reboot your system after installing the OEM kernel.
 
-   .. selected:: w=graphics
+   .. selected:: i=amdgpu-install
 
       .. selected:: os=ubuntu
 
@@ -298,7 +298,7 @@ Prerequisites
 
       sudo zypper update
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=rhel
       :heading: Add additional package repositories
@@ -446,7 +446,7 @@ Prerequisites
 
 .. selected:: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles os=wsl
 
-   .. selected:: w=graphics
+   .. selected:: i=amdgpu-install
       :heading: Install additional packages
       :heading-level: 3
 
@@ -719,7 +719,7 @@ Prerequisites
 
          To apply all settings, reboot your system.
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
       :heading: Configure permissions for GPU access

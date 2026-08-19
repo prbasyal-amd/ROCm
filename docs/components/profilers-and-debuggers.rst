@@ -9,25 +9,28 @@ ROCm profiling and debugging tools
 ROCm profiling and debugging tools help you measure GPU application performance,
 identify bottlenecks, and diagnose execution faults.
 
-* :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`
-  (rocprofiler-compute) -- Kernel-level profiling for machine learning and
-  high performance computing (HPC) workloads.
+.. datatemplate:yaml:: /data/components-current.yaml
 
-* :doc:`ROCm Systems Profiler <rocprofiler-systems:index>`
-  (rocprofiler-systems) -- Comprehensive profiling and tracing of applications
-  running on the CPU or the CPU and GPU.
-
-* :doc:`ROCprofiler-SDK <rocprofiler-sdk:index>` -- Toolkit for developing
-  analysis tools for profiling and tracing GPU compute applications.
-
-* :doc:`ROCdbgapi <rocdbgapi:index>` -- ROCm debugger API library.
-
-* :doc:`ROCm Debugger <rocgdb:index>` (ROCgdb) -- Source-level debugger for
-  Linux, based on the GNU Debugger (GDB).
-
-* :doc:`ROCR Debug Agent <rocr_debug_agent:index>` -- Prints the state of all
-  AMD GPU wavefronts that caused a queue error by sending a SIGQUIT signal to
-  the process while the program is running.
+    {%- set defaults = load("/data/components-default.yaml").rocm_core_sdk.components -%}
+    {%- set current = data.rocm_core_sdk.components -%}
+    {%- set slug = data.rocm_core_sdk.meta.rtd_version_slug -%}
+    {%- set tag = data.rocm_core_sdk.meta.release_tag -%}
+    {%- for name, comp in defaults.items() | sort(attribute="0") -%}
+    {%-     if comp.group == "Profiling and debugging tools" -%}
+    {%-         set cur = current.get(name, {}) -%}
+    {%-         set ver_label = " " + cur.version|string if cur.version is defined else "" -%}
+    {%-         set desc = " -- " + comp.description if comp.description is defined else "" -%}
+    {%-         if comp.xref is defined and comp.xref.rtd_project is defined -%}
+    {%-             set url = comp.xref.rtd_project | replace("${rtd_version_slug}", slug) | replace("${release_tag}", tag) %}
+    * `{{ name }}{{ ver_label }} <{{ url }}>`__{{ desc }}
+    {%-         elif comp.xref is defined and comp.xref.github_repo is defined -%}
+    {%-             set url = comp.xref.github_repo | replace("${rtd_version_slug}", slug) | replace("${release_tag}", tag) %}
+    * `{{ name }}{{ ver_label }} <{{ url }}>`__{{ desc }}
+    {%-         else %}
+    * {{ name }}{{ ver_label }}{{ desc }}
+    {%-         endif %}
+    {%-     endif -%}
+    {%- endfor %}
 
 .. note::
 

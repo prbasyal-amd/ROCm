@@ -1,0 +1,100 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+$schema: https://json-schema.org/draft/2020-12/schema
+title: AMD ROCm Release Component Data
+description: Per-component version, support, and optional overrides of catalog fields for a ROCm release.
+
+type: object
+additionalProperties: false
+properties:
+  rocm_core_sdk:
+    $ref: "#/$defs/coreSDK"
+
+$defs:
+  meta:
+    type: object
+    required: [release_tag, rtd_version_slug]
+    additionalProperties: false
+    properties:
+      release_tag:
+        type: string
+      rtd_version_slug:
+        type: string
+
+  xref:
+    type: object
+    additionalProperties: false
+    properties:
+      rtd_project:
+        type: string
+        format: uri
+      github_repo:
+        type: string
+        format: uri
+
+  familySupport:
+    description: "true for all GPUs in the family, or a list of specific gfx targets"
+    oneOf:
+      - type: boolean
+      - type: array
+        items:
+          type: string
+
+  linuxSupport:
+    type: object
+    additionalProperties: false
+    properties:
+      instinct:
+        $ref: "#/$defs/familySupport"
+      radeon:
+        $ref: "#/$defs/familySupport"
+      ryzen:
+        $ref: "#/$defs/familySupport"
+
+  windowsSupport:
+    description: Windows never supports Instinct GPUs.
+    type: object
+    additionalProperties: false
+    properties:
+      radeon:
+        $ref: "#/$defs/familySupport"
+      ryzen:
+        $ref: "#/$defs/familySupport"
+
+  support:
+    type: object
+    additionalProperties: false
+    properties:
+      linux:
+        $ref: "#/$defs/linuxSupport"
+      windows:
+        $ref: "#/$defs/windowsSupport"
+
+  componentEntry:
+    type: object
+    required: [version]
+    additionalProperties: false
+    properties:
+      version:
+        oneOf:
+          - type: string
+          - type: number
+      support:
+        $ref: "#/$defs/support"
+      group:
+        type: string
+      description:
+        type: string
+      xref:
+        $ref: "#/$defs/xref"
+
+  coreSDK:
+    type: object
+    required: [meta, components]
+    additionalProperties: false
+    properties:
+      meta:
+        $ref: "#/$defs/meta"
+      components:
+        type: object
+        additionalProperties:
+          $ref: "#/$defs/componentEntry"

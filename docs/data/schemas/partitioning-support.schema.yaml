@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+$schema: https://json-schema.org/draft/2020-12/schema
+title: AMD GPU Partitioning Support Data
+description: Compute and memory partition modes per GPU for bare metal and SR-IOV.
+
+type: object
+additionalProperties: false
+patternProperties:
+  "^_":
+    description: YAML anchor blocks (internal use only)
+properties:
+  AMD Instinct:
+    $ref: "#/$defs/deviceFamily"
+
+$defs:
+  deviceFamily:
+    type: object
+    additionalProperties:
+      $ref: "#/$defs/partitionSupport"
+
+  partitionSupport:
+    type: object
+    additionalProperties: false
+    properties:
+      bare-metal:
+        type: array
+        items:
+          $ref: "#/$defs/bareMetalEntry"
+      kvm-sriov:
+        type: array
+        items:
+          $ref: "#/$defs/sriovEntry"
+
+  bareMetalEntry:
+    type: object
+    required: [compute, memory]
+    additionalProperties: false
+    properties:
+      compute:
+        type: string
+      memory:
+        type: string
+
+  sriovEntry:
+    type: object
+    required: [vfs, compute, memory]
+    additionalProperties: false
+    properties:
+      vfs:
+        oneOf:
+          - type: integer
+          - type: array
+            items:
+              type: integer
+      compute:
+        type: string
+      memory:
+        type: string
+      default:
+        type: boolean

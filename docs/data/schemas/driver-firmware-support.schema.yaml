@@ -1,0 +1,107 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+$schema: https://json-schema.org/draft/2020-12/schema
+title: AMD GPU Driver and Firmware Support Data
+description: Driver and firmware support information per GPU family and model.
+
+type: object
+additionalProperties: false
+patternProperties:
+  "^_":
+    description: YAML anchor blocks (internal use only)
+properties:
+  AMD Instinct:
+    type: object
+    additionalProperties:
+      $ref: "#/$defs/instinctEntry"
+  AMD Radeon:
+    $ref: "#/$defs/familyDrivers"
+  AMD Ryzen:
+    $ref: "#/$defs/ryzenDrivers"
+
+$defs:
+  amdgpuDriver:
+    type: object
+    required: [version]
+    additionalProperties: false
+    properties:
+      version:
+        type: string
+      url:
+        type: string
+        format: uri
+
+  windowsDriver:
+    type: object
+    required: [version]
+    additionalProperties: false
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+      url:
+        type: string
+        format: uri
+
+  amdgpuDriverList:
+    type: array
+    items:
+      $ref: "#/$defs/amdgpuDriver"
+
+  instinctEntry:
+    type: object
+    required: [firmware, linux]
+    additionalProperties: false
+    properties:
+      firmware:
+        type: array
+        items:
+          type: string
+      linux:
+        type: object
+        required: [amdgpu]
+        additionalProperties: false
+        properties:
+          amdgpu:
+            $ref: "#/$defs/amdgpuDriverList"
+
+  familyDrivers:
+    type: object
+    required: [linux, windows]
+    additionalProperties: false
+    properties:
+      linux:
+        type: object
+        required: [amdgpu]
+        additionalProperties: false
+        properties:
+          amdgpu:
+            $ref: "#/$defs/amdgpuDriverList"
+      windows:
+        type: array
+        items:
+          $ref: "#/$defs/windowsDriver"
+
+  ryzenLinuxEntry:
+    type: object
+    required: [os, driver]
+    additionalProperties: false
+    properties:
+      os:
+        type: string
+      driver:
+        type: string
+
+  ryzenDrivers:
+    type: object
+    required: [linux, windows]
+    additionalProperties: false
+    properties:
+      linux:
+        type: array
+        items:
+          $ref: "#/$defs/ryzenLinuxEntry"
+      windows:
+        type: array
+        items:
+          $ref: "#/$defs/windowsDriver"

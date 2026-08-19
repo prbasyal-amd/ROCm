@@ -46,7 +46,7 @@ Installation
 
       wget https://repo.radeon.com/rocm/installer/rocm-runfile-installer/rocm-rel-7.14/rocm-installer-7.14.0-7.run
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=ubuntu os=rhel
       :heading: Install the amdgpu-install script
@@ -1485,7 +1485,7 @@ Use the following instructions to install ROCm packages on your system.
          .. matrix-cell:: The complete ROCm Core SDK including runtimes, compilers, development tools, and dependencies.
 
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=ubuntu os=rhel
 
