@@ -61,10 +61,13 @@ This release enables support for the following frameworks:
 * PyTorch 2.13.0
 * JAX 0.11.0
 * JAX 0.10.2
-* vLLM 0.26.0
+* vLLM 0.27.0
 * SGLang 0.5.15
+* TensorFlow 2.21
+* MIGraphX 2.17
+* ONNX Runtime 1.27.0
 
-The updated framework support replaces the previous PyTorch 2.10.0, JAX 0.9.1, vLLM 0.23.0, and SGLang 0.5.13 support.
+The updated framework support replaces the previous PyTorch 2.10.0, JAX 0.9.1, vLLM 0.23.0, SGLang 0.5.13, MIGraphX 2.16, and ONNX Runtime 1.23.2 support.
 
 For details, see [AI ecosystem support](#ai-ecosystem-support).
 
