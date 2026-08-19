@@ -61,24 +61,24 @@ Installation
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/ubuntu/resolute/amdgpu-install_31.40.1.314001-1_all.deb
-               sudo apt install ./amdgpu-install_31.40.1.314001-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/ubuntu/resolute/amdgpu-install_31.50.315000-1_all.deb
+               sudo apt install ./amdgpu-install_31.50.315000-1_all.deb
 
          .. selected:: ubuntu-ver=24.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/ubuntu/noble/amdgpu-install_31.40.1.314001-1_all.deb
-               sudo apt install ./amdgpu-install_31.40.1.314001-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/ubuntu/noble/amdgpu-install_31.50.315000-1_all.deb
+               sudo apt install ./amdgpu-install_31.50.315000-1_all.deb
 
          .. selected:: ubuntu-ver=22.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/ubuntu/jammy/amdgpu-install_31.40.1.314001-1_all.deb
-               sudo apt install ./amdgpu-install_31.40.1.314001-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/ubuntu/jammy/amdgpu-install_31.50.315000-1_all.deb
+               sudo apt install ./amdgpu-install_31.50.315000-1_all.deb
 
       .. selected:: os=rhel
 
@@ -86,43 +86,43 @@ Installation
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/10.2/amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/10.2/amdgpu-install-31.50.315000-1.el10.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el10.noarch.rpm
 
          .. selected:: rhel-ver=10.0
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/10.0/amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/10.0/amdgpu-install-31.50.315000-1.el10.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el10.noarch.rpm
 
          .. selected:: rhel-ver=9.8
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/9.8/amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/9.8/amdgpu-install-31.50.315000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=9.6
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/9.6/amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/9.6/amdgpu-install-31.50.315000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=9.4
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/9.4/amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/9.4/amdgpu-install-31.50.315000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=8.10
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/8.10/amdgpu-install-31.40.1.314001-1.el8.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el8.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/8.10/amdgpu-install-31.50.315000-1.el8.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el8.noarch.rpm
 
 .. ==================================================== INSTALL KERNEL DRIVER ==
 
@@ -141,7 +141,7 @@ Installation
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Ubuntu native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
             .. selected:: ubuntu-ver=26.04
@@ -158,35 +158,35 @@ Installation
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Debian native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-debian.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-debian.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rhel
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `RHEL native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rhel.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rhel.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=oracle-linux
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Oracle Linux native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ol.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ol.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rocky-linux
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Rocky Linux native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rl.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rl.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=sles
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `SLES native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-sles.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-sles.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
       .. selected:: fam=instinct fam=radeon
@@ -200,42 +200,42 @@ Installation
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Ubuntu native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=debian
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Debian native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-debian.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-debian.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rhel
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `RHEL native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rhel.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rhel.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=oracle-linux
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Oracle Linux native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ol.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ol.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rocky-linux
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Rocky Linux native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rl.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rl.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=sles
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `SLES
             native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-sles.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-sles.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
       .. selected:: fam=ryzen
