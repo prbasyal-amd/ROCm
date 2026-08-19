@@ -192,7 +192,7 @@ Packages are offered in the following variants:
 
 Installing all GPU architectures is not required. You can install packages for a specific architecture, multiple architectures side by side, or all supported GPU architectures.
 
-When redistributing software built on the ROCm Core SDK (for example, via containers), we recommend the all GPU package variant for broad hardware support. If disk footprint is a concern, you can use a single GPU architecture package variant instead.
+When redistributing software built on the ROCm Core SDK (for example, via containers), we recommend the all-GPU package variant for broad hardware support. If disk footprint is a concern, you can use a single-GPU-architecture package variant instead.
 
 ### Architecture-specific packages available in ROCm 7.14.0
 

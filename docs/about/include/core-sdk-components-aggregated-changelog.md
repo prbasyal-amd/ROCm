@@ -48,7 +48,7 @@
 #### Added
 * New HIP APIs
     - Stream Ordered Memory Allocator: Support for the following APIs for parity with corresponding CUDA APIs.
-      * `hipMemGetDefaultMemPool` returns the default memory pool for the specified location and allocation type
+      * `hipMemGetDefaultMemPool` returns the default memory pool for the specified location and allocation type.
 
 #### Resolved issues
 
@@ -63,7 +63,7 @@ enabling successful ROCm initialization, HSA agent discovery, and subsequent ROC
 * Improved `hipMemcpy2D()` and `hipMemcpy2DAsync()` performance for copy operations with very small row widths and large row counts.
 Previously, non-4-byte-aligned row or slice pitches could cause the runtime to issue a separate copy for each row, resulting in significant
 performance degradation for workloads such as 1-byte-wide transfers with millions of rows.
-These transfers are now handled using a single shader-based copy operation, dramatically reducing transfer times.
+These transfers are now handled using a single shader-based copy operation instead of a separate copy per row, significantly reducing transfer times.
 Copy operations at or below the 256-row threshold are unchanged.
 
 ### **hipBLAS** (3.6.0)
@@ -76,7 +76,7 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 #### Resolved issues
 
-* PyTorch users can avoid user constraint based memory allocation failures (`HIPBLAS_STATUS_ALLOC_FAILED`) by exporting `HIPBLAS_WORKSPACE_CONFIG=:0:0` to allow rocBLAS managed memory to grow automatically.
+* PyTorch users can avoid user-constraint-based memory allocation failures (`HIPBLAS_STATUS_ALLOC_FAILED`) by exporting `HIPBLAS_WORKSPACE_CONFIG=:0:0` to allow rocBLAS managed memory to grow automatically.
 
 ### **hipCUB** (5.0.0)
 
@@ -97,7 +97,7 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 * hipCUB compatibility with PyTorch v2.9 and v2.10 has been removed in this release.  Please use PyTorch v2.11 or later.
 * Removed `hipcub::BaseTraits::CATEGORY`, `hipcub::BaseTraits::nullptr_TYPE` and `hipcub::BaseTraits::PRIMITIVE`.
-* Removed  `ConstantInputIterator`, `CountingInputIterator`, `DiscardOutputIterator` and `TransformInputIterator` which were deprecated in hipCUB-4.1.0.
+* Removed `ConstantInputIterator`, `CountingInputIterator`, `DiscardOutputIterator` and `TransformInputIterator`, which were deprecated in hipCUB-4.1.0.
 * Removed `DeviceSpmv`, which was removed from CUB after CCCL's 2.8.0 release. Use `hipSPARSE` or `rocSPARSE` libraries instead.
 * Removed `GridBarrier`.
 * Removed `HIPCUB_MIN`, `HIPCUB_MAX`, `HIPCUB_QUOTIENT_FLOOR`, `HIPCUB_QUOTIENT_CEILING`, `HIPCUB_ROUND_UP_NEAREST` and `HIPCUB_ROUND_DOWN_NEAREST` which were deprecated in hipCUB-4.1.0.
@@ -117,7 +117,7 @@ Copy operations at or below the 256-row threshold are unchanged.
 #### Changed
 
 * `ais-check` now lists the AIS-capable file system mounts detected on the system and fails if none are found.
-* Fastpath-only tests are now automatically skipped on systems that do not support the AIS fastpath instead of failing. Running ctest in verbose mode (`ctest -V`) will provide the reason why the test was skipped.
+* Fastpath-only tests are now automatically skipped on systems that do not support the AIS fastpath instead of failing. Running ctest in verbose mode (`ctest -V`) will provide the reason the test was skipped.
 * Updated INSTALL.md to point to official install docs.
 
 ### **hipSPARSE** (4.7.0)
@@ -142,7 +142,7 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 #### Upcoming changes
 
-* Deprecated the `ROCBLAS_USE_HIPBLASLT_BATCHED` environment variable. It is no longer required to disable only batched use of hipBLASLt due to optimizations. This env control is planned for removal in a future release.
+* Deprecated the `ROCBLAS_USE_HIPBLASLT_BATCHED` environment variable. Recent optimizations mean hipBLASLt no longer needs to be disabled for batched operations only. This environment variable is planned for removal in a future release.
 
 ### **rocDecode** (1.9.0)
 
@@ -310,8 +310,8 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 * Added a parallel `device_topk`, which finds the largest/smallest K elements from an input array of keys.
 * Added a parallel `device_segmented_topk`, which finds the largest/smallest K elements from segmented groups.
-* `device_topk` and `device_segmented_topk` are controlled by cmake flag `ROCPRIM_ENABLE_TOPK`. Passing `-DROCPRIM_ENABLE_TOPK=ON` to enable these features
-* Added C++ 17 style type_traits utilities
+* `device_topk` and `device_segmented_topk` are now controlled by the CMake flag `ROCPRIM_ENABLE_TOPK`. Set `-DROCPRIM_ENABLE_TOPK=ON` to enable these features.
+* Added C++ 17 style type_traits utilities:
  * is_floating_point_v
  * is_integral_v
  * is_arithmetic_v
@@ -323,7 +323,7 @@ Copy operations at or below the 256-row threshold are unchanged.
 
 #### Changed
 
-* Combined and simplified separate assertion templates using `std::is_floating_point`, `rocprim::half`, and `rocprim::bfloat16` to use `rocprim::is_floating_point`
+* Combined and simplified separate assertion templates using `std::is_floating_point`, `rocprim::half`, and `rocprim::bfloat16` to use `rocprim::is_floating_point`.
 
 ### **rocRAND** (4.5.0)
 
@@ -354,18 +354,18 @@ Copy operations at or below the 256-row threshold are unchanged.
    * `rocshmem_ctx_tile_allgather`
    * `rocshmem_ctx_tile_allgather_wave`
    * `rocshmem_ctx_tile_allgather_wg`
-* Single node support for gfx1250 / MI455X
-* Support for HIP Fabric Handles
+* Single node support for gfx1250 / MI455X.
+* Support for HIP Fabric Handles.
 
 ### Changed
 
-* Drop LLC dependency when compiling HSCO objects
+* Dropped LLC dependency when compiling HSCO objects.
 
 ### **rocSOLVER** (3.36.0)
 
 #### Added
 
-* 64-bit APIs for the symmetric/Hermitian eigensolvers
+* 64-bit APIs for the symmetric/Hermitian eigensolvers:
     * SYEV_64 and HEEV_64 (with batched and strided\_batched versions)
     * SYEVD_64 and HEEVD_64 (with batched and strided\_batched versions)
 * Support added for the gfx1250 architecture.
@@ -404,7 +404,7 @@ Copy operations at or below the 256-row threshold are unchanged.
 #### Added
 
 * Largely in feature parity with CCCL/thrust v3.0.3.
-  - `thrust::tuple`, `thrust::pair` and `thrust::zip_iterator` fall back to rocThrust 4.4.0 implementations when a libhipcxx counterpart corresponding to CCCL/libcudacxx >= v3.0.3 is unavailable, ie
+  - `thrust::tuple`, `thrust::pair` and `thrust::zip_iterator` fall back to rocThrust 4.4.0 implementations when a libhipcxx counterpart corresponding to CCCL/libcudacxx >= v3.0.3 is unavailable.
     * `thrust::tuple` and `thrust::pair`: some features may differ from CCCL/thrust v3.0.3.
     * `thrust::zip_iterator`: some iterator concepts present in CCCL/thrust v3.0.3 are missing.
 

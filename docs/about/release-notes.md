@@ -1,6 +1,6 @@
 # ROCm Core SDK {{ ROCM_VERSION }} release notes
 
-These release notes summarize notable changes since the previous ROCm release.
+These release notes describe notable changes since the previous ROCm release.
 
 - [Release highlights](#release-highlights)
 - [AMD hardware support](#amd-hardware-support)
@@ -20,7 +20,7 @@ Since ROCm 7.14, ROCm uses [TheRock](https://github.com/ROCm/TheRock) as its bui
 
 ## Release highlights
 
-This release focuses on AI inference, distributed workloads, and profiling across AMD Instinct™, Radeon™, and Ryzen™ AI platforms. Highlights include inference-ready vLLM images and packages, ROCprofiler-SDK adoption across AI profiling workflows, expanded system telemetry and validation coverage, and updates to math, sparse, and communication libraries.
+This release focuses on AI inference, developer tooling, and profiling across AMD Instinct™, Radeon™, and Ryzen™ AI platforms. Highlights include expanded framework support for AI inference, new HIP APIs and performance improvements, ROCprofiler-SDK adoption across AI profiling workflows, and updates to math, sparse, and communication libraries.
 
 ### Platform and hardware support
 
@@ -71,40 +71,33 @@ The updated framework support replaces the previous PyTorch 2.10.0, JAX 0.9.1, v
 
 For details, see [AI ecosystem support](#ai-ecosystem-support).
 
-### Developer tools, profiling, and validation
+### Developer tools and profiling
 
 This release improves ROCm developer workflows with new HIP APIs, expanded profiling and tracing capabilities, and broader telemetry coverage.
-
-### AMD SMI VCN busy metric on Radeon RX GPUs
-
-AMD SMI now correctly reports the VCN busy percentage for Radeon RX GPUs in the `amd-smi metric --usage` output. On affected devices where GPU metrics lacked VCN activity data, the value previously displayed as `N/A`.AMD SMI now reads the metric from the available sysfs source and reports it correctly.
 
 #### HIP feature highlights
 
 The following are notable enhancements to HIP:
 
+##### Improved HIP performance
+
+Improved `hipEventRecord` performance by using the `hipEventDisableTiming` flag to avoid unnecessary profiling when timing information is not required. Event operations are now coalesced to eliminate redundant barrier submissions, reducing runtime overhead and improving execution efficiency.
+
 ##### HIP Record and Replay (HRR) support
 
 HIP Record and Replay (HRR) captures HIP API calls made by an application and stores them in a binary archive (`.hrr`). The recorded workload can then be replayed on a GPU, reproducing application behavior, including multi-threaded execution, graph launches, and GPU memory transfers. This capability enables efficient bug reproduction, performance regression testing, and kernel benchmarking without requiring access to the original application. For more details, see [HIP Record & Replay](https://rocm.docs.amd.com/projects/HIP/en/develop/how-to/debugging.html#hip-record-replay).
-
-##### Improved HIP performance
-
-Improved `hipEventRecord` performance by using the `hipEventDisableTiming` flag to avoid
-unnecessary profiling when timing information is not required. Event operations are
-now coalesced to eliminate redundant barrier submissions, reducing runtime overhead
-and improving execution efficiency.
 
 ##### HIP cooperative groups exclusive and inclusive scan support
 
 HIP `cooperative_groups` library adds `cooperative_groups::inclusive_scan` and `cooperative_groups::exclusive_scan` scan APIs in parity with CUDA. Both accept any cooperative group type and an optional custom binary operator, defaulting to summation when none is given.
 
-##### HIP API addition for CUDA parity
-
-HIP adds `hipMemGetDefaultMemPool`, which returns the default memory pool for a given memory location and allocation type.
-
 ##### ROCr Runtime core dump support with attached debuggers
 
 The ROCr Runtime now generates a valid GPU core dump even when a debugger such as [ROCm Debugger (ROCgdb)](https://rocm.docs.amd.com/projects/ROCgdb/en/latest/index.html) or [ROCR Debug Agent](https://rocm.docs.amd.com/projects/rocr_debug_agent/en/latest/index.html) is already attached to the process. The runtime now captures the triggering GPU exception from its own internal state, so debugging sessions and core dump collection no longer need to be mutually exclusive.
+
+##### HIP API addition for CUDA parity
+
+HIP adds `hipMemGetDefaultMemPool`, which returns the default memory pool for a given memory location and allocation type.
 
 For more information, see the [HIP section](#hip-10-0-0) in the ROCm component changelogs.
 
@@ -112,51 +105,35 @@ For more information, see the [HIP section](#hip-10-0-0) in the ROCm component c
 
 The following are notable enhancements to ROCprofiler-SDK:
 
-##### rocSHMEM API tracing
+##### Expanded tracing domains
 
-ROCprofiler-SDK and `rocprofv3` add rocSHMEM as a first-class tracing domain. Host-stream APIs, including `rocshmem_putmem_on_stream`, `rocshmem_getmem_on_stream`, and `rocshmem_alltoallmem_on_stream` are now intercepted and emitted as per-call trace records. These records appear inline with HIP, HSA, RCCL, and other runtime traces, enabling you to see rocSHMEM communication activity in the same timeline as GPU compute and understand its contribution to overall application performance.
+ROCprofiler-SDK and `rocprofv3` add three new first-class tracing domains:
 
-In `rocprofv3`, rocSHMEM tracing is enabled with the `--rocshmem-trace` flag (or the `ROCPROF_ROCSHMEM_API_TRACE` environment variable). It is also automatically included in `--runtime-trace` and `--sys-trace`. Records are emitted across all supported output backends: CSV, JSON, Perfetto, OTF2, and rocpd.
+* **rocSHMEM API tracing:** Host-stream APIs, including `rocshmem_putmem_on_stream`, `rocshmem_getmem_on_stream`, and `rocshmem_alltoallmem_on_stream` are now intercepted and emitted as per-call trace records. These records appear inline with HIP, HSA, RCCL, and other runtime traces, enabling you to see rocSHMEM communication activity in the same timeline as GPU compute and understand its contribution to overall application performance. Enable with the `--rocshmem-trace` flag (or `ROCPROF_ROCSHMEM_API_TRACE` environment variable).
 
-##### OpenMP (OMPT) tracing for rocprofv3
+* **hipFile tracing support:** hipFile API calls are intercepted via dispatch-table wrapping and emitted as per-call trace records alongside HIP, HSA, and other runtime activity. This allows you to see file I/O operations in the same profiling timeline as GPU kernels and memory copies, making it straightforward to quantify storage overhead and its impact on end-to-end application performance. Enable with the `--hipfile-trace` flag (or `ROCPROF_HIPFILE_API_TRACE` environment variable).
 
-`rocprofv3` exposes OpenMP Tools (OMPT) tracing as a first-class command-line flag. The `--ompt-trace` option accepts a bare Boolean or a space-separated category list, (for example `--ompt-trace parallel task target sync`), following the same style as `--pmc` and `--output-format`. OMPT records are written to the rocpd database on the default output path. The flag is also folded into `--sys-trace` and `--runtime-trace` if you want full-coverage system traces. ROCprofiler-SDK has supported the OMPT callback layer since an earlier release; this change makes it accessible without writing a custom tool.
+* **OpenMP (OMPT) tracing:** `rocprofv3` exposes OpenMP Tools (OMPT) tracing as a first-class command-line flag. The `--ompt-trace` option accepts a bare Boolean or a space-separated category list (for example `--ompt-trace parallel task target sync`), following the same style as `--pmc` and `--output-format`. ROCprofiler-SDK has supported the OMPT callback layer since an earlier release; this change makes it accessible without writing a custom tool.
 
-##### HIP Graph per-node attribution
+All records from these tracing domains are emitted across supported output backends: CSV, JSON, Perfetto, OTF2, and rocpd.
 
-ROCprofiler-SDK and `rocprofv3` now add full per-graph-node attribution for HIP graph kernels and memory copies. Each dispatch record produced by a graph launch is tagged with the identity of the graph and the specific node within it that produced it. This allows profiling tools to group dispatches by source node across many launches, compute per-node timing and counter aggregates, and correlate graph-level summary records with their individual dispatch records.
+##### Enhanced graph and profiling output
 
-In `rocprofv3`, graph attribution is enabled with the `--hip-graph-trace` flag, which is automatically included when using `--hip-trace` or `--hip-runtime-trace`. Attribution data is available in JSON and rocpd output, and can be converted to other formats such as Perfetto, OTF2, and CSV using `rocpd convert`.
+* **HIP Graph per-node attribution:** ROCprofiler-SDK and `rocprofv3` now add full per-graph-node attribution for HIP graph kernels and memory copies. Each dispatch record produced by a graph launch is tagged with the identity of the graph and the specific node within it that produced it. This allows profiling tools to group dispatches by source node across many launches, compute per-node timing and counter aggregates, and correlate graph-level summary records with their individual dispatch records. Enable with the `--hip-graph-trace` flag, automatically included in `--hip-trace` or `--hip-runtime-trace`.
 
-##### SPM ROCpd output support
+* **SPM ROCpd output support:** ROCprofiler-SDK extends the rocpd output format to include Streaming Performance Monitor (SPM) counter data. SPM records are stored as `rocpd_track` rows with a `"SPM"` label, with counter values grouped by timestamp into `rocpd_sample` rows and per-dimension data in `rocpd_pmc_event` rows. The rocpd schema is updated to include `sample_id`, `xcc`, `shader_engine`, and `instance` columns. SPM data can now be consumed by any tool that reads the rocpd database, or converted to other output formats such as Perfetto. Known Issue: SPM sessions can remain in a stale state after abrupt termination. See [GitHub issue #6489](https://github.com/ROCm/ROCm/issues/6489) for details.
 
-ROCprofiler-SDK extends the rocpd output format to include Streaming Performance Monitor (SPM) counter data. SPM records are stored as `rocpd_track` rows with a `"SPM"` label, with counter values grouped by timestamp into `rocpd_sample` rows and per-dimension data in `rocpd_pmc_event` rows. The rocpd schema is updated to include `sample_id`, `xcc`, `shader_engine`, and `instance` columns. SPM data can now be consumed by any tool that reads the rocpd database, or converted to other output formats such as Perfetto.
+##### Improved attach capabilities
 
-Known Issue: SPM sessions can remain in a stale state after abrupt termination. See [GitHub issue #6489](https://github.com/ROCm/ROCm/issues/6489) for details.
+* **Live Attach with Advanced Thread Trace (ATT) support:** ROCprofiler-SDK extends the live attach workflow to include Advanced Thread Trace (ATT). When `rocprofv3` attaches to a running process, it now registers for code-object iteration and creation callbacks so that thread trace can operate correctly on code objects that were loaded before the attach occurred. This makes ATT available for already-running production workloads without requiring an application restart.
 
-##### hipFile tracing support
+* **Container-aware rocattach symbol resolution:** `rocprofv3` improves attach support when the target process is running inside a container. ROCprofiler-SDK now resolves attach entry points directly from the target process mapped ELF, and validates tool paths from the target's perspective before injection. This allows attaching from a host to a containerized process without manually copying .so files. Previously, `rocattach` calculated symbol offsets from the host's `librocprofiler-register.so` and applied them to the target's mapping, which failed when the host and container libraries differ in ELF layout or path.
 
-ROCprofiler-SDK and `rocprofv3` add hipFile as a first-class tracing domain. hipFile API calls are intercepted via dispatch-table wrapping and emitted as per-call trace records alongside HIP, HSA, and other runtime activity. This allows you to see file I/O operations in the same profiling timeline as GPU kernels and memory copies, making it straightforward to quantify storage overhead and its impact on end-to-end application performance.
+* **Python API for rocprof-trace-decoder:** `rocprof-trace-decoder` now ships a Python API that allows you to decode Advanced Thread Trace (ATT) / SQTT data directly from Python without writing a C++ consumer. The API wraps the decoder library and exposes thread trace decoding as a first-class Python interface, with samples included to demonstrate common workflows. Integration tests for the decoder have been migrated to Python, simplifying test authoring and making it easier for downstream tools to validate their trace-decoding pipelines. This is particularly useful for analysis scripts, Jupyter notebooks, and custom profiling tools that need to process ATT output programmatically.
 
-In `rocprofv3`, hipFile tracing is enabled with the `--hipfile-trace` flag (or the `ROCPROF_HIPFILE_API_TRACE` environment variable). It is also automatically included in `--runtime-trace` and `--sys-trace`. Records are emitted across all supported output backends: CSV, JSON, Perfetto, OTF2, and rocpd.
+* **SQTT quick scan support for thread trace path (Experimental):** ROCprofiler-SDK introduces an experimental SQTT quick scan mode for thread trace, accessible through a new CMake flag. The quick scan path collects thread trace data without packet insertion or HSA signal manipulation, removing the queue interception overhead that the standard ATT path requires. Individual kernels can be traced without serialization, and the approach is independent of the ROCm runtime version. This is an experimental feature intended to validate the new collection path and pave the way for out-of-process thread trace and long-kernel tracing in future releases.
 
-##### Live Attach with Advanced Thread Trace (ATT) support
-
-ROCprofiler-SDK extends the live attach workflow to include Advanced Thread Trace (ATT). When `rocprofv3` attaches to a running process, it now registers for code-object iteration and creation callbacks so that thread trace can operate correctly on code objects that were loaded before the attach occurred. This makes ATT available for already-running production workloads without requiring an application restart.
-
-##### Container-aware rocattach symbol resolution
-
-`rocprofv3` improves attach support when the target process is running inside a container. ROCprofiler-SDK now resolves attach entry points directly from the target process mapped ELF, and validates tool paths from the target's perspective before injection. This allows attaching from a host to a containerized process without manually copying .so files. Previously, `rocattach` calculated symbol offsets from the host's `librocprofiler-register.so` and applied them to the target's mapping, which failed when the host and container libraries differ in ELF layout or path.
-
-##### Python API for rocprof-trace-decoder
-
-`rocprof-trace-decoder` now ships a Python API, that allows you to decode Advanced Thread Trace (ATT) / SQTT data directly from Python without writing a C++ consumer. The API wraps the decoder library and exposes thread trace decoding as a first-class Python interface, with samples included to demonstrate common workflows. Integration tests for the decoder have been migrated to Python, simplifying test authoring and making it easier for downstream tools to validate their trace-decoding pipelines. This is particularly useful for analysis scripts, Jupyter notebooks, and custom profiling tools that need to process ATT output programmatically.
-
-##### SQTT quick scan support for thread trace path (Experimental)
-
-ROCprofiler-SDK introduces an experimental SQTT quick scan mode for thread trace, accessible through a new CMake flag. The quick scan path collects thread trace data without packet insertion or HSA signal manipulation, removing the queue interception overhead that the standard ATT path requires. Individual kernels can be traced without serialization, and the approach is independent of the ROCm runtime version. This is an experimental feature intended to validate the new collection path and pave the way for out-of-process thread trace and long-kernel tracing in future releases.
-
-##### Removed libatomic dependency
+##### Build and dependency improvements
 
 ROCprofiler-SDK no longer depends on `libatomic`. The library was previously linked unconditionally through the `rocprofiler-sdk-atomic` interface target, causing link failures on toolchains and container images where `libatomic1` is not installed. The single `std::atomic` use that required the library has been replaced with explicit memory-ordering synchronization, removing the dependency without changing behavior.
 
@@ -210,25 +187,11 @@ For more information, see the [ROCm Systems Profiler section](#rocm-systems-prof
 
 ### Libraries
 
-This release updates ROCm math, sparse compute, and communication libraries with additional routines, expanded datatype support, and performance improvements. It also adds the hipFile storage library.
-
-#### hipBLASLt adds GEMM Kernel Optimizer
-
-The GEMM Kernel Optimizer (GEKO) is now available as a command-line tool within hipBLASLt. It lets you tune GEMM kernels for your workloads locally, without sharing confidential model or workload data with AMD. GEKO automates the full tuning workflow, from workload analysis to a final optimized library. It uses Ductile, which replaces exhaustive search for faster tuning. It targets AMD Instinct MI350 Series GPUs (CDNA 4 architecture).
-
-For more information, see the [hipBLASLt documentation](https://rocm.docs.amd.com/projects/hipBLASLt/en/latest/index.html).
-
-#### rocPRIM adds parallel top-K algorithms
-
-rocPRIM adds `rocprim::device_topk` and `rocprim::device_segmented_topk`, parallel device-level algorithms that find the largest or smallest K elements from an input array or from segmented groups, respectively. To enable this feature, add the `-DROCPRIM_ENABLE_TOPK=ON` CMake build option. The default variant is hipGraph-compatible; a stable-ordering variant is also available for callers that need guaranteed ordering.
+This release introduces new algorithms and optimizations across the math, sparse, and primitives libraries. Updates to hipFile improve I/O performance for NVMe-backed storage.
 
 #### rocFFT supports multi-GPU RCCL backend
 
 rocFFT adds an optional RCCL backend for single-node, multi-GPU FFT communication within a single process, enabled via the `-DROCFFT_RCCL_ENABLE=ON` CMake build option. RCCL's GPU topology-awareness targets help improve communication performance over rocFFT's existing memory-copy-based transport in this configuration.
-
-#### hipFile fastpath I/O support for LVM volumes
-
-hipFile now supports fastpath I/O to files on Logical Volume Manager(LVM) volumes backed by NVMe devices, resolving a previous ENODEV error caused by the underlying PCI device not being resolvable through the volume manager.
 
 #### hipSPARSE and rocSPARSE feature highlights
 
@@ -242,18 +205,29 @@ rocSPARSE and hipSPARSE now support Blocked ELL format in their dense-to-sparse 
 
 rocSPARSE and hipSPARSE sparse triangular solve routines now accept matrices in Compressed Sparse Column (CSC) format directly, removing the need to convert to Compressed Sparse Row (CSR) first. CSC support extends to `rocsparse_spsv/rocsparse_sptrsv` and `rocsparse_spsm/rocsparse_sptrsm` in rocSPARSE, and to `hipsparseSpSV` and `hipsparseSpS` in hipSPARSE.
 
-##### rocSPARSE removes rocsparse_indextype_u16 index type
-
-The `rocsparse_indextype_u16` field of the `rocsparse_indextype` enumerator is now removed; and only `rocsparse_indextype_i32` and `rocsparse_indextype_i64` remain. `rocsparse_indextype_u16` was deprecated in ROCm 7.14.0; code that still references it will now fail to compile.
-
-##### rocSPARSE improves default SpMM algorithm selection
-
-rocSPARSE's default `rocsparse_spmm` algorithm now switches to a nnz-split kernel for strongly skewed CSR/CSC matrices  (a single very long row or column). This avoids the throughput loss the previous row-split default caused on such matrices. Non-skewed matrices and explicitly chosen algorithms are unaffected.
-
 ##### hipSPARSE adds the SpMV nnz-split algorithm
 
 hipSPARSE adds the `HIPSPARSE_SPMV_CSR_ALG3` algorithm to `hipsparseSpMV`, exposing the rocSPARSE's analysis-free `nnz-split` CSR algorithm (`rocsparse_spmv_alg_csr_nnzsplit`) for sparse matrix-vector multiplication. The algorithm distributes work across threads based on the number of non-zero entries per row and requires no preliminary analysis step before execution.
 
+##### rocSPARSE improves default SpMM algorithm selection
+
+rocSPARSE's default `rocsparse_spmm` algorithm now switches to a nnz-split kernel for strongly skewed CSR/CSC matrices (a single long row or column). This avoids the throughput loss the previous row-split default caused on such matrices. Non-skewed matrices and explicitly chosen algorithms are unaffected.
+
+##### rocSPARSE removes rocsparse_indextype_u16 index type
+
+The `rocsparse_indextype_u16` field of the `rocsparse_indextype` enumerator is now removed; and only `rocsparse_indextype_i32` and `rocsparse_indextype_i64` remain. `rocsparse_indextype_u16` was deprecated in ROCm 7.14.0; code that still references it will now fail to compile.
+
+#### rocPRIM adds parallel top-K algorithms
+
+rocPRIM adds `rocprim::device_topk` and `rocprim::device_segmented_topk`, parallel device-level algorithms that find the largest or smallest K elements from an input array or from segmented groups, respectively. To enable this feature, add the `-DROCPRIM_ENABLE_TOPK=ON` CMake build option. The default variant is hipGraph-compatible; a stable-ordering variant is also available for callers that need guaranteed ordering.
+
+#### hipFile fastpath I/O support for LVM volumes
+
+hipFile now supports fastpath I/O to files on Logical Volume Manager (LVM) volumes backed by NVMe devices, resolving a previous ENODEV error caused by the underlying PCI device not being resolvable through the volume manager.
+
+#### AMD SMI VCN busy metric on Radeon RX GPUs
+
+AMD SMI now correctly reports the VCN busy percentage for Radeon RX GPUs in the `amd-smi metric --usage` output. On affected devices where GPU metrics lacked VCN activity data, the value previously displayed as `N/A`. AMD SMI now reads the metric from the available sysfs source and reports it correctly.
 
 (release-supported-hw)=
 
