@@ -14,17 +14,12 @@
 {%- set slug = data.rocm_core_sdk.meta.rtd_version_slug -%}
 {%- set tag  = data.rocm_core_sdk.meta.release_tag -%}
 
-{%- set group_labels = {
-    "Storage":               "Storage libraries",
-    "Runtime and compilers": "Runtimes and compilers",
-} -%}
-
 {%- set group_order = [
     "Math and compute libraries",
     "Communication libraries",
     "Media libraries",
-    "Storage",
-    "Runtime and compilers",
+    "Storage libraries",
+    "Runtimes and compilers",
     "Profiling and debugging tools",
     "Control and monitoring tools",
 ] -%}
@@ -99,7 +94,6 @@
   </thead>
   <tbody>
 {%- for group, items in grouped %}
-  {%- set label = group_labels.get(group, group) %}
   {%- for name in items %}
     {%- set defn     = defs[name] %}
     {%- set cur_c    = cur.get(name, {}) %}
@@ -110,7 +104,7 @@
     {%- set gh_url   = resolve(defn.xref.github_repo)  if defn.xref is defined and defn.xref.github_repo  is defined else "" %}
     <tr>
 {%- if loop.first %}
-      <td rowspan="{{ items | length }}" style="vertical-align: middle;"><p>{{ label }}</p></td>
+      <td rowspan="{{ items | length }}" style="vertical-align: middle;"><p>{{ group }}</p></td>
 {%- endif %}
       <td>
 {%- if rtd_url %}<a href="{{ rtd_url }}index.html">{{ name }}</a>
