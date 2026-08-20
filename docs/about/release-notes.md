@@ -28,7 +28,9 @@ This release expands GPU, operating system, virtualization, and partitioning sup
 
 #### Expanded AMD GPU support
 
-ROCm 10.0.0 adds support for the [AMD Radeon RX 9050 (gfx1200)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html) GPUs.
+ROCm 10.0.0 adds support for the following AMD Radeon GPUs:
+* [AMD Radeon RX 9050 (gfx1200)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html)
+* [AMD Radeon RX 9050 (4GB) (gfx1200)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050-4gb.html)
 
 For the complete list of supported AMD hardware, see [AMD hardware support](#amd-hardware-support).
 

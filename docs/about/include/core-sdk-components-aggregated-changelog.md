@@ -131,6 +131,23 @@ Copy operations at or below the 256-row threshold are unchanged.
 #### Resolved issues
 * Fixed an issue with `hipsparseSpMM`, which produced incorrect results for the Blocked ELL sparse format.
 
+### **RCCL** (2.30.7)
+
+### Added
+* Compatibility with NCCL 2.30.7.
+* Added scalable AllGatherV pattern: grouped `ncclBroadcast` calls with distinct roots are fused into a single ring kernel, improving performance at large scale. Gated by `NCCL_ALLGATHERV_ENABLE` (default off).
+* Added GPU-only multi-segment registration for symmetric memory windows, enabling contiguous VA ranges backed by multiple physical segments (single-node validated).
+* Added Elastic Buffer support for symmetric windows spanning device and host/`HOST_NUMA` memory segments (`NCCL_ELASTIC_BUFFER_REGISTER`, `NCCL_SYM_REUSE_SYSMEM_HANDLES`). Single-node path validated; multi-node registration remains limited pending HIP/HSA multi-segment DMA-BUF export support.
+
+### Changed
+* Adapted the device-initiated GIN backends (Anvil SDMA and rocSHMEM GDA) to the NCCL 2.30.7 GIN API v14: added the new `getGinProperties` host op, dropped the data-path ops (`iput`/`iputSignal`/`iget`/`iflush`/`test`) that moved out of GIN under the GIN/RMA split, switched `createContext` to `ncclGinConfig_v14_t`, updated the device dispatch signatures, and matched the GIN type renumbering (`ROCSHMEM_GDA` and `ANVIL_SDMA` shifted after the new `GIN_GPI` type). The plugins now use the generic (unversioned) `ncclGin_t` / `ncclGinConfig_t` / `ncclGinProperties_t` typedefs so future ABI bumps do not require touching call sites.
+* Updated the ROCSHMEM GIN plugin registration to the v14 layout (corrected struct field names and the conditional that previously only compiled without ROCSHMEM GIN).
+* Adapted the InfiniBand transports (`net_ib` and `net_ib_cast`) to the v14 GIN/RMA split: the host/proxy backend is now registered as an `ncclRma_t` vtable (`RMA_IB_PROXY`) that owns the `iput`/`iputSignal`/`iget`/`iflush`/`test` data-path ops, with GIN layered on top through the generic `ncclGinProxy`.
+
+### Known issues
+* The improved AllGatherV support breaks the NCCL profiler support for ncclBroadcast operations, limiting visibility to API events. `NCCL_ALLGATHERV_ENABLE=0` can be used as a workaround until it is fixed in a future release.
+* Multi-node multi-segment and Elastic Buffer symmetric-window registration is not yet enabled; NET and LSA+GIN multi-segment paths depend on runtime support for exporting contiguous DMA-BUF handles across all physical segments.
+
 ### **rocBLAS** (5.6.0)
 
 #### Added
@@ -324,6 +341,63 @@ Copy operations at or below the 256-row threshold are unchanged.
 #### Changed
 
 * Combined and simplified separate assertion templates using `std::is_floating_point`, `rocprim::half`, and `rocprim::bfloat16` to use `rocprim::is_floating_point`.
+
+### **ROCprofiler-SDK** (1.3.5)
+
+#### Added
+
+**API:**
+
+  - rocSHMEM host-stream API interception for the rocSHMEM tracing domain introduced in 1.3.0:
+    - `rocshmem_putmem_on_stream`, `rocshmem_getmem_on_stream`, and `rocshmem_alltoallmem_on_stream` are intercepted and emitted as per-call trace records.
+    - Records are interleaved with HIP, HSA, RCCL, and other runtime traces so rocSHMEM communication activity can be viewed on the same timeline as GPU compute.
+  - hipFile API tracing as a first-class tracing domain:
+    - hipFile API calls are intercepted through dispatch-table wrapping and emitted as per-call trace records alongside HIP, HSA, and other runtime activity.
+    - Enables file I/O operations to be correlated with GPU kernels and memory copies in a single profiling timeline.
+  - Streaming Performance Monitor (SPM) counter data in the rocpd output format:
+    - SPM records are stored as `rocpd_track` rows labelled `SPM`, with counter values grouped by timestamp into `rocpd_sample` rows and per-dimension data in `rocpd_pmc_event` rows.
+    - The rocpd schema gains the `sample_id`, `xcc`, `shader_engine`, and `instance` columns.
+    - SPM data is consumable by any tool that reads the rocpd database and is convertible to CSV via `rocpd convert`. Conversion to the other output formats, such as Perfetto and OTF2, is not yet supported.
+
+**rocprofv3 (CLI):**
+
+  - OpenMP (OMPT) tracing via the new `--ompt-trace` flag:
+    - Accepts a bare boolean or a space-separated category list (`all` `thread` `parallel` `task` `sync` `mutex` `target` `device` `error`), following the same style as `--pmc` and `--output-format`; for example, `--ompt-trace parallel task target sync`. Categories must be space-separated; comma-separated tokens are rejected. Also folded into `--sys-trace`/`--runtime-trace`.
+    - rocpd-only trace: records go to the rocpd database (the default output format) and are exported via `rocpd convert`.
+    - The OMPT callback layer is already supported by ROCprofiler-SDK; this flag makes it accessible without writing a custom tool.
+  - hipFile API tracing via the new `--hipfile-trace` flag (or the `ROCPROF_HIPFILE_API_TRACE` environment variable):
+    - Automatically included in `--runtime-trace` and `--sys-trace`.
+    - Records are emitted across all supported output backends: CSV, JSON, Perfetto, OTF2, and rocpd.
+  - Container-aware `rocattach` symbol resolution: attach entry points are resolved directly from the target process mapped ELF, and tool paths are validated from the target's perspective before injection. This allows attaching from a host to a containerized process without manually copying `.so` files.
+
+#### Changed
+
+- Previously, `rocattach` calculated symbol offsets from the host's `librocprofiler-register.so` and applied them to the target's mapping, which failed when the host and container libraries differ in ELF layout or path. Offsets are now resolved from the target process itself.
+- Idle inline queues with no active profiling consumers now bypass queue interposition entirely, reducing overhead for applications that create queues but do not immediately dispatch work.
+- DWARF information is now parsed lazily, reducing startup overhead for attach and tracing sessions on large binaries.
+- Disabled autoflush in thread trace to prevent premature buffer flushes that produced incomplete or corrupted traces.
+- Bump rocpd schema to version 3.0.1 which supports NIC agent types.
+- Bump rocpd schema to version 3.0.2 for HIP graph per-node attribution (`graph_exec_id`/`graph_node_id` columns on `rocpd_kernel_dispatch`/`rocpd_memory_copy` and the new `rocpd_graph_launch` table). The pre-graph-attribution 3.0.1 schema is now frozen under `versions/3.0.1/` per the rocpd schema versioning scheme.
+- Bump rocpd schema to version 3.0.3 for SPM support. The pre-spm-support 3.0.2 schema is now frozen under `versions/3.0.2/` per the rocpd schema versioning scheme.
+
+#### Removed
+
+- Dependency on `libatomic`. The library was previously linked unconditionally through the `rocprofiler-sdk-atomic` interface target, which caused link failures on toolchains and container images where `libatomic1` is not installed. The single `std::atomic` use that required it has been replaced with explicit memory-ordering synchronization; behavior is unchanged.
+
+#### Resolved issues
+
+- Fixed a GPU stall in device thread trace that occurred when thread trace was started before `hsa_init()`.
+- Fixed a counter-collection stall caused by an `InterceptQueue` ordering bug, and fixed an out-of-bounds write in `Submit()`.
+- Fixed `roctxMark` calls propagating as kernel rename labels, which caused spurious kernel name changes in traces containing ROCTx markers.
+- Fixed SQ aliasing on harvested WGPs and multi-counter desync on gfx11xx targets in AQLprofile, and corrected the `GcEaSeCounterBlockMaxEvent` value.
+- Added a guard to prevent double-initialization of the PC sampling service.
+- Fixed `rocprofv3` attach sessions exiting before all buffered output was flushed; attach sessions now block until the flush completes.
+- Fixed the ordering of code object callbacks during attach, which could race with tools that depend on ordered delivery.
+- Fixed the `fmt/format.h` include path, the `fpic` flag for samples, OMP lookup in CI, and clang-tidy quickscan enablement.
+
+#### Known issues
+
+- SPM sessions can remain in a stale state after abrupt termination. See [GitHub issue #6489](https://github.com/ROCm/rocm-systems/issues/6489) for details.
 
 ### **rocRAND** (4.5.0)
 

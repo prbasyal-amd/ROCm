@@ -187,6 +187,11 @@ AMD Radeon:
     series: *radeon_rx_9000_series
     arch: *arch_rdna_4
     mkt_page: https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html
+  AMD Radeon RX 9050 (4GB):
+    gfx: gfx1200
+    series: *radeon_rx_9000_series
+    arch: *arch_rdna_4
+    mkt_page: https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050-4gb.html
   AMD Radeon PRO W7900 Dual Slot:
     gfx: gfx1100
     series: *radeon_pro_w7000_series
