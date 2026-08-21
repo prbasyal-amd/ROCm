@@ -11,7 +11,9 @@ These release notes describe notable changes since the previous ROCm release.
 - [GPU partitioning support](#gpu-partitioning-support)
 - [AI ecosystem support](#ai-ecosystem-support)
 - [ROCm Core SDK components](#rocm-core-sdk-components)
+- [ROCm breaking changes](#rocm-breaking-changes)
 - [ROCm known issues](#rocm-known-issues)
+- [ROCm resolved issues](#rocm-resolved-issues)
 - [ROCm upcoming changes](#rocm-upcoming-changes)
 
 ```{note}
@@ -243,9 +245,17 @@ rocPRIM adds `rocprim::device_topk` and `rocprim::device_segmented_topk`, parall
 
 hipFile now supports fastpath I/O to files on Logical Volume Manager (LVM) volumes backed by NVMe devices, resolving a previous ENODEV error caused by the underlying PCI device not being resolvable through the volume manager.
 
-#### AMD SMI VCN busy metric on Radeon RX GPUs
+#### AMD SMI feature highlights
+
+The following are notable changes to AMD SMI:
+
+##### AMD SMI VCN busy metric on Radeon RX GPUs
 
 AMD SMI now correctly reports the VCN busy percentage for Radeon RX GPUs in the `amd-smi metric --usage` output. On affected devices where GPU metrics lacked VCN activity data, the value previously displayed as `N/A`. AMD SMI now reads the metric from the available sysfs source and reports it correctly.
+
+##### AMD SMI API removals
+
+The AMD SMI library has removed several deprecated APIs, types, defines, and enums in this release. For details, see [AMD SMI deprecations](#amd-smi-deprecations).
 
 (release-supported-hw)=
 
@@ -350,6 +360,56 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 :parser: myst
 ```
 
+## ROCm breaking changes
+
+(amd-smi-deprecations)=
+### AMD SMI deprecations
+
+The AMD SMI library has removed the following APIs in the 10.0.0 release. Certain APIs have been
+removed with or without a replacement; see the following tables for details.
+
+#### APIs
+
+| Removed | Replacement |
+|---|---|
+| `amdsmi_get_cpusocket_handles()` | No replacement; functionality removed |
+| `amdsmi_get_gpu_vram_vendor()` | `amdsmi_get_gpu_vram_info()` |
+| `amdsmi_gpu_driver_reload()` | No replacement; functionality removed |
+| `amdsmi_get_xgmi_plpd()` | Python: use the `policy` attribute instead of `plpds` |
+| `amdsmi_set_gpu_clk_range()` | `amdsmi_set_gpu_clk_limit()` |
+
+#### Types
+
+| Removed | Replacement |
+|---|---|
+| `amdsmi_fabric_info_ver_t` | Moved inside `amdsmi_fabric_info_t` |
+| `amdsmi_nic_fw_t` | `amdsmi_nic_fw_entry_t` |
+
+#### Defines and enums
+
+| Removed | Replacement |
+|---|---|
+| `MAX_NUMBER_OF_AFIDS_PER_RECORD` | `AMDSMI_MAX_NUMBER_OF_AFIDS_PER_RECORD` |
+| `MAX_SVI3_RAIL_INDEX` | `AMDSMI_MAX_SVI3_RAIL_INDEX` |
+| `MAX_SVI3_RAIL_SELECTION` | `AMDSMI_MAX_SVI3_RAIL_SELECTION` |
+| `POWER_EFFICIENCY_MODE_4` | `AMDSMI_POWER_EFFICIENCY_MODE_4` |
+| `POWER_EFFICIENCY_MODE_5` | `AMDSMI_POWER_EFFICIENCY_MODE_5` |
+| `CENTRIGRADE_TO_MILLI_CENTIGRADE` | No replacement; constant removed |
+| `_AMDSMI_MAX_STRING_LENGTH` | No replacement; private symbol, do not use |
+| `_AMDSMI_STRING_LENGTH` | No replacement; private symbol, do not use |
+
+#### `amdsmi_gpu_metrics_t` field type widening
+
+The following fields in `amdsmi_gpu_metrics_t` changed from `uint32_t` to `uint64_t` to support next generation AMD Instinct counter ranges:
+
+* `gfx_activity_acc`
+* `mem_activity_acc`
+* `pcie_nak_sent_count_acc`
+* `pcie_nak_rcvd_count_acc`
+* `pcie_lc_perf_other_end_recovery`
+
+Recompile any code that reads these fields. Any assignments into fixed-width 32-bit variables must be updated to use 64-bit types.
+
 ## ROCm known issues
 
 ROCm known issues are noted on {fab}`github` [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue). These issues will be fixed in a future ROCm release. For known issues related to individual components, review the [ROCm component changelogs](#rocm-component-changelogs).
@@ -384,64 +444,16 @@ Future releases will add support for:
 
 * More AMD hardware support.
 
-(amd-smi-deprecations)=
+(amd-smi-upcoming-deprecations)=
 ### AMD SMI deprecations
 
-The AMD SMI library will deprecate the following APIs. Certain APIs will be
-deprecated with or without a replacement; see the following tables for details.
-We suggest updating your code to use the replacement identifiers before the
-targeted removal releases.
+The AMD SMI library will deprecate the following APIs, types, and enums. We
+suggest updating your code to use the replacement identifiers before the
+targeted removal release.
 
 #### Planned removal in the next major release
 
-The following APIs, defines, enums, and struct fields are deprecated and
-scheduled for removal in the next major release.
-
-##### APIs
-
-| Deprecated | Replacement |
-|---|---|
-| `amdsmi_get_cpusocket_handles()` | No replacement; functionality removed |
-| `amdsmi_get_gpu_vram_vendor()` | `amdsmi_get_gpu_vram_info()` |
-| `amdsmi_gpu_driver_reload()` | No replacement; functionality removed |
-| `amdsmi_get_xgmi_plpd()` | Python: use the `policy` attribute instead of `plpds` |
-| `amdsmi_set_gpu_clk_range()` | `amdsmi_set_gpu_clk_limit()` |
-
-##### Types
-
-| Deprecated | Replacement |
-|---|---|
-| `amdsmi_fabric_info_ver_t` | Moved inside `amdsmi_fabric_info_t` |
-| `amdsmi_nic_fw_t` | `amdsmi_nic_fw_entry_t` |
-
-##### Defines and enums
-
-| Deprecated | Replacement |
-|---|---|
-| `MAX_NUMBER_OF_AFIDS_PER_RECORD` | `AMDSMI_MAX_NUMBER_OF_AFIDS_PER_RECORD` |
-| `MAX_SVI3_RAIL_INDEX` | `AMDSMI_MAX_SVI3_RAIL_INDEX` |
-| `MAX_SVI3_RAIL_SELECTION` | `AMDSMI_MAX_SVI3_RAIL_SELECTION` |
-| `POWER_EFFICIENCY_MODE_4` | `AMDSMI_POWER_EFFICIENCY_MODE_4` |
-| `POWER_EFFICIENCY_MODE_5` | `AMDSMI_POWER_EFFICIENCY_MODE_5` |
-| `CENTRIGRADE_TO_MILLI_CENTIGRADE` | No replacement; constant removed |
-| `_AMDSMI_MAX_STRING_LENGTH` | No replacement; private symbol, do not use |
-| `_AMDSMI_STRING_LENGTH` | No replacement; private symbol, do not use |
-
-##### `amdsmi_gpu_metrics_t` field type widening
-
-The following fields in `amdsmi_gpu_metrics_t` will change from `uint32_t` to `uint64_t` to support next generation AMD Instinct counter ranges:
-
-* `gfx_activity_acc`
-* `mem_activity_acc`
-* `pcie_nak_sent_count_acc`
-* `pcie_nak_rcvd_count_acc`
-* `pcie_lc_perf_other_end_recovery`
-
-Recompile any code that reads these fields. Any assignments into fixed-width 32-bit variables must be updated to use 64-bit types.
-
-#### Future deprecation notice: planned removal after the next major release
-
-The following APIs, types, and enums are deprecated and will be removed sometime **after** the next major release.
+The following APIs, types, and enums are deprecated and scheduled for removal in the next major release.
 
 ##### APIs
 
