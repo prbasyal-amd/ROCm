@@ -65,42 +65,42 @@ AMD Instinct:
   AMD Instinct MI355X:
     firmware:
       - "01.26.01.03 (or later)"
-      - "00.26.01.03"
+      - "01.26.00.02"
     linux:
       amdgpu: [*amdgpu_31_50_0, *amdgpu_31_40_1, *amdgpu_31_40_0, *amdgpu_31_30_0, *amdgpu_31_20_0, *amdgpu_31_10_0, *amdgpu_30_30_3, *amdgpu_30_30_2, *amdgpu_30_30_1, *amdgpu_30_30_0, *amdgpu_30_20_1, *amdgpu_30_20_0, *amdgpu_30_10_2, *amdgpu_30_10_1, *amdgpu_30_10_0]
 
   AMD Instinct MI350X:
     firmware:
       - "01.26.01.03 (or later)"
-      - "00.26.01.03"
+      - "01.26.00.02"
     linux:
       amdgpu: [*amdgpu_31_50_0, *amdgpu_31_40_1, *amdgpu_31_40_0, *amdgpu_31_30_0, *amdgpu_31_20_0, *amdgpu_31_10_0, *amdgpu_30_30_3, *amdgpu_30_30_2, *amdgpu_30_30_1, *amdgpu_30_30_0, *amdgpu_30_20_1, *amdgpu_30_20_0, *amdgpu_30_10_2, *amdgpu_30_10_1, *amdgpu_30_10_0]
 
   AMD Instinct MI350P:
     firmware:
-      - "BKC11.0 (IFWI PRD1008B) or later"
+      - "BKC12.0 (IFWI PRD1000A) or later"
       - "IFWI 00189939"
     linux:
       amdgpu: [*amdgpu_31_50_0, *amdgpu_31_40_1, *amdgpu_31_40_0, *amdgpu_31_30_0, *amdgpu_31_20_0, *amdgpu_31_10_0, *amdgpu_30_30_3, *amdgpu_30_30_2, *amdgpu_30_30_1, *amdgpu_30_30_0, *amdgpu_30_20_1, *amdgpu_30_20_0, *amdgpu_30_10_2, *amdgpu_30_10_1, *amdgpu_30_10_0]
 
   AMD Instinct MI325X:
     firmware:
-      - "01.26.01.02 (or later)"
-      - "00.26.00.01"
+      - "01.26.01.03 (or later)"
+      - "01.25.06.08"
     linux:
       amdgpu: [*amdgpu_31_50_0, *amdgpu_31_40_1, *amdgpu_31_40_0, *amdgpu_31_30_0, *amdgpu_31_20_0, *amdgpu_31_10_0, *amdgpu_30_30_3, *amdgpu_30_30_2, *amdgpu_30_30_1, *amdgpu_30_30_0, *amdgpu_30_20_1, *amdgpu_30_20_0, *amdgpu_30_10_2, *amdgpu_30_10_1, *amdgpu_30_10_0]
 
   AMD Instinct MI300X:
     firmware:
       - "01.26.00.04 (or later)"
-      - "00.26.00.01"
+      - "01.25.06.05"
     linux:
       amdgpu: [*amdgpu_31_50_0, *amdgpu_31_40_1, *amdgpu_31_40_0, *amdgpu_31_30_0, *amdgpu_31_20_0, *amdgpu_31_10_0, *amdgpu_30_30_3, *amdgpu_30_30_2, *amdgpu_30_30_1, *amdgpu_30_30_0, *amdgpu_30_20_1, *amdgpu_30_20_0, *amdgpu_30_10_2, *amdgpu_30_10_1, *amdgpu_30_10_0]
 
   AMD Instinct MI300A:
     firmware:
-      - "BKC 27"
-      - "BKC 26.32.0"
+      - "PI100D​"
+      - "PI100C​"
     linux:
       amdgpu: [*amdgpu_31_50_0, *amdgpu_31_40_1, *amdgpu_31_40_0, *amdgpu_31_30_0, *amdgpu_31_20_0, *amdgpu_31_10_0, *amdgpu_30_30_3, *amdgpu_30_30_2, *amdgpu_30_30_1, *amdgpu_30_30_0, *amdgpu_30_20_1, *amdgpu_30_20_0, *amdgpu_30_10_2, *amdgpu_30_10_1, *amdgpu_30_10_0]
 
