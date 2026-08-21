@@ -414,6 +414,27 @@ Recompile any code that reads these fields. Any assignments into fixed-width 32-
 
 ROCm known issues are noted on {fab}`github` [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue). These issues will be fixed in a future ROCm release. For known issues related to individual components, review the [ROCm component changelogs](#rocm-component-changelogs).
 
+### JAX BERT FP16 training might encounter a segmentation fault on some Radeon GPUs
+
+JAX BERT FP16 training workloads might encounter a segmentation fault on some AMD Radeon graphics products, such as the Radeon PRO W7900, causing training to terminate unexpectedly. As a workaround, disable XLA GPU command buffers by setting the `XLA_FLAGS="--xla_gpu_enable_command_buffer="` environment variable before launching the workload.
+
+### PyTorch training and fine-tuning workloads might experience GPU resets or crashes on some Radeon GPUs
+
+PyTorch training and fine-tuning workloads using Llama-Factory or Unsloth might experience GPU resets or application crashes on some AMD Radeon graphics products, such as the Radeon RX 9070 Series and Radeon AI PRO R9700. As a workaround, set the `TORCH_BLAS_PREFER_HIPBLASLT=0` environment variable to disable hipBLASLt for training and fine-tuning workloads. This workaround might result in performance degradation.
+
+### SGLang inference might fail with the default AITER attention backend on some Radeon GPUs
+
+SGLang inference workloads using the default AITER attention backend might fail on some AMD Radeon graphics products, such as the Radeon PRO W7900, Radeon AI PRO R9700, and Radeon RX 9070 XT. As a workaround, configure SGLang to use the Triton attention backend (`--attention-backend triton`) or disable AITER:
+
+```bash
+export SGLANG_USE_AITER=0
+export SGLANG_USE_AITER_AR=0
+```
+
+### TensorFlow ROCm v2.21 might fail to start with a libhipsparse ImportError on some Radeon GPUs
+ 
+TensorFlow ROCm v2.21 workloads might fail to start with an `ImportError: libhipsparse.so.4` on some AMD Radeon graphics products, such as  Radeon AI PRO R9700,  when ROCm is installed using pip packages. As a workaround, add `$(hipconfig -R)/lib` and `$(hipconfig -R)/lib/rocm_sysdeps/lib` to `LD_LIBRARY_PATH` before launching TensorFlow.
+
 ## ROCm resolved issues
 
 The following notable issues have been fixed in ROCm 10.0.0.
