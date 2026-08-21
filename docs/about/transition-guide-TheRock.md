@@ -319,6 +319,7 @@ Tarball archives use *family* names that differ from the deb/rpm package suffixe
 
 - ROCm Validation Suite
 - TransferBench
+- ROCm Optiq
 
 ### Moved to Standalone/ONNX
 
@@ -389,7 +390,7 @@ Tarball archives use *family* names that differ from the deb/rpm package suffixe
     <tr>
       <td style="vertical-align: middle"><strong>ROCm Extras</strong></td>
       <td>—</td>
-      <td>ROCm Validation Suite, TransferBench</td>
+      <td>ROCm Validation Suite, TransferBench, ROCm Optiq</td>
       <td>—</td>
     </tr>
     <tr>
