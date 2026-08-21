@@ -338,6 +338,26 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 
 ROCm known issues are noted on {fab}`github` [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue). These issues will be fixed in a future ROCm release. For known issues related to individual components, review the [ROCm component changelogs](#rocm-component-changelogs).
 
+## ROCm resolved issues
+
+The following notable issues have been fixed in ROCm 10.0.0.
+
+### ASAN produced incorrect results with ternary operators on struct kernel arguments
+
+Previously, when compiling GPU kernels with ASAN enabled, ternary operators with struct kernel arguments could produce incorrect results, masking real bugs and producing false-positive results during memory-safety validation.
+
+### GPU kernels failed to launch in ASAN builds with large thread counts
+
+Previously, when building GPU libraries with ASAN enabled, kernels configured with large thread counts could fail to launch, returning the `HSA_STATUS_ERROR_INVALID_ISA` error.
+
+### Multi-target GPU builds produced larger binary sizes
+
+Previously, applications targeting multiple AMD GPU architectures could produce significantly larger binaries. Multi-target builds could increase binary size by up to 54%, and single-target builds added approximately 8 MB per GPU target.
+
+### HIP applications stalls on Windows during high-volume memory pool allocation and deallocation
+
+Previously, HIP applications on Windows that performed many memory pool allocation and deallocation cycles could stall indefinitely while waiting for a memory-mapping operation to complete on the GPU. This was most commonly observed while running the rocBLAS test suite on Windows.
+
 ## ROCm upcoming changes
 
 Future releases will add support for:
