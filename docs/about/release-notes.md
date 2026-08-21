@@ -203,6 +203,19 @@ ROCm Systems Profiler can now trace hipFile GPU-direct storage API calls, giving
 
 ROCm Systems Profiler now captures the nine host-stream rocSHMEM API calls (`putmem_on_stream`, `getmem_on_stream`, `putmem_signal_on_stream`, `signal_wait_until_on_stream`, `broadcastmem_on_stream`, `alltoallmem_on_stream`, `barrier_all_on_stream`, `sync_all_on_stream`, and `quiet_on_stream`) as `rocm_rocshmem_api` spans in both Perfetto traces and rocpd databases. Enable it with `ROCPROFSYS_ROCM_DOMAINS=rocshmem_api`. This capability requires ROCprofiler-SDK 1.3.5 or later and rocSHMEM 3.6.0 or later (included in ROCm 10.0.0). Since rocSHMEM 3.6.0 enables USE_ROCPROFILER_REGISTER by default, package installations include this support automatically. A rocshmem example demonstrating two-PE usage of all nine APIs is included under examples/rocshmem. For details, see the ROCm domains section in Configuring runtime options.
 
+##### Finer-grained instrumentation control
+
+The `rocprof-sys-instrument` tool adds several options to reduce instrumentation overhead and scope collection more precisely. The `--exe-only` flag excludes every shared library from instrumentation, leaving only the main executable. The `--exclude-internal-lib-paths` flag excludes every on-disk path that matches an internal library's filename, rather than only the path linked at startup. The `--max-library-functions` option skips shared libraries whose procedure count exceeds a specified threshold, keeping overhead manageable; the target executable is never gated by this threshold, and the check is bypassed for modules and functions selected through the include/restrict regexes (`--module-include/-MI`, `--module-restrict/-MR`, `--function-include/-I`, and `--function-restrict/-R`). For details, see [Binary instrumentation](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/latest/how-to/instrumenting-rewriting-binary-application.html#instrumenting-and-rewriting-a-binary-application).
+
+##### New profiler-hub writer backend
+
+ROCm Systems Profiler introduces the new profiler-hub writer backend for trace persistence, which replaces the existing SQLite3/rocpd backend for writing trace data.
+
+##### AI-NIC telemetry sampling
+
+ROCm Systems Profiler now supports periodic sampling of AI NIC (RDMA) network metrics, including unicast byte/packet counts, congestion notifications, and packet-sequence error counters. Select interfaces with the `--ai-nics` flag on `rocprof-sys-run` or `rocprof-sys-sample` (or via `ROCPROFSYS_SAMPLING_AINICS`), and view the results as Perfetto or rocpd tracks alongside your existing CPU/GPU sampling data. See the [Network performance profiling](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/latest/how-to/nic-profiling.html) how-to for setup, configuration, and visualization details.
+
+
 For more information, see the [ROCm Systems Profiler section](#rocm-systems-profiler-1-8-0) in the ROCm component changelogs.
 
 ### Libraries
@@ -212,6 +225,16 @@ This release introduces new algorithms and optimizations across the math, sparse
 #### rocFFT supports multi-GPU RCCL backend
 
 rocFFT adds an optional RCCL backend for single-node, multi-GPU FFT communication within a single process, enabled via the `-DROCFFT_RCCL_ENABLE=ON` CMake build option. RCCL's GPU topology-awareness targets help improve communication performance over rocFFT's existing memory-copy-based transport in this configuration.
+
+#### Symmetric memory support updated in RCCL
+
+RCCL extends its symmetric memory support with a new Reduce-Scatter kernel and expanded memory registration options for collective operations. This implementation enables:
+
+- **Reduce-Scatter symmetric kernel:** RCCL adds a symmetric-memory kernel for Reduce-Scatter on AMD Instinct MI300 Series and MI350 Series GPUs, extending symmetric-memory execution to a collective that previously required the default communication path. The kernel also adds support for the AVG reduction operation.
+
+- **GPU-only multi-segment registration:** Symmetric memory windows can register multi-segment GPU memory ranges without host involvement, currently supported for single-node configurations.
+
+- **Elastic buffers:** Symmetric memory collectives support tensors residing in either device or host memory, currently supported for single-node configurations.
 
 #### hipSPARSE and rocSPARSE feature highlights
 
@@ -432,7 +455,7 @@ export SGLANG_USE_AITER_AR=0
 ```
 
 ### TensorFlow ROCm v2.21 might fail to start with a libhipsparse ImportError on some Radeon GPUs
- 
+
 TensorFlow ROCm v2.21 workloads might fail to start with an `ImportError: libhipsparse.so.4` on some AMD Radeon graphics products, such as  Radeon AI PRO R9700,  when ROCm is installed using pip packages. As a workaround, add `$(hipconfig -R)/lib` and `$(hipconfig -R)/lib/rocm_sysdeps/lib` to `LD_LIBRARY_PATH` before launching TensorFlow.
 
 ## ROCm resolved issues
