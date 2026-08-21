@@ -6,6 +6,7 @@
   Primary data: partitioning-support.yaml (passed as `data` by the caller)
 
   Bare-metal table columns:  Deployment | Device | Compute partition mode | Memory partition mode
+  Passthrough table columns:  Deployment | Device | Compute partition mode | Memory partition mode
   KVM SR-IOV table columns:  Deployment | Device | VFs per GPU | Compute partition mode | Memory partition mode
 
   Device merging: consecutive GPUs with identical configurations are merged
@@ -115,6 +116,66 @@
 </table>
 {%- endmacro -%}
 
+{%- macro render_passthrough() -%}
+{%- set pt_gpus = [] -%}
+{%- for gpu_name, gpu in instinct.items() -%}
+  {%- if gpu["passthrough"] is defined -%}
+    {%- set short = gpu_name | replace("AMD Instinct ", "Instinct ") -%}
+    {%- set _ = pt_gpus.append({"name": short, "entries": gpu["passthrough"]}) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- set groups = [] -%}
+{%- set ns = namespace(prev_key="", prev_idx=-1) -%}
+{%- for gpu in pt_gpus -%}
+  {%- set k = configs_key(gpu.entries) | trim -%}
+  {%- if k == ns.prev_key and ns.prev_idx >= 0 -%}
+    {%- set last = groups[-1] -%}
+    {%- set new_names = last.names + [gpu.name] -%}
+    {%- set _ = groups.pop() -%}
+    {%- set _ = groups.append({"names": new_names, "entries": last.entries}) -%}
+  {%- else -%}
+    {%- set _ = groups.append({"names": [gpu.name], "entries": gpu.entries}) -%}
+  {%- endif -%}
+  {%- set ns.prev_key = k -%}
+  {%- set ns.prev_idx = loop.index0 -%}
+{%- endfor -%}
+
+{%- set ns_total = namespace(n=0) -%}
+{%- for g in groups -%}{%- set ns_total.n = ns_total.n + (g.entries | length) -%}{%- endfor -%}
+
+<table class="rocm-docs-table table">
+  <thead>
+    <tr>
+      <th class="head"><p>Deployment</p></th>
+      <th class="head"><p>Device</p></th>
+      <th class="head"><p>Compute partition mode</p></th>
+      <th class="head"><p>Memory partition mode</p></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- set g_first = namespace(deploy_written=false) -%}
+{%- for group in groups %}
+{%- set n_rows = group.entries | length %}
+{%- set dev_label = group.names | join(", ") %}
+{%- for entry in group.entries %}
+    <tr>
+{%- if not g_first.deploy_written %}
+      <td rowspan="{{ ns_total.n }}" style="vertical-align: middle;"><p>Passthrough</p></td>
+{%- set g_first.deploy_written = true %}
+{%- endif %}
+{%- if loop.first %}
+      <td{% if n_rows > 1 %} rowspan="{{ n_rows }}" style="vertical-align: middle;"{% endif %}><p>{{ dev_label }}</p></td>
+{%- endif %}
+      <td><p>{{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}</p></td>
+      <td><p>{{ entry.memory }}</p></td>
+    </tr>
+{%- endfor %}
+{%- endfor %}
+  </tbody>
+</table>
+{%- endmacro -%}
+
 {%- macro render_kvm_sriov() -%}
 {#-- Collect GPUs that have kvm-sriov entries --#}
 {%- set ks_gpus = [] -%}
@@ -181,10 +242,16 @@
 {%- endmacro -%}
 
 The following compute partition and NUMA-per-socket (NPS) configurations are
-available on AMD Instinct GPUs in bare metal deployments.
+available on AMD Instinct GPUs in bare-metal deployments.
 
 ```{raw} html
 {{ render_bare_metal() }}
+```
+
+The following configurations are available on AMD Instinct GPUs in passthrough
+deployments.
+```{raw} html
+{{ render_passthrough() }}
 ```
 
 The following configurations are available on AMD Instinct GPUs in SR-IOV

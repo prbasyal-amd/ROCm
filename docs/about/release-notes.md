@@ -44,15 +44,31 @@ For the full list of supported Linux distributions, see [Operating system suppor
 
 ROCm 10.0.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
 
-* On AMD Instinct MI350XP: Passthrough ESXi 9.1 with Ubuntu 24.04 guest OS
-* On AMD Instinct MI325X and MI300X: KVM SR-IOV with RHEL 10.1 host OS and guest OS
-* On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04, RHEL 10.1, and RHEL 9.6 guest OS.
+* On AMD Instinct MI350XP: Passthrough ESXi 9.1 with Ubuntu 24.04 guest OS.
+* On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04, RHEL 10, and RHEL 9.6 guest OS.
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.2.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
 #### Expanded Instinct GPU partitioning support
 
-ROCm 10.0.0 has no changes in GPU partitioning support from previous release.
+ROCm 10.0.0 has enabled and optimized the following GPU partitioning configurations in bare-metal deployments:
+
+* On MI355X, MI350X, MI325X, and MI300X:
+  * SPX compute partition mode with NPS1 memory partitioning.
+
+* On MI350P:
+  * DPX compute partition mode with NPS1 memory partitioning.
+  * CPX compute partition mode with NPS2 memory partitioning.
+
+ROCm 10.0.0 has enabled the following GPU partitioning configurations in Passthrough deployments:
+
+* On MI355X, MI350X, MI350P, MI325X, and MI300X:
+  * SPX compute partition mode with NPS1 memory partitioning.
+
+ROCm 10.0.0 has enabled multi-VF partition modes for the following GPU partitioning configurations in SR-IOV deployments:
+
+* On MI350P:
+  * SPX compute partition mode with NPS1 memory partitioning.
 
 For details, see [GPU partitioning support](#gpu-partitioning-support).
 

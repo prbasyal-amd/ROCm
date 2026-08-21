@@ -83,11 +83,6 @@ AMD Instinct:
       driver: *gim_9_2_0_k
       host_os: Ubuntu 22.04
       guest_os: [Ubuntu 22.04, RHEL 10.0]
-    - hypervisor: KVM
-      technology: SR-IOV
-      driver: *gim_9_2_0_k
-      host_os: RHEL 10.1
-      guest_os: [RHEL 10.1]
 
   AMD Instinct MI300X:
     - hypervisor: KVM
@@ -120,11 +115,6 @@ AMD Instinct:
       driver: *gim_9_2_0_k
       host_os: Ubuntu 22.04
       guest_os: [Ubuntu 22.04]
-    - hypervisor: KVM
-      technology: SR-IOV
-      driver: *gim_9_2_0_k
-      host_os: RHEL 10.1
-      guest_os: [RHEL 10.1]
 
   AMD Instinct MI210:
     - hypervisor: KVM

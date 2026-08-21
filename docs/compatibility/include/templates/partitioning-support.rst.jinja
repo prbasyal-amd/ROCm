@@ -9,6 +9,7 @@
 
   Data model (per GPU):
     bare-metal: [{compute, memory, default?}, ...]
+    passthrough: [{compute, memory, default?}, ...]
     kvm-sriov:  [{vfs, compute, memory, default?}, ...]   (vfs may be scalar or list)
 
   Merging: consecutive GPUs with identical config lists share matrix-rows
@@ -21,6 +22,7 @@
 
   Columns:
     bare-metal  → Compute partition mode | Memory partition mode
+    passthrough  → Compute partition mode | Memory partition mode
     kvm-sriov   → VFs per GPU | Compute partition mode | Memory partition mode
 
   If default: true, "(Default)" is appended to the compute mode label.
@@ -81,6 +83,29 @@
 {%- set bm_slugs = gpu_slugs(bm_gpu_names) -%}
 
 {#---------------------------------------------------------------------------
+  Build passthrough merged groups and collect slugs for passthrough GPUs.
+---------------------------------------------------------------------------#}
+{%- set ns_pt = namespace(groups=[], prev_key="", prev_idx=-1) -%}
+{%- set pt_gpu_names = [] -%}
+{%- for name in gpu_names -%}
+  {%- if instinct[name]["passthrough"] is defined -%}
+    {%- set _ = pt_gpu_names.append(name) -%}
+    {%- set entries = instinct[name]["passthrough"] -%}
+    {%- set k = configs_key(entries) | trim -%}
+    {%- if k == ns_pt.prev_key and ns_pt.prev_idx >= 0 -%}
+      {%- set last = ns_pt.groups[-1] -%}
+      {%- set _ = ns_pt.groups.pop() -%}
+      {%- set _ = ns_pt.groups.append({"gpus": last.gpus + [name], "entries": last.entries}) -%}
+    {%- else -%}
+      {%- set _ = ns_pt.groups.append({"gpus": [name], "entries": entries}) -%}
+    {%- endif -%}
+    {%- set ns_pt.prev_key = k -%}
+    {%- set ns_pt.prev_idx = loop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set pt_slugs = gpu_slugs(pt_gpu_names) -%}
+
+{#---------------------------------------------------------------------------
   Build kvm-sriov merged groups and collect slugs for kvm-sriov GPUs.
 ---------------------------------------------------------------------------#}
 {%- set ns_ks = namespace(groups=[], prev_key="", prev_idx=-1) -%}
@@ -110,7 +135,7 @@
    :heading: GPU partitioning support
 
    AMD Instinct GPUs support compute and memory partitioning modes for
-   bare-metal and SR-IOV deployments.
+   bare-metal, passthrough, and SR-IOV deployments.
 
 {% if ns_bm.groups | length > 0 %}
    .. selected:: {{ bm_slugs }}
@@ -127,6 +152,32 @@
             .. matrix-cell:: Memory partition mode
 
 {% for group in ns_bm.groups %}
+{% for entry in group.entries %}
+         .. matrix-row::
+            :show-cond: {{ gpu_slugs(group.gpus) }}
+
+            .. matrix-cell:: {{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}
+
+            .. matrix-cell:: {{ entry.memory }}
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% if ns_pt.groups | length > 0 %}
+   .. selected:: {{ pt_slugs }}
+      :heading: Passthrough partitioning support
+      :heading-level: 3
+
+      .. matrix::
+
+         .. matrix-row::
+            :header:
+
+            .. matrix-cell:: Compute partition mode
+
+            .. matrix-cell:: Memory partition mode
+
+{% for group in ns_pt.groups %}
 {% for entry in group.entries %}
          .. matrix-row::
             :show-cond: {{ gpu_slugs(group.gpus) }}
