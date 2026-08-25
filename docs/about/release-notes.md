@@ -46,14 +46,25 @@ For the full list of supported Linux distributions, see [Operating system suppor
 
 ROCm 10.0.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
 
-* On AMD Instinct MI350XP: Passthrough ESXi 9.1 with Ubuntu 24.04 guest OS.
+* On AMD Instinct MI355X and MI350X:
+  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
+* On AMD Instinct MI350XP:
+  * Passthrough ESXi 9.1 with Ubuntu 24.04 guest OS.
+  * Passthrough Debian 13 with Ubuntu 24.04 guest OS.
+* On AMD Instinct MI325X:
+  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
+  * Passthrough Ubuntu 24.04 with Ubuntu 24.04 guest OS.
+* On AMD Instinct MI300X:
+  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
+* On AMD Instinct MI210:
+  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
 * On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04, RHEL 10, and RHEL 9.6 guest OS.
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.2.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
 #### Expanded Instinct GPU partitioning support
 
-ROCm 10.0.0 has enabled and optimized the following GPU partitioning configurations in
+ROCm 10.0.0 has enabled the following GPU partitioning configurations in:
 
 **Bare-metal deployments**
 
@@ -62,7 +73,6 @@ ROCm 10.0.0 has enabled and optimized the following GPU partitioning configurati
 
 * On MI350P:
   * DPX compute partition mode with NPS1 memory partitioning.
-  * CPX compute partition mode with NPS2 memory partitioning.
 
 **Passthrough deployments**
 
@@ -219,6 +229,10 @@ For more information, see the [ROCm Systems Profiler section](#rocm-systems-prof
 ### Libraries
 
 This release introduces new algorithms and optimizations across the math, sparse, and primitives libraries. Updates to hipFile improve I/O performance for NVMe-backed storage.
+
+#### Composable Kernel improves a8w8 GEMM performance
+
+Composable Kernel improves a8w8 GEMM performance on AMD Instinct MI355X GPUs, delivering measurable throughput gains over the prior AITER implementation for FP8 and int8 GEMM problem shapes used in long-sequence inference workloads (sequence lengths from 6K to 1M tokens). The optimizations are built on CK Tile and are accessible through the AITER GEMM interface.
 
 #### rocFFT supports multi-GPU RCCL backend
 
@@ -436,7 +450,7 @@ Recompile any code that reads these fields. Any assignments into fixed-width 32-
 ROCm known issues are noted on {fab}`github` [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue). These issues will be fixed in a future ROCm release. For known issues related to individual components, review the [ROCm component changelogs](#rocm-component-changelogs).
 
 ### HuggingFace model training throughput might regress on AMD Instinct MI350X
- 
+
 HuggingFace model training workloads might see 9–25% lower training throughput on AMD Instinct MI350X (gfx950) GPUs, including BART, GPT-2, DiT (Diffusion Transformers), BERT, Llama 2 70B Chat, and RoBERTa-large. This occurs because AOTriton 0.13b selects a suboptimal flash-attention backward kernel instead of the faster 3-kernel split used in AOTriton 0.11.2b. As a workaround, rebuild PyTorch and pin AOTriton to version 0.11.2b.
 
 ### JAX BERT FP16 training might encounter a segmentation fault on some Radeon GPUs

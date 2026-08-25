@@ -41,6 +41,17 @@
 - Fixed ctypes `DeprecationWarning` from `amdsmi_wrapper.py` on Python 3.14.
   - Python 3.14 deprecates the implicit ctypes structure layout when `_pack_` is set (slated to become an error in 3.19). Each packed structure/union in the generated wrapper now sets `_layout_ = 'ms'`, preserving the existing MSVC-compatible layout (no ABI change) while silencing the warning.
 
+
+#### **Composable Kernel** (1.2.0)
+
+##### Added
+
+* Multiple D (bias) and large tensor support to the CK Tile quantized GEMM kernel for row-column quantization.
+
+##### Changed
+
+* Improved performance of row-column quantized a8w8 GEMM through better instruction scheduling in the eight-waves pipeline, wider epilogue stores, and nontemporal C/D memory access.
+
 #### **HIP** (10.0.0)
 
 ##### Added
@@ -63,7 +74,7 @@
 * Improved `hipMemcpy2D()` and `hipMemcpy2DAsync()` performance for copy operations with very small row widths and large row counts.
 Previously, non-4-byte-aligned row or slice pitches could cause the runtime to issue a separate copy for each row, resulting in significant
 performance degradation for workloads such as 1-byte-wide transfers with millions of rows.
-These transfers are now handled using a single shader-based copy operation, dramatically reducing transfer times.
+These transfers are now handled using a single shader-based copy operation, significantly reducing transfer times.
 Copy operations at or below the 256-row threshold are unchanged.
 * Improved `hipEventRecord` performance by using the `hipEventDisableTiming` flag to avoid unnecessary profiling when timing information is not required. Event operations are now coalesced to eliminate redundant barrier submissions, reducing runtime overhead and improving execution efficiency.
 * Improved batch copy performance: optimized `hipMemcpyBatchAsync` by splitting batch operations into per-device commands.
@@ -243,6 +254,12 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 
 * Addressed internal issues causing multi-device plans to fall back to the least-performant code path for certain 3D real transforms (e.g., multi-device single-precision real out-of-place 3D of size 320x320x320 using slab decomposition).
 * Fixed a thread-safety issue that could cause `rocfft_plan_create` to crash when called concurrently from many threads.
+
+#### **ROCgdb** (16.3)
+
+##### Added
+
+* The address space operator `#` is recognized in Fortran programs too. This allows evaluating expressions like `private_lane#0x08` in Fortran applications that offload kernels to an AMD GPU.
 
 #### **rocJPEG** (1.7.0)
 
@@ -496,16 +513,21 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 * Blocked ELL format support to the `rocsparse_dense_to_sparse` routine, including the new `rocsparse_bell_set_pointers` function to set the Blocked ELL array pointers.
 * CSC format support to `rocsparse_spsv` and `rocsparse_sptrsv`.
 * CSC format support to `rocsparse_spsm` and `rocsparse_sptrsm`.
+* `rocsparse_handle_create` to create a handle associated with a user-provided stream. All internal device memory allocation and initialization are stream-ordered on that stream, so handle creation never blocks the calling thread or other GPU streams.
+* `rocsparse_handle_destroy` to destroy a handle created by `rocsparse_handle_create`, with an optional error descriptor argument.
 
 ##### Changed
 * `rocsparse_spmm` with CSR/CSC and the default algorithm (`rocsparse_spmm_alg_default` or `rocsparse_spmm_alg_csr`) now automatically selects a load-balanced (nnz-split) kernel for strongly skewed matrices (those containing a single very long row for CSR, or column for transposed CSC). Behavior is unchanged for non-skewed matrices and for explicit algorithm choices (`rocsparse_spmm_alg_csr_row_split`, `rocsparse_spmm_alg_csr_nnz_split`, `rocsparse_spmm_alg_csr_merge_path`).
-* Deprecated the `rocsparse_spildlt0_input_diag` enum value. It was used to dump the diagonal `D` of the ILDLT(0) factorization, which is now stored in-place on the diagonal entries of the `L` factor.
 
 ##### Removed
 * The deprecated `rocsparse_indextype_u16` enum.
 
 ##### Resolved issues
 * Fixed an issue with `rocsparse_spmm`, which produced incorrect results for the Blocked ELL sparse format.
+
+##### Upcoming changes
+
+* Deprecated the `rocsparse_spildlt0_input_diag` enum value. It was used to dump the diagonal `D` of the ILDLT(0) factorization, which is now stored in-place on the diagonal entries of the `L` factor. It will be removed in a future release.
 
 #### **rocThrust** (5.0.0)
 

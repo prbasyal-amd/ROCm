@@ -31,10 +31,12 @@ AMD Instinct:
   AMD Instinct MI350P:
     bare-metal:
       - {compute: SPX, memory: NPS1}
+      - {compute: DPX, memory: NPS1}
+      - {compute: CPX, memory: NPS1}
     passthrough:
       - {compute: SPX, memory: NPS1}
     kvm-sriov:
-      - {vfs: 1, compute: SPX, memory}
+      - {vfs: 1, compute: SPX, memory: NPS1}
 
   AMD Instinct MI300X:
     bare-metal:
