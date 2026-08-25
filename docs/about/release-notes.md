@@ -539,7 +539,7 @@ export SGLANG_USE_AITER_AR=0
 
 ### TensorFlow ROCm v2.21 might fail to start with a libhipsparse ImportError on some Radeon GPUs
 
-TensorFlow ROCm v2.21 workloads might fail to start with an `ImportError: libhipsparse.so.4` on some AMD Radeon graphics products, such as  Radeon AI PRO R9700,  when ROCm is installed using pip packages. As a workaround, add `$(hipconfig -R)/lib` and `$(hipconfig -R)/lib/rocm_sysdeps/lib` to `LD_LIBRARY_PATH` before launching TensorFlow.
+TensorFlow ROCm v2.21 workloads might fail to start with an `ImportError: libhipsparse.so.4` on some AMD Radeon graphics products, such as Radeon AI PRO R9700, when ROCm is installed using pip packages. As a workaround, add `$(hipconfig -R)/lib` and `$(hipconfig -R)/lib/rocm_sysdeps/lib` to `LD_LIBRARY_PATH` before launching TensorFlow.
 
 ### vLLM or ComfyUI workloads might crash on some Ryzen AI systems
 
