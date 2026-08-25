@@ -44,7 +44,7 @@ Installation
 
    .. code-block:: bash
 
-      wget https://repo.radeon.com/rocm/installer/rocm-runfile-installer/rocm-rel-7.14/rocm-installer-7.14.0-7.run
+      wget https://repo.radeon.com/rocm/installer/rocm-runfile-installer/rocm-rel-10.0/rocm-installer-10.0.0-4.run
 
 .. selected:: i=amdgpu-install
 
@@ -61,24 +61,24 @@ Installation
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/ubuntu/resolute/amdgpu-install_31.40.1.314001-1_all.deb
-               sudo apt install ./amdgpu-install_31.40.1.314001-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/ubuntu/resolute/amdgpu-install_31.50.315000-1_all.deb
+               sudo apt install ./amdgpu-install_31.50.315000-1_all.deb
 
          .. selected:: ubuntu-ver=24.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/ubuntu/noble/amdgpu-install_31.40.1.314001-1_all.deb
-               sudo apt install ./amdgpu-install_31.40.1.314001-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/ubuntu/noble/amdgpu-install_31.50.315000-1_all.deb
+               sudo apt install ./amdgpu-install_31.50.315000-1_all.deb
 
          .. selected:: ubuntu-ver=22.04
 
             .. code-block:: bash
 
                sudo apt update
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/ubuntu/jammy/amdgpu-install_31.40.1.314001-1_all.deb
-               sudo apt install ./amdgpu-install_31.40.1.314001-1_all.deb
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/ubuntu/jammy/amdgpu-install_31.50.315000-1_all.deb
+               sudo apt install ./amdgpu-install_31.50.315000-1_all.deb
 
       .. selected:: os=rhel
 
@@ -86,43 +86,43 @@ Installation
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/10.2/amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/10.2/amdgpu-install-31.50.315000-1.el10.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el10.noarch.rpm
 
          .. selected:: rhel-ver=10.0
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/10.0/amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el10.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/10.0/amdgpu-install-31.50.315000-1.el10.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el10.noarch.rpm
 
          .. selected:: rhel-ver=9.8
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/9.8/amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/9.8/amdgpu-install-31.50.315000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=9.6
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/9.6/amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/9.6/amdgpu-install-31.50.315000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=9.4
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/9.4/amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el9.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/9.4/amdgpu-install-31.50.315000-1.el9.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el9.noarch.rpm
 
          .. selected:: rhel-ver=8.10
 
             .. code-block:: bash
 
-               wget https://repo.radeon.com/amdgpu-install/31.40.1/rhel/8.10/amdgpu-install-31.40.1.314001-1.el8.noarch.rpm
-               sudo dnf install ./amdgpu-install-31.40.1.314001-1.el8.noarch.rpm
+               wget https://repo.radeon.com/amdgpu-install/31.50.0/rhel/8.10/amdgpu-install-31.50.315000-1.el8.noarch.rpm
+               sudo dnf install ./amdgpu-install-31.50.315000-1.el8.noarch.rpm
 
 .. ==================================================== INSTALL KERNEL DRIVER ==
 
@@ -141,7 +141,7 @@ Installation
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Ubuntu native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
             .. selected:: ubuntu-ver=26.04
@@ -158,35 +158,35 @@ Installation
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Debian native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-debian.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-debian.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rhel
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `RHEL native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rhel.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rhel.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=oracle-linux
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Oracle Linux native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ol.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ol.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rocky-linux
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `Rocky Linux native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rl.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rl.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=sles
 
             For Instinct and Radeon devices, install the AMD GPU Driver (amdgpu).
             See `SLES native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-sles.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-sles.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
       .. selected:: fam=instinct fam=radeon
@@ -200,42 +200,42 @@ Installation
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Ubuntu native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ubuntu.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=debian
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Debian native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-debian.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-debian.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rhel
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `RHEL native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rhel.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rhel.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=oracle-linux
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Oracle Linux native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-ol.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-ol.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=rocky-linux
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `Rocky Linux native
             installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-rl.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-rl.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
          .. selected:: os=sles
 
             For instructions on installing the AMD GPU Driver (amdgpu), see `SLES
             native installation
-            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/install/detailed-install/package-manager/package-manager-sles.html>`__
+            <https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/install/detailed-install/package-manager/package-manager-sles.html>`__
             in the AMD Instinct Data Center GPU Documentation.
 
       .. selected:: fam=ryzen
@@ -263,7 +263,7 @@ Installation
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install amdgpu
+         bash rocm-installer-10.0.0-4.run deps=install amdgpu
 
       .. note::
 
@@ -477,7 +477,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel10/x86_64
                enabled=1
                gpgcheck=1
@@ -493,7 +493,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel10/x86_64
                enabled=1
                gpgcheck=1
@@ -511,7 +511,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
                enabled=1
                gpgcheck=1
@@ -527,7 +527,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
                enabled=1
                gpgcheck=1
@@ -545,7 +545,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel8/x86_64
                enabled=1
                gpgcheck=1
@@ -561,7 +561,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel8/x86_64
                enabled=1
                gpgcheck=1
@@ -584,7 +584,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel10/x86_64
                enabled=1
                gpgcheck=1
@@ -600,7 +600,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel10/x86_64
                enabled=1
                gpgcheck=1
@@ -618,7 +618,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
                enabled=1
                gpgcheck=1
@@ -634,7 +634,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
                enabled=1
                gpgcheck=1
@@ -652,7 +652,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel8/x86_64
                enabled=1
                gpgcheck=1
@@ -668,7 +668,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/yum.repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel8/x86_64
                enabled=1
                gpgcheck=1
@@ -689,7 +689,7 @@ Use the following instructions to install ROCm packages on your system.
 
             sudo tee /etc/yum.repos.d/rocm.repo <<EOF
             [rocm]
-            name=ROCm 7.14.0
+            name=ROCm 10.0.0
             baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
             enabled=1
             gpgcheck=1
@@ -705,7 +705,7 @@ Use the following instructions to install ROCm packages on your system.
 
             sudo tee /etc/yum.repos.d/rocm.repo <<EOF
             [rocm]
-            name=ROCm 7.14.0
+            name=ROCm 10.0.0
             baseurl=https://repo.amd.com/rocm/packages-multi-arch/rhel9/x86_64
             enabled=1
             gpgcheck=1
@@ -728,7 +728,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/sles16/x86_64
                enabled=1
                gpgcheck=1
@@ -744,7 +744,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/sles16/x86_64
                enabled=1
                gpgcheck=1
@@ -762,7 +762,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/sles15/x86_64
                enabled=1
                gpgcheck=1
@@ -778,7 +778,7 @@ Use the following instructions to install ROCm packages on your system.
 
                sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
                [rocm]
-               name=ROCm 7.14.0
+               name=ROCm 10.0.0
                baseurl=https://repo.amd.com/rocm/packages-multi-arch/sles15/x86_64
                enabled=1
                gpgcheck=1
@@ -802,97 +802,97 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14
+            sudo apt install amdrocm10.0
 
       .. selected:: gfx=gfx950
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx950
+            sudo apt install amdrocm10.0-gfx950
 
       .. selected:: gfx=gfx942
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx942
+            sudo apt install amdrocm10.0-gfx942
 
       .. selected:: gfx=gfx90a
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx90a
+            sudo apt install amdrocm10.0-gfx90a
 
       .. selected:: gfx=gfx908
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx908
+            sudo apt install amdrocm10.0-gfx908
 
       .. selected:: gfx=gfx1201
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1201
+            sudo apt install amdrocm10.0-gfx1201
 
       .. selected:: gfx=gfx1200
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1200
+            sudo apt install amdrocm10.0-gfx1200
 
       .. selected:: gfx=gfx1100
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1100
+            sudo apt install amdrocm10.0-gfx1100
 
       .. selected:: gfx=gfx1101
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1101
+            sudo apt install amdrocm10.0-gfx1101
 
       .. selected:: gfx=gfx1102
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1102
+            sudo apt install amdrocm10.0-gfx1102
 
       .. selected:: gfx=gfx1103
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1103
+            sudo apt install amdrocm10.0-gfx1103
 
       .. selected:: gfx=gfx1030
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1030
+            sudo apt install amdrocm10.0-gfx1030
 
       .. selected:: gfx=gfx1151
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1151
+            sudo apt install amdrocm10.0-gfx1151
 
       .. selected:: gfx=gfx1150
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1150
+            sudo apt install amdrocm10.0-gfx1150
 
       .. selected:: gfx=gfx1152
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1152
+            sudo apt install amdrocm10.0-gfx1152
 
       .. selected:: gfx=gfx1153
 
          .. code-block:: bash
 
-            sudo apt install amdrocm7.14-gfx1153
+            sudo apt install amdrocm10.0-gfx1153
 
    .. selected:: os=rhel os=oracle-linux os=rocky-linux
 
@@ -904,97 +904,97 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14
+            sudo dnf install amdrocm10.0
 
       .. selected:: gfx=gfx950
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx950
+            sudo dnf install amdrocm10.0-gfx950
 
       .. selected:: gfx=gfx942
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx942
+            sudo dnf install amdrocm10.0-gfx942
 
       .. selected:: gfx=gfx90a
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx90a
+            sudo dnf install amdrocm10.0-gfx90a
 
       .. selected:: gfx=gfx908
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx908
+            sudo dnf install amdrocm10.0-gfx908
 
       .. selected:: gfx=gfx1201
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1201
+            sudo dnf install amdrocm10.0-gfx1201
 
       .. selected:: gfx=gfx1200
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1200
+            sudo dnf install amdrocm10.0-gfx1200
 
       .. selected:: gfx=gfx1100
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1100
+            sudo dnf install amdrocm10.0-gfx1100
 
       .. selected:: gfx=gfx1101
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1101
+            sudo dnf install amdrocm10.0-gfx1101
 
       .. selected:: gfx=gfx1102
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1102
+            sudo dnf install amdrocm10.0-gfx1102
 
       .. selected:: gfx=gfx1103
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1103
+            sudo dnf install amdrocm10.0-gfx1103
 
       .. selected:: gfx=gfx1030
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1030
+            sudo dnf install amdrocm10.0-gfx1030
 
       .. selected:: gfx=gfx1151
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1151
+            sudo dnf install amdrocm10.0-gfx1151
 
       .. selected:: gfx=gfx1150
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1150
+            sudo dnf install amdrocm10.0-gfx1150
 
       .. selected:: gfx=gfx1152
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1152
+            sudo dnf install amdrocm10.0-gfx1152
 
       .. selected:: gfx=gfx1153
 
          .. code-block:: bash
 
-            sudo dnf install amdrocm7.14-gfx1153
+            sudo dnf install amdrocm10.0-gfx1153
 
    .. selected:: os=sles
 
@@ -1006,31 +1006,31 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            sudo zypper install amdrocm7.14
+            sudo zypper install amdrocm10.0
 
       .. selected:: gfx=gfx950
 
          .. code-block:: bash
 
-            sudo zypper install amdrocm7.14-gfx950
+            sudo zypper install amdrocm10.0-gfx950
 
       .. selected:: gfx=gfx942
 
          .. code-block:: bash
 
-            sudo zypper install amdrocm7.14-gfx942
+            sudo zypper install amdrocm10.0-gfx942
 
       .. selected:: gfx=gfx90a
 
          .. code-block:: bash
 
-            sudo zypper install amdrocm7.14-gfx90a
+            sudo zypper install amdrocm10.0-gfx90a
 
       .. selected:: gfx=gfx908
 
          .. code-block:: bash
 
-            sudo zypper install amdrocm7.14-gfx908
+            sudo zypper install amdrocm10.0-gfx908
 
 .. ============================================================ META PACKAGES ==
 
@@ -1063,82 +1063,82 @@ Use the following instructions to install ROCm packages on your system.
          .. matrix-cell::
             :show-cond: gfx=gfx950
 
-            ``amdrocm7.14-gfx950``
+            ``amdrocm10.0-gfx950``
 
          .. matrix-cell::
             :show-cond: gfx=gfx942
 
-            ``amdrocm7.14-gfx942``
+            ``amdrocm10.0-gfx942``
 
          .. matrix-cell::
             :show-cond: gfx=gfx90a
 
-            ``amdrocm7.14-gfx90a``
+            ``amdrocm10.0-gfx90a``
 
          .. matrix-cell::
             :show-cond: gfx=gfx908
 
-            ``amdrocm7.14-gfx908``
+            ``amdrocm10.0-gfx908``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1201
 
-            ``amdrocm7.14-gfx1201``
+            ``amdrocm10.0-gfx1201``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1200
 
-            ``amdrocm7.14-gfx1200``
+            ``amdrocm10.0-gfx1200``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1100
 
-            ``amdrocm7.14-gfx1100``
+            ``amdrocm10.0-gfx1100``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1101
 
-            ``amdrocm7.14-gfx1101``
+            ``amdrocm10.0-gfx1101``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1102
 
-            ``amdrocm7.14-gfx1102``
+            ``amdrocm10.0-gfx1102``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1103
 
-            ``amdrocm7.14-gfx1103``
+            ``amdrocm10.0-gfx1103``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1030
 
-            ``amdrocm7.14-gfx1030``
+            ``amdrocm10.0-gfx1030``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1151
 
-            ``amdrocm7.14-gfx1151``
+            ``amdrocm10.0-gfx1151``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1150
 
-            ``amdrocm7.14-gfx1150``
+            ``amdrocm10.0-gfx1150``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1152
 
-            ``amdrocm7.14-gfx1152``
+            ``amdrocm10.0-gfx1152``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1153
 
-            ``amdrocm7.14-gfx1153``
+            ``amdrocm10.0-gfx1153``
 
          .. matrix-cell::
             :show-cond: fam=all
 
-            ``amdrocm7.14``
+            ``amdrocm10.0``
 
          .. matrix-cell:: ROCm Base
 
@@ -1156,134 +1156,134 @@ Use the following instructions to install ROCm packages on your system.
 
             .. selected:: gfx=gfx950
 
-               ``amdrocm-core-dev7.14-gfx950``
+               ``amdrocm-core-dev10.0-gfx950``
 
             .. selected:: gfx=gfx942
 
-               ``amdrocm-core-dev7.14-gfx942``
+               ``amdrocm-core-dev10.0-gfx942``
 
             .. selected:: gfx=gfx90a
 
-               ``amdrocm-core-dev7.14-gfx90a``
+               ``amdrocm-core-dev10.0-gfx90a``
 
             .. selected:: gfx=gfx908
 
-               ``amdrocm-core-dev7.14-gfx908``
+               ``amdrocm-core-dev10.0-gfx908``
 
             .. selected:: gfx=gfx1201
 
-               ``amdrocm-core-dev7.14-gfx1201``
+               ``amdrocm-core-dev10.0-gfx1201``
 
             .. selected:: gfx=gfx1200
 
-               ``amdrocm-core-dev7.14-gfx1200``
+               ``amdrocm-core-dev10.0-gfx1200``
 
             .. selected:: gfx=gfx1100
 
-               ``amdrocm-core-dev7.14-gfx1100``
+               ``amdrocm-core-dev10.0-gfx1100``
 
             .. selected:: gfx=gfx1101
 
-               ``amdrocm-core-dev7.14-gfx1101``
+               ``amdrocm-core-dev10.0-gfx1101``
 
             .. selected:: gfx=gfx1102
 
-               ``amdrocm-core-dev7.14-gfx1102``
+               ``amdrocm-core-dev10.0-gfx1102``
 
             .. selected:: gfx=gfx1103
 
-               ``amdrocm-core-dev7.14-gfx1103``
+               ``amdrocm-core-dev10.0-gfx1103``
 
             .. selected:: gfx=gfx1030
 
-               ``amdrocm-core-dev7.14-gfx1030``
+               ``amdrocm-core-dev10.0-gfx1030``
 
             .. selected:: gfx=gfx1151
 
-               ``amdrocm-core-dev7.14-gfx1151``
+               ``amdrocm-core-dev10.0-gfx1151``
 
             .. selected:: gfx=gfx1150
 
-               ``amdrocm-core-dev7.14-gfx1150``
+               ``amdrocm-core-dev10.0-gfx1150``
 
             .. selected:: gfx=gfx1152
 
-               ``amdrocm-core-dev7.14-gfx1152``
+               ``amdrocm-core-dev10.0-gfx1152``
 
             .. selected:: gfx=gfx1153
 
-               ``amdrocm-core-dev7.14-gfx1153``
+               ``amdrocm-core-dev10.0-gfx1153``
 
             .. selected:: fam=all
 
-               ``amdrocm-core-dev7.14``
+               ``amdrocm-core-dev10.0``
 
          .. matrix-cell::
             :show-cond: os=rhel os=oracle-linux os=rocky-linux os=sles
 
             .. selected:: gfx=gfx950
 
-               ``amdrocm-core-devel7.14-gfx950``
+               ``amdrocm-core-devel10.0-gfx950``
 
             .. selected:: gfx=gfx942
 
-               ``amdrocm-core-devel7.14-gfx942``
+               ``amdrocm-core-devel10.0-gfx942``
 
             .. selected:: gfx=gfx90a
 
-               ``amdrocm-core-devel7.14-gfx90a``
+               ``amdrocm-core-devel10.0-gfx90a``
 
             .. selected:: gfx=gfx908
 
-               ``amdrocm-core-devel7.14-gfx908``
+               ``amdrocm-core-devel10.0-gfx908``
 
             .. selected:: gfx=gfx1201
 
-               ``amdrocm-core-devel7.14-gfx1201``
+               ``amdrocm-core-devel10.0-gfx1201``
 
             .. selected:: gfx=gfx1200
 
-               ``amdrocm-core-devel7.14-gfx1200``
+               ``amdrocm-core-devel10.0-gfx1200``
 
             .. selected:: gfx=gfx1100
 
-               ``amdrocm-core-devel7.14-gfx1100``
+               ``amdrocm-core-devel10.0-gfx1100``
 
             .. selected:: gfx=gfx1101
 
-               ``amdrocm-core-devel7.14-gfx1101``
+               ``amdrocm-core-devel10.0-gfx1101``
 
             .. selected:: gfx=gfx1102
 
-               ``amdrocm-core-devel7.14-gfx1102``
+               ``amdrocm-core-devel10.0-gfx1102``
 
             .. selected:: gfx=gfx1103
 
-               ``amdrocm-core-devel7.14-gfx1103``
+               ``amdrocm-core-devel10.0-gfx1103``
 
             .. selected:: gfx=gfx1030
 
-               ``amdrocm-core-devel7.14-gfx1030``
+               ``amdrocm-core-devel10.0-gfx1030``
 
             .. selected:: gfx=gfx1151
 
-               ``amdrocm-core-devel7.14-gfx1151``
+               ``amdrocm-core-devel10.0-gfx1151``
 
             .. selected:: gfx=gfx1150
 
-               ``amdrocm-core-devel7.14-gfx1150``
+               ``amdrocm-core-devel10.0-gfx1150``
 
             .. selected:: gfx=gfx1152
 
-               ``amdrocm-core-devel7.14-gfx1152``
+               ``amdrocm-core-devel10.0-gfx1152``
 
             .. selected:: gfx=gfx1153
 
-               ``amdrocm-core-devel7.14-gfx1153``
+               ``amdrocm-core-devel10.0-gfx1153``
 
             .. selected:: fam=all
 
-               ``amdrocm-core-devel7.14``
+               ``amdrocm-core-devel10.0``
 
          .. matrix-cell:: ROCm Developer Essentials
 
@@ -1295,88 +1295,88 @@ Use the following instructions to install ROCm packages on your system.
          .. matrix-cell::
             :show-cond: gfx=gfx950
 
-            ``amdrocm7.14-gfx950`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx950`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx942
 
-            ``amdrocm7.14-gfx942`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx942`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx90a
 
-            ``amdrocm7.14-gfx90a`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx90a`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx908
 
-            ``amdrocm7.14-gfx908`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx908`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1201
 
-            ``amdrocm7.14-gfx1201`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1201`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1200
 
-            ``amdrocm7.14-gfx1200`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1200`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1100
 
-            ``amdrocm7.14-gfx1100`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1100`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1101
 
-            ``amdrocm7.14-gfx1101`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1101`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1102
 
-            ``amdrocm7.14-gfx1102`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1102`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1103
 
-            ``amdrocm7.14-gfx1103`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1103`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1030
 
-            ``amdrocm7.14-gfx1030`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1030`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1151
 
-            ``amdrocm7.14-gfx1151`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1151`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1150
 
-            ``amdrocm7.14-gfx1150`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1150`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1152
 
-            ``amdrocm7.14-gfx1152`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1152`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: gfx=gfx1153
 
-            ``amdrocm7.14-gfx1153`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0-gfx1153`` plus compilers, CMake configurations, static library files, and headers.
 
          .. matrix-cell::
             :show-cond: fam=all
 
-            ``amdrocm7.14`` plus compilers, CMake configurations, static library files, and headers.
+            ``amdrocm10.0`` plus compilers, CMake configurations, static library files, and headers.
 
       .. matrix-row::
 
          .. matrix-cell::
 
-            ``amdrocm-developer-tools7.14``
+            ``amdrocm-developer-tools10.0``
 
          .. matrix-cell:: ROCm Profiler
 
@@ -1388,7 +1388,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. matrix-cell::
 
-            ``amdrocm-opencl7.14``
+            ``amdrocm-opencl10.0``
 
          .. matrix-cell:: ROCm OpenCL
 
@@ -1401,82 +1401,82 @@ Use the following instructions to install ROCm packages on your system.
          .. matrix-cell::
             :show-cond: gfx=gfx950
 
-            ``amdrocm-core-sdk7.14-gfx950``
+            ``amdrocm-core-sdk10.0-gfx950``
 
          .. matrix-cell::
             :show-cond: gfx=gfx942
 
-            ``amdrocm-core-sdk7.14-gfx942``
+            ``amdrocm-core-sdk10.0-gfx942``
 
          .. matrix-cell::
             :show-cond: gfx=gfx90a
 
-            ``amdrocm-core-sdk7.14-gfx90a``
+            ``amdrocm-core-sdk10.0-gfx90a``
 
          .. matrix-cell::
             :show-cond: gfx=gfx908
 
-            ``amdrocm-core-sdk7.14-gfx908``
+            ``amdrocm-core-sdk10.0-gfx908``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1201
 
-            ``amdrocm-core-sdk7.14-gfx1201``
+            ``amdrocm-core-sdk10.0-gfx1201``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1200
 
-            ``amdrocm-core-sdk7.14-gfx1200``
+            ``amdrocm-core-sdk10.0-gfx1200``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1100
 
-            ``amdrocm-core-sdk7.14-gfx1100``
+            ``amdrocm-core-sdk10.0-gfx1100``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1101
 
-            ``amdrocm-core-sdk7.14-gfx1101``
+            ``amdrocm-core-sdk10.0-gfx1101``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1102
 
-            ``amdrocm-core-sdk7.14-gfx1102``
+            ``amdrocm-core-sdk10.0-gfx1102``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1103
 
-            ``amdrocm-core-sdk7.14-gfx1103``
+            ``amdrocm-core-sdk10.0-gfx1103``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1030
 
-            ``amdrocm-core-sdk7.14-gfx1030``
+            ``amdrocm-core-sdk10.0-gfx1030``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1151
 
-            ``amdrocm-core-sdk7.14-gfx1151``
+            ``amdrocm-core-sdk10.0-gfx1151``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1150
 
-            ``amdrocm-core-sdk7.14-gfx1150``
+            ``amdrocm-core-sdk10.0-gfx1150``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1152
 
-            ``amdrocm-core-sdk7.14-gfx1152``
+            ``amdrocm-core-sdk10.0-gfx1152``
 
          .. matrix-cell::
             :show-cond: gfx=gfx1153
 
-            ``amdrocm-core-sdk7.14-gfx1153``
+            ``amdrocm-core-sdk10.0-gfx1153``
 
          .. matrix-cell::
             :show-cond: fam=all
 
-            ``amdrocm-core-sdk7.14``
+            ``amdrocm-core-sdk10.0``
 
          .. matrix-cell:: ROCm Full Suite
 
@@ -1695,7 +1695,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-all]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-all]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1708,7 +1708,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx950]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx950]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1721,7 +1721,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx942]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx942]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1733,7 +1733,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx90a]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx90a]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1745,7 +1745,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx908]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx908]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1758,7 +1758,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1201]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1201]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1771,7 +1771,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1200]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1200]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1783,7 +1783,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1100]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1100]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1795,7 +1795,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1101]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1101]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1807,7 +1807,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1102]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1102]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1819,7 +1819,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1103]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1103]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1831,7 +1831,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1030]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1030]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1844,7 +1844,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1151]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1151]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1857,7 +1857,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1150]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1150]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1870,7 +1870,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1152]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1152]==10.0.0"
 
    .. selected:: gfx=gfx1153
 
@@ -1881,7 +1881,7 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1153]==7.14.0"
+         python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ "rocm[libraries,device-gfx1153]==10.0.0"
 
       .. include:: include/pip-packages-table.rst
 
@@ -1934,7 +1934,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-multiarch-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-multiarch-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -1945,7 +1945,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx950-dcgpu-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx950-dcgpu-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -1956,7 +1956,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx94X-dcgpu-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx94X-dcgpu-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -1966,7 +1966,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx90a-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx90a-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -1976,7 +1976,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx908-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx908-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -1986,7 +1986,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx120X-all-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx120X-all-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -1996,7 +1996,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx110X-all-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx110X-all-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -2006,7 +2006,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx103X-all-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx103X-all-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -2017,7 +2017,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1151-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1151-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -2028,7 +2028,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1150-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1150-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -2039,7 +2039,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1152-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1152-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -2050,7 +2050,7 @@ Use the following instructions to install ROCm packages on your system.
 
          .. code-block:: bash
 
-            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1153-7.14.0.tar.gz
+            wget https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-linux-gfx1153-10.0.0.tar.gz
             mkdir install
             tar -xf *.tar.gz -C install
 
@@ -2064,88 +2064,88 @@ Use the following instructions to install ROCm packages on your system.
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-multiarch-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-multiarch-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-multiarch-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-multiarch-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-multiarch-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-multiarch-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-multiarch-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-multiarch-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-multiarch-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-multiarch-10.0.0.tar.gz>`__
 
       .. selected:: gfx=gfx1201 gfx=gfx1200
 
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-gfx120X-all-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx120X-all-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-gfx120X-all-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-gfx120X-all-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx120X-all-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-gfx120X-all-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-gfx120X-all-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx120X-all-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-gfx120X-all-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx120X-all-10.0.0.tar.gz>`__
 
       .. selected:: gfx=gfx1100 gfx=gfx1101 gfx=gfx1102 gfx=gfx1103
 
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-gfx110X-all-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx110X-all-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-gfx110X-all-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-gfx110X-all-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx110X-all-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-gfx110X-all-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-gfx110X-all-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx110X-all-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-gfx110X-all-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx110X-all-10.0.0.tar.gz>`__
 
       .. selected:: gfx=gfx1030
 
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-gfx103X-all-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx103X-all-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-gfx103X-all-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-gfx103X-all-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx103X-all-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-gfx103X-all-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-gfx103X-all-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx103X-all-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-gfx103X-all-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx103X-all-10.0.0.tar.gz>`__
 
       .. selected:: gfx=gfx1151
 
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-gfx1151-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1151-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-gfx1151-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-gfx1151-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1151-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-gfx1151-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-gfx1151-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1151-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-gfx1151-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1151-10.0.0.tar.gz>`__
 
       .. selected:: gfx=gfx1150
 
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-gfx1150-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1150-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-gfx1150-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-gfx1150-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1150-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-gfx1150-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-gfx1150-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1150-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-gfx1150-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1150-10.0.0.tar.gz>`__
 
       .. selected:: gfx=gfx1152
 
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-gfx1152-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1152-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-gfx1152-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-gfx1152-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1152-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-gfx1152-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-gfx1152-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1152-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-gfx1152-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1152-10.0.0.tar.gz>`__
 
       .. selected:: gfx=gfx1153
 
          .. code-block:: bat
 
             cd C:\TheRock
-            curl -o therock-dist-windows-gfx1153-7.14.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1153-7.14.0.tar.gz
-            tar -xzf therock-dist-windows-gfx1153-7.14.0.tar.gz -C build --strip-components=1
+            curl -o therock-dist-windows-gfx1153-10.0.0.tar.gz https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1153-10.0.0.tar.gz
+            tar -xzf therock-dist-windows-gfx1153-10.0.0.tar.gz -C build --strip-components=1
 
-         - Download link: `therock-dist-windows-gfx1153-7.14.0.tar.gz
-           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1153-7.14.0.tar.gz>`__
+         - Download link: `therock-dist-windows-gfx1153-10.0.0.tar.gz
+           <https://repo.amd.com/rocm/tarball-multi-arch/therock-dist-windows-gfx1153-10.0.0.tar.gz>`__
 
 .. ================================================================== RUNFILE ==
 
@@ -2158,97 +2158,97 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=all gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=all gpu-access=user
 
    .. selected:: gfx=gfx950
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx950 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx950 gpu-access=user
 
    .. selected:: gfx=gfx942
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx942 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx942 gpu-access=user
 
    .. selected:: gfx=gfx90a
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx90a gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx90a gpu-access=user
 
    .. selected:: gfx=gfx908
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx908 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx908 gpu-access=user
 
    .. selected:: gfx=gfx1201
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1201 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1201 gpu-access=user
 
    .. selected:: gfx=gfx1200
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1200 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1200 gpu-access=user
 
    .. selected:: gfx=gfx1100
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1100 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1100 gpu-access=user
 
    .. selected:: gfx=gfx1101
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1101 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1101 gpu-access=user
 
    .. selected:: gfx=gfx1102
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1102 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1102 gpu-access=user
 
    .. selected:: gfx=gfx1103
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1103 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1103 gpu-access=user
 
    .. selected:: gfx=gfx1030
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1030 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1030 gpu-access=user
 
    .. selected:: gfx=gfx1151
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1151 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1151 gpu-access=user
 
    .. selected:: gfx=gfx1150
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1150 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1150 gpu-access=user
 
    .. selected:: gfx=gfx1152
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1152 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1152 gpu-access=user
 
    .. selected:: gfx=gfx1153
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1153 gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1153 gpu-access=user
 
 .. selected:: i=runfile
    :heading: ROCm meta components
@@ -2363,91 +2363,91 @@ Use the following instructions to install ROCm packages on your system.
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx950 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx950 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx942
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx942 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx942 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx90a
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx90a compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx90a compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx908
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx908 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx908 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1201
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1201 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1201 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1200
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1200 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1200 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1100
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1100 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1100 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1101
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1101 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1101 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1102
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1102 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1102 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1103
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1103 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1103 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1030
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1030 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1030 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1151
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1151 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1151 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1150
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1150 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1150 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1152
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1152 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1152 compo=core,core-dev gpu-access=user
 
    .. selected:: gfx=gfx1153
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run deps=install rocm gfx=gfx1153 compo=core,core-dev gpu-access=user
+         bash rocm-installer-10.0.0-4.run deps=install rocm gfx=gfx1153 compo=core,core-dev gpu-access=user
 
 .. selected:: os=wsl
    :heading: Install ROCDXG and AMD SMI for WSL
