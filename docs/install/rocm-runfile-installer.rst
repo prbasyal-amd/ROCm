@@ -74,7 +74,7 @@ The ROCm Runfile Installer supports the following Linux distributions and versio
 * RHEL: 8.10, 9.4, 9.6, 9.8, 10.0, 10.2
 * SLES: 15.7, 16.0
 * Debian: 12, 13
-* Oracle Linux: 8.10, 9.8, 10.1
+* Oracle Linux: 8.10, 9.8, 10.2
 * Rocky Linux: 9.8
 
 .. important::
