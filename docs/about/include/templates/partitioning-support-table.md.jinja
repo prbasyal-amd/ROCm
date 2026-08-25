@@ -207,6 +207,9 @@
 {%- set ns_total = namespace(n=0) -%}
 {%- for g in groups -%}{%- set ns_total.n = ns_total.n + (g.entries | length) -%}{%- endfor -%}
 
+{#-- Track whether any row emits a footnote marker --#}
+{%- set ns_fn = namespace(needed=false, count=0) -%}
+
 <table class="rocm-docs-table table">
   <thead>
     <tr>
@@ -223,6 +226,9 @@
 {%- set n_rows = group.entries | length %}
 {%- set dev_label = group.names | join(", ") %}
 {%- for entry in group.entries %}
+{%- set is_list = entry.vfs is iterable and entry.vfs is not string and entry.vfs is not number %}
+{%- set multi_vf = is_list or (entry.vfs is number and entry.vfs > 1) %}
+{%- if multi_vf %}{%- set ns_fn.needed = true %}{%- set ns_fn.count = ns_fn.count + 1 %}{%- endif %}
     <tr>
 {%- if not g_first.deploy_written %}
       <td rowspan="{{ ns_total.n }}" style="vertical-align: middle;"><p>KVM SR-IOV</p></td>
@@ -231,7 +237,7 @@
 {%- if loop.first %}
       <td{% if n_rows > 1 %} rowspan="{{ n_rows }}" style="vertical-align: middle;"{% endif %}><p>{{ dev_label }}</p></td>
 {%- endif %}
-      <td><p>{{ vfs_display(entry) | trim }}</p></td>
+      <td><p>{{ vfs_display(entry) | trim }}{% if multi_vf %}<a id="fn-ref-{{ ns_fn.count }}" class="footnote-reference brackets" href="#partitioning-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>{% endif %}</p></td>
       <td><p>{{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}</p></td>
       <td><p>{{ entry.memory }}</p></td>
     </tr>
@@ -239,6 +245,13 @@
 {%- endfor %}
   </tbody>
 </table>
+{%- if ns_fn.needed %}
+<aside class="footnote brackets" id="partitioning-support-footnotes" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></span>
+<span class="backrefs">({% for i in range(1, ns_fn.count + 1) %}<a role="doc-backlink" href="#fn-ref-{{ i }}">{{ i }}</a>{% if not loop.last %}, {% endif %}{% endfor %})</span>
+<p>Multi-VF support requires a compatible firmware. See <a href="#kernel-driver-and-firmware-bundle-support">Kernel driver and firmware bundle support</a> for the list of required firmware versions and supported configurations.</p>
+</aside>
+{%- endif %}
 {%- endmacro -%}
 
 The following compute partition and NUMA-per-socket (NPS) configurations are

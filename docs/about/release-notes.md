@@ -53,21 +53,23 @@ Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AM
 
 #### Expanded Instinct GPU partitioning support
 
-ROCm 10.0.0 has enabled and optimized the following GPU partitioning configurations in bare-metal deployments:
+ROCm 10.0.0 has enabled and optimized the following GPU partitioning configurations in
 
-* On MI355X, MI350X, MI325X, and MI300X:
+**Bare-metal deployments**
+
+* On MI325X:
   * SPX compute partition mode with NPS1 memory partitioning.
 
 * On MI350P:
   * DPX compute partition mode with NPS1 memory partitioning.
   * CPX compute partition mode with NPS2 memory partitioning.
 
-ROCm 10.0.0 has enabled the following GPU partitioning configurations in Passthrough deployments:
+**Passthrough deployments**
 
 * On MI355X, MI350X, MI350P, MI325X, and MI300X:
   * SPX compute partition mode with NPS1 memory partitioning.
 
-ROCm 10.0.0 has enabled multi-VF partition modes for the following GPU partitioning configurations in SR-IOV deployments:
+**SR-IOV deployments**
 
 * On MI350P:
   * SPX compute partition mode with NPS1 memory partitioning.
@@ -103,10 +105,6 @@ The following are notable enhancements to HIP:
 
 Improved `hipEventRecord` performance by using the `hipEventDisableTiming` flag to avoid unnecessary profiling when timing information is not required. Event operations are now coalesced to eliminate redundant barrier submissions, reducing runtime overhead and improving execution efficiency.
 
-##### HIP Record and Replay (HRR) support
-
-HIP Record and Replay (HRR) captures HIP API calls made by an application and stores them in a binary archive (`.hrr`). The recorded workload can then be replayed on a GPU, reproducing application behavior, including multi-threaded execution, graph launches, and GPU memory transfers. This capability enables efficient bug reproduction, performance regression testing, and kernel benchmarking without requiring access to the original application. For more details, see [HIP Record & Replay](https://rocm.docs.amd.com/projects/HIP/en/develop/how-to/debugging.html#hip-record-replay).
-
 ##### HIP cooperative groups exclusive and inclusive scan support
 
 HIP `cooperative_groups` library adds `cooperative_groups::inclusive_scan` and `cooperative_groups::exclusive_scan` scan APIs in parity with CUDA. Both accept any cooperative group type and an optional custom binary operator, defaulting to summation when none is given.
@@ -135,7 +133,7 @@ ROCprofiler-SDK and `rocprofv3` add three new first-class tracing domains:
 
 * **OpenMP (OMPT) tracing:** `rocprofv3` exposes OpenMP Tools (OMPT) tracing as a first-class command-line flag. The `--ompt-trace` option accepts a bare Boolean or a space-separated category list (for example `--ompt-trace parallel task target sync`), following the same style as `--pmc` and `--output-format`. ROCprofiler-SDK has supported the OMPT callback layer since an earlier release; this change makes it accessible without writing a custom tool.
 
-All records from these tracing domains are emitted across supported output backends: CSV, JSON, Perfetto, OTF2, and rocpd.
+All records from these tracing domains are output in JSON (hipFile, rocSHMEM) and rocpd (hipFile, rocSHMEM, OpenMP) formats. The rocpd output can then be converted to CSV, Perfetto, and OTF2 using post-processing conversion scripts.
 
 ##### Enhanced graph and profiling output
 

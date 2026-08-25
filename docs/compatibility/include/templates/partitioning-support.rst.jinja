@@ -189,6 +189,7 @@
 {% endfor %}
 {% endfor %}
 {% endif %}
+{%- set ns_fn = namespace(needed=false, mv_gpu_names=[]) -%}
 {% if ns_ks.groups | length > 0 %}
    .. selected:: {{ ks_slugs }}
       :heading: KVM SR-IOV partitioning support
@@ -207,10 +208,23 @@
 
 {% for group in ns_ks.groups %}
 {% for entry in group.entries %}
+{%- set is_list = entry.vfs is iterable and entry.vfs is not string and entry.vfs is not number -%}
+{%- set multi_vf = is_list or (entry.vfs is number and entry.vfs > 1) -%}
+{%- if multi_vf -%}
+{%- set ns_fn.needed = true -%}
+{%- for gname in group.gpus -%}
+{%- if gname not in ns_fn.mv_gpu_names -%}
+{%- set ns_fn.mv_gpu_names = ns_fn.mv_gpu_names + [gname] -%}
+{%- endif -%}
+{%- endfor -%}
+{%- endif %}
          .. matrix-row::
             :show-cond: {{ gpu_slugs(group.gpus) }}
 
-            .. matrix-cell:: {{ vfs_display(entry) | trim }}
+            .. matrix-cell::{% if not multi_vf %} {{ vfs_display(entry) | trim }}{% endif %}
+{% if multi_vf %}
+               {{ vfs_display(entry) | trim }} :ref:`[*] <kvm-sriov-multi-vf-note>`
+{% endif %}
 
             .. matrix-cell:: {{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}
 
@@ -218,4 +232,16 @@
 
 {% endfor %}
 {% endfor %}
+{%- if ns_fn.needed %}
+
+      .. selected:: {{ gpu_slugs(ns_fn.mv_gpu_names) }}
+
+         .. container::
+
+            .. _kvm-sriov-multi-vf-note:
+
+            [*] Multi-VF support requires a compatible firmware. See the
+            :ref:`release notes <release-virtualization-support>` for the list of
+            required firmware versions and supported configurations.
+{% endif %}
 {% endif %}
