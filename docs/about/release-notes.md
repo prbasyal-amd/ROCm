@@ -223,7 +223,6 @@ ROCm Systems Profiler introduces the new profiler-hub writer backend for trace p
 
 ROCm Systems Profiler now supports periodic sampling of AI NIC (RDMA) network metrics, including unicast byte/packet counts, congestion notifications, and packet-sequence error counters. Select interfaces with the `--ai-nics` flag on `rocprof-sys-run` or `rocprof-sys-sample` (or via `ROCPROFSYS_SAMPLING_AINICS`), and view the results as Perfetto or rocpd tracks alongside your existing CPU/GPU sampling data. See the [Network performance profiling](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/latest/how-to/nic-profiling.html) how-to for setup, configuration, and visualization details.
 
-
 For more information, see the [ROCm Systems Profiler section](#rocm-systems-profiler-1-8-0) in the ROCm component changelogs.
 
 ### Libraries
@@ -400,43 +399,17 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 (amd-smi-breaking-changes)=
 ### AMD SMI API and ABI changes
 
-The AMD SMI library introduced the following breaking changes in the 10.0.0 release: API-incompatible changes, which require source code changes before your code will compile, and an Application Binary Interface (ABI) incompatible change, which requires recompilation even if your code doesn't change.
+The AMD SMI library introduced the following breaking changes in the 10.0.0 release: API-incompatible changes, which require source code changes before your code will compile, and ABI-incompatible changes, which require recompilation even if your code doesn't change. It also deprecated several APIs and enums that remain functional in ROCm 10.0 but are scheduled for removal in a future release.
 
-#### API-incompatible changes
+#### ABI-incompatible changes
 
-The AMD SMI library has removed the following APIs, types, defines, and enums in this release. Certain items have been removed with or without a replacement; see the following tables for details.
+##### Library SONAME
 
-##### APIs
-
-| Removed | Replacement |
+| Change | Impact |
 |---|---|
-| `amdsmi_get_cpusocket_handles()` | No replacement; functionality removed |
-| `amdsmi_get_gpu_vram_vendor()` | `amdsmi_get_gpu_vram_info()` |
-| `amdsmi_gpu_driver_reload()` | No replacement; functionality removed |
-| `amdsmi_get_xgmi_plpd()` | Python: use the `policy` attribute instead of `plpds` |
-| `amdsmi_set_gpu_clk_range()` | `amdsmi_set_gpu_clk_limit()` |
+| The library major version is now 27.0.0, so the shared library SONAME is `libamd_smi.so.27` | Consumers linked against `libamd_smi.so.26` must relink. No source changes are required beyond the API changes listed on this page |
 
-##### Types
-
-| Removed | Replacement |
-|---|---|
-| `amdsmi_fabric_info_ver_t` | Moved inside `amdsmi_fabric_info_t` |
-| `amdsmi_nic_fw_t` | `amdsmi_nic_fw_entry_t` |
-
-##### Defines and enums
-
-| Removed | Replacement |
-|---|---|
-| `MAX_NUMBER_OF_AFIDS_PER_RECORD` | `AMDSMI_MAX_NUMBER_OF_AFIDS_PER_RECORD` |
-| `MAX_SVI3_RAIL_INDEX` | `AMDSMI_MAX_SVI3_RAIL_INDEX` |
-| `MAX_SVI3_RAIL_SELECTION` | `AMDSMI_MAX_SVI3_RAIL_SELECTION` |
-| `POWER_EFFICIENCY_MODE_4` | `AMDSMI_POWER_EFFICIENCY_MODE_4` |
-| `POWER_EFFICIENCY_MODE_5` | `AMDSMI_POWER_EFFICIENCY_MODE_5` |
-| `CENTRIGRADE_TO_MILLI_CENTIGRADE` | No replacement; constant removed |
-| `_AMDSMI_MAX_STRING_LENGTH` | No replacement; private symbol, do not use |
-| `_AMDSMI_STRING_LENGTH` | No replacement; private symbol, do not use |
-
-#### ABI-incompatible change: `amdsmi_gpu_metrics_t` field type widening
+##### `amdsmi_gpu_metrics_t` field type widening
 
 The following fields in `amdsmi_gpu_metrics_t` changed from `uint32_t` to `uint64_t` to support next generation AMD Instinct counter ranges:
 
@@ -447,6 +420,97 @@ The following fields in `amdsmi_gpu_metrics_t` changed from `uint32_t` to `uint6
 * `pcie_lc_perf_other_end_recovery`
 
 Recompile any code that reads these fields. Any assignments into fixed-width 32-bit variables must be updated to use 64-bit types.
+
+#### API-incompatible changes
+
+The AMD SMI library removed or changed the following APIs, types, and defines in this release. Certain items have been removed with or without a replacement; see the following tables for details.
+
+##### Removed APIs
+
+| Removed | Replacement |
+|---|---|
+| `amdsmi_gpu_driver_reload()` | No replacement. Reload the driver out of band with `sudo modprobe -r amdgpu && sudo modprobe amdgpu` to apply memory partition changes |
+| `amdsmi_set_gpu_clk_range()` | `amdsmi_set_gpu_clk_limit()` |
+| `amdsmi_get_cpusocket_handles()` (Python interface only) | `amdsmi_get_cpu_handles()` |
+
+##### Removed Python output fields
+
+| Removed | Replacement |
+|---|---|
+| `plpds` key in the `amdsmi_get_xgmi_plpd()` return dictionary | `policies` key, which holds the same value |
+
+##### Changed signatures
+
+| API | Change |
+|---|---|
+| `amdsmi_fabric_telem_id_to_string()` | Returns `amdsmi_status_t` and writes the name through a `const char**` out-parameter, instead of returning `const char*` directly |
+
+##### Types
+
+| Removed | Replacement |
+|---|---|
+| `amdsmi_fabric_info_ver_t` | Moved inside `amdsmi_fabric_info_t` |
+| `amdsmi_nic_fw_t` | `amdsmi_nic_fw_entry_t` |
+
+##### Renamed defines
+
+Public preprocessor macros in `amdsmi.h` are now prefixed with `AMDSMI_`. The Python interface
+constant `MAX_NUMBER_OF_AFIDS_PER_RECORD` is renamed to match.
+
+| Old name | New name |
+|---|---|
+| `MAX_NUMBER_OF_AFIDS_PER_RECORD` | `AMDSMI_MAX_NUMBER_OF_AFIDS_PER_RECORD` |
+| `MAX_SVI3_RAIL_INDEX` | `AMDSMI_MAX_SVI3_RAIL_INDEX` |
+| `MAX_SVI3_RAIL_SELECTION` | `AMDSMI_MAX_SVI3_RAIL_SELECTION` |
+| `POWER_EFFICIENCY_MODE_4` | `AMDSMI_POWER_EFFICIENCY_MODE_4` |
+| `POWER_EFFICIENCY_MODE_5` | `AMDSMI_POWER_EFFICIENCY_MODE_5` |
+
+##### Removed defines
+
+These macros were unreferenced by any API or structure and have no replacement.
+
+| Removed |
+|---|
+| `AMDSMI_DFC_FW_NUMBER_OF_ENTRIES` |
+| `AMDSMI_MAX_BLACK_LIST_ELEMENTS` |
+| `AMDSMI_MAX_DRIVER_NUM` |
+| `AMDSMI_MAX_ERR_RECORDS` |
+| `AMDSMI_MAX_PROFILE_COUNT` |
+| `AMDSMI_MAX_TA_WHITE_LIST_ELEMENTS` |
+| `AMDSMI_MAX_VF_COUNT` |
+| `AMDSMI_MAX_WHITE_LIST_ELEMENTS` |
+| `AMDSMI_PF_INDEX` |
+| `CENTRIGRADE_TO_MILLI_CENTIGRADE` |
+
+#### AMD SMI deprecations
+
+These APIs and enums are still present in ROCm 10.0 and are slated for removal in a future release. The Python bindings emit a `DeprecationWarning` where applicable.
+
+##### Deprecated APIs
+
+| Deprecated | Replacement |
+|---|---|
+| `amdsmi_get_gpu_vram_vendor()` | `amdsmi_get_gpu_vram_info()`; read the `vram_vendor` field |
+| `amdsmi_get_gpu_compute_partition()` | `amdsmi_get_gpu_accelerator_partition_profile()` |
+| `amdsmi_set_gpu_compute_partition()` | `amdsmi_set_gpu_accelerator_partition_profile()` |
+| `amdsmi_get_gpu_compute_partition_mem_alloc_mode()` | `amdsmi_get_gpu_accelerator_partition_mem_alloc_mode()` |
+| `amdsmi_set_gpu_compute_partition_mem_alloc_mode()` | `amdsmi_set_gpu_accelerator_partition_mem_alloc_mode()` |
+| `amdsmi_set_gpu_memory_partition()` | `amdsmi_set_gpu_memory_partition_mode()` |
+| `amdsmi_get_gpu_device_bdf_bdf()` (Python interface only) | `amdsmi_get_gpu_device_bdf()`; format the returned BDF string |
+
+##### Deprecated enums and enumerators
+
+The old names are retained as aliases with unchanged values and are slated for removal in a future
+release.
+
+| Deprecated | Replacement |
+|---|---|
+| `AMDSMI_FABRIC_TYPE_UALLINK` | `AMDSMI_FABRIC_TYPE_UALINK` |
+| `AMDSMI_FABRIC_TELEMETRY_CATEGORY_UNKNOWN` | `AMDSMI_FABRIC_TELEMETRY_CATEGORY_INVALID` |
+| `CLK_LIMIT_MIN`, `CLK_LIMIT_MAX` | `AMDSMI_CLK_LIMIT_MIN`, `AMDSMI_CLK_LIMIT_MAX` |
+| `AGG_BW0`, `RD_BW0`, `WR_BW0` | `AMDSMI_AGG_BW0`, `AMDSMI_RD_BW0`, `AMDSMI_WR_BW0` |
+| `amdsmi_compute_partition_type_t` | `amdsmi_accelerator_partition_type_t` |
+| `amdsmi_compute_partition_mem_alloc_mode_t` | `amdsmi_accelerator_partition_mem_alloc_mode_t` |
 
 ## ROCm known issues
 
@@ -511,38 +575,3 @@ Future releases will add support for:
 
 * More AMD hardware support.
 
-(amd-smi-upcoming-deprecations)=
-### AMD SMI deprecations
-
-The AMD SMI library will deprecate the following APIs, types, and enums. We
-suggest updating your code to use the replacement identifiers before the
-targeted removal release.
-
-#### Planned removal in the next major release
-
-The following APIs, types, and enums are deprecated and scheduled for removal in the next major release.
-
-##### APIs
-
-| Deprecated | Replacement |
-|---|---|
-| `amdsmi_get_gpu_compute_partition_mem_alloc_mode()` | `amdsmi_get_gpu_accelerator_partition_mem_alloc_mode()` |
-| `amdsmi_set_gpu_compute_partition_mem_alloc_mode()` | `amdsmi_set_gpu_accelerator_partition_mem_alloc_mode()` |
-| `amdsmi_get_gpu_compute_partition()` | `amdsmi_get_gpu_accelerator_partition_profile()` |
-| `amdsmi_set_gpu_compute_partition()` | `amdsmi_set_gpu_accelerator_partition_profile()` |
-| `amdsmi_set_gpu_memory_partition()` | `amdsmi_set_gpu_memory_partition_mode()` |
-
-##### Types
-
-* `amdsmi_compute_partition_type_t`
-* `amdsmi_compute_partition_mem_alloc_mode_t`
-
-##### Enums
-
-| Deprecated | Replacement |
-|---|---|
-| `CLK_LIMIT_MIN` | `AMDSMI_CLK_LIMIT_MIN` |
-| `CLK_LIMIT_MAX` | `AMDSMI_CLK_LIMIT_MAX` |
-| `AGG_BW0` | `AMDSMI_AGG_BW0` |
-| `RD_BW0` | `AMDSMI_RD_BW0` |
-| `WR_BW0` | `AMDSMI_WR_BW0` |
