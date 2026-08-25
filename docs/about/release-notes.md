@@ -290,7 +290,7 @@ AMD SMI now correctly reports the VCN busy percentage for Radeon RX GPUs in the 
 
 ##### AMD SMI API removals
 
-The AMD SMI library has removed several deprecated APIs, types, defines, and enums in this release. For details, see [AMD SMI deprecations](#amd-smi-deprecations).
+The AMD SMI library has removed several APIs, types, defines, and enums, and changed the Application Binary Interface (ABI) of `amdsmi_gpu_metrics_t` in this release. For details, see [AMD SMI API and ABI changes](#amd-smi-breaking-changes).
 
 (release-supported-hw)=
 
@@ -397,13 +397,16 @@ For a historical overview of ROCm component updates, see the {doc}`ROCm consolid
 
 ## ROCm breaking changes
 
-(amd-smi-deprecations)=
-### AMD SMI deprecations
+(amd-smi-breaking-changes)=
+### AMD SMI API and ABI changes
 
-The AMD SMI library has removed the following APIs in the 10.0.0 release. Certain APIs have been
-removed with or without a replacement; see the following tables for details.
+The AMD SMI library introduced the following breaking changes in the 10.0.0 release: API-incompatible changes, which require source code changes before your code will compile, and an Application Binary Interface (ABI) incompatible change, which requires recompilation even if your code doesn't change.
 
-#### APIs
+#### API-incompatible changes
+
+The AMD SMI library has removed the following APIs, types, defines, and enums in this release. Certain items have been removed with or without a replacement; see the following tables for details.
+
+##### APIs
 
 | Removed | Replacement |
 |---|---|
@@ -413,14 +416,14 @@ removed with or without a replacement; see the following tables for details.
 | `amdsmi_get_xgmi_plpd()` | Python: use the `policy` attribute instead of `plpds` |
 | `amdsmi_set_gpu_clk_range()` | `amdsmi_set_gpu_clk_limit()` |
 
-#### Types
+##### Types
 
 | Removed | Replacement |
 |---|---|
 | `amdsmi_fabric_info_ver_t` | Moved inside `amdsmi_fabric_info_t` |
 | `amdsmi_nic_fw_t` | `amdsmi_nic_fw_entry_t` |
 
-#### Defines and enums
+##### Defines and enums
 
 | Removed | Replacement |
 |---|---|
@@ -433,7 +436,7 @@ removed with or without a replacement; see the following tables for details.
 | `_AMDSMI_MAX_STRING_LENGTH` | No replacement; private symbol, do not use |
 | `_AMDSMI_STRING_LENGTH` | No replacement; private symbol, do not use |
 
-#### `amdsmi_gpu_metrics_t` field type widening
+#### ABI-incompatible change: `amdsmi_gpu_metrics_t` field type widening
 
 The following fields in `amdsmi_gpu_metrics_t` changed from `uint32_t` to `uint64_t` to support next generation AMD Instinct counter ranges:
 
