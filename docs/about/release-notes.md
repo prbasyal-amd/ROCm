@@ -117,7 +117,7 @@ Improved `hipEventRecord` performance by using the `hipEventDisableTiming` flag 
 
 ##### HIP cooperative groups exclusive and inclusive scan support
 
-HIP `cooperative_groups` library adds `cooperative_groups::inclusive_scan` and `cooperative_groups::exclusive_scan` scan APIs in parity with CUDA. Both accept any cooperative group type and an optional custom binary operator, defaulting to summation when none is given.
+HIP `cooperative_groups` library adds [cooperative_groups::inclusive_scan](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/cooperative_groups.html#inclusive-scan) and [cooperative_groups::exclusive_scan](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hip_runtime_api/cooperative_groups.html#exclusive-scan) scan APIs in parity with CUDA. Both accept any cooperative group type and an optional custom binary operator, defaulting to summation when none is given.
 
 ##### ROCr Runtime core dump support with attached debuggers
 
