@@ -21,7 +21,7 @@ The ROCm Runfile Installer includes these features:
 
 * An optional easy-to-use user interface for configuring the installation
 * An optional command line interface for the installation
-* Offline ROCm and AMD GPU Driver installation (requires the prior installation of dependencies)
+* Offline (air-gapped) ROCm and AMD GPU Driver installation (requires the prior installation of dependencies)
 * Packageless ROCm and AMD GPU Driver install without native package management
 * A single self-contained installer for all supported Linux distributions
 * Multi-architecture GPU support with selective installation and uninstall
@@ -44,49 +44,26 @@ The ROCm Runfile Installer requires the following configuration:
 Dependency requirements
 =======================
 
-The ROCm components contained within the ROCm Runfile installer have a specific set of libraries, frameworks, and other elements
-that must be pre-installed on the system before you can use ROCm after the installation. Similarly, the
-inclusion of the AMD GPU Driver as part of the installation also requires specific libraries that must be pre-installed. ROCm Runfile installer users
-must pre-install the list of required first-level dependencies.
+TThe ROCm Runfile installer has a specific set of dependent OS-based packages that must be pre-installed on the system before you can use ROCm after the installation.
 
-To install the pre-install dependencies, use one of two methods:
+The installer can print a list of the OS packages that are missing dependencies. It can also auto-install dependencies if apt/dnf/zypper is configured to use standard network connections or an air-gapped source or mirror. Optionally when installing the OS, an air-gapped system may get these dependencies from the OS ISO files or other network installation technologies.
 
-* Manual installation
-* The ROCm Runfile Installer
+Dependency list
+---------------
 
-Manual installation
--------------------
+You can determine the dependent packages from the ROCm Runfile Installer **Pre-Install Configuration Settings** menu in the GUI or from the command line by using the ``deps=list rocm`` argument for ROCm or the ``deps=list amdgpu`` argument for the AMD GPU Driver. This list, which indicates all packages required for the ROCm runtime or the AMD GPU Driver, is displayed and saved to a file named ``deps_list.txt`` in the root ``rocm-installer`` directory. 
 
-You can determine the dependent packages from the ROCm
-Runfile Installer **Pre-Install Configuration Settings** menu
-in the GUI or from the command line by using the ``deps=list rocm`` argument
-for ROCm or the ``deps=list amdgpu`` argument for the AMD GPU Driver. This list, which indicates all packages
-required for the ROCm runtime or the AMD GPU Driver, is displayed and saved to a
-file named ``deps_list.txt`` in the root ``rocm-installer`` directory. The required libraries, frameworks, and other components
-within the required packages must be on the system when running ROCm or installing the AMD GPU Driver.
-Users can manually install the required packages in the list using any method.
+The ``deps_list.txt`` file is not directly usable by the package manager. The file lists the packages per line indicating the name of the package or versioning required to meet the dependency requirement.
+Some dependencies might show multiple packages separated by the ``|`` symbol, meaning that any package from the list satisfies the package dependency. For example, the ``libgcc-dev`` dependency might be ``libgcc-5-dev | libgcc-7-dev``, meaning that either ``libgcc-5-dev`` or ``libgcc-7-dev`` can be installed to satisfy the corresponding dependency.
 
-The list of packages that is displayed and saved is not directly usable by the package manager.
-Each line indicates the name of the package or versioning required to meet the dependency requirement.
-Some dependencies might show multiple packages separated by the ``|`` symbol, meaning that any package from the list satisfies
-the package dependency. For example, the ``libgcc-dev`` dependency might be ``libgcc-5-dev | libgcc-7-dev``, meaning
-that either ``libgcc-5-dev`` or ``libgcc-7-dev`` can be installed to satisfy the corresponding dependency.
+Dependency installation
+-----------------------
 
-System administrators might prefer a manual installation process when deploying ROCm across a multi-node
-cluster environment, where a base operating system image
-is prepared and applied. This base OS image might have the dependency requirements pre-installed.
+You can choose to automatically install via ROCm Runfile Installer or manually install the dependency list (``deps_list.txt``) as part of the pre-installation stage for ROCm or the AMD GPU Driver. 
 
-ROCm Runfile Installer
-----------------------
+* **Auto-installation** of the dependency list is handled by using the **Install Dependencies** option of the **Pre-Install Configuration Settings** menu in the GUI or from the command line using the ``deps=install rocm`` or ``deps=install amdgpu`` argument. For runfile auto-install of dependencies, OS-based repositories must be properly configured for package manager usage by the installer either via standard internet connectivity or an air-gapped setup for offline installation.
 
-For single-system environments, users can choose to have the ROCm Runfile Installer automatically install the
-dependency requirements as part of the pre-installation stage for ROCm or the AMD GPU Driver. Any missing dependency requirements can
-be installed using the **Install Dependencies** option of the **Pre-Install Configuration Settings** menu
-in the GUI or from the command line using the ``deps=install rocm`` or ``deps=install amdgpu`` argument.
-
-.. note::
-
-   The ROCm Runfile Installer requires a network or internet connection to install the dependency requirements.
+* **Manual installation** of the dependency list require users or system administrators separately install the OS packages listed in ``deps_list.txt``.
 
 Supported Linux distributions
 =============================
@@ -97,8 +74,8 @@ The ROCm Runfile Installer supports the following Linux distributions and versio
 * RHEL: 8.10, 9.4, 9.6, 9.8, 10.0, 10.2
 * SLES: 15.7, 16.0
 * Debian: 12, 13
-* Oracle Linux: 8.10, 9.7, 10.1
-* Rocky Linux: 9.7
+* Oracle Linux: 8.10, 9.8, 10.1
+* Rocky Linux: 9.8
 
 .. important::
 
