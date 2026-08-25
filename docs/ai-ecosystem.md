@@ -18,13 +18,12 @@ pip.
 
 - [Install PyTorch](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/pytorch/install.html)
 - [Install JAX](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/jax/install.html)
+- [Install TensorFlow](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/tensorflow/install.html)
 :::
 
 :::{grid-item-card} Training
-Scale model training across multiple AMD GPUs using PyTorch distributed primitives
-(DDP, RPC, collective communication) for large models that exceed single-GPU memory.
 
-- [Scale model training](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/training/scale-model-training.html)
+- [Primus](https://rocm.docs.amd.com/projects/primus)
 :::
 
 :::{grid-item-card} Inference
@@ -33,6 +32,7 @@ Covers single-node and distributed multi-GPU deployments.
 
 - [vLLM](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/vllm.html)
 - [SGLang](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/sglang.html)
+- [ATOM](https://rocm.docs.amd.com/projects/atom/en/latest/)
 - [MIGraphX](https://rocm.docs.amd.com/projects/AMDMIGraphX)
 - [ONNX Runtime](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/onnxruntime.html)
 - [xDiT](https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/xdit.html)
