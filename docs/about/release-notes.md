@@ -437,6 +437,10 @@ Recompile any code that reads these fields. Any assignments into fixed-width 32-
 
 ROCm known issues are noted on {fab}`github` [GitHub](https://github.com/ROCm/ROCm/labels/Verified%20Issue). These issues will be fixed in a future ROCm release. For known issues related to individual components, review the [ROCm component changelogs](#rocm-component-changelogs).
 
+### HuggingFace model training throughput might regress on AMD Instinct MI350X
+ 
+HuggingFace model training workloads might see 9–25% lower training throughput on AMD Instinct MI350X (gfx950) GPUs, including BART, GPT-2, DiT (Diffusion Transformers), BERT, Llama 2 70B Chat, and RoBERTa-large. This occurs because AOTriton 0.13b selects a suboptimal flash-attention backward kernel instead of the faster 3-kernel split used in AOTriton 0.11.2b. As a workaround, rebuild PyTorch and pin AOTriton to version 0.11.2b.
+
 ### JAX BERT FP16 training might encounter a segmentation fault on some Radeon GPUs
 
 JAX BERT FP16 training workloads might encounter a segmentation fault on some AMD Radeon graphics products, such as the Radeon PRO W7900, causing training to terminate unexpectedly. As a workaround, disable XLA GPU command buffers by setting the `XLA_FLAGS="--xla_gpu_enable_command_buffer="` environment variable before launching the workload.
@@ -457,6 +461,10 @@ export SGLANG_USE_AITER_AR=0
 ### TensorFlow ROCm v2.21 might fail to start with a libhipsparse ImportError on some Radeon GPUs
 
 TensorFlow ROCm v2.21 workloads might fail to start with an `ImportError: libhipsparse.so.4` on some AMD Radeon graphics products, such as  Radeon AI PRO R9700,  when ROCm is installed using pip packages. As a workaround, add `$(hipconfig -R)/lib` and `$(hipconfig -R)/lib/rocm_sysdeps/lib` to `LD_LIBRARY_PATH` before launching TensorFlow.
+
+### vLLM or ComfyUI workloads might crash on some Ryzen AI systems
+
+Intermittent segmentation faults or GPU hangs might be observed when running some vLLM or ComfyUI workloads on Ryzen AI systems using gfx1103 (RDNA3) GPUs.
 
 ## ROCm resolved issues
 
