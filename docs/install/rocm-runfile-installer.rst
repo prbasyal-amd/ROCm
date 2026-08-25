@@ -44,7 +44,7 @@ The ROCm Runfile Installer requires the following configuration:
 Dependency requirements
 =======================
 
-TThe ROCm Runfile installer has a specific set of dependent OS-based packages that must be pre-installed on the system before you can use ROCm after the installation.
+The ROCm Runfile installer has a specific set of dependent OS-based packages that must be pre-installed on the system before you can use ROCm after the installation.
 
 The installer can print a list of the OS packages that are missing dependencies. It can also auto-install dependencies if apt/dnf/zypper is configured to use standard network connections or an air-gapped source or mirror. Optionally when installing the OS, an air-gapped system may get these dependencies from the OS ISO files or other network installation technologies.
 
