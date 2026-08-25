@@ -51,7 +51,7 @@ The installer can print a list of the OS packages that are missing dependencies.
 Dependency list
 ---------------
 
-You can determine the dependent packages from the ROCm Runfile Installer **Pre-Install Configuration Settings** menu in the GUI or from the command line by using the ``deps=list rocm`` argument for ROCm or the ``deps=list amdgpu`` argument for the AMD GPU Driver. This list, which indicates all packages required for the ROCm runtime or the AMD GPU Driver, is displayed and saved to a file named ``deps_list.txt`` in the root ``rocm-installer`` directory. 
+You can determine the dependent packages from the ROCm Runfile Installer :ref:`Pre-Install Configuration Settings <pre-install-configuration-settings>` menu in the GUI or from the command line by using the ``deps=list rocm`` argument for ROCm or the ``deps=list amdgpu`` argument for the AMD GPU Driver (see :ref:`Dependency options <dependency-options>`). This list, which indicates all packages required for the ROCm runtime or the AMD GPU Driver, is displayed and saved to a file named ``deps_list.txt`` in the root ``rocm-installer`` directory.
 
 The ``deps_list.txt`` file is not directly usable by the package manager. The file lists the packages per line indicating the name of the package or versioning required to meet the dependency requirement.
 Some dependencies might show multiple packages separated by the ``|`` symbol, meaning that any package from the list satisfies the package dependency. For example, the ``libgcc-dev`` dependency might be ``libgcc-5-dev | libgcc-7-dev``, meaning that either ``libgcc-5-dev`` or ``libgcc-7-dev`` can be installed to satisfy the corresponding dependency.
@@ -61,7 +61,7 @@ Dependency installation
 
 You can choose to automatically install via ROCm Runfile Installer or manually install the dependency list (``deps_list.txt``) as part of the pre-installation stage for ROCm or the AMD GPU Driver. 
 
-* **Auto-installation** of the dependency list is handled by using the **Install Dependencies** option of the **Pre-Install Configuration Settings** menu in the GUI or from the command line using the ``deps=install rocm`` or ``deps=install amdgpu`` argument. For runfile auto-install of dependencies, OS-based repositories must be properly configured for package manager usage by the installer either via standard internet connectivity or an air-gapped setup for offline installation.
+* **Auto-installation** of the dependency list is handled by using the **Install Dependencies** option of the :ref:`Pre-Install Configuration Settings <pre-install-configuration-settings>` menu in the GUI or from the command line using the ``deps=install rocm`` or ``deps=install amdgpu`` argument (see :ref:`Dependency options <dependency-options>`). For runfile auto-install of dependencies, OS-based repositories must be properly configured for package manager usage by the installer either via standard internet connectivity or an air-gapped setup for offline installation.
 
 * **Manual installation** of the dependency list require users or system administrators separately install the OS packages listed in ``deps_list.txt``.
 
@@ -176,6 +176,8 @@ The **Main** menu is the installation starting point.
 .. image:: images/rocm-runfile-main-menu-1.png
    :width: 800
    :alt: The Main user interface menu for the ROCm Runfile Installer
+
+.. _pre-install-configuration-settings:
 
 Pre-Install Configuration Settings menu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -688,6 +690,8 @@ Two command line options let you disable the ``.run`` cleanup process: ``noexec`
   Unlike the ``noexec`` option, all command line arguments are processed as normal,
   but no content is deleted upon exit or completion. At this point, you can switch to using the
   ``rocm-installer.sh`` script within the ``rocm-installer`` directory to avoid re-extracting the contents.
+
+.. _dependency-options:
 
 Dependency options
 ^^^^^^^^^^^^^^^^^^
