@@ -3,11 +3,20 @@ Prerequisites
 
 .. selected:: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
 
-   Before installing ROCm |ROCM_VERSION|, ensure your system meets
-   all prerequisites. This includes installing the required dependencies and
-   configuring permissions for GPU access. To confirm that your system is
-   supported, see the :doc:`Compatibility matrix
-   </compatibility/compatibility-matrix>`.
+   .. selected:: i=pkgman i=pip i=tar i=amdgpu-install
+
+      Before installing ROCm |ROCM_VERSION|, ensure your system meets
+      all prerequisites. This includes installing the required dependencies and
+      configuring permissions for GPU access. To confirm that your system is
+      supported, see the :doc:`Compatibility matrix
+      </compatibility/compatibility-matrix>`.
+
+   .. selected:: i=runfile
+
+      Before installing ROCm |ROCM_VERSION|, ensure your system meets
+      all prerequisites. This includes installing the required dependencies.
+      To confirm that your system is supported, see the :doc:`Compatibility matrix
+      </compatibility/compatibility-matrix>`.
 
 .. selected:: os=windows
 
