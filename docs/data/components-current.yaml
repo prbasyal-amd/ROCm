@@ -41,7 +41,6 @@ rocm_core_sdk:
       support:
         linux:
           instinct: true
-          radeon: true
           ryzen: [gfx1150 (Strix Point only), gfx1151, gfx1152 (Krackan Point only)]
     ROCm Data Center Tool:
       version: 1.3.1
