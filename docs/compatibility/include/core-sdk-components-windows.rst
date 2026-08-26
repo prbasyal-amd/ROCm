@@ -150,9 +150,3 @@
       .. matrix-cell::
 
          `SPIRV-LLVM-Translator 23.0.0 <https://github.com/ROCm/SPIRV-LLVM-Translator/tree/therock-7.14>`__
-
-   .. matrix-row::
-
-      .. matrix-cell:: Control and monitoring tools
-
-      .. matrix-cell:: hipinfo

@@ -48,7 +48,7 @@ ROCm 10.0.0 adds support for the following virtualization configurations on AMD 
 
 * On AMD Instinct MI355X and MI350X:
   * Passthrough Ubuntu 22.04 host OS with Ubuntu 22.04 guest OS.
-* On AMD Instinct MI350XP:
+* On AMD Instinct MI350P:
   * Passthrough ESXi 9.1 with Ubuntu 24.04 guest OS.
 * On AMD Instinct MI325X:
   * Passthrough Ubuntu 24.04 host OS with Ubuntu 24.04 guest OS.
@@ -69,27 +69,7 @@ Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AM
 
 #### Expanded Instinct GPU partitioning support
 
-ROCm 10.0.0 has enabled the following GPU partitioning configurations in:
-
-**Bare-metal deployments**
-
-* On MI325X:
-  * SPX compute partition mode with NPS1 memory partitioning.
-
-* On MI350P:
-  * DPX compute partition mode with NPS1 memory partitioning.
-
-**Passthrough deployments**
-
-* On MI355X, MI350X, MI350P, MI325X, and MI300X:
-  * SPX compute partition mode with NPS1 memory partitioning.
-
-**SR-IOV deployments**
-
-* On MI350P:
-  * SPX compute partition mode with NPS1 memory partitioning.
-
-For details, see [GPU partitioning support](#gpu-partitioning-support).
+GPU partitioning support remains unchanged in this release. For details, see [GPU partitioning support](#gpu-partitioning-support).
 
 ### AI inference and frameworks
 
@@ -190,15 +170,11 @@ This release includes a range of quality and stability improvements across ROCpr
 
 The following are notable enhancements to the ROCm Compute Profiler (rocprofiler-compute):
 
-##### gfx1153 (Gorgon Point) support
-
-Profiling, GPU metrics, and analysis now cover gfx1153. The Dual VALU (VOPD) instruction mix metric is now also reported for gfx115x GPUs in the WGP panel. For the supported hardware list, see [Compatible GPUs/APUs](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/reference/compatible-accelerators.html).
-
 ##### Triton operator tracing (experimental)
 
 Operator tracing now covers Triton and `torch.compile` kernels in addition to PyTorch, and a single option traces every supported machine learning framework in one run. For details, see [Triton trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/profile/mode.html#triton-trace), [ML API trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/profile/mode.html#ml-api-trace), and [Operator filtering](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/analyze/cli.html#operator-filtering).
 
-##### Improved roofline support on gfx1150(Strix Point, Gorgon Point), gfx1151 (Strix Halo), and gfx1152 (Gorgon Point)
+##### Improved roofline support on gfx1150 (Strix Point), gfx1151 (Strix Halo and Gorgon Halo), and gfx1152 (Krackan Point)
 
 Roofline benchmarking and analysis on these GPUs now report the correct set of supported precisions, so `--roofline-data-type` no longer offers precisions that cannot be measured. Machine specification reporting for APUs is corrected as well. Roofline benchmarking on gfx1153 is not yet supported. For details, see [Standalone roofline](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/profile/mode.html#standalone-roofline) and [Roofline HTML generation](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/analyze/cli.html#roofline-html-generation).
 

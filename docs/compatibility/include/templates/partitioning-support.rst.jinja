@@ -22,7 +22,7 @@
 
   Columns:
     bare-metal  → Compute partition mode | Memory partition mode
-    passthrough  → Compute partition mode | Memory partition mode
+    passthrough  → Deployment | Compute partition mode | Memory partition mode
     kvm-sriov   → VFs per GPU | Compute partition mode | Memory partition mode
 
   If default: true, "(Default)" is appended to the compute mode label.
@@ -103,7 +103,30 @@
     {%- set ns_pt.prev_idx = loop.index0 -%}
   {%- endif -%}
 {%- endfor -%}
-{%- set pt_slugs = gpu_slugs(pt_gpu_names) -%}
+
+{#---------------------------------------------------------------------------
+  Build esxi-passthrough merged groups and collect slugs.
+---------------------------------------------------------------------------#}
+{%- set ns_ep = namespace(groups=[], prev_key="", prev_idx=-1) -%}
+{%- set ep_gpu_names = [] -%}
+{%- for name in gpu_names -%}
+  {%- if instinct[name]["esxi-passthrough"] is defined -%}
+    {%- set _ = ep_gpu_names.append(name) -%}
+    {%- set entries = instinct[name]["esxi-passthrough"] -%}
+    {%- set k = configs_key(entries) | trim -%}
+    {%- if k == ns_ep.prev_key and ns_ep.prev_idx >= 0 -%}
+      {%- set last = ns_ep.groups[-1] -%}
+      {%- set _ = ns_ep.groups.pop() -%}
+      {%- set _ = ns_ep.groups.append({"gpus": last.gpus + [name], "entries": last.entries}) -%}
+    {%- else -%}
+      {%- set _ = ns_ep.groups.append({"gpus": [name], "entries": entries}) -%}
+    {%- endif -%}
+    {%- set ns_ep.prev_key = k -%}
+    {%- set ns_ep.prev_idx = loop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+{#-- pt_slugs gates the whole section: any GPU with either passthrough type --#}
+{%- set pt_slugs = gpu_slugs(pt_gpu_names + ep_gpu_names) -%}
 
 {#---------------------------------------------------------------------------
   Build kvm-sriov merged groups and collect slugs for kvm-sriov GPUs.
@@ -163,7 +186,7 @@
 {% endfor %}
 {% endfor %}
 {% endif %}
-{% if ns_pt.groups | length > 0 %}
+{% if ns_pt.groups | length > 0 or ns_ep.groups | length > 0 %}
    .. selected:: {{ pt_slugs }}
       :heading: Passthrough partitioning support
       :heading-level: 3
@@ -173,6 +196,8 @@
          .. matrix-row::
             :header:
 
+            .. matrix-cell:: Deployment
+
             .. matrix-cell:: Compute partition mode
 
             .. matrix-cell:: Memory partition mode
@@ -181,6 +206,21 @@
 {% for entry in group.entries %}
          .. matrix-row::
             :show-cond: {{ gpu_slugs(group.gpus) }}
+
+            .. matrix-cell:: KVM Passthrough
+
+            .. matrix-cell:: {{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}
+
+            .. matrix-cell:: {{ entry.memory }}
+
+{% endfor %}
+{% endfor %}
+{% for group in ns_ep.groups %}
+{% for entry in group.entries %}
+         .. matrix-row::
+            :show-cond: {{ gpu_slugs(group.gpus) }}
+
+            .. matrix-cell:: ESXi Passthrough
 
             .. matrix-cell:: {{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}
 

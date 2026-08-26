@@ -117,32 +117,55 @@
 {%- endmacro -%}
 
 {%- macro render_passthrough() -%}
-{%- set pt_gpus = [] -%}
+{#-- KVM Passthrough --#}
+{%- set kvm_gpus = [] -%}
 {%- for gpu_name, gpu in instinct.items() -%}
   {%- if gpu["passthrough"] is defined -%}
     {%- set short = gpu_name | replace("AMD Instinct ", "Instinct ") -%}
-    {%- set _ = pt_gpus.append({"name": short, "entries": gpu["passthrough"]}) -%}
+    {%- set _ = kvm_gpus.append({"name": short, "entries": gpu["passthrough"]}) -%}
   {%- endif -%}
 {%- endfor -%}
-
-{%- set groups = [] -%}
+{%- set kvm_groups = [] -%}
 {%- set ns = namespace(prev_key="", prev_idx=-1) -%}
-{%- for gpu in pt_gpus -%}
+{%- for gpu in kvm_gpus -%}
   {%- set k = configs_key(gpu.entries) | trim -%}
   {%- if k == ns.prev_key and ns.prev_idx >= 0 -%}
-    {%- set last = groups[-1] -%}
-    {%- set new_names = last.names + [gpu.name] -%}
-    {%- set _ = groups.pop() -%}
-    {%- set _ = groups.append({"names": new_names, "entries": last.entries}) -%}
+    {%- set last = kvm_groups[-1] -%}
+    {%- set _ = kvm_groups.pop() -%}
+    {%- set _ = kvm_groups.append({"names": last.names + [gpu.name], "entries": last.entries}) -%}
   {%- else -%}
-    {%- set _ = groups.append({"names": [gpu.name], "entries": gpu.entries}) -%}
+    {%- set _ = kvm_groups.append({"names": [gpu.name], "entries": gpu.entries}) -%}
   {%- endif -%}
   {%- set ns.prev_key = k -%}
   {%- set ns.prev_idx = loop.index0 -%}
 {%- endfor -%}
+{%- set ns_kvm = namespace(n=0) -%}
+{%- for g in kvm_groups -%}{%- set ns_kvm.n = ns_kvm.n + (g.entries | length) -%}{%- endfor -%}
 
-{%- set ns_total = namespace(n=0) -%}
-{%- for g in groups -%}{%- set ns_total.n = ns_total.n + (g.entries | length) -%}{%- endfor -%}
+{#-- ESXi Passthrough --#}
+{%- set esxi_gpus = [] -%}
+{%- for gpu_name, gpu in instinct.items() -%}
+  {%- if gpu["esxi-passthrough"] is defined -%}
+    {%- set short = gpu_name | replace("AMD Instinct ", "Instinct ") -%}
+    {%- set _ = esxi_gpus.append({"name": short, "entries": gpu["esxi-passthrough"]}) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set esxi_groups = [] -%}
+{%- set ns2 = namespace(prev_key="", prev_idx=-1) -%}
+{%- for gpu in esxi_gpus -%}
+  {%- set k = configs_key(gpu.entries) | trim -%}
+  {%- if k == ns2.prev_key and ns2.prev_idx >= 0 -%}
+    {%- set last = esxi_groups[-1] -%}
+    {%- set _ = esxi_groups.pop() -%}
+    {%- set _ = esxi_groups.append({"names": last.names + [gpu.name], "entries": last.entries}) -%}
+  {%- else -%}
+    {%- set _ = esxi_groups.append({"names": [gpu.name], "entries": gpu.entries}) -%}
+  {%- endif -%}
+  {%- set ns2.prev_key = k -%}
+  {%- set ns2.prev_idx = loop.index0 -%}
+{%- endfor -%}
+{%- set ns_esxi = namespace(n=0) -%}
+{%- for g in esxi_groups -%}{%- set ns_esxi.n = ns_esxi.n + (g.entries | length) -%}{%- endfor -%}
 
 <table class="rocm-docs-table table">
   <thead>
@@ -154,15 +177,35 @@
     </tr>
   </thead>
   <tbody>
-{%- set g_first = namespace(deploy_written=false) -%}
-{%- for group in groups %}
+{#-- KVM Passthrough rows --#}
+{%- set kvm_first = namespace(deploy_written=false) -%}
+{%- for group in kvm_groups %}
 {%- set n_rows = group.entries | length %}
 {%- set dev_label = group.names | join(", ") %}
 {%- for entry in group.entries %}
     <tr>
-{%- if not g_first.deploy_written %}
-      <td rowspan="{{ ns_total.n }}" style="vertical-align: middle;"><p>Passthrough</p></td>
-{%- set g_first.deploy_written = true %}
+{%- if not kvm_first.deploy_written %}
+      <td rowspan="{{ ns_kvm.n }}" style="vertical-align: middle;"><p>KVM Passthrough</p></td>
+{%- set kvm_first.deploy_written = true %}
+{%- endif %}
+{%- if loop.first %}
+      <td{% if n_rows > 1 %} rowspan="{{ n_rows }}" style="vertical-align: middle;"{% endif %}><p>{{ dev_label }}</p></td>
+{%- endif %}
+      <td><p>{{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}</p></td>
+      <td><p>{{ entry.memory }}</p></td>
+    </tr>
+{%- endfor %}
+{%- endfor %}
+{#-- ESXi Passthrough rows --#}
+{%- set esxi_first = namespace(deploy_written=false) -%}
+{%- for group in esxi_groups %}
+{%- set n_rows = group.entries | length %}
+{%- set dev_label = group.names | join(", ") %}
+{%- for entry in group.entries %}
+    <tr>
+{%- if not esxi_first.deploy_written %}
+      <td rowspan="{{ ns_esxi.n }}" style="vertical-align: middle;"><p>ESXi Passthrough</p></td>
+{%- set esxi_first.deploy_written = true %}
 {%- endif %}
 {%- if loop.first %}
       <td{% if n_rows > 1 %} rowspan="{{ n_rows }}" style="vertical-align: middle;"{% endif %}><p>{{ dev_label }}</p></td>

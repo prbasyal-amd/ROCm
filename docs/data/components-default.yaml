@@ -233,9 +233,6 @@ rocm_core_sdk:
       description: Library and tool for bidirectional translation between SPIR-V and LLVM.
       xref:
         github_repo: https://github.com/ROCm/SPIRV-LLVM-Translator/tree/${release_tag}
-    hipinfo:
-      group: *sys_tools
-      description: Utility to print HIP device information.
 
 rocm_extras:
   - name: ROCm Validation Suite

@@ -384,7 +384,7 @@ Tarball archives use *family* names that differ from the deb/rpm package suffixe
     </tr>
     <tr>
       <td>Control and monitoring tools</td>
-      <td>AMD SMI, ROCm Data Center Tool, rocminfo, hipinfo</td>
+      <td>AMD SMI, ROCm Data Center Tool, rocminfo</td>
       <td>ROCm SMI (removed), ROCm Validation Suite, ROCm Bandwidth Test (removed)</td>
     </tr>
     <tr>
