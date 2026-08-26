@@ -108,10 +108,10 @@
       :show-cond: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
 
       .. matrix-cell:: ONNX Runtime
-         :show-cond: gfx=gfx950 gfx=gfx942
+         :show-cond: gfx=gfx950 gfx=gfx942 gfx=gfx1200 gfx=gfx1201 gfx=gfx1100 gfx=gfx1101 gfx=gfx1102
 
-      .. matrix-cell:: 1.27.0
-         :show-cond: gfx=gfx950 gfx=gfx942
+      .. matrix-cell:: 1.29.0
+         :show-cond: gfx=gfx950 gfx=gfx942 gfx=gfx1200 gfx=gfx1201 gfx=gfx1100 gfx=gfx1101 gfx=gfx1102
 
       .. matrix-cell:: 3.14, 3.12
-         :show-cond: gfx=gfx950 gfx=gfx942
+         :show-cond: gfx=gfx950 gfx=gfx942 gfx=gfx1200 gfx=gfx1201 gfx=gfx1100 gfx=gfx1101 gfx=gfx1102
