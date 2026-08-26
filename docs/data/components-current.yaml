@@ -72,7 +72,7 @@ rocm_core_sdk:
       version: 1.4.1
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     hipCUB:
-      version: 5.0.0
+      version: 4.6.0
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     hipFFT:
       version: 1.0.25
@@ -113,10 +113,10 @@ rocm_core_sdk:
           radeon: true
           ryzen: [gfx1150, gfx1151, gfx1152, gfx1153]
     rocPRIM:
-      version: 4.5.0
+      version: 4.6.0
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     rocRAND:
-      version: 4.5.0
+      version: 5.0.0
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     rocSHMEM:
       version: 3.6.0
@@ -131,7 +131,7 @@ rocm_core_sdk:
       version: 5.0.0
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     rocThrust:
-      version: 5.0.0
+      version: 4.6.0
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     rocWMMA:
       version: 2.2.1

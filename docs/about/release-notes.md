@@ -42,25 +42,30 @@ Operating system support remains unchanged in this release.
 
 For the full list of supported Linux distributions, see [Operating system support](#operating-system-support).
 
-#### Expanded GPU virtualization support for Instinct and Radeon GPUs
+#### Expanded GPU virtualization support for Instinct GPUs
 
-ROCm 10.0.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
+ROCm 10.0.0 adds support for the following virtualization configurations on AMD Instinct GPUs:
 
 * On AMD Instinct MI355X and MI350X:
-  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
+  * Passthrough Ubuntu 22.04 host OS with Ubuntu 22.04 guest OS.
 * On AMD Instinct MI350XP:
   * Passthrough ESXi 9.1 with Ubuntu 24.04 guest OS.
-  * Passthrough Debian 13 with Ubuntu 24.04 guest OS.
 * On AMD Instinct MI325X:
-  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
-  * Passthrough Ubuntu 24.04 with Ubuntu 24.04 guest OS.
+  * Passthrough Ubuntu 24.04 host OS with Ubuntu 24.04 guest OS.
+  * Passthrough Ubuntu 22.04 host OS with Ubuntu 22.04 guest OS.
+  * Passthrough Ubuntu 24.04 host OS with RHEL 9.4 guest OS.
+  * Passthrough RHEL 9.4 host OS with RHEL 9.4 guest OS.
+  * KVM SR-IOV RHEL 10.2 host OS with RHEL 10.2 guest OS.
 * On AMD Instinct MI300X:
-  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
+  * Passthrough Ubuntu 24.04 host OS with Ubuntu 24.04 guest OS.
+  * Passthrough Ubuntu 24.04 host OS with RHEL 9.4 guest OS.
+  * Passthrough RHEL 9.4 host OS with RHEL 9.4 guest OS.
+  * KVM SR-IOV RHEL 10.2 host OS with RHEL 10.2 guest OS.
 * On AMD Instinct MI210:
-  * Passthrough Ubuntu 26.04 with Ubuntu 26.04 guest OS.
-* On Radeon PRO V710: KVM SR-IOV with Ubuntu 24.04 host OS and Ubuntu 24.04, RHEL 10, and RHEL 9.6 guest OS.
+  * Passthrough Ubuntu 24.04 with Ubuntu 24.04 guest OS.
+  * Passthrough Ubuntu 22.04 with Ubuntu 22.04 guest OS.
 
-Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.2.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
+Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.2.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.2.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
 #### Expanded Instinct GPU partitioning support
 
@@ -187,15 +192,15 @@ The following are notable enhancements to the ROCm Compute Profiler (rocprofiler
 
 ##### gfx1153 (Gorgon Point) support
 
-Profiling, GPU metrics, and analysis now cover gfx1153. The Dual VALU (VOPD) instruction mix metric is now also reported for gfx115x GPUs in the WGP panel. For the supported hardware list, see [Compatible GPUs/APUs](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/reference/compatible-accelerators.html).
+Profiling, GPU metrics, and analysis now cover gfx1153. The Dual VALU (VOPD) instruction mix metric is now also reported for gfx115x GPUs in the WGP panel. For the supported hardware list, see [Compatible GPUs/APUs](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/reference/compatible-accelerators.html).
 
 ##### Triton operator tracing (experimental)
 
-Operator tracing now covers Triton and `torch.compile` kernels in addition to PyTorch, and a single option traces every supported machine learning framework in one run. For details, see [Triton trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#triton-trace), [ML API trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#ml-api-trace), and [Operator filtering](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/analyze/cli.html#operator-filtering).
+Operator tracing now covers Triton and `torch.compile` kernels in addition to PyTorch, and a single option traces every supported machine learning framework in one run. For details, see [Triton trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/profile/mode.html#triton-trace), [ML API trace](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/profile/mode.html#ml-api-trace), and [Operator filtering](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/analyze/cli.html#operator-filtering).
 
 ##### Improved roofline support on gfx1150(Strix Point, Gorgon Point), gfx1151 (Strix Halo), and gfx1152 (Gorgon Point)
 
-Roofline benchmarking and analysis on these GPUs now report the correct set of supported precisions, so `--roofline-data-type` no longer offers precisions that cannot be measured. Machine specification reporting for APUs is corrected as well. Roofline benchmarking on gfx1153 is not yet supported. For details, see [Standalone roofline](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/profile/mode.html#standalone-roofline) and [Roofline HTML generation](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/develop/how-to/analyze/cli.html#roofline-html-generation).
+Roofline benchmarking and analysis on these GPUs now report the correct set of supported precisions, so `--roofline-data-type` no longer offers precisions that cannot be measured. Machine specification reporting for APUs is corrected as well. Roofline benchmarking on gfx1153 is not yet supported. For details, see [Standalone roofline](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/profile/mode.html#standalone-roofline) and [Roofline HTML generation](https://rocm.docs.amd.com/projects/rocprofiler-compute/en/docs-10.0.0/how-to/analyze/cli.html#roofline-html-generation).
 
 For more information, see the [ROCm Compute Profiler section](#rocm-compute-profiler-3-8-0) in the ROCm component changelogs.
 
@@ -205,7 +210,7 @@ The following are notable enhancements to ROCm Systems Profiler:
 
 ##### hipFILE (GPU-direct storage) API tracing
 
-ROCm Systems Profiler can now trace hipFile GPU-direct storage API calls, giving you visibility into storage I/O paths that move data directly between storage and GPU memory. Enable it by adding `hipfile_api` (shorthand: `hipfile`) to `ROCPROFSYS_ROCM_DOMAINS`. This capability requires ROCprofiler-SDK 1.3.5 or later. For details, see the ROCm domains section in [Configuring runtime options](https://github.com/ROCm/rocm-systems/blob/develop/projects/rocprofiler-systems/docs/how-to/configuring-runtime-options.rst).
+ROCm Systems Profiler can now trace hipFile GPU-direct storage API calls, giving you visibility into storage I/O paths that move data directly between storage and GPU memory. Enable it by adding `hipfile_api` (shorthand: `hipfile`) to `ROCPROFSYS_ROCM_DOMAINS`. This capability requires ROCprofiler-SDK 1.3.5 or later. For details, see the ROCm domains section in [Configuring runtime options](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-10.0.0/how-to/configuring-runtime-options.html#configuring-runtime-options).
 
 ##### rocSHMEM host-stream API tracing
 
@@ -338,7 +343,7 @@ ROCm requires a coordinated stack of compatible firmware, driver, and user-space
 
 ## GPU virtualization support
 
-AMD Instinct data center GPUs support virtualization in the following configurations. Supported SR-IOV configurations require the AMD GPU Virtualization Driver (GIM) 9.2.0.K—see the [AMD Instinct Virtualization Driver documentation](https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.1.0.k/) for more information.
+AMD Instinct data center GPUs support virtualization in the following configurations. Supported SR-IOV configurations require the AMD GPU Virtualization Driver (GIM) 9.2.0.K—see the [AMD Instinct Virtualization Driver documentation](https://instinct.docs.amd.com/projects/virt-drv/en/mainline-9.2.0.k/) for more information.
 
 ```{datatemplate:yaml} /data/virtualization-support.yaml
 :template: virtualization-support-table.md.jinja

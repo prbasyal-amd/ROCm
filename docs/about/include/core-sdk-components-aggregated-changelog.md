@@ -107,7 +107,7 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 
 * PyTorch users can avoid user-constraint-based memory allocation failures (`HIPBLAS_STATUS_ALLOC_FAILED`) by exporting `HIPBLAS_WORKSPACE_CONFIG=:0:0` to allow rocBLAS managed memory to grow automatically.
 
-#### **hipCUB** (5.0.0)
+#### **hipCUB** (4.6.0)
 
 ##### Added
 
@@ -170,6 +170,24 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 
 ##### Resolved issues
 * Fixed an issue with `hipsparseSpMM`, which produced incorrect results for the Blocked ELL sparse format.
+
+#### **MIOpen** (3.6.0)
+
+##### Added
+* Gfx950 (MI350X/MI355X) 7x7 depthwise forward and backward-data convolution support (fp16/bf16), fixing a slow fallback-to-naive-kernel regression in ConvNeXt-style depthwise convolutions.
+
+##### Changed
+* Restored gfx12x support in the Winograd Rage solver, recovering performance that regressed when earlier gfx12 support was reverted.
+* Refreshed the gfx1100, gfx1102, and gfx1201 (Navi) SystemDBs with updated tuned find/perf-database entries.
+* Refreshed the gfx950 SystemDB with additional tuned entries to cover more models.
+
+##### Removed
+* Removed the OpenCL (OCL) backend; MIOpen now supports the HIP backend only.
+
+##### Resolved Issues
+* Fixed an off-by-stride indexing bug in the backward CalcStats mean/variance remainder loop that caused a ~1% systematic bias in NCHW batch normalization backward results.
+* Fixed an integer overflow in tensor operation kernels for large allocations that could cause memory access faults.
+* Fixed a naive convolution solver failure mode where a global work size of 2^32 or more work-items silently failed to launch and left a stale HIP error visible after Find returned success; such launches are now rejected up front.
 
 #### **RCCL** (2.30.7)
 
@@ -318,15 +336,6 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 
 * CLI mode block 4 Roofline plot's legend will not appear if there are too many kernels to list, in relation to the user's terminal size. Same per-kernel roofline rate metrics and AI plot point details can be read in block 4's preceding tables.
 
-#### **ROCm Debugger (ROCgdb)** (16.3)
-
-##### Added
-
-- The "catch hiperr" feature is now exposed to MI too, with a new
-  `-catch-hiperr` command and related fields in `*stopped` records.
-  See the "HIP Runtime Error" subsection of the "GDB/MI Catchpoint
-  Commands" section in the ROCgdb manual.
-
 #### **ROCm Systems Profiler** (1.8.0)
 
 ##### Added
@@ -374,22 +383,13 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 
 - Removed `--parse-all-modules` from `rocprof-sys-instrument`. The tool iterates through objects and modules to extract the functions by default.
 
-#### **rocPRIM** (4.5.0)
+#### **rocPRIM** (4.6.0)
 
 ##### Added
 
 * A parallel `device_topk`, which finds the largest/smallest K elements from an input array of keys.
 * A parallel `device_segmented_topk`, which finds the largest/smallest K elements from segmented groups.
 * `device_topk` and `device_segmented_topk` are now controlled by the CMake flag `ROCPRIM_ENABLE_TOPK`. Set `-DROCPRIM_ENABLE_TOPK=ON` to enable these features.
-* C++17 style `type_traits` utilities:
- * `is_floating_point_v`
- * `is_integral_v`
- * `is_arithmetic_v`
- * `is_fundamental_v`
- * `is_unsigned_v`
- * `is_signed_v`
- * `is_scalar_v`
- * `is_compound_v`
 
 ##### Changed
 
@@ -452,7 +452,7 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 
 - SPM sessions can remain in a stale state after abrupt termination. See [GitHub issue #6489](https://github.com/ROCm/rocm-systems/issues/6489) for details.
 
-#### **rocRAND** (4.5.0)
+#### **rocRAND** (5.0.0)
 
 ##### Removed
 
@@ -529,7 +529,7 @@ since it is not available in the dynamic linker search path. Since `rocminfo` al
 
 * Deprecated the `rocsparse_spildlt0_input_diag` enum value. It was used to dump the diagonal `D` of the ILDLT(0) factorization, which is now stored in-place on the diagonal entries of the `L` factor. It will be removed in a future release.
 
-#### **rocThrust** (5.0.0)
+#### **rocThrust** (4.6.0)
 
 ##### Added
 

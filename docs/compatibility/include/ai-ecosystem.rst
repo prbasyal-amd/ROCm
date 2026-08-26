@@ -84,13 +84,13 @@
       :show-cond: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
 
       .. matrix-cell:: TensorFlow
-         :show-cond: gfx=gfx950 gfx=gfx942
+         :show-cond: gfx=gfx950 gfx=gfx942 gfx=gfx90a
 
       .. matrix-cell:: 2.21, 2.20, 2.19.1
          :show-cond: gfx=gfx950 gfx=gfx942 gfx=gfx90a
 
       .. matrix-cell:: 3.12
-         :show-cond: gfx=gfx950 gfx=gfx942
+         :show-cond: gfx=gfx950 gfx=gfx942 gfx=gfx90a
 
    .. matrix-row::
       :show-cond: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles

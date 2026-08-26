@@ -5,7 +5,7 @@
 _drivers:
   - &gim_9_2_0_k
     name: GIM 9.2.0.K
-    url: https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K
+    url: https://github.com/amd/MxGPU-Virtualization/releases/tag/9.2.0.K
 # }}}
 
 AMD Instinct:
@@ -86,7 +86,12 @@ AMD Instinct:
       technology: SR-IOV
       driver: *gim_9_2_0_k
       host_os: Ubuntu 22.04
-      guest_os: [Ubuntu 22.04, RHEL 10.0]
+      guest_os: [Ubuntu 22.04]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_2_0_k
+      host_os: RHEL 10.2
+      guest_os: [RHEL 10.2]
 
   AMD Instinct MI300X:
     - hypervisor: KVM
@@ -119,6 +124,21 @@ AMD Instinct:
       driver: *gim_9_2_0_k
       host_os: Ubuntu 22.04
       guest_os: [Ubuntu 22.04]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_2_0_k
+      host_os: RHEL 10.2
+      guest_os: [RHEL 10.2]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_2_0_k
+      host_os: RHEL 9.4
+      guest_os: [RHEL 9.4]
+    - hypervisor: KVM
+      technology: SR-IOV
+      driver: *gim_9_2_0_k
+      host_os: RHEL 9.4
+      guest_os: [Ubuntu 24.04]
 
   AMD Instinct MI210:
     - hypervisor: KVM
@@ -155,14 +175,4 @@ AMD Radeon:
       technology: SR-IOV
       driver: *gim_9_2_0_k
       host_os: Ubuntu 24.04
-      guest_os: [Ubuntu 24.04]
-    - hypervisor: KVM
-      technology: SR-IOV
-      driver: *gim_9_2_0_k
-      host_os: RHEL 10
       guest_os: [Ubuntu 24.04, RHEL 9.6]
-    - hypervisor: KVM
-      technology: SR-IOV
-      driver: *gim_9_2_0_k
-      host_os: RHEL 9.4
-      guest_os: [Ubuntu 22.04, RHEL 9.4]

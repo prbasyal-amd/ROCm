@@ -5,7 +5,7 @@
 _amdgpu_drivers:
   - &amdgpu_31_50_0
     version: "31.50.0"
-    url: https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/documentation/release-notes.html
+    url: https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.50.0/documentation/release-notes.html
   - &amdgpu_31_40_1
     version: "31.40.1"
     url: https://instinct.docs.amd.com/projects/amdgpu-docs/en/docs-31.40.1/documentation/release-notes.html
