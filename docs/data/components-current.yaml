@@ -10,6 +10,7 @@ rocm_core_sdk:
       support: {linux: {instinct: true, radeon: true}}
     Composable Kernel:
       version: 1.2.0
+      changelog: true
       support: {linux: {instinct: true, radeon: true}, windows: {radeon: true}}
     HIP:
       version: 10.0.0
@@ -31,6 +32,7 @@ rocm_core_sdk:
       support: {linux: {instinct: true, radeon: true}}
     ROCgdb:
       version: 16.3
+      changelog: true
       support: {linux: {instinct: true, radeon: true}}
     ROCm Compute Profiler:
       version: 3.8.0

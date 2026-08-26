@@ -112,7 +112,7 @@
 {%- else %}{{ name }}
 {%- endif %}</td>
       <td>
-{%- if cur_ver and prev_ver and cur_ver != prev_ver -%}
+{%- if cur_ver and prev_ver and (cur_ver != prev_ver or cur_c.changelog) -%}
 {{ prev_ver }}&nbsp;&Rightarrow;&nbsp;<a href="#{{ anchor_id(name, cur_ver) }}">{{ cur_ver }}</a>
 {%- else -%}
 {{ cur_ver }}
