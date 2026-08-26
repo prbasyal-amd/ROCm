@@ -350,13 +350,13 @@ Prerequisites
 
       .. code-block:: bash
 
-         sudo dnf update --releasever=10.1 --exclude=\*release\*
+         sudo dnf update --releasever=10.2 --exclude=\*release\*
 
    .. selected:: oracle-linux-ver=9
 
       .. code-block:: bash
 
-         sudo dnf update --releasever=9.7 --exclude=\*release\*
+         sudo dnf update --releasever=9.8 --exclude=\*release\*
 
    .. selected:: oracle-linux-ver=8
 
@@ -662,7 +662,7 @@ Prerequisites
 
          .. code-block:: bash
 
-            sudo zypper install -y python313 python313-pip
+            sudo zypper install python313 python313-pip
 
       .. selected:: sles-ver=15.7
 
@@ -671,7 +671,7 @@ Prerequisites
 
          .. code-block:: bash
 
-            sudo zypper install -y python311 python311-pip
+            sudo zypper install python311 python311-pip
 
    .. selected:: os=windows
       :heading: Install Python
