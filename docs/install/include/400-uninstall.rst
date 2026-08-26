@@ -319,7 +319,7 @@ Uninstalling
          .. code-block:: bash
 
             # Remove ROCm repositories
-            sudo rm /etc/apt/sources.list.d/rocm.list
+            sudo rm -f /etc/apt/sources.list.d/amdrocm-stable.sources
 
             # Clear the cache and clean the system
             sudo rm -rf /var/cache/apt/*
@@ -331,7 +331,7 @@ Uninstalling
          .. code-block:: bash
 
             # Remove ROCm repositories
-            sudo rm /etc/yum.repos.d/rocm.repo*
+            sudo rm -f /etc/yum.repos.d/amdrocm-stable.repo*
 
             # Clear the cache and clean the system
             sudo rm -rf /var/cache/dnf
@@ -342,7 +342,7 @@ Uninstalling
          .. code-block:: bash
 
             # Remove ROCm repositories
-            sudo zypper removerepo "rocm"
+            sudo zypper removerepo "amdrocm-stable"
 
             # Clear the cache and clean the system
             sudo zypper clean --all

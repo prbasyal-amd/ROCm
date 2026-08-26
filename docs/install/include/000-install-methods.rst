@@ -6,7 +6,7 @@
    :icon: tools
    :chevron: down-up
 
-   ROCm offers four installation methods. If you're unsure, start with package
+   ROCm offers five installation methods. If you're unsure, start with package
    manager on Linux or tarball on Windows.
 
    .. list-table::
@@ -22,6 +22,13 @@
         - - Traditional Linux installation
           - OS managed
           - Auto post-install
+        - - System-wide
+      * - amdgpu-install
+        - - Linux
+        - - Radeon and Ryzen only
+          - Supports installation of graphics packages
+          - Use-case driven package selection (``--usecase``)
+          - ROCm and amdgpu driver bundled
         - - System-wide
       * - pip
         - - Linux

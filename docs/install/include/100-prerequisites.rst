@@ -50,28 +50,28 @@ Prerequisites
                .. code-block:: bash
 
                   apt update
-                  apt install sudo wget gpg
+                  apt install sudo wget gpg perl
 
             .. selected:: i=pip
 
                .. code-block:: bash
 
                   apt update
-                  apt install sudo cmake libgfortran5
+                  apt install sudo cmake libgfortran5 perl
 
             .. selected:: i=tar
 
                .. code-block:: bash
 
                   apt update
-                  apt install sudo wget python3
+                  apt install sudo wget python3 perl
 
             .. selected:: i=runfile
 
                .. code-block:: bash
 
                   apt update
-                  apt install sudo wget curl python3 rsync
+                  apt install sudo wget curl python3 rsync perl
 
          .. selected:: os=rhel os=rocky-linux os=oracle-linux
 
@@ -79,13 +79,13 @@ Prerequisites
 
                .. code-block:: bash
 
-                  dnf install sudo wget
+                  dnf install sudo wget perl
 
             .. selected:: i=runfile
 
                .. code-block:: bash
 
-                  dnf install sudo wget rsync
+                  dnf install sudo wget rsync perl
 
          .. selected:: os=sles
 
@@ -93,25 +93,25 @@ Prerequisites
 
                .. code-block:: bash
 
-                  zypper install sudo wget SUSEConnect
+                  zypper install sudo wget SUSEConnect perl
 
             .. selected:: i=pip
 
                .. code-block:: bash
 
-                  zypper install sudo wget cmake libgfortran5
+                  zypper install sudo wget cmake libgfortran5 perl
 
             .. selected:: i=tar
 
                .. code-block:: bash
 
-                  zypper install sudo wget
+                  zypper install sudo wget perl
 
             .. selected:: i=runfile
 
                .. code-block:: bash
 
-                  zypper install sudo wget rsync
+                  zypper install sudo wget rsync perl
 
 .. ================================================================== WINDOWS ==
 
