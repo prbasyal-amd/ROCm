@@ -151,7 +151,7 @@ Prerequisites
 
       Complete the following instructions in your WSL2 environment.
 
-   .. selected:: ubuntu-ver=24.04
+   .. selected:: ubuntu-ver=24.04.4
       :heading: Install WSL2 and Ubuntu 24.04
       :heading-level: 3
 
@@ -161,7 +161,7 @@ Prerequisites
 
       Complete the following instructions in your WSL2 environment.
 
-   .. selected:: ubuntu-ver=22.04
+   .. selected:: ubuntu-ver=22.04.5
       :heading: Install WSL2 and Ubuntu 22.04
       :heading-level: 3
 
@@ -179,7 +179,7 @@ Prerequisites
 
       .. selected:: os=ubuntu os=wsl
 
-         .. selected:: ubuntu-ver=24.04
+         .. selected:: ubuntu-ver=24.04.4
             :heading: Install the OEM kernel
             :heading-level: 3
 
@@ -197,7 +197,7 @@ Prerequisites
 
       .. selected:: os=ubuntu
 
-         .. selected:: ubuntu-ver=24.04
+         .. selected:: ubuntu-ver=24.04.4
             :heading: Install the OEM kernel
             :heading-level: 3
 
@@ -489,7 +489,7 @@ Prerequisites
 
          .. selected:: fam=all
 
-            .. selected:: ubuntu-ver=24.04
+            .. selected:: ubuntu-ver=24.04.4
 
                .. dropdown:: Install the OEM kernel for Ryzen APUs
                   :animate: fade-in-slide-down
@@ -546,7 +546,7 @@ Prerequisites
 
             sudo apt install python3.14 python3.14-venv
 
-      .. selected:: ubuntu-ver=24.04
+      .. selected:: ubuntu-ver=24.04.4
          :heading: Install Python
          :heading-level: 3
 
@@ -557,7 +557,7 @@ Prerequisites
 
             sudo apt install python3.12 python3.12-venv
 
-      .. selected:: ubuntu-ver=22.04
+      .. selected:: ubuntu-ver=22.04.5
          :heading: Install Python
          :heading-level: 3
 

@@ -34,17 +34,182 @@ in ROCm |ROCM_VERSION|, see the :doc:`Release notes </about/release-notes>`.
 .. datatemplate:yaml:: /data/gpus.yaml
    :template: fam-selector.rst.jinja
 
-.. datatemplate:yaml:: /data/gpus.yaml
-   :template: gpu-selector.rst.jinja
+.. selected:: fam=all fam=radeon fam=ryzen
 
-.. datatemplate:yaml:: /data/gpus.yaml
-   :template: os-selector.rst.jinja
+   .. selector:: Use case
+      :key: w
+
+      .. selector-option:: Compute
+         :value: compute
+         :width: 50%
+
+      .. selector-option:: Compute + graphics
+         :value: graphics
+         :width: 50%
+
+.. selected:: w=compute
+
+   .. datatemplate:yaml:: /data/gpus.yaml
+      :template: gpu-selector.rst.jinja
+
+   .. datatemplate:yaml:: /data/gpus.yaml
+      :template: os-selector.rst.jinja
+
+.. selected:: w=graphics
+
+   .. datatemplate:yaml:: /data/gpus.yaml
+      :template: misc/os-selector-graphics-workloads.rst.jinja
 
 .. datatemplate:yaml:: /data/gpus.yaml
    :template: os-version-selector.rst.jinja
 
-.. datatemplate:yaml:: /data/install-methods.yaml
-   :template: install-method-selector.rst.jinja
+.. selected:: w=graphics
+
+   .. selector:: Installation method
+      :key: i
+      :show-cond: os=ubuntu os=rhel
+
+      .. selector-option:: amdgpu-install
+         :value: amdgpu-install
+         :width: 12
+
+.. selected:: w=compute
+
+   .. selected:: fam=all
+
+      .. selector:: Installation method
+         :show-cond: os=ubuntu os=debian
+         :key: i
+
+         .. selector-option:: apt
+            :value: pkgman
+            :width: 3
+
+         .. selector-option:: pip
+            :value: pip
+            :width: 3
+
+         .. selector-option:: Tarball
+            :value: tar
+            :width: 3
+
+         .. selector-option:: Runfile
+            :value: runfile
+            :width: 3
+
+      .. selector:: Installation method
+         :show-cond: os=rhel os=oracle-linux os=rocky-linux
+         :key: i
+
+         .. selector-option:: dnf
+            :value: pkgman
+            :width: 3
+
+         .. selector-option:: pip
+            :value: pip
+            :width: 3
+
+         .. selector-option:: Tarball
+            :value: tar
+            :width: 3
+
+         .. selector-option:: Runfile
+            :value: runfile
+            :width: 3
+
+      .. selector:: Installation method
+         :show-cond: os=sles
+         :key: i
+
+         .. selector-option:: zypper
+            :value: pkgman
+            :width: 3
+
+         .. selector-option:: pip
+            :value: pip
+            :width: 3
+
+         .. selector-option:: Tarball
+            :value: tar
+            :width: 3
+
+         .. selector-option:: Runfile
+            :value: runfile
+            :width: 3
+
+   .. selected:: fam=instinct fam=radeon fam=ryzen
+
+      .. selector:: Installation method
+         :show-cond: os=ubuntu os=debian
+         :key: i
+
+         .. selector-option:: apt
+            :value: pkgman
+            :width: 3
+
+         .. selector-option:: pip
+            :value: pip
+            :width: 3
+
+         .. selector-option:: Tarball
+            :value: tar
+            :width: 3
+
+         .. selector-option:: Runfile
+            :value: runfile
+            :width: 3
+
+      .. selector:: Installation method
+         :show-cond: os=rhel os=oracle-linux os=rocky-linux
+         :key: i
+
+         .. selector-option:: dnf
+            :value: pkgman
+            :width: 3
+
+         .. selector-option:: pip
+            :value: pip
+            :width: 3
+
+         .. selector-option:: Tarball
+            :value: tar
+            :width: 3
+
+         .. selector-option:: Runfile
+            :value: runfile
+            :width: 3
+
+      .. selector:: Installation method
+         :show-cond: os=sles
+         :key: i
+
+         .. selector-option:: zypper
+            :value: pkgman
+            :width: 3
+
+         .. selector-option:: pip
+            :value: pip
+            :width: 3
+
+         .. selector-option:: Tarball
+            :value: tar
+            :width: 3
+
+         .. selector-option:: Runfile
+            :value: runfile
+            :width: 3
+
+.. selector:: Installation method
+   :show-cond: os=windows
+   :key: i
+
+   .. selector-option:: pip
+      :value: pip
+      :width: 6
+
+   .. selector-option:: Tarball
+      :value: tar
+      :width: 6
 
 ----
 

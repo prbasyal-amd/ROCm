@@ -79,6 +79,37 @@
 {%- endmacro -%}
 
 {#--
+  family_all_versions(family_name, distro_name, key, header)
+  Returns a single 0-indented .. selector:: with the union of all versions for
+  one family + distro. Used for w=graphics where no GPU is pre-selected.
+--#}
+{%- macro family_all_versions(family_name, distro_name, key, header) -%}
+{%- set family_os = os_data[family_name] -%}
+{%- set ns = namespace(seen=[], vers=[]) -%}
+{%- for gpu_name in data[family_name].keys() -%}
+  {%- if gpu_name in family_os and distro_name in family_os[gpu_name] -%}
+    {%- for v in family_os[gpu_name][distro_name]["versions"] -%}
+      {%- if v["version"] not in ns.seen and v.graphics -%}
+        {%- set _ = ns.vers.append(v["version"]) -%}
+        {%- set ns.seen = ns.seen + [v["version"]] -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if ns.vers | length > 0 -%}
+{%- set w = col_width(ns.vers | length) %}
+.. selector:: {{ header }}
+   :key: {{ key }}
+
+{% for ver in ns.vers %}
+   .. selector-option:: {{ ver }}
+      :value: {{ ver }}
+      :width: {{ w }}
+{% endfor %}
+{%- endif -%}
+{%- endmacro -%}
+
+{#--
   all_versions(distro_name, key, header)
   Returns a single 0-indented .. selector:: with the union of all versions.
 --#}
@@ -120,10 +151,20 @@
 {{ ver_selectors("AMD Instinct", "Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(6) }}
    .. selected:: fam=radeon
 
-{{ ver_selectors("AMD Radeon", "Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(6) }}
+      .. selected:: w=compute
+
+{{ ver_selectors("AMD Radeon", "Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(9) }}
+      .. selected:: w=graphics
+
+{{ family_all_versions("AMD Radeon", "Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(9) }}
    .. selected:: fam=ryzen
 
-{{ ver_selectors("AMD Ryzen", "Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(6) }}
+      .. selected:: w=compute
+
+{{ ver_selectors("AMD Ryzen", "Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(9) }}
+      .. selected:: w=graphics
+
+{{ family_all_versions("AMD Ryzen", "Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(9) }}
    .. selected:: fam=all
 
 {{ all_versions("Ubuntu", "ubuntu-ver", "Ubuntu version") | indent(6) }}
@@ -148,7 +189,12 @@
 {{ ver_selectors("AMD Instinct", "Red Hat Enterprise Linux", "rhel-ver", "RHEL version") | indent(6) }}
    .. selected:: fam=radeon
 
-{{ ver_selectors("AMD Radeon", "Red Hat Enterprise Linux", "rhel-ver", "RHEL version") | indent(6) }}
+      .. selected:: w=compute
+
+{{ ver_selectors("AMD Radeon", "Red Hat Enterprise Linux", "rhel-ver", "RHEL version") | indent(9) }}
+      .. selected:: w=graphics
+
+{{ family_all_versions("AMD Radeon", "Red Hat Enterprise Linux", "rhel-ver", "RHEL version") | indent(9) }}
    .. selected:: fam=all
 
 {{ all_versions("Red Hat Enterprise Linux", "rhel-ver", "RHEL version") | indent(6) }}
@@ -192,10 +238,20 @@
 
    .. selected:: fam=radeon
 
-{{ ver_selectors("AMD Radeon", "Windows", "windows-ver", "Windows version") | indent(6) }}
+      .. selected:: w=compute
+
+{{ ver_selectors("AMD Radeon", "Windows", "windows-ver", "Windows version") | indent(9) }}
+      .. selected:: w=graphics
+
+{{ family_all_versions("AMD Radeon", "Windows", "windows-ver", "Windows version") | indent(9) }}
    .. selected:: fam=ryzen
 
-{{ ver_selectors("AMD Ryzen", "Windows", "windows-ver", "Windows version") | indent(6) }}
+      .. selected:: w=compute
+
+{{ ver_selectors("AMD Ryzen", "Windows", "windows-ver", "Windows version") | indent(9) }}
+      .. selected:: w=graphics
+
+{{ family_all_versions("AMD Ryzen", "Windows", "windows-ver", "Windows version") | indent(9) }}
    .. selected:: fam=all
 
 {{ all_versions("Windows", "windows-ver", "Windows version") | indent(6) }}

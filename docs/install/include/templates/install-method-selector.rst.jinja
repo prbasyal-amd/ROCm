@@ -57,7 +57,23 @@
 {%- endmacro -%}
 
 
-.. selected:: fam=all fam=instinct
+.. selected:: fam=all w=graphics
+
+{%- set n = data.all_graphics | length %}
+{%- set w = col_width(n) %}
+{%- set linux_os_cond %}{% for group in data.os_groups %}{% for os in group.os %}os={{ os }} {% endfor %}{% endfor %}{% endset %}
+
+   .. selector:: Installation method
+      :key: i
+      :show-cond: {{ linux_os_cond | trim }}
+
+{% for m in data.all_graphics %}
+      .. selector-option:: {{ m.display }}
+         :value: {{ m.value }}
+         :width: {{ w }}
+
+{% endfor %}
+.. selected:: fam=all w=compute fam=instinct
 {{ render_instinct_selectors() }}
 .. selected:: fam=radeon fam=ryzen
 

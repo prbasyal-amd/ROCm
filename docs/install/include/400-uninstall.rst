@@ -5,9 +5,136 @@ Uninstalling
 
 .. selected:: i=pkgman
 
+   .. selected:: os=wsl
+
+      1. Uninstall the librocdxg packages.
+
+         .. code-block:: bash
+
+            sudo apt purge rocdxg-amd-smi-lib rocdxg-roct
+            sudo apt autoremove
+
+      2. Remove leftover librocdxg files.
+
+         .. code-block:: bash
+
+            sudo rm -rf /opt/rocm/core-10.0/lib/librocdxg.so* \
+                        /opt/rocm/core-10.0/share/rocdxg \
+                        /opt/rocm/core-10.0/share/doc/rocdxg
+
+      3. Use your package manager to remove the :ref:`installed packages <rocm-install-rocm>`.
+
+         .. selected:: fam=all
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0
+
+         .. selected:: gfx=gfx950
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx950
+
+         .. selected:: gfx=gfx942
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx942
+
+         .. selected:: gfx=gfx90a
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx90a
+
+         .. selected:: gfx=gfx908
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx908
+
+         .. selected:: gfx=gfx1201
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1201
+
+         .. selected:: gfx=gfx1200
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1200
+
+         .. selected:: gfx=gfx1100
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1100
+
+         .. selected:: gfx=gfx1101
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1101
+
+         .. selected:: gfx=gfx1102
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1102
+
+         .. selected:: gfx=gfx1103
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1103
+
+         .. selected:: gfx=gfx1030
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1030
+
+         .. selected:: gfx=gfx1151
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1151
+
+         .. selected:: gfx=gfx1150
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1150
+
+         .. selected:: gfx=gfx1152
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1152
+
+         .. selected:: gfx=gfx1153
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1153
+
+      4. Remove ROCm repositories.
+
+         .. code-block:: bash
+
+            # Remove ROCm repositories
+            sudo rm /etc/apt/sources.list.d/amdrocm-stable.sources
+
+            # Clear the cache and clean the system
+            sudo rm -rf /var/cache/apt/*
+            sudo apt clean all
+            sudo apt update
+
    1. Use your package manager to remove the :ref:`installed packages <rocm-install-rocm>`.
 
-      .. selected:: os=ubuntu os=debian os=wsl
+      .. selected:: os=ubuntu os=debian
 
          .. selected:: fam=all
 
@@ -187,7 +314,7 @@ Uninstalling
 
    2. Remove ROCm repositories.
 
-      .. selected:: os=ubuntu os=debian os=wsl
+      .. selected:: os=ubuntu os=debian
 
          .. code-block:: bash
 
