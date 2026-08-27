@@ -25,7 +25,6 @@ rocm_core_sdk:
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     MIOpen:
       version: 3.6.0
-      changelog: false
       support: {linux: {instinct: true, radeon: true, ryzen: true}, windows: {radeon: true, ryzen: true}}
     RCCL:
       version: 2.30.7

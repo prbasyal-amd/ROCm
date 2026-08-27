@@ -65,6 +65,11 @@ in ROCm |ROCM_VERSION|, see the :doc:`Release notes </about/release-notes>`.
 
 .. selected:: w=graphics
 
+   .. selected:: os=windows
+
+      .. datatemplate:yaml:: /data/gpus.yaml
+         :template: gpu-selector.rst.jinja
+
    .. selector:: Installation method
       :key: i
       :show-cond: os=ubuntu os=rhel

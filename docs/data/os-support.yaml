@@ -12,9 +12,9 @@ _versions:
   - &ubuntu_22_04 { version: "22.04.5", kernel: "GA 5.15" }
   - &debian_13 { version: "13", kernel: "6.12" }
   - &debian_12 { version: "12", kernel: "6.1.0" }
-  - &rhel_10_2 { version: "10.2", kernel: "6.12.0-211" }
+  - &rhel_10_2 { version: "10.2", kernel: "6.12.0-211", graphics: true }
   - &rhel_10_0 { version: "10.0", kernel: "6.12.0-55" }
-  - &rhel_9_8 { version: "9.8", kernel: "5.14.0-687" }
+  - &rhel_9_8 { version: "9.8", kernel: "5.14.0-687", graphics: true }
   - &rhel_9_6 { version: "9.6", kernel: "5.14.0-570" }
   - &rhel_9_4 { version: "9.4", kernel: "5.14.0-427" }
   - &rhel_8_10 { version: "8.10", kernel: "4.18.0-553" }
@@ -24,7 +24,7 @@ _versions:
   - &rocky_9 { version: "9", kernel: "5.14.0-570" }
   - &sles_16_0 { version: "16.0", kernel: "6.12" }
   - &sles_15_7 { version: "15.7", kernel: "6.4.0-150700.51" }
-  - &windows_11 { version: "11 25H2" }
+  - &windows_11 { version: "11 25H2", graphics: true }
 # }}}
 
 AMD Instinct:
