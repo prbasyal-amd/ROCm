@@ -39,14 +39,14 @@ AMD Instinct:
       - {compute: CPX, memory: NPS1}
     esxi-passthrough:
       - {compute: SPX, memory: NPS1}
-    kvm-sriov:
-      - {vfs: 1, compute: SPX, memory: NPS1}
 
   AMD Instinct MI325X:
     bare-metal:
       - {compute: SPX, memory: NPS1}
     passthrough:
       - {compute: SPX, memory: NPS1}
+    kvm-sriov:
+      - {vfs: 1, compute: SPX, memory: NPS1}
 
   AMD Instinct MI300X:
     bare-metal:
