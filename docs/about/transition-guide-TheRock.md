@@ -97,10 +97,6 @@ stream. For example, hipBLAS and rocBLAS are now combined into one package,
 `amdrocm-blas`. The table below lists new packages, their contents, and the
 corresponding legacy packages.
 
-:::{note}
-ASAN packages are not available in ROCm 10.0.0 and are planned for a future release.
-:::
-
 (linux-packages-available-in-rocm-10-0-0)=
 
 ### Linux packages available in ROCm 10.0.0
