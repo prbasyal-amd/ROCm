@@ -11,8 +11,8 @@ import sys
 from pathlib import Path
 from subprocess import run
 
-ROCM_VERSION = "7.14.0"
-GA_DATE = "2026-07-15"
+ROCM_VERSION = "10.0.0"
+GA_DATE = "2026-08-26"
 
 DOCS_DIR = Path(__file__).parent.resolve()
 ROOT_DIR = DOCS_DIR.parent
@@ -122,13 +122,26 @@ extensions = [
     "rocm_docs_custom.remote_content",
     "rocm_docs_custom.remote_yaml",
     "rocm_docs_custom.version_ref",
-    "rocm_docs_custom.merge_components",
     "sphinxcontrib.datatemplates",
     "sphinx_substitution_extensions",
     # "sphinx_reredirects",
     # "sphinx_sitemap",
 ]
-templates_path = ["extension/rocm_docs_custom/selector/templates"]
+templates_path = [
+    "extension/rocm_docs_custom/selector/templates",
+    "about/include/templates",
+    "install/include/templates",
+    "compatibility/include/templates",
+]
+
+# Omit custom matrix/selector content from PDF (LaTeX) output.
+rocm_selector_pdf_generation = False
+
+# Generate llms.txt and llms-full.txt (requires the rocm-docs-core[llms] extra).
+rocm_docs_generate_llms = True
+# The GPU atomics operation page is very large; keep it in the llms.txt index
+# but exclude its body from llms-full.txt.
+rocm_docs_llms_full_exclude = ["reference/gpu-atomics-operation"]
 
 html_static_path = ["sphinx/static"]
 html_js_files = ["setup-toc-install-headings.js", "legacy/vllm-benchmark.js"]
@@ -143,6 +156,7 @@ external_projects_current_project = "rocm"
 html_theme = "rocm_docs_theme"
 html_theme_options = {
     "flavor": "rocm",
+    "use_download_button": True,
     "link_main_doc": False,
     "repository_url": "https://github.com/ROCm/ROCm",
     "use_repository_button": True,
@@ -203,7 +217,3 @@ official_branch = run(
     ["git", "rev-parse", "--abbrev-ref", "HEAD"], capture_output=True, text=True
 ).stdout.find("docs/")
 
-rocdoc_components_data_current = DOCS_DIR / "data" / "components.yaml"
-rocdoc_components_data_previous = DOCS_DIR / "data" / "components-previous.yaml"
-rocdoc_components_data_default = DOCS_DIR / "data" / "components-default.yaml"
-rocdoc_components_data_output = DOCS_DIR / "_data" / "components.yaml"

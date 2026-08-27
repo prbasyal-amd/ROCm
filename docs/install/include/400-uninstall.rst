@@ -5,105 +5,232 @@ Uninstalling
 
 .. selected:: i=pkgman
 
-   1. Use your package manager to remove the :ref:`installed packages <rocm-install-rocm>`.
+   .. selected:: os=wsl
 
-      .. selected:: os=ubuntu os=debian os=wsl
+      1. Uninstall the librocdxg packages.
+
+         .. code-block:: bash
+
+            sudo apt purge rocdxg-amd-smi-lib rocdxg-roct
+            sudo apt autoremove
+
+      2. Remove leftover librocdxg files.
+
+         .. code-block:: bash
+
+            sudo rm -rf /opt/rocm/core-10.0/lib/librocdxg.so* \
+                        /opt/rocm/core-10.0/share/rocdxg \
+                        /opt/rocm/core-10.0/share/doc/rocdxg
+
+      3. Use your package manager to remove the :ref:`installed packages <rocm-install-rocm>`.
 
          .. selected:: fam=all
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14
+               sudo apt autoremove amdrocm10.0
 
          .. selected:: gfx=gfx950
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx950
+               sudo apt autoremove amdrocm10.0-gfx950
 
          .. selected:: gfx=gfx942
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx942
+               sudo apt autoremove amdrocm10.0-gfx942
 
          .. selected:: gfx=gfx90a
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx90a
+               sudo apt autoremove amdrocm10.0-gfx90a
 
          .. selected:: gfx=gfx908
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx908
+               sudo apt autoremove amdrocm10.0-gfx908
 
          .. selected:: gfx=gfx1201
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1201
+               sudo apt autoremove amdrocm10.0-gfx1201
 
          .. selected:: gfx=gfx1200
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1200
+               sudo apt autoremove amdrocm10.0-gfx1200
 
          .. selected:: gfx=gfx1100
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1100
+               sudo apt autoremove amdrocm10.0-gfx1100
 
          .. selected:: gfx=gfx1101
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1101
+               sudo apt autoremove amdrocm10.0-gfx1101
 
          .. selected:: gfx=gfx1102
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1102
+               sudo apt autoremove amdrocm10.0-gfx1102
 
          .. selected:: gfx=gfx1103
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1103
+               sudo apt autoremove amdrocm10.0-gfx1103
 
          .. selected:: gfx=gfx1030
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1030
+               sudo apt autoremove amdrocm10.0-gfx1030
 
          .. selected:: gfx=gfx1151
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1151
+               sudo apt autoremove amdrocm10.0-gfx1151
 
          .. selected:: gfx=gfx1150
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1150
+               sudo apt autoremove amdrocm10.0-gfx1150
 
          .. selected:: gfx=gfx1152
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1152
+               sudo apt autoremove amdrocm10.0-gfx1152
 
          .. selected:: gfx=gfx1153
 
             .. code-block:: bash
 
-               sudo apt autoremove amdrocm7.14-gfx1153
+               sudo apt autoremove amdrocm10.0-gfx1153
+
+      4. Remove ROCm repositories.
+
+         .. code-block:: bash
+
+            # Remove ROCm repositories
+            sudo rm /etc/apt/sources.list.d/amdrocm-stable.sources
+
+            # Clear the cache and clean the system
+            sudo rm -rf /var/cache/apt/*
+            sudo apt clean all
+            sudo apt update
+
+   1. Use your package manager to remove the :ref:`installed packages <rocm-install-rocm>`.
+
+      .. selected:: os=ubuntu os=debian
+
+         .. selected:: fam=all
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0
+
+         .. selected:: gfx=gfx950
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx950
+
+         .. selected:: gfx=gfx942
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx942
+
+         .. selected:: gfx=gfx90a
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx90a
+
+         .. selected:: gfx=gfx908
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx908
+
+         .. selected:: gfx=gfx1201
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1201
+
+         .. selected:: gfx=gfx1200
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1200
+
+         .. selected:: gfx=gfx1100
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1100
+
+         .. selected:: gfx=gfx1101
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1101
+
+         .. selected:: gfx=gfx1102
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1102
+
+         .. selected:: gfx=gfx1103
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1103
+
+         .. selected:: gfx=gfx1030
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1030
+
+         .. selected:: gfx=gfx1151
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1151
+
+         .. selected:: gfx=gfx1150
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1150
+
+         .. selected:: gfx=gfx1152
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1152
+
+         .. selected:: gfx=gfx1153
+
+            .. code-block:: bash
+
+               sudo apt autoremove amdrocm10.0-gfx1153
 
       .. selected:: os=rhel os=oracle-linux os=rocky-linux
 
@@ -111,73 +238,73 @@ Uninstalling
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14
+               sudo dnf remove amdrocm10.0
 
          .. selected:: gfx=gfx950
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx950
+               sudo dnf remove amdrocm10.0-gfx950
 
          .. selected:: gfx=gfx942
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx94x
+               sudo dnf remove amdrocm10.0-gfx94x
 
          .. selected:: gfx=gfx90a
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx90a
+               sudo dnf remove amdrocm10.0-gfx90a
 
          .. selected:: gfx=gfx908
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx908
+               sudo dnf remove amdrocm10.0-gfx908
 
          .. selected:: gfx=gfx1201 gfx=gfx1200
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx120x
+               sudo dnf remove amdrocm10.0-gfx120x
 
          .. selected:: gfx=gfx1100 gfx=gfx1101 gfx=gfx1102 gfx=gfx1103
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx110x
+               sudo dnf remove amdrocm10.0-gfx110x
 
          .. selected:: gfx=gfx1030
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx103x
+               sudo dnf remove amdrocm10.0-gfx103x
 
          .. selected:: gfx=gfx1151
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx1151
+               sudo dnf remove amdrocm10.0-gfx1151
 
          .. selected:: gfx=gfx1150
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx1150
+               sudo dnf remove amdrocm10.0-gfx1150
 
          .. selected:: gfx=gfx1152
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx1152
+               sudo dnf remove amdrocm10.0-gfx1152
 
          .. selected:: gfx=gfx1153
 
             .. code-block:: bash
 
-               sudo dnf remove amdrocm7.14-gfx1153
+               sudo dnf remove amdrocm10.0-gfx1153
 
       .. selected:: os=sles
 
@@ -187,12 +314,12 @@ Uninstalling
 
    2. Remove ROCm repositories.
 
-      .. selected:: os=ubuntu os=debian os=wsl
+      .. selected:: os=ubuntu os=debian
 
          .. code-block:: bash
 
             # Remove ROCm repositories
-            sudo rm /etc/apt/sources.list.d/rocm.list
+            sudo rm -f /etc/apt/sources.list.d/amdrocm-stable.sources
 
             # Clear the cache and clean the system
             sudo rm -rf /var/cache/apt/*
@@ -204,7 +331,7 @@ Uninstalling
          .. code-block:: bash
 
             # Remove ROCm repositories
-            sudo rm /etc/yum.repos.d/rocm.repo*
+            sudo rm -f /etc/yum.repos.d/amdrocm-stable.repo*
 
             # Clear the cache and clean the system
             sudo rm -rf /var/cache/dnf
@@ -215,7 +342,7 @@ Uninstalling
          .. code-block:: bash
 
             # Remove ROCm repositories
-            sudo zypper removerepo "rocm"
+            sudo zypper removerepo "amdrocm-stable"
 
             # Clear the cache and clean the system
             sudo zypper clean --all
@@ -344,105 +471,105 @@ Uninstalling
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=all
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=all
 
       .. selected:: gfx=gfx950
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx950
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx950
 
       .. selected:: gfx=gfx942
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx942
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx942
 
       .. selected:: gfx=gfx90a
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx90a
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx90a
 
       .. selected:: gfx=gfx908
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx908
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx908
 
       .. selected:: gfx=gfx1201
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1201
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1201
 
       .. selected:: gfx=gfx1200
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1200
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1200
 
       .. selected:: gfx=gfx1100
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1100
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1100
 
       .. selected:: gfx=gfx1101
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1101
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1101
 
       .. selected:: gfx=gfx1102
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1102
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1102
 
       .. selected:: gfx=gfx1103
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1103
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1103
 
       .. selected:: gfx=gfx1030
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1030
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1030
 
       .. selected:: gfx=gfx1151
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1151
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1151
 
       .. selected:: gfx=gfx1150
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1150
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1150
 
       .. selected:: gfx=gfx1152
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1152
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1152
 
       .. selected:: gfx=gfx1153
 
          .. code-block:: bash
 
-            bash rocm-installer-7.14.0-7.run uninstall-rocm gfx=gfx1153
+            bash rocm-installer-10.0.0-4.run uninstall-rocm gfx=gfx1153
 
    2. Use the following command to uninstall the AMD GPU Driver (amdgpu).
 
       .. code-block:: bash
 
-         bash rocm-installer-7.14.0-7.run uninstall-amdgpu
+         bash rocm-installer-10.0.0-4.run uninstall-amdgpu
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=ubuntu os=rhel
 

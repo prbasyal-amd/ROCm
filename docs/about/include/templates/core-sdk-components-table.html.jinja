@@ -1,0 +1,138 @@
+{#
+  Template: core-sdk-components-table.html.jinja
+  Renders the ROCm Core SDK component table for the release notes page.
+  Output: RST ``.. raw:: html`` block containing the HTML table.
+
+  Primary data:  components-current.yaml  (passed as `data` by the caller)
+  Secondary data loaded inline:
+    - components-default.yaml  (group, description, xref)
+    - components-previous.yaml (previous-release versions for delta display)
+#}
+{%- set defs = load("/data/components-default.yaml").rocm_core_sdk.components -%}
+{%- set prev = load("/data/components-previous.yaml").rocm_core_sdk.components -%}
+{%- set cur  = data.rocm_core_sdk.components -%}
+{%- set slug = data.rocm_core_sdk.meta.rtd_version_slug -%}
+{%- set tag  = data.rocm_core_sdk.meta.release_tag -%}
+
+{%- set group_order = [
+    "Math and compute libraries",
+    "Communication libraries",
+    "Media libraries",
+    "Storage libraries",
+    "Runtimes and compilers",
+    "Profiling and debugging tools",
+    "Control and monitoring tools",
+] -%}
+
+{%- set grouped = [] -%}
+{%- for group in group_order -%}
+  {%- set items = [] -%}
+  {%- for name, comp in defs.items() | sort(attribute="0") -%}
+    {%- if comp.group == group -%}{%- set _ = items.append(name) -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if items -%}{%- set _ = grouped.append((group, items)) -%}{%- endif -%}
+{%- endfor -%}
+
+{%- macro anchor_id(name, version) -%}
+{{- (name | lower | replace(" ", "-")) -}}-{{- (version | string | replace(".", "-")) -}}
+{%- endmacro -%}
+
+{%- macro resolve(url) -%}
+{{- url | replace("${rtd_version_slug}", slug) | replace("${release_tag}", tag) -}}
+{%- endmacro -%}
+
+{%- macro platform_string(support) -%}
+{%- if support -%}
+  {%- set os_parts = [] -%}
+  {%- set fam_parts = [] -%}
+  {%- set gpu_list = [] -%}
+  {%- if support.linux is defined -%}{%- set _ = os_parts.append("Linux") -%}{%- endif -%}
+  {%- if support.windows is defined -%}{%- set _ = os_parts.append("Windows") -%}{%- endif -%}
+  {%- set ns = namespace(instinct=false, radeon=false, ryzen=false) -%}
+  {%- if support.linux is defined -%}
+    {%- if support.linux.instinct is defined -%}
+      {%- set ns.instinct = true -%}
+      {%- if support.linux.instinct is not sameas true -%}
+        {%- for g in support.linux.instinct -%}{%- if g not in gpu_list -%}{%- set _ = gpu_list.append(g) -%}{%- endif -%}{%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if support.linux.radeon is defined -%}
+      {%- set ns.radeon = true -%}
+      {%- if support.linux.radeon is not sameas true -%}
+        {%- for g in support.linux.radeon -%}{%- if g not in gpu_list -%}{%- set _ = gpu_list.append(g) -%}{%- endif -%}{%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if support.linux.ryzen is defined -%}
+      {%- set ns.ryzen = true -%}
+      {%- if support.linux.ryzen is not sameas true -%}
+        {%- for g in support.linux.ryzen -%}{%- if g not in gpu_list -%}{%- set _ = gpu_list.append(g) -%}{%- endif -%}{%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if support.windows is defined -%}
+    {%- if support.windows.radeon is defined -%}{%- set ns.radeon = true -%}{%- endif -%}
+    {%- if support.windows.ryzen is defined -%}{%- set ns.ryzen = true -%}{%- endif -%}
+  {%- endif -%}
+  {%- if ns.instinct -%}{%- set _ = fam_parts.append("Instinct") -%}{%- endif -%}
+  {%- if ns.radeon -%}{%- set _ = fam_parts.append("Radeon") -%}{%- endif -%}
+  {%- if ns.ryzen -%}{%- set _ = fam_parts.append("Ryzen") -%}{%- endif -%}
+  {{- os_parts | join("/") }} · {{ fam_parts | join("/") -}}
+  {%- if gpu_list %} ({{ gpu_list | join("/<wbr>") }}){%- endif -%}
+{%- endif -%}
+{%- endmacro -%}
+
+```{raw} html
+<table class="rocm-docs-table table">
+  <thead>
+    <tr>
+      <th class="head"><p>Component group</p></th>
+      <th class="head"><p>Component name</p></th>
+      <th class="head"><p>Version</p></th>
+      <th class="head"><p>Supported platforms</p></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- for group, items in grouped %}
+  {%- for name in items %}
+    {%- set defn     = defs[name] %}
+    {%- set cur_c    = cur.get(name, {}) %}
+    {%- set prev_c   = prev.get(name, {}) %}
+    {%- set cur_ver  = cur_c.version | string if cur_c.version is defined else "" %}
+    {%- set prev_ver = prev_c.version | string if prev_c.version is defined else "" %}
+    {%- set rtd_url  = resolve(defn.xref.rtd_project) if defn.xref is defined and defn.xref.rtd_project is defined else "" %}
+    {%- set gh_url   = resolve(defn.xref.github_repo)  if defn.xref is defined and defn.xref.github_repo  is defined else "" %}
+    <tr>
+{%- if loop.first %}
+      <td rowspan="{{ items | length }}" style="vertical-align: middle;"><p>{{ group }}</p></td>
+{%- endif %}
+      <td>
+{%- if rtd_url %}<a href="{{ rtd_url }}index.html">{{ name }}</a>
+{%- elif gh_url %}<a href="{{ gh_url }}">{{ name }}</a>
+{%- else %}{{ name }}
+{%- endif %}</td>
+      <td>
+{%- if cur_c.changelog is defined -%}
+  {%- set has_link = cur_c.changelog -%}
+{%- else -%}
+  {%- set has_link = cur_ver != prev_ver -%}
+{%- endif -%}
+{%- set has_delta = cur_ver != prev_ver or has_link -%}
+{%- if cur_ver and prev_ver and has_delta -%}
+  {%- if has_link -%}
+{{ prev_ver }}&nbsp;&Rightarrow;&nbsp;<a href="#{{ anchor_id(name, cur_ver) }}">{{ cur_ver }}</a>
+  {%- else -%}
+{{ prev_ver }}&nbsp;&Rightarrow;&nbsp;{{ cur_ver }}
+  {%- endif -%}
+{%- else -%}
+{{ cur_ver }}
+{%- endif -%}
+</td>
+      <td>{{ platform_string(cur_c.support) if cur_c.support is defined else "" }}</td>
+      <td>{% if gh_url %}<a href="{{ gh_url }}"><i class="fab fa-github fa-lg"></i></a>{% endif %}</td>
+    </tr>
+{%- endfor %}
+{%- endfor %}
+  </tbody>
+</table>
+```

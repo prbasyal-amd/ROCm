@@ -15,10 +15,13 @@ for verifying hardware health, measuring system performance, and managing GPU fl
 ..   verifying that PCIe and Infinity Fabric links are operating at expected
 ..   bandwidth.
 
-* `ROCm Validation Suite <https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/docs-1.5.122/index.html>`_ (RVS) -- A suite of tests for validating ROCm installations
+* `ROCm Validation Suite <https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/index.html>`_ (RVS) -- A suite of tests for validating ROCm installations
   and AMD GPU hardware. Includes tests for GPU functionality, memory, power behavior, and
   peer-to-peer communication, helping diagnose installation issues and hardware faults.
 
   * `TransferBench <https://rocm.docs.amd.com/projects/TransferBench/en/latest/index.html>`_ -- A utility for benchmarking simultaneous memory transfers between user-specified devices (CPUs, GPUs, and NICs). This component is part of the ROCmValidationSuite (RVS) and is installed with it.
+
+* `ROCm Optiq <https://rocm.docs.amd.com/projects/roc-optiq/en/latest/index.html>`_ -- A unified visualization and analysis tool for performance data collected by ROCm profiling tools, specifically :doc:`ROCm Systems Profiler <rocprofiler-systems:index>` and :doc:`ROCm Compute Profiler <rocprofiler-compute:index>`. It provides deep insights into both system-level behavior and kernel-level performance for applications running on the ROCm stack.
+
 
 * More coming soon.

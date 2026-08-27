@@ -18,110 +18,110 @@
       .. matrix-cell::
          :show-cond: fam=instinct fam=radeon
 
-         `Composable Kernel 1.2.0 <https://rocm.docs.amd.com/projects/composable_kernel/en/docs-7.14.0/index.html>`__
+         `Composable Kernel 1.2.0 <https://rocm.docs.amd.com/projects/composable_kernel/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipBLAS 3.5.0 <https://rocm.docs.amd.com/projects/hipBLAS/en/docs-7.14.0/index.html>`__
+         `hipBLAS 3.6.0 <https://rocm.docs.amd.com/projects/hipBLAS/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipBLASLt 1.4.1 <https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-7.14.0/index.html>`__
+         `hipBLASLt 1.4.1 <https://rocm.docs.amd.com/projects/hipBLASLt/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipCUB 4.5.0 <https://rocm.docs.amd.com/projects/hipCUB/en/docs-7.14.0/index.html>`__
+         `hipCUB 4.6.0 <https://rocm.docs.amd.com/projects/hipCUB/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipFFT 1.0.24 <https://rocm.docs.amd.com/projects/hipFFT/en/docs-7.14.0/index.html>`__
+         `hipFFT 1.0.25 <https://rocm.docs.amd.com/projects/hipFFT/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipRAND 3.4.0 <https://rocm.docs.amd.com/projects/hipRAND/en/docs-7.14.0/index.html>`__
+         `hipRAND 3.4.0 <https://rocm.docs.amd.com/projects/hipRAND/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipSOLVER 3.5.0 <https://rocm.docs.amd.com/projects/hipSOLVER/en/docs-7.14.0/index.html>`__
+         `hipSOLVER 3.6.0 <https://rocm.docs.amd.com/projects/hipSOLVER/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `hipSPARSE 4.6.0 <https://rocm.docs.amd.com/projects/hipSPARSE/en/docs-7.14.0/index.html>`__
+         `hipSPARSE 4.7.0 <https://rocm.docs.amd.com/projects/hipSPARSE/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
          :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a
 
-         `hipSPARSELt 0.2.9 <https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-7.14.0/index.html>`__
+         `hipSPARSELt 0.2.9 <https://rocm.docs.amd.com/projects/hipSPARSELt/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `MIOpen 3.5.2 <https://rocm.docs.amd.com/projects/MIOpen/en/docs-7.14.0/index.html>`__
+         `MIOpen 3.6.0 <https://rocm.docs.amd.com/projects/MIOpen/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocBLAS 5.5.0 <https://rocm.docs.amd.com/projects/rocBLAS/en/docs-7.14.0/index.html>`__
+         `rocBLAS 5.6.0 <https://rocm.docs.amd.com/projects/rocBLAS/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocFFT 1.0.38 <https://rocm.docs.amd.com/projects/rocFFT/en/docs-7.14.0/index.html>`__
+         `rocFFT 1.0.39 <https://rocm.docs.amd.com/projects/rocFFT/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocPRIM 4.5.0 <https://rocm.docs.amd.com/projects/rocPRIM/en/docs-7.14.0/index.html>`__
+         `rocPRIM 4.6.0 <https://rocm.docs.amd.com/projects/rocPRIM/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocRAND 4.5.0 <https://rocm.docs.amd.com/projects/rocRAND/en/docs-7.14.0/index.html>`__
+         `rocRAND 5.0.0 <https://rocm.docs.amd.com/projects/rocRAND/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocSOLVER 3.35.0 <https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-7.14.0/index.html>`__
+         `rocSOLVER 3.36.0 <https://rocm.docs.amd.com/projects/rocSOLVER/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocSPARSE 4.7.0 <https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-7.14.0/index.html>`__
+         `rocSPARSE 5.0.0 <https://rocm.docs.amd.com/projects/rocSPARSE/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocThrust 4.5.0 <https://rocm.docs.amd.com/projects/rocThrust/en/docs-7.14.0/index.html>`__
+         `rocThrust 4.6.0 <https://rocm.docs.amd.com/projects/rocThrust/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocWMMA 2.2.1 <https://rocm.docs.amd.com/projects/rocWMMA/en/docs-7.14.0/index.html>`__
+         `rocWMMA 2.2.1 <https://rocm.docs.amd.com/projects/rocWMMA/en/docs-10.0.0/index.html>`__
 
    .. matrix-row::
 
@@ -139,14 +139,14 @@
 
       .. matrix-cell::
 
-         `RCCL 2.30.4 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rccl>`__
+         `RCCL 2.30.7 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rccl>`__
 
    .. matrix-row::
       :show-cond: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi300a gpu=mi250x gpu=mi250 gpu=mi210 gpu=ai-r9700s gpu=ai-r9700 gpu=ai-r9600d gpu=rx-9070-xt gpu=rx-9070-gre gpu=rx-9070 gpu=rx-9060-xt-lp gpu=rx-9060-xt gpu=rx-9060 gpu=w7900-dual-slot gpu=w7900 gpu=w7800-48gb gpu=w7800 gpu=rx-7900-xtx gpu=rx-7900-gre gpu=w7700 gpu=rx-7800-xt gpu=rx-7700-xt gpu=rx-7700 gpu=rx-7600
 
       .. matrix-cell::
 
-         `rocSHMEM 3.5.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocshmem>`__
+         `rocSHMEM 3.6.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocshmem>`__
 
    .. matrix-row::
 
@@ -157,28 +157,28 @@
       .. matrix-cell:: Media libraries
          :rowspan: 2
          :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
-         
+
       .. matrix-cell::
          :show-cond: fam=instinct fam=radeon
 
-         `rocDecode 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdecode>`__
-      
+         `rocDecode 1.9.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocdecode>`__
+
       .. matrix-cell::
          :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
-         `rocDecode 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdecode>`__
+         `rocDecode 1.9.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocdecode>`__
 
    .. matrix-row::
 
       .. matrix-cell::
          :show-cond: fam=instinct fam=radeon
 
-         `rocJPEG 1.6.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocjpeg>`__
+         `rocJPEG 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocjpeg>`__
 
       .. matrix-cell::
          :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
-         `rocJPEG 1.6.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocjpeg>`__
+         `rocJPEG 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocjpeg>`__
 
    .. matrix-row::
 
@@ -188,7 +188,7 @@
       .. matrix-cell::
          :show-cond: fam=instinct
 
-         `hipFile 0.3.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/hipFile>`__
+         `hipFile 0.4.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/hipFile>`__
 
    .. matrix-row::
 
@@ -202,32 +202,32 @@
 
       .. matrix-cell::
 
-         `HIP 7.14 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/hip>`__
+         `HIP 10.0.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/hip>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `HIPIFY 7.14 <https://github.com/ROCm/HIPIFY/tree/therock-7.14>`__
+         `HIPIFY 10.0.0 <https://github.com/ROCm/HIPIFY/tree/therock-10.0>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `LLVM 23.0.0 <https://github.com/ROCm/llvm-project/tree/therock-7.14>`__
+         `LLVM 24.0.0 <https://github.com/ROCm/llvm-project/tree/therock-10.0>`__
 
    .. matrix-row::
       :show-cond: fam=instinct fam=radeon
 
       .. matrix-cell::
 
-         `ROCr Runtime 1.21.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocr-runtime>`__
+         `ROCr Runtime 1.21.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocr-runtime>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `SPIRV-LLVM-Translator 23.0.0 <https://github.com/ROCm/SPIRV-LLVM-Translator/tree/therock-7.14>`__
+         `SPIRV-LLVM-Translator 24.0.0 <https://github.com/ROCm/SPIRV-LLVM-Translator/tree/therock-10.0>`__
 
    .. matrix-row::
 
@@ -246,66 +246,66 @@
       .. matrix-cell::
          :show-cond: fam=instinct
 
-         `ROCm Compute Profiler (rocprofiler-compute) 3.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-compute>`__
+         `ROCm Compute Profiler (rocprofiler-compute) 3.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocprofiler-compute>`__
 
       .. matrix-cell::
          :show-cond: fam=radeon
 
-         `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
-      
+         `ROCprofiler-SDK 1.3.5 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocprofiler-sdk>`__
+
       .. matrix-cell::
          :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
-         `ROCm Compute Profiler (rocprofiler-compute) 3.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-compute>`__
+         `ROCm Compute Profiler (rocprofiler-compute) 3.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocprofiler-compute>`__
 
    .. matrix-row::
       :show-cond: fam=instinct
 
       .. matrix-cell::
 
-         `ROCm Systems Profiler (rocprofiler-systems) 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-systems>`__
+         `ROCm Systems Profiler (rocprofiler-systems) 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocprofiler-systems>`__
 
    .. matrix-row::
       :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
       .. matrix-cell::
 
-         `ROCm Systems Profiler (rocprofiler-systems) 1.7.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-systems>`__
+         `ROCm Systems Profiler (rocprofiler-systems) 1.8.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocprofiler-systems>`__
 
    .. matrix-row::
       :show-cond: fam=instinct
 
       .. matrix-cell::
 
-         `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
+         `ROCprofiler-SDK 1.3.5 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocprofiler-sdk>`__
 
    .. matrix-row::
       :show-cond: gfx=gfx1150 gfx=gfx1151 gfx=gfx1152 gfx=gfx1153
 
       .. matrix-cell::
 
-         `ROCprofiler-SDK 1.3.2 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocprofiler-sdk>`__
+         `ROCprofiler-SDK 1.3.5 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocprofiler-sdk>`__
 
    .. matrix-row::
       :show-cond: fam=instinct fam=radeon
 
       .. matrix-cell::
 
-         `ROCdbgapi 0.80.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocdbgapi>`__
+         `ROCdbgapi 0.80.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocdbgapi>`__
 
    .. matrix-row::
       :show-cond: fam=instinct fam=radeon
 
       .. matrix-cell::
 
-         `ROCm Debugger (ROCgdb) 16.3 <https://github.com/ROCm/ROCgdb/tree/therock-7.14>`__
+         `ROCm Debugger (ROCgdb) 16.3 <https://github.com/ROCm/ROCgdb/tree/therock-10.0>`__
 
    .. matrix-row::
       :show-cond: fam=instinct fam=radeon
 
       .. matrix-cell::
 
-         `ROCr Debug Agent 2.1.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocr-debug-agent>`__
+         `ROCR Debug Agent 2.1.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocr-debug-agent>`__
 
    .. matrix-row::
 
@@ -315,17 +315,17 @@
       .. matrix-cell::
          :show-cond: fam=instinct fam=radeon
 
-         `AMD SMI 26.5.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/amdsmi>`__
+         `AMD SMI 27.0.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/amdsmi>`__
 
    .. matrix-row::
 
       .. matrix-cell::
 
-         `rocminfo 1.0.0 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rocminfo>`__
+         `rocminfo 1.0.0 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rocminfo>`__
 
    .. matrix-row::
       :show-cond: fam=instinct
 
       .. matrix-cell::
 
-         `ROCm Data Center Tool (RDC) 1.3.1 <https://github.com/ROCm/rocm-systems/tree/therock-7.14/projects/rdc>`__
+         `ROCm Data Center Tool (RDC) 1.3.1 <https://github.com/ROCm/rocm-systems/tree/therock-10.0/projects/rdc>`__
