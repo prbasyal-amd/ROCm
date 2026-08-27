@@ -1,6 +1,6 @@
 # Transition guide from legacy ROCm release stream
 
-The [ROCm Core SDK](https://rocm.docs.amd.com/en/latest/index.html#rocm-core-sdk) is built on TheRock, AMD's new build system. The transition from the legacy ROCm release stream began with [ROCm Core SDK 7.14.0](https://rocm.docs.amd.com/en/docs-7.14.0/about/release-notes.html).
+The [ROCm Core SDK](https://rocm.docs.amd.com/en/latest/index.html#rocm-core-sdk) is built on TheRock, AMD's new build system. The transition from the legacy ROCm release stream began with [ROCm Core SDK 7.14.0](https://rocm.docs.amd.com/en/docs-7.14.0/about/release-notes.html), the first production release. [ROCm 10.0.0](https://rocm.docs.amd.com/en/latest/about/release-notes.html) is the latest production release. For more on the transition, see [ROCm 7.14: TheRock Goes Production and Expands AMD's AI Software Platform](https://rocm.blogs.amd.com/ecosystems-and-partners/rocm-7.14-blog/README.html).
 
 ## Major changes
 
@@ -96,10 +96,6 @@ ROCm Core SDK packages are more consolidated than the legacy ROCm release
 stream. For example, hipBLAS and rocBLAS are now combined into one package,
 `amdrocm-blas`. The table below lists new packages, their contents, and the
 corresponding legacy packages.
-
-:::{note}
-ASAN packages are not available in ROCm 10.0.0 and are planned for a future release.
-:::
 
 (linux-packages-available-in-rocm-10-0-0)=
 
