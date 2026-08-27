@@ -191,7 +191,8 @@ rocm_core_sdk:
       group: *runtimes
       description: AMD's implementation of the HSA (Heterogeneous System Architecture) runtime, providing the foundation for GPU execution and management in the ROCm software stack.
       xref:
-        github_repo: https://github.com/ROCm/ROCR-Runtime/tree/${release_tag}
+        rtd_project: https://rocm.docs.amd.com/projects/ROCR-Runtime/en/${rtd_version_slug}/
+        github_repo: https://github.com/ROCm/rocm-systems/tree/${release_tag}/projects/rocr-runtime
     rocSHMEM:
       group: *comm_libs
       description: An intra-kernel networking library that provides GPU-centric networking through an OpenSHMEM-like interface.
