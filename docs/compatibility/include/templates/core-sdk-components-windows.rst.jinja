@@ -1,0 +1,212 @@
+{#
+  Template: core-sdk-components-windows.rst.jinja
+  Renders the Windows ROCm Core SDK components matrix.
+  Output: RST with matrix/matrix-row/matrix-cell directives.
+
+  Primary data: components-current.yaml (passed as `data` by the caller)
+  Secondary data: components-default.yaml (loaded via load())
+
+  To update component versions or support: edit components-current.yaml.
+  To update component URLs or groups: edit components-default.yaml.
+
+  URL selection (Windows): always use github_repo.
+  Placeholders: ${release_tag} substituted from meta.
+
+  show-cond derivation (per component, windows support):
+  - radeon: true, ryzen: true   → no show-cond (always visible)
+  - radeon: true only            → fam=radeon
+  - ryzen: true only             → fam=ryzen
+  - instinct: true only (Windows) → fam=instinct (if applicable)
+  - radeon: true, instinct: true  → fam=instinct fam=radeon
+
+  Group header cell: one cell spanning all group items (:rowspan: N).
+  Its show-cond = union of all distinct tokens from all item cells in the group.
+
+  Component hipinfo has no URL — rendered as plain text.
+#}
+{%- set defaults = load("/data/components-default.yaml") -%}
+{%- set current  = data -%}
+{%- set meta     = current.rocm_core_sdk.meta -%}
+{%- set tag      = meta.release_tag -%}
+{%- set comps_c  = current.rocm_core_sdk.components -%}
+{%- set comps_d  = defaults.rocm_core_sdk.components -%}
+
+{#-- Substitute ${release_tag} in a URL (Windows only needs release_tag) --#}
+{%- macro sub(url) -%}
+{{- url | replace("${release_tag}", tag) -}}
+{%- endmacro -%}
+
+{#-- Resolve Windows URL for a component (always github_repo) --#}
+{%- macro windows_url(name) -%}
+{%- if name in comps_d and comps_d[name].xref is defined -%}
+{{- sub(comps_d[name].xref.github_repo) -}}
+{%- endif -%}
+{%- endmacro -%}
+
+{#---------------------------------------------------------------------------
+  Build the item list. Iterate comps_d in YAML order; include components with
+  Windows support in comps_c, plus hipinfo (no comps_c entry).
+  Each item: {name, group, version, url, cells}
+  where cells is a list of show_cond strings (one per matrix-cell to emit).
+---------------------------------------------------------------------------#}
+{%- set unordered = [] -%}
+{%- set ns_grp = namespace(seen=[]) -%}
+{%- for name in comps_d.keys() -%}
+  {%- if name == "hipinfo" -%}
+    {%- set grp = comps_d["hipinfo"].group -%}
+    {%- if grp not in ns_grp.seen -%}
+      {%- set ns_grp.seen = ns_grp.seen + [grp] -%}
+    {%- endif -%}
+    {%- set _ = unordered.append({
+      "name":    "hipinfo",
+      "group":   grp,
+      "version": "",
+      "url":     "",
+      "cells":   [""]
+    }) -%}
+  {%- elif name in comps_c and comps_c[name].support.windows is defined -%}
+    {%- set grp = comps_d[name].group -%}
+    {%- if grp not in ns_grp.seen -%}
+      {%- set ns_grp.seen = ns_grp.seen + [grp] -%}
+    {%- endif -%}
+    {%- set sup = comps_c[name].support.windows -%}
+    {%- set r_val = sup.radeon   if sup.radeon   is defined else false -%}
+    {%- set y_val = sup.ryzen    if sup.ryzen    is defined else false -%}
+    {%- set i_val = sup.instinct if sup.instinct is defined else false -%}
+    {%- set r_bool = r_val is sameas true -%}
+    {%- set y_bool = y_val is sameas true -%}
+    {%- set i_bool = i_val is sameas true -%}
+    {#-- Determine show_cond --#}
+    {%- if r_bool and y_bool -%}
+      {%- set sc = "" -%}
+    {%- elif r_bool and i_bool -%}
+      {%- set sc = "fam=instinct fam=radeon" -%}
+    {%- elif r_bool and not (sup.ryzen is defined) and not (sup.instinct is defined) -%}
+      {%- set sc = "fam=radeon" -%}
+    {%- elif y_bool and not (sup.radeon is defined) and not (sup.instinct is defined) -%}
+      {%- set sc = "fam=ryzen" -%}
+    {%- elif i_bool and not (sup.radeon is defined) and not (sup.ryzen is defined) -%}
+      {%- set sc = "fam=instinct" -%}
+    {%- else -%}
+      {%- set sc = "" -%}
+    {%- endif -%}
+    {%- set _ = unordered.append({
+      "name":    name,
+      "group":   grp,
+      "version": comps_c[name].version,
+      "url":     windows_url(name) | trim,
+      "cells":   [sc]
+    }) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- Pass 2: flatten items in group order --#}
+{%- set items = [] -%}
+{%- for grp in ns_grp.seen -%}
+  {%- for item in unordered if item.group == grp -%}
+    {%- set _ = items.append(item) -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+{#-- Build group blocks (consecutive same-group items) --#}
+{%- set ns_g = namespace(blocks=[], cur_label="", cur_start=0, cur_count=0) -%}
+{%- for item in items -%}
+  {%- if item.group != ns_g.cur_label -%}
+    {%- if ns_g.cur_label != "" -%}
+      {%- set _ = ns_g.blocks.append({"label": ns_g.cur_label, "start": ns_g.cur_start, "count": ns_g.cur_count}) -%}
+    {%- endif -%}
+    {%- set ns_g.cur_label = item.group -%}
+    {%- set ns_g.cur_start = loop.index0 -%}
+    {%- set ns_g.cur_count = 1 -%}
+  {%- else -%}
+    {%- set ns_g.cur_count = ns_g.cur_count + 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if ns_g.cur_label != "" -%}
+  {%- set _ = ns_g.blocks.append({"label": ns_g.cur_label, "start": ns_g.cur_start, "count": ns_g.cur_count}) -%}
+{%- endif -%}
+
+{#-- Compute group header show-cond: union of all distinct tokens from all item cells.
+     If any item has an empty (always-visible) show-cond, the header must also be
+     always visible (no show-cond), since the group is needed for those GPUs. --#}
+{%- macro group_header_sc(block) -%}
+{%- set b_items = items[block.start : block.start + block.count] -%}
+{%- set ns_always = namespace(found=false) -%}
+{%- for it in b_items -%}
+  {%- for sc in it.cells -%}
+    {%- if sc == "" -%}{%- set ns_always.found = true -%}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- if not ns_always.found -%}
+{%- set ns_t = namespace(tokens=[]) -%}
+{%- for it in b_items -%}
+  {%- for sc in it.cells -%}
+    {%- for tok in sc.split() -%}
+      {%- if tok not in ns_t.tokens -%}
+        {%- set ns_t.tokens = ns_t.tokens + [tok] -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endfor -%}
+{{ ns_t.tokens | join(" ") }}
+{%- endif -%}
+{%- endmacro -%}
+
+.. matrix::
+   :show-cond: os=windows
+
+   .. matrix-head::
+
+      .. matrix-row::
+         :header:
+
+         .. matrix-cell:: Component group
+
+         .. matrix-cell:: Component name
+
+{% for block in ns_g.blocks %}
+{%- set b_items = items[block.start : block.start + block.count] -%}
+{%- set hdr_sc = group_header_sc(block) | trim %}
+   .. matrix-row::
+
+      .. matrix-cell:: {{ block.label }}
+{%- if block.count > 1 %}
+         :rowspan: {{ block.count }}
+{%- endif %}
+{%- if hdr_sc != "" %}
+         :show-cond: {{ hdr_sc }}
+{%- endif %}
+
+{% if b_items[0].url %}
+{% for sc in b_items[0].cells %}
+      .. matrix-cell::
+{%- if sc != "" %}
+         :show-cond: {{ sc }}
+{%- endif %}
+
+         `{{ b_items[0].name }}{% if b_items[0].version %} {{ b_items[0].version }}{% endif %} <{{ b_items[0].url }}>`__
+
+{% endfor %}
+{%- else %}
+      .. matrix-cell:: {{ b_items[0].name }}
+{%- endif %}
+
+{%- for item in b_items[1:] %}
+   .. matrix-row::
+
+{% if item.url %}
+{% for sc in item.cells %}
+      .. matrix-cell::
+{%- if sc != "" %}
+         :show-cond: {{ sc }}
+{%- endif %}
+
+         `{{ item.name }}{% if item.version %} {{ item.version }}{% endif %} <{{ item.url }}>`__
+
+{% endfor %}
+{%- else %}
+      .. matrix-cell:: {{ item.name }}
+{%- endif %}
+
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,213 @@
+{#
+  Template: system-radeon.rst.jinja
+  Renders the AMD Radeon system requirements matrix.
+  Output: RST with matrix/matrix-row/matrix-cell directives.
+
+  Primary data: gpus.yaml (passed as `data` by the caller)
+  Secondary data:
+    - os-support.yaml (loaded via load())
+    - driver-firmware-support.yaml (loaded via load())
+
+  To update GPU properties: edit gpus.yaml.
+  To update OS support:     edit os-support.yaml.
+  To update driver/firmware: edit driver-firmware-support.yaml.
+
+  Fingerprint grouping: GPUs sharing the same value for a field are grouped
+  into one .. matrix-cell:: with a combined :show-cond:. This allows adding
+  or removing GPUs from data without touching the template.
+#}
+{%- set os_data  = load("/data/os-support.yaml") -%}
+{%- set drv_data = load("/data/driver-firmware-support.yaml") -%}
+{%- set radeon_gpus = data["AMD Radeon"] -%}
+{%- set radeon_os   = os_data["AMD Radeon"] -%}
+{%- set radeon_drv  = drv_data["AMD Radeon"] -%}
+
+{#-- slugify: "AMD Radeon RX 9070 XT" -> "amd-radeon-rx-9070-xt" --#}
+{%- macro slugify(name) -%}
+{{- name | lower | replace("+", "") | replace("  ", " ") | replace(" ", "-") -}}
+{%- endmacro -%}
+
+{#--
+  show_cond(gpu_names)
+  Returns "gpu=slug1 gpu=slug2 ..." for a list of GPU names.
+--#}
+{%- macro show_cond(gpu_names) -%}
+{%- for name in gpu_names %}gpu={{ slugify(name) }} {% endfor -%}
+{%- endmacro -%}
+
+{#--
+  Build GPU name list in yaml order (preserves column ordering).
+--#}
+{%- set gpu_names = radeon_gpus.keys() | list -%}
+
+{#-- ── Series fingerprint groups ─────────────────────────────────────────── --#}
+{%- set ns_ser = namespace(seen=[], groups=[]) -%}
+{%- for name in gpu_names -%}
+  {%- set fp = radeon_gpus[name].series.name -%}
+  {%- if fp not in ns_ser.seen -%}
+    {%- set ns_ser.seen = ns_ser.seen + [fp] -%}
+    {%- set _ = ns_ser.groups.append({"fp": fp, "gpus": [name]}) -%}
+  {%- else -%}
+    {%- for g in ns_ser.groups if g.fp == fp -%}
+      {%- set _ = g.gpus.append(name) -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- ── Architecture fingerprint groups ───────────────────────────────────── --#}
+{%- set ns_arch = namespace(seen=[], groups=[]) -%}
+{%- for name in gpu_names -%}
+  {%- set fp = radeon_gpus[name].arch.name -%}
+  {%- if fp not in ns_arch.seen -%}
+    {%- set ns_arch.seen = ns_arch.seen + [fp] -%}
+    {%- set _ = ns_arch.groups.append({"fp": fp, "gpus": [name]}) -%}
+  {%- else -%}
+    {%- for g in ns_arch.groups if g.fp == fp -%}
+      {%- set _ = g.gpus.append(name) -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- ── GFX fingerprint groups ────────────────────────────────────────────── --#}
+{%- set ns_gfx = namespace(seen=[], groups=[]) -%}
+{%- for name in gpu_names -%}
+  {%- set fp = radeon_gpus[name].gfx -%}
+  {%- if fp not in ns_gfx.seen -%}
+    {%- set ns_gfx.seen = ns_gfx.seen + [fp] -%}
+    {%- set _ = ns_gfx.groups.append({"fp": fp, "gpus": [name]}) -%}
+  {%- else -%}
+    {%- for g in ns_gfx.groups if g.fp == fp -%}
+      {%- set _ = g.gpus.append(name) -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#-- ── OS version fingerprint groups ─────────────────────────────────────── --#}
+{%- set os_distros = [
+  {"key": "Ubuntu",               "show_cond": "ubuntu", "header": "Supported Ubuntu versions", "prefix": "Ubuntu"},
+  {"key": "Red Hat Enterprise Linux", "show_cond": "rhel", "header": "Supported RHEL versions",   "prefix": "RHEL"},
+] -%}
+
+{%- set ns_os = namespace(all_groups=[]) -%}
+{%- for distro in os_distros -%}
+  {%- set ns_d = namespace(seen=[], groups=[]) -%}
+  {%- for name in gpu_names -%}
+    {%- if name in radeon_os and distro.key in radeon_os[name] -%}
+      {%- set versions = radeon_os[name][distro.key].versions -%}
+      {%- set fp = versions | map(attribute="version") | join("|") -%}
+      {%- if fp not in ns_d.seen -%}
+        {%- set ns_d.seen = ns_d.seen + [fp] -%}
+        {%- set _ = ns_d.groups.append({"fp": fp, "gpus": [name], "versions": versions}) -%}
+      {%- else -%}
+        {%- for g in ns_d.groups if g.fp == fp -%}
+          {%- set _ = g.gpus.append(name) -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- set _ = ns_os.all_groups.append(ns_d.groups) -%}
+{%- endfor -%}
+
+{#-- ── Windows version (first GPU's Windows data) ────────────────────────── --#}
+{%- set windows_ver = radeon_os[gpu_names[0]]["Windows"].versions[0].version -%}
+
+{#-- ── Driver lists ───────────────────────────────────────────────────────── --#}
+{%- set amdgpu_drivers   = radeon_drv.linux.amdgpu -%}
+{%- set windows_drivers  = radeon_drv.windows -%}
+
+.. matrix::
+   :show-cond: fam=radeon
+
+   .. matrix-row::
+
+      .. matrix-cell:: AMD GPU series
+         :header:
+
+{% for g in ns_ser.groups %}
+{%- set ser_url = radeon_gpus[g.gpus[0]].series.mkt_page if radeon_gpus[g.gpus[0]].series.mkt_page is defined else radeon_gpus[g.gpus[0]].mkt_page %}
+      .. matrix-cell::
+         :show-cond: {{ show_cond(g.gpus) }}
+
+         `{{ g.fp }} <{{ ser_url }}>`__
+
+{% endfor %}
+   .. matrix-row::
+
+      .. matrix-cell:: Architecture
+         :header:
+
+{% for g in ns_arch.groups %}
+      .. matrix-cell:: {{ g.fp }}
+         :show-cond: {{ show_cond(g.gpus) }}
+
+{% endfor %}
+   .. matrix-row::
+
+      .. matrix-cell:: LLVM target
+         :header:
+
+{% for g in ns_gfx.groups %}
+      .. matrix-cell:: {{ g.fp }}
+         :show-cond: {{ show_cond(g.gpus) }}
+
+{% endfor %}
+{%- for i in range(os_distros | length) %}
+{%- set distro = os_distros[i] %}
+{%- set groups = ns_os.all_groups[i] %}
+{%- if groups | length > 0 %}
+
+   .. matrix-row::
+      :show-cond: os={{ distro.show_cond }}
+
+      .. matrix-cell:: {{ distro.header }}
+         :header:
+
+{% for g in groups %}
+      .. matrix-cell::
+         :show-cond: {{ show_cond(g.gpus) }}
+
+{% for v in g.versions %}
+         {{ distro.prefix }} {{ v.version }} (kernel: {{ v.kernel }})
+
+{% endfor %}
+{% endfor %}
+{%- endif %}
+{%- endfor %}
+
+   .. matrix-row::
+      :show-cond: os=windows
+
+      .. matrix-cell:: Supported Windows version
+         :header:
+
+      .. matrix-cell:: Windows {{ windows_ver }}
+
+   .. matrix-row::
+      :show-cond: os=ubuntu os=rhel
+
+      .. matrix-cell:: Supported AMD GPU Driver (amdgpu) versions
+         :header:
+
+      .. matrix-cell::
+
+{% for d in amdgpu_drivers %}
+         `{{ d.version }} <{{ d.url }}>`__
+
+{% endfor %}
+{%- for d in windows_drivers %}
+
+   .. matrix-row::
+      :show-cond: os=windows
+
+      .. matrix-cell:: Supported {{ d.label }} version
+         :header:
+
+      .. matrix-cell::
+
+{% if d.url is defined %}
+         `{{ d.version }} <{{ d.url }}>`__
+{% else %}
+         {{ d.version }}
+{% endif %}
+
+{%- endfor %}

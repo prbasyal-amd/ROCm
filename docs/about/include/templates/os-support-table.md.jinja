@@ -1,0 +1,130 @@
+{#
+  Template: os-support-table.md.jinja
+  Renders the OS support tab-set (Instinct / Radeon / Ryzen).
+  Output: MyST markup with HTML tables inside {raw} html fences.
+
+  Primary data: os-support.yaml (passed as `data` by the caller)
+
+  Each tab shows the union of all OS versions supported by any GPU in that family.
+  Rows are grouped by distro (rowspan = number of supported versions for that distro).
+  Distro and version order follows the order they first appear in the YAML.
+
+  Display name: if a distro entry has an `abbr` field (e.g. RHEL, SLES), the cell
+  shows "{distro name} ({abbr})". Windows rows omit the kernel column (shown as —).
+
+  WSL2 entries are excluded from the table (not a separately listed OS).
+#}
+{%- set instinct = data["AMD Instinct"] -%}
+{%- set radeon   = data["AMD Radeon"] -%}
+{%- set ryzen    = data["AMD Ryzen"] -%}
+
+{#---------------------------------------------------------------------------
+  collect_union(family)
+  Walks all GPUs in the family and builds an ordered list of
+  {distro_name, display_name, versions: [{version, kernel}]}
+  using insertion order. Skips WSL2 entries.
+---------------------------------------------------------------------------#}
+{%- macro render_table(family, col1_label) -%}
+
+{#-- Pass 1: collect ordered unique distro names and display names --#}
+{%- set distro_order = [] -%}
+{%- set distro_displays = [] -%}
+{%- set ns_seen = namespace(names=[]) -%}
+{%- for gpu_name, gpu in family.items() -%}
+  {%- for distro_name, distro in gpu.items() -%}
+    {%- if distro_name != "WSL2" and distro.versions is defined and distro_name not in ns_seen.names -%}
+      {%- set _ = distro_order.append(distro_name) -%}
+      {%- set ns_seen.names = ns_seen.names + [distro_name] -%}
+      {%- if distro.abbr is defined -%}
+        {%- set _ = distro_displays.append(distro_name ~ " (" ~ distro.abbr ~ ")") -%}
+      {%- else -%}
+        {%- set _ = distro_displays.append(distro_name) -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+{#-- Pass 2: for each distro, collect ordered unique versions across all GPUs --#}
+{%- set distro_rows = [] -%}
+{%- for distro_name in distro_order -%}
+  {%- set versions = [] -%}
+  {%- set ns_vseen = namespace(keys=[]) -%}
+  {%- for gpu_name, gpu in family.items() -%}
+    {%- if distro_name in gpu and gpu[distro_name].versions is defined -%}
+      {%- for v in gpu[distro_name].versions -%}
+        {%- if v is mapping -%}
+          {%- set vkey = v.version | string -%}
+          {%- if vkey not in ns_vseen.keys -%}
+            {%- set _ = versions.append(v) -%}
+            {%- set ns_vseen.keys = ns_vseen.keys + [vkey] -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- set _ = distro_rows.append(versions) -%}
+{%- endfor -%}
+
+{#-- Render table --#}
+<table class="rocm-docs-table table">
+  <thead>
+    <colgroup style="width: 33%;">
+    <tr>
+      <th class="head"><p>{{ col1_label }}</p></th>
+      <th class="head"><p>Supported versions</p></th>
+      <th class="head"><p>Linux kernel version</p></th>
+    </tr>
+  </thead>
+  <tbody>
+{%- for i in range(distro_order | length) %}
+{%- set display = distro_displays[i] %}
+{%- set versions = distro_rows[i] %}
+{%- set n = versions | length %}
+{%- for v in versions %}
+    <tr>
+{%- if loop.first %}
+      <th{% if n > 1 %} rowspan="{{ n }}"{% endif %} class="stub" style="vertical-align: middle"><p>{{ display }}</p></th>
+{%- endif %}
+      <td><p>{{ v.version }}</p></td>
+      <td>
+{%- if v.kernel is defined %}
+        <p>{{ v.kernel }}</p>
+{%- else %}
+        <p style="text-align: center;"> — </p>
+{%- endif %}
+      </td>
+    </tr>
+{%- endfor %}
+{%- endfor %}
+  </tbody>
+</table>
+{%- endmacro -%}
+
+::::{tab-set}
+:::{tab-item} Instinct
+:sync: instinct
+
+```{raw} html
+{{ render_table(instinct, "Linux distribution") }}
+```
+
+:::
+
+:::{tab-item} Radeon
+:sync: radeon
+
+```{raw} html
+{{ render_table(radeon, "Operating system") }}
+```
+
+:::
+
+:::{tab-item} Ryzen
+:sync: ryzen
+
+```{raw} html
+{{ render_table(ryzen, "Operating system") }}
+```
+
+:::
+::::

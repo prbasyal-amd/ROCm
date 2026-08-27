@@ -38,6 +38,17 @@ subtrees:
             title: ROCm Runfile Installer
           - file: install/build-from-source.rst
             title: Build ROCm from source
+          - file: ai-ecosystem.md
+            title: Install AI frameworks
+            entries:
+                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/pytorch/install.html
+                  title: PyTorch
+                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/jax/install.html
+                  title: JAX
+                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/vllm.html
+                  title: vLLM
+                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/sglang.html
+                  title: SGLang
     - caption: Components
       entries:
           - file: components/core.rst
@@ -124,7 +135,7 @@ subtrees:
                       - url: ${project:rocgdb}
                         title: ROCm Debugger (ROCgdb)
                       - url: ${project:rocr_debug_agent}
-                        title: ROCr Debug Agent
+                        title: ROCR Debug Agent
                 - file: components/control-and-monitoring-tools.rst
                   title: Control and monitoring tools
                   entries:
@@ -146,24 +157,13 @@ subtrees:
                   title: ROCm Validation Suite (RVS)
                 - url: https://rocm.docs.amd.com/projects/TransferBench/en/docs-1.66.02/index.html
                   title: TransferBench
-          - file: ai-ecosystem.md
-            title: AI ecosystem
-            entries:
-                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/pytorch/install.html
-                  title: PyTorch
-                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/jax/install.html
-                  title: JAX
-                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/vllm.html
-                  title: vLLM
-                - url: https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/sglang.html
-                  title: SGLang
-                # - url: https://rocm.docs.amd.com/projects/atom
-                #   title: ATOM
+                - url: https://rocm.docs.amd.com/projects/roc-optiq/en/latest/index.html
+                  title: ROCm Optiq
     - caption: Tutorials
       entries:
           - url: https://rocm.docs.amd.com/projects/ai-developer-hub/en/latest/
             title: AI Developer Hub
-          - url: https://github.com/ROCm/rocm-examples/tree/release/therock-7.14
+          - url: https://github.com/ROCm/rocm-examples/tree/release/therock-10.0
             title: ROCm examples
     - caption: Reference
       entries:

@@ -21,7 +21,7 @@
                 <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/pytorch/install.html">PyTorch</a>
             </td>
             <td style="vertical-align: middle;">
-                <p>2.12.0, 2.11.0, 2.10.0</p>
+                <p>2.13.0, 2.12.0, 2.11.0</p>
             </td>
             <td>
                 <p>Linux</p>
@@ -32,23 +32,31 @@
         </tr>
         <tr>
             <td style="vertical-align: middle;">
-                <p>2.12.0</p>
+                <p>2.13.0</p>
             </td>
             <td style="vertical-align: middle;">
                 <p>Windows</p>
             </td>
         </tr>
         <tr>
-            <td style="vertical-align: middle;">
+            <td rowspan="2" style="vertical-align: middle;">
                 <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/jax/install.html">JAX</a>
             </td>
             <td style="vertical-align: middle;">
-                <p>0.10.0, 0.9.1</p>
+                <p>0.11.0</p>
             </td>
-            <td>
+            <td rowspan="2" style="vertical-align: middle;">
                 <p>Linux</p>
             </td>
-            <td>
+            <td style="vertical-align: middle;">
+                <p>3.14, 3.13, 3.12</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: middle;">
+                <p>0.10.2, 0.10.0</p>
+            </td>
+            <td style="vertical-align: middle;">
                 <p>3.14, 3.13, 3.12, 3.11</p>
             </td>
         </tr>
@@ -57,13 +65,13 @@
                 <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/vllm.html">vLLM</a>
             </td>
             <td>
-                <p>0.23.0 <a id="id5" class="footnote-reference brackets" href="#vllm-framework-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>(<a href="#release-supported-hw">gfx950, gfx942, gfx1200,<br>gfx1201, gfx1100, gfx1101,<br>gfx1102, gfx1152, gfx1151,<br>gfx1150 GPUs only</a>)</p>
+                <p>0.27.0<br>(<a href="#release-supported-hw">gfx950, gfx942, gfx1200,<br>gfx1201, gfx1100, gfx1101,<br>gfx1102, gfx1152, gfx1151,<br>gfx1150 GPUs only</a>)</p>
             </td>
             <td>
                 <p>Linux</p>
             </td>
             <td>
-                <p>3.14 (requires PyTorch 2.11.0)</p>
+                <p>3.14 (requires PyTorch 2.13.0)</p>
             </td>
         </tr>
         <tr>
@@ -71,13 +79,27 @@
                 <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/sglang.html">SGLang</a>
             </td>
             <td>
-                <p>0.5.13<br>(<a href="#release-supported-hw">gfx950, gfx942, gfx1200,<br>gfx1201, gfx1100, gfx1101, gfx1102 GPUs only</a>)</p>
+                <p>0.5.15<br>(<a href="#release-supported-hw">gfx950, gfx942, gfx1200,<br>gfx1201, gfx1100, gfx1101, gfx1102 GPUs only</a>)</p>
             </td>
             <td>
                 <p>Linux</p>
             </td>
             <td>
-                <p>3.14 (requires PyTorch 2.11.0)</p>
+                <p>3.14 (requires PyTorch 2.13.0)</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: middle;">
+                <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/frameworks/tensorflow/install.html">TensorFlow</a>
+            </td>
+            <td>
+                <p>2.21, 2.20, 2.19.1<br>(<a href="#release-supported-hw">gfx950, gfx942, gfx90a GPUs only</a>)</p>
+            </td>
+            <td>
+                <p>Linux</p>
+            </td>
+            <td>
+                <p>3.12</p>
             </td>
         </tr>
         <tr>
@@ -85,13 +107,13 @@
                 <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/migraphx.html">MIGraphX</a>
             </td>
             <td>
-                <p>2.16<br>(<a href="#release-supported-hw">gfx950, gfx942 GPUs only</a>)</p>
+                <p>2.17<br>(<a href="#release-supported-hw">gfx950, gfx942, gfx1200,<br>gfx1201, gfx1100, gfx1101, gfx1102 GPUs only</a>)</p>
             </td>
             <td>
                 <p>Linux</p>
             </td>
             <td>
-                <p>3.12</p>
+                <p>3.14, 3.12</p>
             </td>
         </tr>
         <tr>
@@ -99,19 +121,14 @@
                 <a href="https://rocm.docs.amd.com/projects/ai-ecosystem/en/latest/inference/onnxruntime.html">ONNX Runtime</a>
             </td>
             <td>
-                <p>1.23.2<br>(<a href="#release-supported-hw">gfx950, gfx942 GPUs only</a>)</p>
+                <p>1.29.0<br>(<a href="#release-supported-hw">gfx950, gfx942, gfx1200,<br>gfx1201, gfx1100, gfx1101, gfx1102 GPUs only</a>)</p>
             </td>
             <td>
                 <p>Linux</p>
             </td>
             <td>
-                <p>3.12</p>
+                <p>3.14, 3.12</p>
             </td>
         </tr>
     </tbody>
-    <table>
-
-<aside class="footnote brackets" id="vllm-framework-support-footnotes" role="doc-footnote">
-<span id="fn5" class="label"><span class="fn-bracket">[</span><a href="#id5" role="doc-backlink">*</a><span class="fn-bracket">]</span></span>
-<p>You might observe significantly longer LLM warmup times on some Radeon GPUs. Refer to the <a href="release-notes.html#vllm-warmup-known-issue">known issue</a> for details.</p>
-</aside>
+</table>

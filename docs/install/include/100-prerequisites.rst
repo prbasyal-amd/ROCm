@@ -3,11 +3,20 @@ Prerequisites
 
 .. selected:: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
 
-   Before installing ROCm |ROCM_VERSION|, ensure your system meets
-   all prerequisites. This includes installing the required dependencies and
-   configuring permissions for GPU access. To confirm that your system is
-   supported, see the :doc:`Compatibility matrix
-   </compatibility/compatibility-matrix>`.
+   .. selected:: i=pkgman i=pip i=tar i=amdgpu-install
+
+      Before installing ROCm |ROCM_VERSION|, ensure your system meets
+      all prerequisites. This includes installing the required dependencies and
+      configuring permissions for GPU access. To confirm that your system is
+      supported, see the :doc:`Compatibility matrix
+      </compatibility/compatibility-matrix>`.
+
+   .. selected:: i=runfile
+
+      Before installing ROCm |ROCM_VERSION|, ensure your system meets
+      all prerequisites. This includes installing the required dependencies.
+      To confirm that your system is supported, see the :doc:`Compatibility matrix
+      </compatibility/compatibility-matrix>`.
 
 .. selected:: os=windows
 
@@ -41,28 +50,28 @@ Prerequisites
                .. code-block:: bash
 
                   apt update
-                  apt install sudo wget gpg
+                  apt install sudo wget gpg perl
 
             .. selected:: i=pip
 
                .. code-block:: bash
 
                   apt update
-                  apt install sudo cmake libgfortran5
+                  apt install sudo cmake libgfortran5 perl
 
             .. selected:: i=tar
 
                .. code-block:: bash
 
                   apt update
-                  apt install sudo wget python3
+                  apt install sudo wget python3 perl
 
             .. selected:: i=runfile
 
                .. code-block:: bash
 
                   apt update
-                  apt install sudo wget curl python3 rsync
+                  apt install sudo wget curl python3 rsync perl
 
          .. selected:: os=rhel os=rocky-linux os=oracle-linux
 
@@ -70,13 +79,13 @@ Prerequisites
 
                .. code-block:: bash
 
-                  dnf install sudo wget
+                  dnf install sudo wget perl
 
             .. selected:: i=runfile
 
                .. code-block:: bash
 
-                  dnf install sudo wget rsync
+                  dnf install sudo wget rsync perl
 
          .. selected:: os=sles
 
@@ -84,25 +93,25 @@ Prerequisites
 
                .. code-block:: bash
 
-                  zypper install sudo wget SUSEConnect
+                  zypper install sudo wget SUSEConnect perl
 
             .. selected:: i=pip
 
                .. code-block:: bash
 
-                  zypper install sudo wget cmake libgfortran5
+                  zypper install sudo wget cmake libgfortran5 perl
 
             .. selected:: i=tar
 
                .. code-block:: bash
 
-                  zypper install sudo wget
+                  zypper install sudo wget perl
 
             .. selected:: i=runfile
 
                .. code-block:: bash
 
-                  zypper install sudo wget rsync
+                  zypper install sudo wget rsync perl
 
 .. ================================================================== WINDOWS ==
 
@@ -142,7 +151,7 @@ Prerequisites
 
       Complete the following instructions in your WSL2 environment.
 
-   .. selected:: ubuntu-ver=24.04
+   .. selected:: ubuntu-ver=24.04.4
       :heading: Install WSL2 and Ubuntu 24.04
       :heading-level: 3
 
@@ -152,7 +161,7 @@ Prerequisites
 
       Complete the following instructions in your WSL2 environment.
 
-   .. selected:: ubuntu-ver=22.04
+   .. selected:: ubuntu-ver=22.04.5
       :heading: Install WSL2 and Ubuntu 22.04
       :heading-level: 3
 
@@ -170,7 +179,7 @@ Prerequisites
 
       .. selected:: os=ubuntu os=wsl
 
-         .. selected:: ubuntu-ver=24.04
+         .. selected:: ubuntu-ver=24.04.4
             :heading: Install the OEM kernel
             :heading-level: 3
 
@@ -184,11 +193,11 @@ Prerequisites
 
             Reboot your system after installing the OEM kernel.
 
-   .. selected:: w=graphics
+   .. selected:: i=amdgpu-install
 
       .. selected:: os=ubuntu
 
-         .. selected:: ubuntu-ver=24.04
+         .. selected:: ubuntu-ver=24.04.4
             :heading: Install the OEM kernel
             :heading-level: 3
 
@@ -298,7 +307,7 @@ Prerequisites
 
       sudo zypper update
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=rhel
       :heading: Add additional package repositories
@@ -341,13 +350,13 @@ Prerequisites
 
       .. code-block:: bash
 
-         sudo dnf update --releasever=10.1 --exclude=\*release\*
+         sudo dnf update --releasever=10.2 --exclude=\*release\*
 
    .. selected:: oracle-linux-ver=9
 
       .. code-block:: bash
 
-         sudo dnf update --releasever=9.7 --exclude=\*release\*
+         sudo dnf update --releasever=9.8 --exclude=\*release\*
 
    .. selected:: oracle-linux-ver=8
 
@@ -446,7 +455,7 @@ Prerequisites
 
 .. selected:: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles os=wsl
 
-   .. selected:: w=graphics
+   .. selected:: i=amdgpu-install
       :heading: Install additional packages
       :heading-level: 3
 
@@ -480,7 +489,7 @@ Prerequisites
 
          .. selected:: fam=all
 
-            .. selected:: ubuntu-ver=24.04
+            .. selected:: ubuntu-ver=24.04.4
 
                .. dropdown:: Install the OEM kernel for Ryzen APUs
                   :animate: fade-in-slide-down
@@ -537,7 +546,7 @@ Prerequisites
 
             sudo apt install python3.14 python3.14-venv
 
-      .. selected:: ubuntu-ver=24.04
+      .. selected:: ubuntu-ver=24.04.4
          :heading: Install Python
          :heading-level: 3
 
@@ -548,7 +557,7 @@ Prerequisites
 
             sudo apt install python3.12 python3.12-venv
 
-      .. selected:: ubuntu-ver=22.04
+      .. selected:: ubuntu-ver=22.04.5
          :heading: Install Python
          :heading-level: 3
 
@@ -653,7 +662,7 @@ Prerequisites
 
          .. code-block:: bash
 
-            sudo zypper install -y python313 python313-pip
+            sudo zypper install python313 python313-pip
 
       .. selected:: sles-ver=15.7
 
@@ -662,7 +671,7 @@ Prerequisites
 
          .. code-block:: bash
 
-            sudo zypper install -y python311 python311-pip
+            sudo zypper install python311 python311-pip
 
    .. selected:: os=windows
       :heading: Install Python
@@ -719,7 +728,7 @@ Prerequisites
 
          To apply all settings, reboot your system.
 
-.. selected:: w=graphics
+.. selected:: i=amdgpu-install
 
    .. selected:: os=ubuntu os=debian os=rhel os=oracle-linux os=rocky-linux os=sles
       :heading: Configure permissions for GPU access
