@@ -112,8 +112,18 @@
 {%- else %}{{ name }}
 {%- endif %}</td>
       <td>
-{%- if cur_ver and prev_ver and (cur_ver != prev_ver or cur_c.changelog) -%}
+{%- if cur_c.changelog is defined -%}
+  {%- set has_link = cur_c.changelog -%}
+{%- else -%}
+  {%- set has_link = cur_ver != prev_ver -%}
+{%- endif -%}
+{%- set has_delta = cur_ver != prev_ver or has_link -%}
+{%- if cur_ver and prev_ver and has_delta -%}
+  {%- if has_link -%}
 {{ prev_ver }}&nbsp;&Rightarrow;&nbsp;<a href="#{{ anchor_id(name, cur_ver) }}">{{ cur_ver }}</a>
+  {%- else -%}
+{{ prev_ver }}&nbsp;&Rightarrow;&nbsp;{{ cur_ver }}
+  {%- endif -%}
 {%- else -%}
 {{ cur_ver }}
 {%- endif -%}
