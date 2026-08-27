@@ -14,6 +14,8 @@ AMD Instinct:
       - {vfs: 1, compute: SPX, memory: NPS1}
       - {vfs: 2, compute: DPX, memory: NPS2}
       - {vfs: 8, compute: CPX, memory: NPS2}
+    esxi-sriov:
+      - {vfs: 1, compute: SPX, memory: NPS1}
 
   AMD Instinct MI350X:
     bare-metal:
@@ -27,6 +29,8 @@ AMD Instinct:
       - {vfs: 1, compute: SPX, memory: NPS1}
       - {vfs: 2, compute: DPX, memory: NPS2}
       - {vfs: 8, compute: CPX, memory: NPS2}
+    esxi-sriov:
+      - {vfs: 1, compute: SPX, memory: NPS1}
 
   AMD Instinct MI350P:
     bare-metal:
@@ -43,8 +47,6 @@ AMD Instinct:
       - {compute: SPX, memory: NPS1}
     passthrough:
       - {compute: SPX, memory: NPS1}
-    kvm-sriov:
-      - {vfs: 1, compute: SPX, memory: NPS1}
 
   AMD Instinct MI300X:
     bare-metal:

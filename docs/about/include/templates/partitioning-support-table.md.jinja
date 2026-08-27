@@ -219,20 +219,20 @@
 </table>
 {%- endmacro -%}
 
-{%- macro render_kvm_sriov() -%}
-{#-- Collect GPUs that have kvm-sriov entries --#}
-{%- set ks_gpus = [] -%}
+{%- macro render_sriov(section_key, label) -%}
+{#-- Collect GPUs that have entries for this section --#}
+{%- set sr_gpus = [] -%}
 {%- for gpu_name, gpu in instinct.items() -%}
-  {%- if gpu["kvm-sriov"] is defined -%}
+  {%- if gpu[section_key] is defined -%}
     {%- set short = gpu_name | replace("AMD Instinct ", "Instinct ") -%}
-    {%- set _ = ks_gpus.append({"name": short, "entries": gpu["kvm-sriov"]}) -%}
+    {%- set _ = sr_gpus.append({"name": short, "entries": gpu[section_key]}) -%}
   {%- endif -%}
 {%- endfor -%}
 
 {#-- Merge consecutive GPUs with identical configs --#}
 {%- set groups = [] -%}
 {%- set ns = namespace(prev_key="", prev_idx=-1) -%}
-{%- for gpu in ks_gpus -%}
+{%- for gpu in sr_gpus -%}
   {%- set k = configs_key(gpu.entries) | trim -%}
   {%- if k == ns.prev_key and ns.prev_idx >= 0 -%}
     {%- set last = groups[-1] -%}
@@ -274,13 +274,13 @@
 {%- if multi_vf %}{%- set ns_fn.needed = true %}{%- set ns_fn.count = ns_fn.count + 1 %}{%- endif %}
     <tr>
 {%- if not g_first.deploy_written %}
-      <td rowspan="{{ ns_total.n }}" style="vertical-align: middle;"><p>KVM SR-IOV</p></td>
+      <td rowspan="{{ ns_total.n }}" style="vertical-align: middle;"><p>{{ label }}</p></td>
 {%- set g_first.deploy_written = true %}
 {%- endif %}
 {%- if loop.first %}
       <td{% if n_rows > 1 %} rowspan="{{ n_rows }}" style="vertical-align: middle;"{% endif %}><p>{{ dev_label }}</p></td>
 {%- endif %}
-      <td><p>{{ vfs_display(entry) | trim }}{% if multi_vf %}<a id="fn-ref-{{ ns_fn.count }}" class="footnote-reference brackets" href="#partitioning-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>{% endif %}</p></td>
+      <td><p>{{ vfs_display(entry) | trim }}{% if multi_vf %}<a id="{{ section_key }}-fn-ref-{{ ns_fn.count }}" class="footnote-reference brackets" href="#partitioning-support-{{ section_key }}-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>{% endif %}</p></td>
       <td><p>{{ entry.compute }}{% if entry.default is defined and entry.default %} (Default){% endif %}</p></td>
       <td><p>{{ entry.memory }}</p></td>
     </tr>
@@ -289,9 +289,9 @@
   </tbody>
 </table>
 {%- if ns_fn.needed %}
-<aside class="footnote brackets" id="partitioning-support-footnotes" role="doc-footnote">
+<aside class="footnote brackets" id="partitioning-support-{{ section_key }}-footnotes" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></span>
-<span class="backrefs">({% for i in range(1, ns_fn.count + 1) %}<a role="doc-backlink" href="#fn-ref-{{ i }}">{{ i }}</a>{% if not loop.last %}, {% endif %}{% endfor %})</span>
+<span class="backrefs">({% for i in range(1, ns_fn.count + 1) %}<a role="doc-backlink" href="#{{ section_key }}-fn-ref-{{ i }}">{{ i }}</a>{% if not loop.last %}, {% endif %}{% endfor %})</span>
 <p>Multi-VF support requires a compatible firmware. See <a href="#kernel-driver-and-firmware-bundle-support">Kernel driver and firmware bundle support</a> for the list of required firmware versions and supported configurations.</p>
 </aside>
 {%- endif %}
@@ -310,10 +310,18 @@ deployments.
 {{ render_passthrough() }}
 ```
 
-The following configurations are available on AMD Instinct GPUs in SR-IOV
+The following configurations are available on AMD Instinct GPUs in KVM SR-IOV
 deployments. See {ref}`release-virtualization-support` for driver support
 information.
 
 ```{raw} html
-{{ render_kvm_sriov() }}
+{{ render_sriov("kvm-sriov", "KVM SR-IOV") }}
+```
+
+The following configurations are available on AMD Instinct GPUs in ESXi SR-IOV
+deployments. See {ref}`release-virtualization-support` for driver support
+information.
+
+```{raw} html
+{{ render_sriov("esxi-sriov", "ESXi SR-IOV") }}
 ```

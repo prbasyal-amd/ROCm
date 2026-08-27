@@ -26,7 +26,15 @@ $defs:
         type: array
         items:
           $ref: "#/$defs/bareMetalEntry"
+      passthrough:
+        type: array
+        items:
+          $ref: "#/$defs/bareMetalEntry"
       kvm-sriov:
+        type: array
+        items:
+          $ref: "#/$defs/sriovEntry"
+      esxi-sriov:
         type: array
         items:
           $ref: "#/$defs/sriovEntry"
