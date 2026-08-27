@@ -36,7 +36,7 @@ ROCm 10.0.0 adds support for the following AMD Radeon GPUs:
 
 For the complete list of supported AMD hardware, see [AMD hardware support](#amd-hardware-support).
 
-#### Expanded operating system support
+#### Operating system support update
 
 Operating system support remains unchanged in this release.
 
@@ -60,14 +60,15 @@ ROCm 10.0.0 adds support for the following virtualization configurations on AMD 
   * Passthrough Ubuntu 24.04 host OS with Ubuntu 24.04 guest OS.
   * Passthrough Ubuntu 24.04 host OS with RHEL 9.4 guest OS.
   * Passthrough RHEL 9.4 host OS with RHEL 9.4 guest OS.
+  * Passthrough ESXi 8 U3 with Ubuntu 24.04 and Ubuntu 22.04 guest OS.
   * KVM SR-IOV RHEL 10.2 host OS with RHEL 10.2 guest OS.
 * On AMD Instinct MI210:
-  * Passthrough Ubuntu 24.04 with Ubuntu 24.04 guest OS.
-  * Passthrough Ubuntu 22.04 with Ubuntu 22.04 guest OS.
+  * Passthrough Ubuntu 24.04 host OS with Ubuntu 24.04 guest OS.
+  * Passthrough Ubuntu 22.04 host OS with Ubuntu 22.04 guest OS.
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.2.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.2.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
-#### Expanded Instinct GPU partitioning support
+#### GPU partitioning support update
 
 GPU partitioning support remains unchanged in this release. For details, see [GPU partitioning support](#gpu-partitioning-support).
 
@@ -190,7 +191,8 @@ ROCm Systems Profiler can now trace hipFile GPU-direct storage API calls, giving
 
 ##### rocSHMEM host-stream API tracing
 
-ROCm Systems Profiler now captures the nine host-stream rocSHMEM API calls (`putmem_on_stream`, `getmem_on_stream`, `putmem_signal_on_stream`, `signal_wait_until_on_stream`, `broadcastmem_on_stream`, `alltoallmem_on_stream`, `barrier_all_on_stream`, `sync_all_on_stream`, and `quiet_on_stream`) as `rocm_rocshmem_api` spans in both Perfetto traces and rocpd databases. Enable it with `ROCPROFSYS_ROCM_DOMAINS=rocshmem_api`. This capability requires ROCprofiler-SDK 1.3.5 or later and rocSHMEM 3.6.0 or later (included in ROCm 10.0.0). Since rocSHMEM 3.6.0 enables USE_ROCPROFILER_REGISTER by default, package installations include this support automatically. A rocshmem example demonstrating two-PE usage of all nine APIs is included under examples/rocshmem. For details, see the ROCm domains section in Configuring runtime options.
+ROCm Systems Profiler now captures the nine host-stream rocSHMEM API calls (`putmem_on_stream`, `getmem_on_stream`, `putmem_signal_on_stream`, `signal_wait_until_on_stream`, `broadcastmem_on_stream`, `alltoallmem_on_stream`, `barrier_all_on_stream`, `sync_all_on_stream`, and `quiet_on_stream`) as `rocm_rocshmem_api` spans in both Perfetto traces and rocpd databases. Enable it with `ROCPROFSYS_ROCM_DOMAINS=rocshmem_api`. This capability requires ROCprofiler-SDK 1.3.5 or later and rocSHMEM 3.6.0 or later (included in ROCm 10.0.0). Since rocSHMEM 3.6.0 enables USE_ROCPROFILER_REGISTER by default, package installations include this support automatically. A rocshmem example demonstrating two-PE usage of all nine APIs is included under examples/rocshmem. For details, see the ROCm domains section in [Configuring runtime options](https://rocm.docs.amd.com/projects/rocprofiler-systems/en/docs-10.0.0/how-to/configuring-runtime-options.html#configuring-runtime-options).
+
 
 ##### Finer-grained instrumentation control
 
@@ -234,7 +236,7 @@ The following are notable enhancements to hipSPARSE and rocSPARSE:
 
 ##### rocSPARSE and hipSPARSE add Blocked ELL format support
 
-rocSPARSE and hipSPARSE now support Blocked ELL format in their dense-to-sparse conversion routines,`rocsparse_dense_to_sparse` and `hipsparseDenseToSparse`. Each library adds a companion pointer-setter function, `rocsparse_bell_set_pointers` and `hipsparseBlockedEllSetPointers` respectively, to configure the Blocked ELL array pointers.
+rocSPARSE and hipSPARSE now support Blocked ELL format in their dense-to-sparse conversion routines, `rocsparse_dense_to_sparse` and `hipsparseDenseToSparse`. Each library adds a companion pointer-setter function, `rocsparse_bell_set_pointers` and `hipsparseBlockedEllSetPointers` respectively, to configure the Blocked ELL array pointers.
 
 ##### CSC format support for sparse triangular solves in rocSPARSE and hipSPARSE
 
@@ -303,7 +305,7 @@ The following table is a general overview of supported operating systems. Actual
 
 ## Installation updates
 
-ROCm 10.0.0 adds support for new GPUs and APUs and fixes minor bug in the Runfile Installer.
+ROCm 10.0.0 adds support for new GPUs and APUs and fixes minor issues in the Runfile Installer.
 
 (release-supported-fw)=
 
