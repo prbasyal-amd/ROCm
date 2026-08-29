@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 from subprocess import run
 
-ROCM_VERSION = "7.14.0"
+ROCM_VERSION = "7.14.1"
 GA_DATE = "2026-07-15"
 
 DOCS_DIR = Path(__file__).parent.resolve()
