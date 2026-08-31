@@ -10,7 +10,7 @@ The following are the notable changes in ROCm 7.14.1.
 
 RCCL's InfiniBand fault-injection test instrumentation, which was compiled and active by default in ROCm 7.14.0, has been disabled, restoring collective performance for distributed training workloads on AMD Instinct™ MI300X GPUs, including JAX-based Llama 3 and Llama 3.1 training.
 
-### Fixed OpenBLAS and LAPACK build failures with `amdflang`
+### Fixed OpenBLAS and LAPACK build failures with amdflang
 
 An upstream LLVM regression in `ScalarEvolution::LoopDisposition`, which shipped in ROCm 7.14.0 before its upstream revert could be picked up, has been reverted in the ROCm LLVM fork, restoring `amdflang` builds of OpenBLAS and LAPACK.
 
@@ -63,7 +63,7 @@ SUSE Linux Enterprise Server (SLES) 15 SP7, SLES 16, and Debian 13 are now suppo
 
 For the full list of supported Linux distributions, see [Operating system support](#operating-system-support).
 
-#### Expanded GPU virtualization support for Instinct and Radeon GPUs
+##### Expanded GPU virtualization support for Instinct and Radeon GPUs
 
 ROCm 7.14.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
 
@@ -75,7 +75,7 @@ ROCm 7.14.0 adds support for the following virtualization configurations on AMD 
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.1.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
-#### Expanded Instinct GPU partitioning support
+##### Expanded Instinct GPU partitioning support
 
 ROCm 7.14.0 has enabled and optimized multi-VF partition modes for the following GPU partitioning configurations in SR-IOV deployments:
 

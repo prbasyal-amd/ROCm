@@ -174,6 +174,26 @@
     </td>
   </tr>
   <tr>
+        <td style="vertical-align: middle">
+          <p>Instinct MI350P</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p>KVM</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p>Passthrough</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p style="text-align: center">—</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p>Debian 13</p>
+        </td>
+        <td style="vertical-align: middle">
+          <p>Ubuntu 26.04</p>
+        </td>
+      </tr>
+  <tr>
     <td rowspan="3" style="vertical-align: middle">
       <p>Instinct MI325X</p>
     </td>
@@ -271,7 +291,7 @@
       <p>RHEL 9.4</p>
     </td>
     <td style="vertical-align: middle">
-      <p>Ubuntu 22.04</p>
+      <p>Ubuntu 24.04</p>
     </td>
   </tr>
   <tr>

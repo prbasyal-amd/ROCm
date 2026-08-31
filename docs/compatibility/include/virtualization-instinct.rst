@@ -1,7 +1,7 @@
-.. selected:: gpu=mi355x gpu=mi350x gpu=mi325x gpu=mi300x gpu=mi210
+.. selected:: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi210
    :heading: GPU virtualization support
 
-   .. selected:: gpu=mi355x gpu=mi350x gpu=mi325x gpu=mi300x gpu=mi210
+   .. selected:: gpu=mi355x gpu=mi350x gpu=mi350p gpu=mi325x gpu=mi300x gpu=mi210
 
       Supported SR-IOV configurations require the GPU-IOV Module (GIM) driver
       9.1.0.K -- see the `AMD Instinct Virtualization Driver documentation
@@ -147,6 +147,19 @@
          .. matrix-cell:: ESXi 9.1
 
          .. matrix-cell:: Ubuntu 24.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi350p
+
+         .. matrix-cell:: KVM
+
+         .. matrix-cell:: Passthrough
+
+         .. matrix-cell:: —
+
+         .. matrix-cell:: Debian 13
+
+         .. matrix-cell:: Ubuntu 26.04
 
       .. matrix-row::
          :show-cond: gpu=mi325x
