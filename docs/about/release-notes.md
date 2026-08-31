@@ -4,7 +4,9 @@ ROCm {{ ROCM_VERSION }} is a quality release that resolves the issue listed in t
 
 ## Release highlights
 
-### Restored RCCL collective performance by disabling InfiniBand fault-injection overhead by default
+The following are the notable changes in ROCm 7.14.1.
+
+### Restored RCCL collective performance on InfiniBand
 
 RCCL's InfiniBand fault-injection test instrumentation, which was compiled and active by default in ROCm 7.14.0, has been disabled, restoring collective performance for distributed training workloads on AMD Instinct™ MI300X GPUs, including JAX-based Llama 3 and Llama 3.1 training.
 
