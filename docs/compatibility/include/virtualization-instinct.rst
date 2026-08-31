@@ -28,11 +28,20 @@
          :show-cond: gpu=mi355x
 
          .. matrix-cell:: KVM
-            :rowspan: 4
+            :rowspan: 5
 
          .. matrix-cell:: Passthrough
+            :rowspan: 2
 
          .. matrix-cell:: —
+            :rowspan: 2
+
+         .. matrix-cell:: Ubuntu 26.04
+
+         .. matrix-cell:: Ubuntu 26.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi355x
 
          .. matrix-cell:: Ubuntu 24.04
 
@@ -81,11 +90,20 @@
          :show-cond: gpu=mi350x
 
          .. matrix-cell:: KVM
-            :rowspan: 3
+            :rowspan: 5
 
          .. matrix-cell:: Passthrough
+            :rowspan: 2
 
          .. matrix-cell:: —
+            :rowspan: 2
+
+         .. matrix-cell:: Ubuntu 26.04
+
+         .. matrix-cell:: Ubuntu 26.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi350x
 
          .. matrix-cell:: Ubuntu 24.04
 
@@ -95,17 +113,22 @@
          :show-cond: gpu=mi350x
 
          .. matrix-cell:: SR-IOV
-            :rowspan: 2
+            :rowspan: 3
 
          .. matrix-cell::
-            :rowspan: 2
+            :rowspan: 3
 
             `GIM 9.1.0.K <https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K>`__
 
          .. matrix-cell:: Ubuntu 24.04
-            :rowspan: 2
+            :rowspan: 3
 
          .. matrix-cell:: Ubuntu 24.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi350x
+
+         .. matrix-cell:: RHEL 10.0
 
       .. matrix-row::
          :show-cond: gpu=mi350x
@@ -129,6 +152,27 @@
          :show-cond: gpu=mi325x
 
          .. matrix-cell:: KVM
+            :rowspan: 3
+
+         .. matrix-cell:: Passthrough
+            :rowspan: 2
+
+         .. matrix-cell:: —
+            :rowspan: 2
+
+         .. matrix-cell:: Ubuntu 26.04
+
+         .. matrix-cell:: Ubuntu 26.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi325x
+
+         .. matrix-cell:: Ubuntu 22.04
+
+         .. matrix-cell:: Ubuntu 22.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi325x
 
          .. matrix-cell:: SR-IOV
 
@@ -144,11 +188,20 @@
          :show-cond: gpu=mi300x
 
          .. matrix-cell:: KVM
-            :rowspan: 3
+            :rowspan: 6
 
          .. matrix-cell:: Passthrough
+            :rowspan: 2
 
          .. matrix-cell:: —
+            :rowspan: 2
+
+         .. matrix-cell:: Ubuntu 26.04
+
+         .. matrix-cell:: Ubuntu 26.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi300x
 
          .. matrix-cell:: Ubuntu 22.04
 
@@ -158,10 +211,10 @@
          :show-cond: gpu=mi300x
 
          .. matrix-cell:: SR-IOV
-            :rowspan: 2
+            :rowspan: 4
 
          .. matrix-cell::
-            :rowspan: 2
+            :rowspan: 4
 
             `GIM 9.1.0.K <https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K>`__
 
@@ -175,16 +228,38 @@
          .. matrix-cell:: Ubuntu 22.04
 
          .. matrix-cell:: Ubuntu 22.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi300x
+
+         .. matrix-cell:: RHEL 9.4
+            :rowspan: 2
+
+         .. matrix-cell:: Ubuntu 22.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi300x
+
+         .. matrix-cell:: RHEL 9.4
 
       .. matrix-row::
          :show-cond: gpu=mi210
 
          .. matrix-cell:: KVM
-            :rowspan: 3
+            :rowspan: 4
 
          .. matrix-cell:: Passthrough
+            :rowspan: 2
 
          .. matrix-cell:: —
+            :rowspan: 2
+
+         .. matrix-cell:: Ubuntu 26.04
+
+         .. matrix-cell:: Ubuntu 26.04
+
+      .. matrix-row::
+         :show-cond: gpu=mi210
 
          .. matrix-cell:: RHEL 9.4
 

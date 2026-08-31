@@ -63,7 +63,7 @@ SUSE Linux Enterprise Server (SLES) 15 SP7, SLES 16, and Debian 13 are now suppo
 
 For the full list of supported Linux distributions, see [Operating system support](#operating-system-support).
 
-##### Expanded GPU virtualization support for Instinct and Radeon GPUs
+#### Expanded GPU virtualization support for Instinct and Radeon GPUs
 
 ROCm 7.14.0 adds support for the following virtualization configurations on AMD Instinct and Radeon GPUs:
 
@@ -75,7 +75,7 @@ ROCm 7.14.0 adds support for the following virtualization configurations on AMD 
 
 Supported Single Root I/O Virtualization (SR-IOV) configurations require the [AMD GPU Virtualization Driver (GIM) 9.1.0.K](https://github.com/amd/MxGPU-Virtualization/releases/tag/9.1.0.K). For details, see [GPU virtualization support](#gpu-virtualization-support).
 
-##### Expanded Instinct GPU partitioning support
+#### Expanded Instinct GPU partitioning support
 
 ROCm 7.14.0 has enabled and optimized multi-VF partition modes for the following GPU partitioning configurations in SR-IOV deployments:
 
@@ -124,7 +124,7 @@ The following are notable enhancements to HIP:
 
 * **Faster HIP graph replay for asynchronous memory allocations**: HIP graph replay now reduces overhead for graphs that interleave asynchronous memory allocations with compute. Allocation nodes no longer block during replay. Physical memory is reused across nodes instead of being mapped and unmapped on each launch, eliminating the gaps between kernels this pattern previously caused. For background on HIP graphs, see [Graph Management](https://rocm.docs.amd.com/projects/HIP/en/latest/reference/hip_runtime_api/modules/graph_management.html).
 
-*  **New HIP documentation topic on device properties**: The [HIP Device Properties and Topology on CDNA Architectures](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hipDeviceProperties.html) provides an overview of the CDNA architecture topology and its key hardware characteristics, helping developers better understand the underlying architecture and optimize the performance of their HIP applications. 
+*  **New HIP documentation topic on device properties**: The [HIP Device Properties and Topology on CDNA Architectures](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/hipDeviceProperties.html) provides an overview of the CDNA architecture topology and its key hardware characteristics, helping developers better understand the underlying architecture and optimize the performance of their HIP applications.
 
 For more information, see the [HIP section](#hip-7-14) in the ROCm component changelogs.
 
@@ -454,7 +454,7 @@ PyTorch might display a warning when importing on Linux if the system libnuma pa
 
 #### Significantly longer LLM warmup times on some Radeon GPUs
 
-Significantly longer warmup times might be observed in some large language model inference workloads on AMD Radeon GPUs using vLLM versions v0.21.0 through v0.25.0. As a workaround, use a vLLM release earlier than v0.21.0 or upgrade to vLLM v0.26.0 or later, which includes a fix for this issue. See [GitHub issue #6486](https://github.com/ROCm/ROCm/issues/6486). 
+Significantly longer warmup times might be observed in some large language model inference workloads on AMD Radeon GPUs using vLLM versions v0.21.0 through v0.25.0. As a workaround, use a vLLM release earlier than v0.21.0 or upgrade to vLLM v0.26.0 or later, which includes a fix for this issue. See [GitHub issue #6486](https://github.com/ROCm/ROCm/issues/6486).
 
 #### SGLang default settings and some models might cause failures on Radeon GPUs
 

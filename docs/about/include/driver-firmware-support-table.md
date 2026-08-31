@@ -132,9 +132,9 @@
         <p>Instinct MI300A</p>
       </td>
       <td>
-        <p>BKC 27
+        <p>PI100D
         <a id="id1" class="footnote-reference brackets" href="#firmware-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a><br>
-        BKC 26.1
+        PI100C
         </p>
       </td>
     </tr>
