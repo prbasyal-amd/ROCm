@@ -1,26 +1,16 @@
 # ROCm Core SDK {{ ROCM_VERSION }} release notes
 
-ROCm {{ ROCM_VERSION }} is a quality release that resolves a distributed-training performance regression in RCCL, an amdflang compiler regression that broke OpenBLAS and LAPACK builds, and stability issues in HIP graph-launch profiling and queue idle detection.
+ROCm {{ ROCM_VERSION }} is a quality release that resolves the issue listed in the Release highlights.
 
 ## Release highlights
 
-The following are the notable changes in ROCm {{ ROCM_VERSION }}.
-
 ### Restored RCCL collective performance by disabling InfiniBand fault-injection overhead by default
 
-RCCL's InfiniBand fault-injection test instrumentation, which was compiled and active by default, has been disabled, restoring collective performance for distributed training workloads on AMD Instinct™ MI300X GPUs, including JAX-based Llama 3 and Llama 3.1 training.
+RCCL's InfiniBand fault-injection test instrumentation, which was compiled and active by default in ROCm 7.14.0, has been disabled, restoring collective performance for distributed training workloads on AMD Instinct™ MI300X GPUs, including JAX-based Llama 3 and Llama 3.1 training.
 
 ### Fixed OpenBLAS and LAPACK build failures with `amdflang`
 
 An upstream LLVM regression in `ScalarEvolution::LoopDisposition`, which shipped in ROCm 7.14.0 before its upstream revert could be picked up, has been reverted in the ROCm LLVM fork, restoring `amdflang` builds of OpenBLAS and LAPACK.
-
-### Fixed missing kernel timestamps in HIP graph launch profiling traces
-
-HIP graph launch profiling has been corrected to accumulate kernel names across all segments of a graph, so every kernel dispatched via `hipGraphLaunch` now reports a timestamp in `rocprofiler-sdk` traces of graph-captured workloads.
-
-### Fixed intermittent segmentation fault during HIP queue idle detection
-
-HIP queue idle detection has been corrected to check a signal owned by the queue for its entire lifetime, eliminating an intermittent use-after-free that could crash applications under sustained GPU stress testing.
 
 ```{note}
 ROCm {{ ROCM_VERSION }} doesn't include any other significant changes. For additional release information, refer to the ROCm 7.14.0 release notes below.
