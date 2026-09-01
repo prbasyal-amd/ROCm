@@ -530,6 +530,15 @@ TensorFlow ROCm v2.21 workloads might fail to start with an `ImportError: libhip
 
 Intermittent segmentation faults or GPU hangs might be observed when running some vLLM or ComfyUI workloads on Ryzen AI systems using gfx1103 (RDNA3) GPUs. See [GitHub issue #7702](https://github.com/ROCm/TheRock/issues/7702).
 
+### Inaccurate output when running certain LLM models on AMD Radeon RX 9050 GPUs with 8 GB of memory
+
+When you run certain large language models (LLMs) for text generation using ROCm-based PyTorch or C++ inference scripts on an [AMD Radeon RX 9050](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html) with 8 GB of memory, you might observe inaccurate output. The issue has been confirmed with DeepSeek-R1-Distill-Qwen-1.5B, Llama 3.2 3B, Llama 3.2 1B, Gemma 4 E4B-it, and Qwen3-Coder-30B (4-bit quantized) models. The issue is not observed on [AMD Radeon RX 9050 (4GB)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050-4gb.html) GPUs, the 4 GB memory variant of the same GPU.
+
+### ComfyUI might crash or trigger a TDR on some AMD Ryzen AI processors when dynamic VRAM is enabled
+
+ComfyUI workloads on Windows with ROCm 10 might encounter an access violation error or a timeout detection and
+recovery (TDR) event on some AMD Ryzen AI processors, such as the [AMD Ryzen AI Max+ PRO 395](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-plus-pro-395.html), causing the application to crash. This occurs because a recent ComfyUI update enabled dynamic VRAM by default, which triggers an access violation tied to the AIMDO component when loading most models (Z-Image is unaffected, as it doesn't use AIMDO). As a workaround, add the `--disable-dynamic-vram` flag to the ComfyUI launch command.
+
 ## ROCm resolved issues
 
 The following notable issues have been fixed in ROCm 10.0.0.
