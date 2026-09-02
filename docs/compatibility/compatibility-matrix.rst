@@ -74,6 +74,10 @@ components.
 
 .. include:: ./include/virtualization-radeon.rst
 
+----
+
+.. include:: ./include/partitioning-instinct.rst
+
 .. _rocm-compat-frameworks:
 
 .. _rocm-compat-python:

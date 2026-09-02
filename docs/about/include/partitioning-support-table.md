@@ -125,6 +125,52 @@ available on AMD Instinct GPUs in bare metal deployments.
   </tbody>
 </table>
 
+The following compute partition and NUMA-per-socket (NPS) configurations are
+available on AMD Instinct GPUs in passthrough deployments.
+
+<table class="rocm-docs-table table">
+  <thead>
+    <tr>
+      <th class="head">
+        <p>Deployment</p>
+      </th>
+      <th class="head">
+        <p>Device</p>
+      </th>
+      <th class="head">
+        <p>Compute partition mode</p>
+      </th>
+      <th class="head">
+        <p>Memory partition mode</p>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="vertical-align: middle;">
+        <p>KVM Passthrough</p>
+      </td>
+      <td style="vertical-align: middle;">
+        <p>Instinct MI355X, MI350X, MI325X, MI300X</p>
+      </td>
+      <td rowspan="2" style="vertical-align: middle;">
+        <p>SPX</p>
+      </td>
+      <td rowspan="2" style="vertical-align: middle;">
+        <p>NPS1</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle;">
+        <p>ESXi Passthrough</p>
+      </td>
+      <td style="vertical-align: middle;">
+        <p>Instinct MI350P, MI300X</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 The following configurations are available on AMD Instinct GPUs in SR-IOV
 deployments. See {ref}`release-virtualization-support` for driver support
 information.
