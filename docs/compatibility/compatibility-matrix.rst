@@ -78,6 +78,10 @@ components.
 
 .. include:: ./include/partitioning-instinct.rst
 
+----
+
+.. include:: ./include/partitioning-instinct.rst
+
 .. _rocm-compat-frameworks:
 
 .. _rocm-compat-python:
