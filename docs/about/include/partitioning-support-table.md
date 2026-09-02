@@ -265,8 +265,7 @@ information.
     </tr>
     <tr id="id1">
       <td>
-        <p>8
-        <a id="id2" class="footnote-reference brackets" href="#partitioning-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a></p>
+        <p>8<a id="id2" class="footnote-reference brackets" href="#partitioning-support-footnotes" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a></p>
       </td>
       <td>
         <p>CPX</p>
