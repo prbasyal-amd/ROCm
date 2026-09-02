@@ -11,6 +11,7 @@ AINIC
 AITER
 ALU
 AMD
+amdflang
 AMDGPU
 AMDGPUs
 AMDMIGraphX
@@ -465,6 +466,7 @@ OOM
 OSS
 OSU
 OTF
+OpenBLAS
 OpenCL
 OpenCV
 OpenFabrics
