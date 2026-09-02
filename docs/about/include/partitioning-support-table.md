@@ -197,7 +197,7 @@ information.
   </thead>
   <tbody>
     <tr>
-      <td rowspan="7" style="vertical-align: middle;">
+      <td rowspan="6" style="vertical-align: middle;">
         <p>KVM SR-IOV</p>
       </td>
       <td rowspan="3" style="vertical-align: middle;">
