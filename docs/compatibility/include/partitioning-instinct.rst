@@ -46,14 +46,14 @@
             .. matrix-cell:: NPS2
 
          .. matrix-row::
-            :show-cond: gpu=mi35Op
+            :show-cond: gpu=mi350p
 
             .. matrix-cell:: DPX
 
             .. matrix-cell:: NPS1
 
          .. matrix-row::
-            :show-cond: gpu=mi35Op
+            :show-cond: gpu=mi350p
 
             .. matrix-cell:: CPX
 
@@ -90,16 +90,7 @@
             .. matrix-cell:: NPS1
 
          .. matrix-row::
-            :show-cond: gpu=mi35Op
-
-            .. matrix-cell:: ESXi Passthrough
-
-            .. matrix-cell:: SPX
-
-            .. matrix-cell:: NPS1
-
-         .. matrix-row::
-            :show-cond: gpu=mi300x
+            :show-cond: gpu=mi350p gpu=mi300x
 
             .. matrix-cell:: ESXi Passthrough
 
