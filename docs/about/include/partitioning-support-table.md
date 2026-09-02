@@ -275,6 +275,23 @@ information.
         <p>NPS4</p>
       </td>
     </tr>
+    <tr>
+      <td style="vertical-align: middle;">
+        <p>ESxi SR-IOV</p>
+      </td>
+      <td style="vertical-align: middle;">
+        <p>Instinct MI355X, Instinct MI350X</p>
+      </td>
+      <td>
+        <p>1</p>
+      </td>
+      <td>
+        <p>SPX</p>
+      </td>
+      <td>
+        <p>NPS1</p>
+      </td>
+    </tr>
   </tbody>
 </table>
 
