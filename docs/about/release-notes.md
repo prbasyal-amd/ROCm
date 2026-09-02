@@ -530,9 +530,9 @@ TensorFlow ROCm v2.21 workloads might fail to start with an `ImportError: libhip
 
 Intermittent segmentation faults or GPU hangs might be observed when running some vLLM or ComfyUI workloads on Ryzen AI systems using gfx1103 (RDNA3) GPUs. See [GitHub issue #7702](https://github.com/ROCm/TheRock/issues/7702).
 
-### Inaccurate output when running certain LLM models on AMD Radeon RX 9050 GPUs (8GB)
+### Inaccurate output when running certain LLM models on AMD Radeon RX 9050 (8GB) GPUs
 
-When you run certain large language models (LLMs) for text generation using ROCm-based PyTorch or C++ inference scripts on an [AMD Radeon RX 9050](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html) with 8 GB of memory, you might observe inaccurate output. The issue has been confirmed with DeepSeek-R1-Distill-Qwen-1.5B, Llama 3.2 3B, Llama 3.2 1B, Gemma 4 E4B-it, and Qwen3-Coder-30B (4-bit quantized) models. The issue is not observed on [AMD Radeon RX 9050 (4GB)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050-4gb.html) GPUs, the 4 GB memory variant of the same GPU.
+Certain large language models (LLMs) might produce inaccurate output on [AMD Radeon RX 9050](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050.html) (8GB) GPUs .The issue has been observed across multiple LLMs. The issue is not observed on [AMD Radeon RX 9050 (4GB)](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9050-4gb.html) GPUs, the 4 GB memory variant of the same GPU.
 
 ### ComfyUI might crash or trigger a TDR on some AMD Ryzen AI processors when dynamic VRAM is enabled
 
