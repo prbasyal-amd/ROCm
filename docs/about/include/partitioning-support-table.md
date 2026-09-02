@@ -277,7 +277,7 @@ information.
     </tr>
     <tr>
       <td style="vertical-align: middle;">
-        <p>ESxi SR-IOV</p>
+        <p>ESXi SR-IOV</p>
       </td>
       <td style="vertical-align: middle;">
         <p>Instinct MI355X, Instinct MI350X</p>
